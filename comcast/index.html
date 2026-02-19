@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xavier's Comcast Territory Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        #map { height: 100vh; width: 100%; }
+        .sidebar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 320px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            padding: 20px;
+            z-index: 1000;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .sidebar h1 {
+            font-size: 18px;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+        .sidebar .subtitle {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .stat-box {
+            background: #f5f5f5;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-box .number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0057b8;
+        }
+        .stat-box .label {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+        }
+        .territory-list {
+            margin-bottom: 20px;
+        }
+        .territory-list h3 {
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .zip-chip {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #0057b8;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin: 3px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .zip-chip:hover {
+            background: #0057b8;
+            color: white;
+        }
+        .controls {
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            margin-bottom: 8px;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: #0057b8;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #004494;
+        }
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+        }
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        .legend {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            font-size: 12px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .pin-popup input, .pin-popup textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        .pin-popup button {
+            padding: 6px 12px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .save-btn { background: #4caf50; color: white; }
+        .delete-btn { background: #f44336; color: white; }
+        .status-select {
+            width: 100%;
+            padding: 6px;
+            margin-bottom: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .help-text {
+            font-size: 11px;
+            color: #888;
+            margin-top: 10px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    
+    <div class="sidebar">
+        <div style="margin-bottom: 15px; font-size: 12px;">
+            <a href="/" style="color: #0057b8; text-decoration: none;">← Back to Daequan AI</a>
+        </div>
+        <h1>🏢 Comcast Territory</h1>
+        <div class="subtitle">Xavier Finch • Olympia/Tacoma Region</div>
+        
+        <div class="stats">
+            <div class="stat-box">
+                <div class="number" id="pinCount">0</div>
+                <div class="label">Visits</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">14</div>
+                <div class="label">Zip Codes</div>
+            </div>
+        </div>
+        
+        <div class="territory-list">
+            <h3>Territories</h3>
+            <div id="zipList"></div>
+        </div>
+        
+        <div class="controls">
+            <button class="btn btn-primary" onclick="exportData()">📥 Export Visits</button>
+            <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">📤 Import Data</button>
+            <input type="file" id="importFile" style="display:none" accept=".json" onchange="importData(this)">
+            <button class="btn btn-secondary" onclick="clearAllPins()">🗑️ Clear All Pins</button>
+        </div>
+        
+        <div class="help-text">
+            💡 <strong>How to use:</strong><br>
+            • Click anywhere on the map to drop a pin<br>
+            • Add business name, notes, and status<br>
+            • Click existing pins to edit or delete<br>
+            • Export regularly to save your progress
+        </div>
+    </div>
+    
+    <div class="legend">
+        <div class="legend-item">
+            <div class="legend-color" style="background: #4caf50;"></div>
+            <span>Visited - Interested</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #ff9800;"></div>
+            <span>Visited - Follow-up</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #f44336;"></div>
+            <span>Visited - Not Interested</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #2196f3;"></div>
+            <span>Called Only</span>
+        </div>
+    </div>
+
+    <script>
+        // Initialize map centered on Tacoma area
+        const map = L.map('map').setView([47.25, -122.4], 10);
+        
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Territory zip codes with approximate centers
+        const territories = [
+            { zip: '98070', city: 'Vashon', lat: 47.4474, lng: -122.4598 },
+            { zip: '98321', city: 'Buckley', lat: 47.1623, lng: -122.0260 },
+            { zip: '98323', city: 'Carbonado', lat: 47.0804, lng: -122.0515 },
+            { zip: '98385', city: 'South Prairie', lat: 47.1376, lng: -122.0940 },
+            { zip: '98391', city: 'Lake Tapps', lat: 47.1963, lng: -122.1690 },
+            { zip: '98396', city: 'Wilkeson', lat: 47.1054, lng: -122.0468 },
+            { zip: '98403', city: 'Tacoma', lat: 47.2626, lng: -122.4483 },
+            { zip: '98404', city: 'Tacoma', lat: 47.2151, lng: -122.4123 },
+            { zip: '98406', city: 'Tacoma', lat: 47.2646, lng: -122.5149 },
+            { zip: '98407', city: 'Ruston', lat: 47.2994, lng: -122.5155 },
+            { zip: '98413', city: 'Tacoma', lat: 47.2529, lng: -122.4443 },
+            { zip: '98416', city: 'Tacoma', lat: 47.2618, lng: -122.4807 },
+            { zip: '98443', city: 'Tacoma', lat: 47.2025, lng: -122.3649 },
+            { zip: '98447', city: 'Tacoma', lat: 47.1871, lng: -122.3450 }
+        ];
+
+        // Status colors
+        const statusColors = {
+            'interested': '#4caf50',
+            'followup': '#ff9800',
+            'not-interested': '#f44336',
+            'called': '#2196f3'
+        };
+
+        // Store pins
+        let pins = JSON.parse(localStorage.getItem('comcastPins') || '[]');
+        let pinLayers = [];
+
+        // Add territory markers
+        territories.forEach(t => {
+            const circle = L.circle([t.lat, t.lng], {
+                color: '#0057b8',
+                fillColor: '#0057b8',
+                fillOpacity: 0.1,
+                radius: 2000
+            }).addTo(map);
+            
+            circle.bindPopup(`<strong>${t.city}</strong><br>Zip: ${t.zip}`);
+        });
+
+        // Populate zip list
+        const zipList = document.getElementById('zipList');
+        territories.forEach(t => {
+            const chip = document.createElement('span');
+            chip.className = 'zip-chip';
+            chip.textContent = t.zip;
+            chip.onclick = () => map.setView([t.lat, t.lng], 13);
+            zipList.appendChild(chip);
+        });
+
+        // Load saved pins
+        function loadPins() {
+            pinLayers.forEach(layer => map.removeLayer(layer));
+            pinLayers = [];
+            
+            pins.forEach((pin, index) => {
+                const marker = L.marker([pin.lat, pin.lng], {
+                    icon: L.divIcon({
+                        className: 'custom-pin',
+                        html: `<div style="
+                            width: 24px;
+                            height: 24px;
+                            background: ${statusColors[pin.status] || '#666'};
+                            border: 3px solid white;
+                            border-radius: 50%;
+                            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+                        "></div>`,
+                        iconSize: [24, 24],
+                        iconAnchor: [12, 12]
+                    })
+                }).addTo(map);
+                
+                const popupContent = `
+                    <div class="pin-popup">
+                        <input type="text" id="name-${index}" placeholder="Business Name" value="${pin.name || ''}">
+                        <input type="text" id="address-${index}" placeholder="Address" value="${pin.address || ''}">
+                        <select class="status-select" id="status-${index}">
+                            <option value="interested" ${pin.status === 'interested' ? 'selected' : ''}>✅ Interested</option>
+                            <option value="followup" ${pin.status === 'followup' ? 'selected' : ''}>🔄 Follow-up Needed</option>
+                            <option value="not-interested" ${pin.status === 'not-interested' ? 'selected' : ''}>❌ Not Interested</option>
+                            <option value="called" ${pin.status === 'called' ? 'selected' : ''}>📞 Called Only</option>
+                        </select>
+                        <textarea id="notes-${index}" rows="3" placeholder="Notes">${pin.notes || ''}</textarea>
+                        <button class="save-btn" onclick="updatePin(${index})">Save</button>
+                        <button class="delete-btn" onclick="deletePin(${index})">Delete</button>
+                    </div>
+                `;
+                
+                marker.bindPopup(popupContent);
+                pinLayers.push(marker);
+            });
+            
+            document.getElementById('pinCount').textContent = pins.length;
+        }
+
+        // Add new pin on map click
+        map.on('click', function(e) {
+            const newPin = {
+                lat: e.latlng.lat,
+                lng: e.latlng.lng,
+                name: '',
+                address: '',
+                status: 'interested',
+                notes: '',
+                date: new Date().toISOString()
+            };
+            pins.push(newPin);
+            savePins();
+            loadPins();
+            
+            // Open popup for the new pin
+            pinLayers[pinLayers.length - 1].openPopup();
+        });
+
+        // Update pin
+        function updatePin(index) {
+            pins[index].name = document.getElementById(`name-${index}`).value;
+            pins[index].address = document.getElementById(`address-${index}`).value;
+            pins[index].status = document.getElementById(`status-${index}`).value;
+            pins[index].notes = document.getElementById(`notes-${index}`).value;
+            savePins();
+            loadPins();
+        }
+
+        // Delete pin
+        function deletePin(index) {
+            pins.splice(index, 1);
+            savePins();
+            loadPins();
+        }
+
+        // Clear all pins
+        function clearAllPins() {
+            if (confirm('Delete all pins? This cannot be undone.')) {
+                pins = [];
+                savePins();
+                loadPins();
+            }
+        }
+
+        // Save to localStorage
+        function savePins() {
+            localStorage.setItem('comcastPins', JSON.stringify(pins));
+        }
+
+        // Export data
+        function exportData() {
+            const dataStr = JSON.stringify(pins, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `comcast-visits-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Import data
+        function importData(input) {
+            const file = input.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    if (Array.isArray(imported)) {
+                        pins = imported;
+                        savePins();
+                        loadPins();
+                        alert(`Imported ${pins.length} visits`);
+                    } else {
+                        alert('Invalid file format');
+                    }
+                } catch (err) {
+                    alert('Error reading file');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // Initial load
+        loadPins();
+    </script>
+</body>
+</html>

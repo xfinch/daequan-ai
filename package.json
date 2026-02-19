@@ -1,0 +1,9 @@
+{
+  "name": "daequan-ai-website",
+  "version": "1.0.0",
+  "description": "Daequan AI website - homepage and tools",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "dev": "python3 -m http.server 8080 --bind 127.0.0.1"
+  }
+}

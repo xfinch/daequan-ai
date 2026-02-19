@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daequan AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 40px 20px;
+        }
+        
+        h1 {
+            font-size: 64px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -2px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        
+        .chat-bubble {
+            background: white;
+            border-radius: 24px;
+            padding: 20px 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        .chat-bubble:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        }
+        
+        .chat-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .chat-text {
+            color: #333;
+            text-align: left;
+        }
+        
+        .chat-text .primary {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .chat-text .secondary {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .features {
+            margin-top: 60px;
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .feature {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 25px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .feature:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+        
+        .feature-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        
+        .feature-text {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .footer {
+            position: fixed;
+            bottom: 30px;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        /* Chat Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .chat-modal {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 25px 100px rgba(0,0,0,0.3);
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .chat-header .title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .chat-header .avatar {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .chat-header h3 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .chat-header .status {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        
+        .close-btn:hover {
+            opacity: 1;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            max-width: 80%;
+        }
+        
+        .message.bot {
+            margin-right: auto;
+        }
+        
+        .message.user {
+            margin-left: auto;
+        }
+        
+        .message-bubble {
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .message.bot .message-bubble {
+            background: white;
+            color: #333;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .message.user .message-bubble {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .chat-input-area {
+            padding: 15px 20px;
+            background: white;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .chat-input {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 24px;
+            padding: 12px 20px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        
+        .chat-input:focus {
+            border-color: #667eea;
+        }
+        
+        .send-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: transform 0.2s;
+        }
+        
+        .send-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .channels-info {
+            margin-top: 40px;
+            padding: 15px 25px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            font-size: 13px;
+            opacity: 0.8;
+        }
+        
+        .channels-info a {
+            color: white;
+            text-decoration: underline;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Daequan AI</h1>
+        <p class="subtitle">Your director, right-hand, and operational authority</p>
+        
+        <div class="chat-bubble" onclick="openChat()">
+            <div class="chat-icon">🎯</div>
+            <div class="chat-text">
+                <div class="primary">Chat with Daequan</div>
+                <div class="secondary">Ask anything, anytime</div>
+            </div>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">📋</div>
+                <div class="feature-text">Task Assignment</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔧</div>
+                <div class="feature-text">Skill Building</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-text">Results Delivery</div>
+            </div>
+        </div>
+        
+        <div class="channels-info">
+            Also available on:
+            <a href="https://wa.me/12533676245">WhatsApp</a>
+            •
+            <a href="sms:+12539999067">SMS</a>
+            •
+            <a href="/comcast">Comcast Map</a>
+        </div>
+    </div>
+    
+    <div class="footer">
+        The operational authority behind the vision
+    </div>
+    
+    <!-- Chat Modal -->
+    <div class="modal-overlay" id="chatModal">
+        <div class="chat-modal">
+            <div class="chat-header">
+                <div class="title">
+                    <div class="avatar">🎯</div>
+                    <div>
+                        <h3>Daequan</h3>
+                        <div class="status">Online</div>
+                    </div>
+                </div>
+                <button class="close-btn" onclick="closeChat()">&times;</button>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    <div class="message-bubble">
+                        Hey Xavier. I'm Daequan — your director and right-hand. What are we working on today?
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" id="chatInput" 
+                       placeholder="Type a message..." 
+                       onkeypress="handleKeyPress(event)">
+                <button class="send-btn" onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function openChat() {
+            document.getElementById('chatModal').classList.add('active');
+            document.getElementById('chatInput').focus();
+        }
+        
+        function closeChat() {
+            document.getElementById('chatModal').classList.remove('active');
+        }
+        
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        }
+        
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addMessage(message, 'user');
+            input.value = '';
+            
+            // Simulate Daequan response
+            setTimeout(() => {
+                const responses = [
+                    "Got it. I'm on it.",
+                    "Working that now.",
+                    "I see what you need. Let me handle that.",
+                    "Consider it done.",
+                    "On my way."
+                ];
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                addMessage(randomResponse, 'bot');
+            }, 500 + Math.random() * 1000);
+        }
+        
+        function addMessage(text, sender) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            messageDiv.innerHTML = `<div class="message-bubble">${escapeHtml(text)}</div>`;
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('chatModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeChat();
+            }
+        });
+    </script>
+</body>
+</html>
