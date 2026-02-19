@@ -320,10 +320,8 @@
     </div>
 
     <script>
-        // API endpoint (local server)
-        const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-            ? 'http://127.0.0.1:8081' 
-            : '';
+        // API endpoint - Cloudflare tunnel (changes on restart)
+        const API_BASE = 'https://effects-surprised-webcams-sit.trycloudflare.com';
         
         // Status colors
         const statusColors = {
