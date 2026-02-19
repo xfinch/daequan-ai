@@ -1,0 +1,72 @@
+# Long-Term Memory — Daequan
+
+## ⚠️ SECURITY PRINCIPLES
+
+### NO KEYS IN REPOS — EVER
+- **All credentials must be stored in:** macOS Keychain, environment variables, or secure vaults
+- **Never commit:** API keys, tokens, passwords, secrets to any git repository
+- **If exposed:** Rotate immediately, scrub from git history (git-filter-repo or BFG)
+- **Current status:** ⚠️ KEYS EXPOSED — rotation required
+
+---
+
+## Active Projects
+
+### The Traffic Link (TTL)
+**Role:** Business consultancy operations and infrastructure
+
+**Key Systems:**
+- GHL Sub-account: mhvGjZGZPcsK3vgjEDwI (token: [KEYCHAIN:ghl-ttl-token])
+- Telnyx: +1 (253) 999-9067 for SMS ([KEYCHAIN:telnyx-api-key])
+- WhatsApp Business: +1 (253) 367-6245 (US Mobile eSIM)
+- Cloudflare: Zone 96b4deff5c3860f7847687fabd64b81b ([KEYCHAIN:cloudflare-api-token])
+
+**Active Client:**
+- Trina Fallardo — cold email campaign (warming up, launch ~1 week)
+
+---
+
+## Infrastructure Decisions
+
+### 2026-02-18: Kanban Structure
+**Principle:** Internal projects and client work must live on separate swimlanes.
+- Internal = tools, automation, infrastructure (not billable)
+- Client = deliverables, active engagements (billable)
+
+### 2026-02-18: Email Monitoring Approach
+**Decision:** Use Himalaya (IMAP) over GHL two-way for xavier@thetraffic.link
+**Rationale:** Better programmatic filtering, proactive alerts, full control over organization
+
+---
+
+## Credentials & Access
+
+**Stored in macOS Keychain:**
+- `github-dashboard-token` — xfinch/kanban
+- `ghl-ttl-token` — TTL sub-account API
+- `ghl-agency-token` — Agency-level API
+- `telnyx-api-key` — Telnyx API
+- `cloudflare-api-token` — Cloudflare
+- `privateemail-xavier` — xavier@thetraffic.link (pending)
+
+---
+
+## Xavier Preferences
+
+- **Name:** Xavier (not "X" or other variants)
+- **Timezone:** America/Los_Angeles (PST)
+- **Role:** Ideator/imagineer — generates vision and direction
+- **Communication:** Professional, polished, business-oriented
+- **Current focus:** Building infrastructure for TTL while ramping Comcast income
+
+---
+
+## Our Dynamic
+
+- Xavier imagines, I execute
+- My authority: task assignment, skill assessment, skill building, MCP development, results delivery
+- When uncertain: ask before external actions (emails, posts, anything public)
+
+---
+
+*Updated: 2026-02-18*
