@@ -1,0 +1,25 @@
+2026-02-19T23:46:22Z INF Thank you for trying Cloudflare Tunnel. Doing so, without a Cloudflare account, is a quick way to experiment and try it out. However, be aware that these account-less Tunnels have no uptime guarantee, are subject to the Cloudflare Online Services Terms of Use (https://www.cloudflare.com/website-terms/), and Cloudflare reserves the right to investigate your use of Tunnels for violations of such terms. If you intend to use Tunnels in production you should use a pre-created named tunnel by following: https://developers.cloudflare.com/cloudflare-one/connections/connect-apps
+2026-02-19T23:46:22Z INF Requesting new quick Tunnel on trycloudflare.com...
+2026-02-19T23:46:25Z INF +--------------------------------------------------------------------------------------------+
+2026-02-19T23:46:25Z INF |  Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):  |
+2026-02-19T23:46:25Z INF |  https://effects-surprised-webcams-sit.trycloudflare.com                                   |
+2026-02-19T23:46:25Z INF +--------------------------------------------------------------------------------------------+
+2026-02-19T23:46:25Z INF Version 2026.2.0 (Checksum 659e90c91014a0017ec933e4a5c924e5ed1c77e3033bf768c47509c2120e598d)
+2026-02-19T23:46:25Z INF GOOS: darwin, GOVersion: go1.25.7, GoArch: arm64
+2026-02-19T23:46:25Z INF Settings: map[cred-file:/Users/xfinch/.cloudflared/22e5e208-114f-43f7-8a98-641ca235990e.json credentials-file:/Users/xfinch/.cloudflared/22e5e208-114f-43f7-8a98-641ca235990e.json ha-connections:1 protocol:quic url:http://localhost:8081]
+2026-02-19T23:46:25Z INF cloudflared will not automatically update if installed by a package manager.
+2026-02-19T23:46:25Z INF Generated Connector ID: e5e48dc8-b20f-4442-9fa8-dddbdc4b68cb
+2026-02-19T23:46:25Z INF Initial protocol quic
+2026-02-19T23:46:25Z INF ICMP proxy will use 192.168.86.24 as source for IPv4
+2026-02-19T23:46:25Z INF ICMP proxy will use fda1:2ecf:869a:713d:10be:31c7:4da6:b7ff in zone en1 as source for IPv6
+2026-02-19T23:46:25Z INF Created ICMP proxy listening on 192.168.86.24:0
+2026-02-19T23:46:25Z INF Created ICMP proxy listening on [fda1:2ecf:869a:713d:10be:31c7:4da6:b7ff]:0
+2026-02-19T23:46:25Z INF ICMP proxy will use 192.168.86.24 as source for IPv4
+2026-02-19T23:46:25Z INF ICMP proxy will use fda1:2ecf:869a:713d:10be:31c7:4da6:b7ff in zone en1 as source for IPv6
+2026-02-19T23:46:25Z INF Starting metrics server on 127.0.0.1:20241/metrics
+2026-02-19T23:46:25Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveP256] connIndex=0 event=0 ip=198.41.192.77
+2026-02-19T23:46:25Z INF Registered tunnel connection connIndex=0 connection=735b19be-dca7-4953-827f-b13a631060b2 event=0 ip=198.41.192.77 location=sea01 protocol=quic
+2026-02-20T04:06:32Z ERR Failed to refresh DNS local resolver error="lookup region1.v2.argotunnel.com: i/o timeout"
+2026-02-20T06:36:38Z ERR Failed to refresh DNS local resolver error="lookup region1.v2.argotunnel.com: i/o timeout"
+2026-02-20T14:36:47Z ERR Failed to refresh DNS local resolver error="lookup region1.v2.argotunnel.com: i/o timeout"
+2026-02-20T14:51:52Z ERR Failed to refresh DNS local resolver error="lookup region1.v2.argotunnel.com: i/o timeout"

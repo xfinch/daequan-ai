@@ -10,11 +10,12 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
         #map { height: 100vh; width: 100%; }
+        
         .sidebar {
             position: fixed;
             top: 20px;
             right: 20px;
-            width: 320px;
+            width: 340px;
             background: white;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
@@ -23,47 +24,92 @@
             max-height: 90vh;
             overflow-y: auto;
         }
+        
         .sidebar h1 {
             font-size: 18px;
             color: #1a1a1a;
             margin-bottom: 5px;
         }
+        
         .sidebar .subtitle {
             font-size: 12px;
             color: #666;
             margin-bottom: 20px;
         }
+        
+        .back-link {
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+        
+        .back-link a {
+            color: #0057b8;
+            text-decoration: none;
+        }
+        
+        .refresh-btn {
+            background: #f5f5f5;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .refresh-btn:hover {
+            background: #e0e0e0;
+        }
+        
+        .refresh-btn.spinning .icon {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
         .stats {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             margin-bottom: 20px;
         }
+        
         .stat-box {
             background: #f5f5f5;
             padding: 12px;
             border-radius: 8px;
             text-align: center;
         }
+        
         .stat-box .number {
             font-size: 24px;
             font-weight: bold;
             color: #0057b8;
         }
+        
         .stat-box .label {
             font-size: 11px;
             color: #666;
             text-transform: uppercase;
         }
+        
         .territory-list {
             margin-bottom: 20px;
         }
+        
         .territory-list h3 {
             font-size: 13px;
             color: #333;
             margin-bottom: 10px;
             text-transform: uppercase;
         }
+        
         .zip-chip {
             display: inline-block;
             background: #e3f2fd;
@@ -75,38 +121,21 @@
             cursor: pointer;
             transition: all 0.2s;
         }
+        
         .zip-chip:hover {
             background: #0057b8;
             color: white;
         }
-        .controls {
-            border-top: 1px solid #eee;
-            padding-top: 15px;
+        
+        .zip-chip .count {
+            background: white;
+            color: #0057b8;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 10px;
+            margin-left: 4px;
         }
-        .btn {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 6px;
-            font-size: 13px;
-            cursor: pointer;
-            margin-bottom: 8px;
-            transition: all 0.2s;
-        }
-        .btn-primary {
-            background: #0057b8;
-            color: white;
-        }
-        .btn-primary:hover {
-            background: #004494;
-        }
-        .btn-secondary {
-            background: #f5f5f5;
-            color: #333;
-        }
-        .btn-secondary:hover {
-            background: #e0e0e0;
-        }
+        
         .legend {
             position: fixed;
             bottom: 20px;
@@ -118,47 +147,106 @@
             z-index: 1000;
             font-size: 12px;
         }
+        
         .legend-item {
             display: flex;
             align-items: center;
             margin-bottom: 8px;
         }
+        
         .legend-color {
             width: 16px;
             height: 16px;
             border-radius: 50%;
             margin-right: 8px;
         }
-        .pin-popup input, .pin-popup textarea {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: inherit;
+        
+        .pin-popup {
+            min-width: 280px;
         }
-        .pin-popup button {
-            padding: 6px 12px;
-            margin-right: 5px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        
+        .pin-popup h4 {
+            margin-bottom: 10px;
+            color: #1a1a1a;
+            font-size: 16px;
+        }
+        
+        .pin-popup .info-row {
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        
+        .pin-popup .label {
+            color: #666;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+        
+        .pin-popup .value {
+            color: #333;
+        }
+        
+        .pin-popup .notes {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 6px;
             font-size: 12px;
+            margin: 10px 0;
         }
-        .save-btn { background: #4caf50; color: white; }
-        .delete-btn { background: #f44336; color: white; }
-        .status-select {
-            width: 100%;
-            padding: 6px;
-            margin-bottom: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+        
+        .ghl-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #0057b8;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
         }
+        
+        .ghl-btn:hover {
+            background: #004494;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .status-interested { background: #e8f5e9; color: #2e7d32; }
+        .status-followup { background: #fff3e0; color: #ef6c00; }
+        .status-not-interested { background: #ffebee; color: #c62828; }
+        .status-called { background: #e3f2fd; color: #1565c0; }
+        .status-customer { background: #f3e5f5; color: #7b1fa2; }
+        
         .help-text {
             font-size: 11px;
             color: #888;
-            margin-top: 10px;
+            margin-top: 15px;
             line-height: 1.4;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .error-banner {
+            background: #ffebee;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        
+        .error-banner.show {
+            display: block;
         }
     </style>
 </head>
@@ -166,12 +254,25 @@
     <div id="map"></div>
     
     <div class="sidebar">
+        <div class="back-link">
+            <a href="/">← Back to Daequan AI</a>
+        </div>
+        
+        <div class="error-banner" id="errorBanner">
+            ⚠️ API connection failed. Make sure the server is running.
+        </div>
+        
         <h1>🏢 Comcast Territory</h1>
         <div class="subtitle">Xavier Finch • Olympia/Tacoma Region</div>
         
+        <button class="refresh-btn" onclick="refreshData()">
+            <span class="icon">🔄</span>
+            <span>Refresh Data</span>
+        </button>
+        
         <div class="stats">
             <div class="stat-box">
-                <div class="number" id="pinCount">0</div>
+                <div class="number" id="visitCount">-</div>
                 <div class="label">Visits</div>
             </div>
             <div class="stat-box">
@@ -185,51 +286,53 @@
             <div id="zipList"></div>
         </div>
         
-        <div class="controls">
-            <button class="btn btn-primary" onclick="exportData()">📥 Export Visits</button>
-            <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">📤 Import Data</button>
-            <input type="file" id="importFile" style="display:none" accept=".json" onchange="importData(this)">
-            <button class="btn btn-secondary" onclick="clearAllPins()">🗑️ Clear All Pins</button>
-        </div>
-        
         <div class="help-text">
             💡 <strong>How to use:</strong><br>
-            • Click anywhere on the map to drop a pin<br>
-            • Add business name, notes, and status<br>
-            • Click existing pins to edit or delete<br>
-            • Export regularly to save your progress
+            • Message Daequan via WhatsApp to add visits<br>
+            • Pins show your business visits<br>
+            • Click any pin to view details<br>
+            • "Edit in GHL" opens the contact record<br>
+            • Data refreshes automatically every 60s
         </div>
     </div>
     
     <div class="legend">
         <div class="legend-item">
             <div class="legend-color" style="background: #4caf50;"></div>
-            <span>Visited - Interested</span>
+            <span>Interested</span>
         </div>
         <div class="legend-item">
             <div class="legend-color" style="background: #ff9800;"></div>
-            <span>Visited - Follow-up</span>
+            <span>Follow-up</span>
         </div>
         <div class="legend-item">
             <div class="legend-color" style="background: #f44336;"></div>
-            <span>Visited - Not Interested</span>
+            <span>Not Interested</span>
         </div>
         <div class="legend-item">
             <div class="legend-color" style="background: #2196f3;"></div>
             <span>Called Only</span>
         </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #9c27b0;"></div>
+            <span>Customer</span>
+        </div>
     </div>
 
     <script>
-        // Initialize map centered on Tacoma area
-        const map = L.map('map').setView([47.25, -122.4], 10);
+        // API endpoint - Cloudflare tunnel (changes on restart)
+        const API_BASE = 'https://effects-surprised-webcams-sit.trycloudflare.com';
         
-        // Add OpenStreetMap tiles
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
-
-        // Territory zip codes with approximate centers
+        // Status colors
+        const statusColors = {
+            'interested': '#4caf50',
+            'followup': '#ff9800',
+            'not-interested': '#f44336',
+            'called': '#2196f3',
+            'customer': '#9c27b0'
+        };
+        
+        // Territories
         const territories = [
             { zip: '98070', city: 'Vashon', lat: 47.4474, lng: -122.4598 },
             { zip: '98321', city: 'Buckley', lat: 47.1623, lng: -122.0260 },
@@ -246,174 +349,190 @@
             { zip: '98443', city: 'Tacoma', lat: 47.2025, lng: -122.3649 },
             { zip: '98447', city: 'Tacoma', lat: 47.1871, lng: -122.3450 }
         ];
-
-        // Status colors
-        const statusColors = {
-            'interested': '#4caf50',
-            'followup': '#ff9800',
-            'not-interested': '#f44336',
-            'called': '#2196f3'
-        };
-
-        // Store pins
-        let pins = JSON.parse(localStorage.getItem('comcastPins') || '[]');
-        let pinLayers = [];
-
-        // Add territory markers
-        territories.forEach(t => {
-            const circle = L.circle([t.lat, t.lng], {
-                color: '#0057b8',
-                fillColor: '#0057b8',
-                fillOpacity: 0.1,
-                radius: 2000
+        
+        let map;
+        let markers = [];
+        let visitsByZip = {};
+        
+        // Initialize map
+        function initMap() {
+            map = L.map('map').setView([47.25, -122.4], 10);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
             }).addTo(map);
             
-            circle.bindPopup(`<strong>${t.city}</strong><br>Zip: ${t.zip}`);
-        });
-
-        // Populate zip list
-        const zipList = document.getElementById('zipList');
-        territories.forEach(t => {
-            const chip = document.createElement('span');
-            chip.className = 'zip-chip';
-            chip.textContent = t.zip;
-            chip.onclick = () => map.setView([t.lat, t.lng], 13);
-            zipList.appendChild(chip);
-        });
-
-        // Load saved pins
-        function loadPins() {
-            pinLayers.forEach(layer => map.removeLayer(layer));
-            pinLayers = [];
+            // Add territory markers (no boundaries for now)
+            territories.forEach(t => {
+                const label = L.divIcon({
+                    className: 'zip-label-container',
+                    html: `<div style="background: rgba(0,87,184,0.9); color: white; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: bold; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">${t.zip}</div>`,
+                    iconSize: [60, 30],
+                    iconAnchor: [30, 15]
+                });
+                
+                L.marker([t.lat, t.lng], { icon: label }).addTo(map);
+                
+                // Circle to show approximate area
+                L.circle([t.lat, t.lng], {
+                    color: '#0057b8',
+                    fillColor: '#0057b8',
+                    fillOpacity: 0.05,
+                    radius: 2000,
+                    weight: 1
+                }).addTo(map);
+            });
+        }
+        
+        // Load visits from API
+        async function loadVisits() {
+            try {
+                const response = await fetch(`${API_BASE}/api/visits`);
+                if (!response.ok) throw new Error('API Error');
+                
+                const data = await response.json();
+                displayVisits(data.visits);
+                updateStats(data.visits);
+                
+                document.getElementById('errorBanner').classList.remove('show');
+            } catch (error) {
+                console.error('Failed to load visits:', error);
+                document.getElementById('errorBanner').classList.add('show');
+            }
+        }
+        
+        // Display visits on map
+        function displayVisits(visits) {
+            // Clear existing markers
+            markers.forEach(m => map.removeLayer(m));
+            markers = [];
             
-            pins.forEach((pin, index) => {
-                const marker = L.marker([pin.lat, pin.lng], {
+            // Reset zip counts
+            visitsByZip = {};
+            territories.forEach(t => visitsByZip[t.zip] = 0);
+            
+            visits.forEach(visit => {
+                if (!visit.lat || !visit.lng) return;
+                
+                // Count by zip
+                if (visitsByZip[visit.zip_code] !== undefined) {
+                    visitsByZip[visit.zip_code]++;
+                }
+                
+                const color = statusColors[visit.visit_status] || '#666';
+                
+                const marker = L.marker([visit.lat, visit.lng], {
                     icon: L.divIcon({
                         className: 'custom-pin',
                         html: `<div style="
-                            width: 24px;
-                            height: 24px;
-                            background: ${statusColors[pin.status] || '#666'};
-                            border: 3px solid white;
+                            width: 20px;
+                            height: 20px;
+                            background: ${color};
+                            border: 2px solid white;
                             border-radius: 50%;
                             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
                         "></div>`,
-                        iconSize: [24, 24],
-                        iconAnchor: [12, 12]
+                        iconSize: [20, 20],
+                        iconAnchor: [10, 10]
                     })
                 }).addTo(map);
                 
+                const statusClass = `status-${visit.visit_status}`;
+                const statusLabel = visit.visit_status.replace('-', ' ');
+                
                 const popupContent = `
                     <div class="pin-popup">
-                        <input type="text" id="name-${index}" placeholder="Business Name" value="${pin.name || ''}">
-                        <input type="text" id="address-${index}" placeholder="Address" value="${pin.address || ''}">
-                        <select class="status-select" id="status-${index}">
-                            <option value="interested" ${pin.status === 'interested' ? 'selected' : ''}>✅ Interested</option>
-                            <option value="followup" ${pin.status === 'followup' ? 'selected' : ''}>🔄 Follow-up Needed</option>
-                            <option value="not-interested" ${pin.status === 'not-interested' ? 'selected' : ''}>❌ Not Interested</option>
-                            <option value="called" ${pin.status === 'called' ? 'selected' : ''}>📞 Called Only</option>
-                        </select>
-                        <textarea id="notes-${index}" rows="3" placeholder="Notes">${pin.notes || ''}</textarea>
-                        <button class="save-btn" onclick="updatePin(${index})">Save</button>
-                        <button class="delete-btn" onclick="deletePin(${index})">Delete</button>
+                        <h4>${escapeHtml(visit.business_name)}</h4>
+                        
+                        <span class="status-badge ${statusClass}">${statusLabel}</span>
+                        
+                        ${visit.contact_name ? `
+                        <div class="info-row">
+                            <div class="label">Contact</div>
+                            <div class="value">${escapeHtml(visit.contact_name)}</div>
+                        </div>` : ''}
+                        
+                        ${visit.phone ? `
+                        <div class="info-row">
+                            <div class="label">Phone</div>
+                            <div class="value">${escapeHtml(visit.phone)}</div>
+                        </div>` : ''}
+                        
+                        <div class="info-row">
+                            <div class="label">Address</div>
+                            <div class="value">${escapeHtml(visit.address || '')}, ${escapeHtml(visit.zip_code)}</div>
+                        </div>
+                        
+                        <div class="info-row">
+                            <div class="label">Visited</div>
+                            <div class="value">${formatDate(visit.visit_date)}</div>
+                        </div>
+                        
+                        ${visit.notes ? `
+                        <div class="notes">${escapeHtml(visit.notes)}</div>` : ''}
+                        
+                        ${visit.ghl_url ? `
+                        <a href="${visit.ghl_url}" target="_blank" class="ghl-btn">
+                            ✏️ Edit in GHL
+                        </a>` : '<p style="font-size: 11px; color: #666; margin-top: 10px;">Not synced to GHL yet</p>'}
                     </div>
                 `;
                 
                 marker.bindPopup(popupContent);
-                pinLayers.push(marker);
+                markers.push(marker);
             });
             
-            document.getElementById('pinCount').textContent = pins.length;
+            updateZipList();
         }
-
-        // Add new pin on map click
-        map.on('click', function(e) {
-            const newPin = {
-                lat: e.latlng.lat,
-                lng: e.latlng.lng,
-                name: '',
-                address: '',
-                status: 'interested',
-                notes: '',
-                date: new Date().toISOString()
-            };
-            pins.push(newPin);
-            savePins();
-            loadPins();
+        
+        // Update sidebar stats
+        function updateStats(visits) {
+            document.getElementById('visitCount').textContent = visits.length;
+        }
+        
+        // Update zip code list with counts
+        function updateZipList() {
+            const container = document.getElementById('zipList');
+            container.innerHTML = '';
             
-            // Open popup for the new pin
-            pinLayers[pinLayers.length - 1].openPopup();
-        });
-
-        // Update pin
-        function updatePin(index) {
-            pins[index].name = document.getElementById(`name-${index}`).value;
-            pins[index].address = document.getElementById(`address-${index}`).value;
-            pins[index].status = document.getElementById(`status-${index}`).value;
-            pins[index].notes = document.getElementById(`notes-${index}`).value;
-            savePins();
-            loadPins();
+            territories.forEach(t => {
+                const count = visitsByZip[t.zip] || 0;
+                const chip = document.createElement('span');
+                chip.className = 'zip-chip';
+                chip.innerHTML = `${t.zip}${count > 0 ? `<span class="count">${count}</span>` : ''}`;
+                chip.onclick = () => map.setView([t.lat, t.lng], 14);
+                container.appendChild(chip);
+            });
         }
-
-        // Delete pin
-        function deletePin(index) {
-            pins.splice(index, 1);
-            savePins();
-            loadPins();
+        
+        // Refresh data
+        async function refreshData() {
+            const btn = document.querySelector('.refresh-btn');
+            btn.classList.add('spinning');
+            await loadVisits();
+            btn.classList.remove('spinning');
         }
-
-        // Clear all pins
-        function clearAllPins() {
-            if (confirm('Delete all pins? This cannot be undone.')) {
-                pins = [];
-                savePins();
-                loadPins();
-            }
+        
+        // Helper functions
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
         }
-
-        // Save to localStorage
-        function savePins() {
-            localStorage.setItem('comcastPins', JSON.stringify(pins));
+        
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
         }
-
-        // Export data
-        function exportData() {
-            const dataStr = JSON.stringify(pins, null, 2);
-            const blob = new Blob([dataStr], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `comcast-visits-${new Date().toISOString().split('T')[0]}.json`;
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-
-        // Import data
-        function importData(input) {
-            const file = input.files[0];
-            if (!file) return;
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const imported = JSON.parse(e.target.result);
-                    if (Array.isArray(imported)) {
-                        pins = imported;
-                        savePins();
-                        loadPins();
-                        alert(`Imported ${pins.length} visits`);
-                    } else {
-                        alert('Invalid file format');
-                    }
-                } catch (err) {
-                    alert('Error reading file');
-                }
-            };
-            reader.readAsText(file);
-        }
-
-        // Initial load
-        loadPins();
+        
+        // Initialize
+        initMap();
+        loadVisits();
+        
+        // Auto-refresh every 60 seconds
+        setInterval(loadVisits, 60000);
     </script>
 </body>
 </html>

@@ -8,6 +8,19 @@
 - **If exposed:** Rotate immediately, scrub from git history (git-filter-repo or BFG)
 - **Current status:** ⚠️ KEYS EXPOSED — rotation required
 
+### REMOTE-ONLY ACCESS — DESIGN FOR AUTONOMY
+**Principle:** The system must operate without requiring local authentication to the Mac mini.
+
+**Problem:** macOS Keychain requires local user authentication (Touch ID, password), which blocks remote operation when Xavier is not physically present.
+
+**Solution Approaches:**
+1. **Environment variables** loaded at startup (no interactive auth required)
+2. **Encrypted files** with keys stored in memory (session-only, not disk)
+3. **Cloud-based secrets** (AWS Secrets Manager, 1Password CLI, etc.)
+4. **Pre-authenticated sessions** that persist without keychain access
+
+**Key constraint:** Must maintain "no keys in repos" while enabling fully remote operation.
+
 ---
 
 ## Active Projects
@@ -41,7 +54,33 @@
 
 ## Credentials & Access
 
-**Stored in macOS Keychain:**
+### Environment Variables (launchd)
+**Location:** `~/Library/LaunchAgents/ai.daequan.environment.plist`
+
+**Purpose:** Stores all API tokens as environment variables for remote operation without Keychain authentication.
+
+**To update:**
+```bash
+# Edit the plist
+nano ~/Library/LaunchAgents/ai.daequan.environment.plist
+
+# After editing, reload:
+launchctl unload ~/Library/LaunchAgents/ai.daequan.environment.plist
+launchctl load ~/Library/LaunchAgents/ai.daequan.environment.plist
+
+# Verify loaded:
+launchctl getenv GITHUB_TOKEN
+```
+
+**Current variables:**
+- `GITHUB_TOKEN` — GitHub API
+- `GHL_TTL_TOKEN` — GHL TTL sub-account
+- `GHL_AGENCY_TOKEN` — GHL agency-level
+- `TELNYX_API_KEY` — Telnyx SMS
+- `CLOUDFLARE_API_TOKEN` — Cloudflare
+- `PRIVATEEMAIL_PASSWORD` — xavier@thetraffic.link
+
+**Stored in macOS Keychain (legacy):**
 - `github-dashboard-token` — xfinch/kanban
 - `ghl-ttl-token` — TTL sub-account API
 - `ghl-agency-token` — Agency-level API

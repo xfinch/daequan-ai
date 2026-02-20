@@ -93,18 +93,24 @@ P1_FOUND=0
 P2_FOUND=0
 
 if check_p0_emergency; then
-    P0_FOUND=1
+    P0_FOUND=0  # Function returns 0 if no emergencies found
+else
+    P0_FOUND=1  # Function returns 1 if emergencies found
 fi
 
 echo ""
 
 if check_p1_clients; then
+    P1_FOUND=0
+else
     P1_FOUND=1
 fi
 
 echo ""
 
 if check_p2_updates; then
+    P2_FOUND=0
+else
     P2_FOUND=1
 fi
 
