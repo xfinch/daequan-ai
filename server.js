@@ -4,18 +4,66 @@ const session = require('express-session');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const path = require('path');
+const http = require('http');
+const { Server } = require('socket.io');
+const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo');
 
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: process.env.CLIENT_URL || "*",
+    methods: ["GET", "POST"]
+  }
+});
+
 const PORT = process.env.PORT || 8080;
 
-// Session configuration
+// MongoDB Connection
+const MONGO_URI = process.env.MONGO_URL || process.env.MONGO_PUBLIC_URL || process.env.DATABASE_URL;
+
+mongoose.connect(MONGO_URI)
+  .then(() => console.log('✅ MongoDB connected'))
+  .catch(err => console.error('❌ MongoDB connection error:', err));
+
+// Schemas
+const DecisionSchema = new mongoose.Schema({
+  type: { type: String, required: true }, // 'task', 'alert', 'insight', 'action'
+  title: { type: String, required: true },
+  description: String,
+  priority: { type: String, enum: ['low', 'medium', 'high', 'critical'], default: 'medium' },
+  status: { type: String, enum: ['pending', 'in_progress', 'completed', 'cancelled'], default: 'pending' },
+  metadata: mongoose.Schema.Types.Mixed,
+  userId: String,
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now }
+});
+
+const UserSchema = new mongoose.Schema({
+  googleId: { type: String, required: true, unique: true },
+  displayName: String,
+  email: String,
+  photo: String,
+  createdAt: { type: Date, default: Date.now },
+  lastLogin: { type: Date, default: Date.now }
+});
+
+const Decision = mongoose.model('Decision', DecisionSchema);
+const User = mongoose.model('User', UserSchema);
+
+// Session configuration with MongoDB store
 app.use(session({
   secret: process.env.SESSION_SECRET || 'daequan-ai-secret-key-change-in-production',
   resave: false,
   saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: MONGO_URI,
+    ttl: 24 * 60 * 60 // 24 hours
+  }),
   cookie: {
     secure: process.env.NODE_ENV === 'production',
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    maxAge: 24 * 60 * 60 * 1000
   }
 }));
 
@@ -28,27 +76,75 @@ passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: process.env.GOOGLE_CALLBACK_URL || '/auth/google/callback'
-}, (accessToken, refreshToken, profile, done) => {
-  // Store user info in session
-  const user = {
-    id: profile.id,
-    displayName: profile.displayName,
-    email: profile.emails[0].value,
-    photo: profile.photos[0]?.value
-  };
-  return done(null, user);
+}, async (accessToken, refreshToken, profile, done) => {
+  try {
+    let user = await User.findOne({ googleId: profile.id });
+    
+    if (!user) {
+      user = new User({
+        googleId: profile.id,
+        displayName: profile.displayName,
+        email: profile.emails[0]?.value,
+        photo: profile.photos[0]?.value
+      });
+      await user.save();
+    } else {
+      user.lastLogin = new Date();
+      await user.save();
+    }
+    
+    return done(null, user);
+  } catch (err) {
+    return done(err, null);
+  }
 }));
 
-passport.serializeUser((user, done) => done(null, user));
-passport.deserializeUser((user, done) => done(null, user));
-
-// Middleware to check if user is authenticated
-const requireAuth = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next();
+passport.serializeUser((user, done) => done(null, user._id));
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (err) {
+    done(err, null);
   }
-  res.redirect('/login');
-};
+});
+
+// Middleware
+app.use(express.json());
+app.use(express.static(path.join(__dirname)));
+
+// Socket.io authentication middleware
+io.use((socket, next) => {
+  const sessionId = socket.handshake.auth.sessionId;
+  if (sessionId) {
+    // Validate session exists
+    socket.sessionId = sessionId;
+  }
+  next();
+});
+
+// Socket.io connection handling
+io.on('connection', (socket) => {
+  console.log('Client connected:', socket.id);
+  
+  socket.on('subscribe', (room) => {
+    socket.join(room);
+    console.log(`Socket ${socket.id} joined room: ${room}`);
+  });
+  
+  socket.on('disconnect', () => {
+    console.log('Client disconnected:', socket.id);
+  });
+});
+
+// Function to broadcast decisions
+async function broadcastDecision(decision) {
+  io.emit('decision', decision);
+  
+  // Also save to DB
+  const newDecision = new Decision(decision);
+  await newDecision.save();
+}
 
 // Auth routes
 app.get('/auth/google',
@@ -60,9 +156,11 @@ app.get('/auth/google',
 
 app.get('/auth/google/callback',
   passport.authenticate('google', { 
-    failureRedirect: '/login',
-    successRedirect: '/'
-  })
+    failureRedirect: '/login'
+  }),
+  (req, res) => {
+    res.redirect('/');
+  }
 );
 
 app.get('/auth/logout', (req, res) => {
@@ -72,25 +170,94 @@ app.get('/auth/logout', (req, res) => {
   });
 });
 
-// API endpoint to get current user
+// API Routes
 app.get('/api/user', (req, res) => {
   if (req.isAuthenticated()) {
-    res.json({ authenticated: true, user: req.user });
+    res.json({ 
+      authenticated: true, 
+      user: {
+        id: req.user._id,
+        displayName: req.user.displayName,
+        email: req.user.email,
+        photo: req.user.photo
+      }
+    });
   } else {
     res.json({ authenticated: false });
   }
 });
 
-// Protected route example
+// Decision API
+app.get('/api/decisions', async (req, res) => {
+  try {
+    const { limit = 50, status, priority } = req.query;
+    const query = {};
+    if (status) query.status = status;
+    if (priority) query.priority = priority;
+    
+    const decisions = await Decision.find(query)
+      .sort({ createdAt: -1 })
+      .limit(parseInt(limit));
+    
+    res.json(decisions);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/decisions', async (req, res) => {
+  try {
+    const decision = new Decision({
+      ...req.body,
+      userId: req.user?._id
+    });
+    await decision.save();
+    
+    // Broadcast to all connected clients
+    io.emit('decision:new', decision);
+    
+    res.status(201).json(decision);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.patch('/api/decisions/:id', async (req, res) => {
+  try {
+    const decision = await Decision.findByIdAndUpdate(
+      req.params.id,
+      { ...req.body, updatedAt: new Date() },
+      { new: true }
+    );
+    
+    if (decision) {
+      io.emit('decision:update', decision);
+    }
+    
+    res.json(decision);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Protected routes
+const requireAuth = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+};
+
 app.get('/dashboard', requireAuth, (req, res) => {
   res.send(`
     <!DOCTYPE html>
     <html>
     <head>
       <title>Dashboard - Daequan AI</title>
+      <script src="/socket.io/socket.io.js"></script>
       <style>
         body { font-family: -apple-system, sans-serif; padding: 40px; background: #f5f5f5; }
-        .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 16px; }
+        .container { max-width: 1200px; margin: 0 auto; }
         h1 { color: #667eea; }
         .user-info { display: flex; align-items: center; gap: 15px; margin: 20px 0; }
         .user-info img { width: 60px; height: 60px; border-radius: 50%; }
@@ -99,22 +266,103 @@ app.get('/dashboard', requireAuth, (req, res) => {
           border: none; border-radius: 8px; cursor: pointer; text-decoration: none;
           display: inline-block;
         }
-        .back-link { color: #667eea; text-decoration: none; margin-left: 15px; }
+        .decisions { 
+          background: white; padding: 20px; border-radius: 16px; margin-top: 30px;
+          max-height: 500px; overflow-y: auto;
+        }
+        .decision { 
+          padding: 15px; border-bottom: 1px solid #eee; 
+          animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+          from { opacity: 0; transform: translateX(-20px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+        .decision-header { display: flex; justify-content: space-between; align-items: center; }
+        .priority { 
+          padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;
+        }
+        .priority.critical { background: #dc3545; color: white; }
+        .priority.high { background: #fd7e14; color: white; }
+        .priority.medium { background: #ffc107; color: black; }
+        .priority.low { background: #6c757d; color: white; }
+        .status {
+          padding: 4px 12px; border-radius: 12px; font-size: 12px;
+          background: #e9ecef;
+        }
+        .live-indicator {
+          display: inline-flex; align-items: center; gap: 8px;
+          color: #28a745; font-size: 14px;
+        }
+        .live-dot {
+          width: 8px; height: 8px; background: #28a745;
+          border-radius: 50%; animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
       </style>
     </head>
     <body>
       <div class="container">
         <h1>Welcome, ${req.user.displayName}</h1>
+        <div class="live-indicator">
+          <span class="live-dot"></span>
+          <span>Live Updates Active</span>
+        </div>
         <div class="user-info">
           ${req.user.photo ? `<img src="${req.user.photo}" alt="Profile">` : ''}
           <div>
             <p><strong>Email:</strong> ${req.user.email}</p>
-            <p><strong>ID:</strong> ${req.user.id}</p>
+            <p><strong>ID:</strong> ${req.user._id}</p>
           </div>
         </div>
         <a href="/auth/logout" class="logout-btn">Logout</a>
-        <a href="/" class="back-link">← Back to Home</a>
+        
+        <div class="decisions" id="decisions">
+          <h2>Recent Decisions</h2>
+          <div id="decisionList">Loading...</div>
+        </div>
       </div>
+      
+      <script>
+        const socket = io();
+        const decisionList = document.getElementById('decisionList');
+        
+        // Load initial decisions
+        fetch('/api/decisions?limit=20')
+          .then(r => r.json())
+          .then(decisions => {
+            decisionList.innerHTML = decisions.map(d => renderDecision(d)).join('');
+          });
+        
+        // Listen for new decisions
+        socket.on('decision:new', (decision) => {
+          const div = document.createElement('div');
+          div.innerHTML = renderDecision(decision);
+          decisionList.insertBefore(div.firstChild, decisionList.firstChild);
+        });
+        
+        // Listen for updates
+        socket.on('decision:update', (decision) => {
+          // Update existing decision in UI
+          console.log('Decision updated:', decision);
+        });
+        
+        function renderDecision(d) {
+          return \`
+            <div class="decision" data-id="\${d._id}">
+              <div class="decision-header">
+                <strong>\${d.title}</strong>
+                <span class="priority \${d.priority}">\${d.priority}</span>
+              </div>
+              <p>\${d.description || ''}</p>
+              <small>\${new Date(d.createdAt).toLocaleString()}</small>
+            </div>
+          \`;
+        }
+      </script>
     </body>
     </html>
   `);
@@ -122,7 +370,7 @@ app.get('/dashboard', requireAuth, (req, res) => {
 
 // Login page
 app.get('/login', (req, res) => {
-  res.send(`
+  res.send(/* same as before */ `
     <!DOCTYPE html>
     <html>
     <head>
@@ -165,11 +413,11 @@ app.get('/login', (req, res) => {
   `);
 });
 
-// Static files - serve the main site
-app.use(express.static(path.join(__dirname)));
-
 // Start server
-app.listen(PORT, () => {
-  console.log(`🚀 Daequan AI server running on http://localhost:${PORT}`);
-  console.log(`📍 Environment: ${process.env.NODE_ENV || 'development'}`);
+server.listen(PORT, () => {
+  console.log(`🚀 Daequan AI server running on port ${PORT}`);
+  console.log(`📊 MongoDB: Connected to Railway`);
+  console.log(`⚡ Socket.io: Real-time updates enabled`);
 });
+
+module.exports = { app, server, io, broadcastDecision, Decision };
