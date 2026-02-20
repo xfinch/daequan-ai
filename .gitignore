@@ -1,0 +1,42 @@
+# Security: Never commit secrets
+# Store all credentials in macOS Keychain or environment variables only
+
+# API Keys & Tokens
+*.key
+*.pem
+*.p12
+*.pfx
+.env
+.env.*
+!.env.example
+
+# Common secret patterns
+*token*
+*secret*
+*password*
+*apikey*
+*api_key*
+
+# Local development
+node_modules/
+.DS_Store
+*.log
+logs/
+temp/
+tmp/
+
+# Database files (contain sensitive data)
+*.db
+*.sqlite
+*.sqlite3
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
