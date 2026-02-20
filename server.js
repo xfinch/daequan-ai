@@ -10,6 +10,10 @@ const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo');
 
 const app = express();
+
+// Trust proxy headers (for Cloudflare/Railway HTTPS)
+app.set('trust proxy', true);
+
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
