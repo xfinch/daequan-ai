@@ -45,9 +45,14 @@ const UserSchema = new mongoose.Schema({
   displayName: String,
   email: String,
   photo: String,
+  role: { type: String, enum: ['user', 'admin', 'superadmin'], default: 'user' },
   createdAt: { type: Date, default: Date.now },
   lastLogin: { type: Date, default: Date.now }
 });
+
+// Admin configuration
+const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || 'xfassistant@gmail.com').split(',').map(e => e.trim().toLowerCase());
+const SUPERADMIN_EMAILS = (process.env.SUPERADMIN_EMAILS || 'xfassistant@gmail.com').split(',').map(e => e.trim().toLowerCase());
 
 const Decision = mongoose.model('Decision', DecisionSchema);
 const User = mongoose.model('User', UserSchema);
@@ -78,18 +83,32 @@ passport.use(new GoogleStrategy({
   callbackURL: process.env.GOOGLE_CALLBACK_URL || '/auth/google/callback'
 }, async (accessToken, refreshToken, profile, done) => {
   try {
+    const email = profile.emails[0]?.value?.toLowerCase();
     let user = await User.findOne({ googleId: profile.id });
+    
+    // Determine role based on email
+    let role = 'user';
+    if (SUPERADMIN_EMAILS.includes(email)) {
+      role = 'superadmin';
+    } else if (ADMIN_EMAILS.includes(email)) {
+      role = 'admin';
+    }
     
     if (!user) {
       user = new User({
         googleId: profile.id,
         displayName: profile.displayName,
-        email: profile.emails[0]?.value,
-        photo: profile.photos[0]?.value
+        email: email,
+        photo: profile.photos[0]?.value,
+        role: role
       });
       await user.save();
     } else {
       user.lastLogin = new Date();
+      // Update role if changed in config
+      if (role !== user.role) {
+        user.role = role;
+      }
       await user.save();
     }
     
@@ -112,6 +131,28 @@ passport.deserializeUser(async (id, done) => {
 // Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname)));
+
+// Admin middleware
+const requireAuth = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+};
+
+const requireAdmin = (req, res, next) => {
+  if (req.isAuthenticated() && (req.user.role === 'admin' || req.user.role === 'superadmin')) {
+    return next();
+  }
+  res.status(403).json({ error: 'Admin access required' });
+};
+
+const requireSuperAdmin = (req, res, next) => {
+  if (req.isAuthenticated() && req.user.role === 'superadmin') {
+    return next();
+  }
+  res.status(403).json({ error: 'Superadmin access required' });
+};
 
 // Socket.io authentication middleware
 io.use((socket, next) => {
@@ -179,7 +220,8 @@ app.get('/api/user', (req, res) => {
         id: req.user._id,
         displayName: req.user.displayName,
         email: req.user.email,
-        photo: req.user.photo
+        photo: req.user.photo,
+        role: req.user.role
       }
     });
   } else {
@@ -241,13 +283,6 @@ app.patch('/api/decisions/:id', async (req, res) => {
 });
 
 // Protected routes
-const requireAuth = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/login');
-};
-
 app.get('/dashboard', requireAuth, (req, res) => {
   res.send(`
     <!DOCTYPE html>
@@ -315,10 +350,11 @@ app.get('/dashboard', requireAuth, (req, res) => {
           ${req.user.photo ? `<img src="${req.user.photo}" alt="Profile">` : ''}
           <div>
             <p><strong>Email:</strong> ${req.user.email}</p>
-            <p><strong>ID:</strong> ${req.user._id}</p>
+            <p><strong>Role:</strong> <span style="text-transform:uppercase; font-weight:600; color:${req.user.role === 'superadmin' ? '#dc3545' : req.user.role === 'admin' ? '#fd7e14' : '#667eea'}">${req.user.role}</span></p>
           </div>
         </div>
         <a href="/auth/logout" class="logout-btn">Logout</a>
+        ${req.user.role === 'admin' || req.user.role === 'superadmin' ? `<a href="/admin" style="background:#667eea; color:white; padding:12px 24px; border-radius:8px; text-decoration:none; display:inline-block; margin-left:10px;">Admin Panel</a>` : ''}
         
         <div class="decisions" id="decisions">
           <h2>Recent Decisions</h2>
@@ -408,6 +444,179 @@ app.get('/login', (req, res) => {
         </a>
         <a href="/" class="back-link">← Back to Home</a>
       </div>
+    </body>
+    </html>
+  `);
+});
+
+// Admin API Routes
+app.get('/api/admin/users', requireAdmin, async (req, res) => {
+  try {
+    const users = await User.find().sort({ lastLogin: -1 }).limit(100);
+    res.json(users);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.patch('/api/admin/users/:id/role', requireSuperAdmin, async (req, res) => {
+  try {
+    const { role } = req.body;
+    if (!['user', 'admin', 'superadmin'].includes(role)) {
+      return res.status(400).json({ error: 'Invalid role' });
+    }
+    const user = await User.findByIdAndUpdate(req.params.id, { role }, { new: true });
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/admin/stats', requireAdmin, async (req, res) => {
+  try {
+    const stats = {
+      users: await User.countDocuments(),
+      decisions: await Decision.countDocuments(),
+      decisionsToday: await Decision.countDocuments({
+        createdAt: { $gte: new Date(Date.now() - 24 * 60 * 60 * 1000) }
+      }),
+      decisionsByStatus: await Decision.aggregate([
+        { $group: { _id: '$status', count: { $sum: 1 } } }
+      ])
+    };
+    res.json(stats);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Admin Dashboard
+app.get('/admin', requireAdmin, (req, res) => {
+  const isSuper = req.user.role === 'superadmin';
+  res.send(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Admin - Daequan AI</title>
+      <script src="/socket.io/socket.io.js"></script>
+      <style>
+        body { font-family: -apple-system, sans-serif; padding: 40px; background: #f5f5f5; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1 { color: #667eea; }
+        .role-badge {
+          display: inline-block; padding: 4px 12px; border-radius: 12px;
+          font-size: 12px; font-weight: 600; text-transform: uppercase;
+        }
+        .role-badge.superadmin { background: #dc3545; color: white; }
+        .role-badge.admin { background: #fd7e14; color: white; }
+        .role-badge.user { background: #6c757d; color: white; }
+        .stats-grid {
+          display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 20px; margin: 30px 0;
+        }
+        .stat-card {
+          background: white; padding: 20px; border-radius: 16px;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .stat-value { font-size: 36px; font-weight: 700; color: #667eea; }
+        .stat-label { color: #666; margin-top: 5px; }
+        .users-table {
+          background: white; border-radius: 16px; overflow: hidden;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #667eea; color: white; }
+        .back-link { color: #667eea; text-decoration: none; }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <h1>Admin Dashboard</h1>
+        <p>Welcome, ${req.user.displayName} <span class="role-badge ${req.user.role}">${req.user.role}</span></p>
+        <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+        
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="totalUsers">-</div>
+            <div class="stat-label">Total Users</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="totalDecisions">-</div>
+            <div class="stat-label">Total Decisions</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="decisionsToday">-</div>
+            <div class="stat-label">Decisions Today</div>
+          </div>
+        </div>
+        
+        <h2>Users</h2>
+        <div class="users-table">
+          <table>
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Last Login</th>
+                ${isSuper ? '<th>Actions</th>' : ''}
+              </tr>
+            </thead>
+            <tbody id="usersList">
+              <tr><td colspan="${isSuper ? 5 : 4}">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <script>
+        const isSuper = ${isSuper};
+        
+        // Load stats
+        fetch('/api/admin/stats')
+          .then(r => r.json())
+          .then(stats => {
+            document.getElementById('totalUsers').textContent = stats.users;
+            document.getElementById('totalDecisions').textContent = stats.decisions;
+            document.getElementById('decisionsToday').textContent = stats.decisionsToday;
+          });
+        
+        // Load users
+        fetch('/api/admin/users')
+          .then(r => r.json())
+          .then(users => {
+            const tbody = document.getElementById('usersList');
+            tbody.innerHTML = users.map(u => \`
+              <tr>
+                <td>
+                  <img src="\${u.photo || ''}" width="32" height="32" style="border-radius:50%; vertical-align:middle; margin-right:8px;">
+                  \${u.displayName}
+                </td>
+                <td>\${u.email}</td>
+                <td><span class="role-badge \${u.role}">\${u.role}</span></td>
+                <td>\${u.lastLogin ? new Date(u.lastLogin).toLocaleString() : 'Never'}</td>
+                \${isSuper ? \`
+                  <td>
+                    <select onchange="updateRole('\${u._id}', this.value)">
+                      <option value="user" \${u.role === 'user' ? 'selected' : ''}>User</option>
+                      <option value="admin" \${u.role === 'admin' ? 'selected' : ''}>Admin</option>
+                      <option value="superadmin" \${u.role === 'superadmin' ? 'selected' : ''}>Superadmin</option>
+                    </select>
+                  </td>
+                \` : ''}
+              </tr>
+            \`).join('');
+          });
+        
+        function updateRole(userId, role) {
+          fetch(\`/api/admin/users/\${userId}/role\`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ role })
+          }).then(() => location.reload());
+        }
+      </script>
     </body>
     </html>
   `);
