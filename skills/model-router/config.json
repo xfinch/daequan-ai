@@ -1,0 +1,67 @@
+{
+  "models": {
+    "coding": {
+      "model": "kimi-coding/k2p5",
+      "cost_tier": "tier2",
+      "description": "Superior code generation, debugging, and technical analysis"
+    },
+    "research": {
+      "model": "kimi-k2.5",
+      "cost_tier": "tier1",
+      "description": "Broad knowledge base, good for web research and data analysis"
+    },
+    "deep-reasoning": {
+      "model": "kimi-k2.5",
+      "cost_tier": "tier2",
+      "description": "Complex problem solving and multi-step reasoning"
+    },
+    "quick-check": {
+      "model": "kimi-k2.5",
+      "cost_tier": "tier1",
+      "description": "Fast, cost-effective for simple status checks"
+    },
+    "creative": {
+      "model": "claude-3.5-sonnet",
+      "cost_tier": "tier3",
+      "description": "Nuanced writing, emails, creative content"
+    },
+    "vision": {
+      "model": "gemini-pro-vision",
+      "cost_tier": "tier2",
+      "description": "Image analysis and visual understanding"
+    },
+    "default": {
+      "model": "kimi-k2.5",
+      "cost_tier": "tier1",
+      "description": "General purpose fallback"
+    }
+  },
+  "cost_tiers": {
+    "tier1": {
+      "description": "Lowest cost, fastest",
+      "models": ["kimi-k2.5", "haiku"]
+    },
+    "tier2": {
+      "description": "Medium cost, balanced capability",
+      "models": ["gpt-4o", "kimi-coding/k2p5", "gemini-pro-vision"]
+    },
+    "tier3": {
+      "description": "Highest cost, best quality",
+      "models": ["claude-3.5-sonnet", "o1", "gpt-4o-latest"]
+    }
+  },
+  "task_keywords": {
+    "coding": ["code", "debug", "fix", "bug", "python", "javascript", "sql", "error", "function", "class", "import", "script", "api", "database"],
+    "research": ["research", "analyze", "study", "investigate", "compare", "review", "report", "data", "competitor", "market"],
+    "creative": ["write", "draft", "email", "copy", "content", "blog", "post", "story", "creative", "message"],
+    "vision": ["image", "photo", "picture", "screenshot", "analyze", "visual", "look", "see", "diagram"],
+    "quick-check": ["check", "verify", "status", "ping", "health", "simple", "quick", "confirm", "monitor"]
+  },
+  "settings": {
+    "auto_detect": true,
+    "cost_optimization": true,
+    "fallback_model": "kimi-k2.5",
+    "default_timeout": 300,
+    "cleanup_after_spawn": "delete"
+  }
+}
