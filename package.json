@@ -4,9 +4,9 @@
   "description": "Daequan AI website - homepage and tools",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "start:memory": "node server-fallback.js",
-    "dev": "NODE_ENV=development node server.js",
+    "start": "node server-fallback.js",
+    "start:full": "node server.js",
+    "dev": "NODE_ENV=development node server-fallback.js",
     "static": "npx http-server -p 8080 --cors"
   },
   "dependencies": {
