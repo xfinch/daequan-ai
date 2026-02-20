@@ -132,6 +132,67 @@
             opacity: 0.7;
         }
 
+        /* User Menu */
+        .user-menu {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .user-info img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .user-info span {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .login-btn, .logout-btn {
+            background: white;
+            color: #667eea;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .login-btn:hover, .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        .user-menu.hidden {
+            display: none;
+        }
+
         /* Chat Modal */
         .modal-overlay {
             display: none;
@@ -311,6 +372,16 @@
     </style>
 </head>
 <body>
+    <!-- User Menu -->
+    <div class="user-menu" id="userMenu">
+        <a href="/login" class="login-btn" id="loginBtn">Sign In</a>
+        <div class="user-info hidden" id="userInfo">
+            <img src="" alt="Profile" id="userPhoto">
+            <span id="userName"></span>
+            <a href="/auth/logout" class="logout-btn">Logout</a>
+        </div>
+    </div>
+
     <div class="container">
         <h1>Daequan AI</h1>
         <p class="subtitle">Your director, right-hand, and operational authority</p>
@@ -444,6 +515,34 @@
                 closeChat();
             }
         });
+
+        // Check authentication status
+        async function checkAuth() {
+            try {
+                const response = await fetch('/api/user');
+                const data = await response.json();
+                
+                const loginBtn = document.getElementById('loginBtn');
+                const userInfo = document.getElementById('userInfo');
+                const userPhoto = document.getElementById('userPhoto');
+                const userName = document.getElementById('userName');
+                
+                if (data.authenticated) {
+                    loginBtn.classList.add('hidden');
+                    userInfo.classList.remove('hidden');
+                    userPhoto.src = data.user.photo || '';
+                    userName.textContent = data.user.displayName;
+                } else {
+                    loginBtn.classList.remove('hidden');
+                    userInfo.classList.add('hidden');
+                }
+            } catch (err) {
+                console.log('Auth check failed:', err);
+            }
+        }
+
+        // Check auth on page load
+        checkAuth();
     </script>
 </body>
 </html>

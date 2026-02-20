@@ -2,11 +2,18 @@
   "name": "daequan-ai-website",
   "version": "1.0.0",
   "description": "Daequan AI website - homepage and tools",
+  "main": "server.js",
   "scripts": {
-    "start": "npx http-server -p 8080 --cors",
-    "dev": "npx http-server -p 8080 --cors -a 127.0.0.1"
+    "start": "node server.js",
+    "dev": "NODE_ENV=development node server.js",
+    "static": "npx http-server -p 8080 --cors"
   },
   "dependencies": {
-    "http-server": "^14.1.1"
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "http-server": "^14.1.1",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0"
   }
 }
