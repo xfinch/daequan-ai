@@ -23,9 +23,59 @@ const PORT = process.env.PORT || 8080;
 // MongoDB Connection
 const MONGO_URI = process.env.MONGO_URL || process.env.MONGO_PUBLIC_URL || process.env.DATABASE_URL;
 
-mongoose.connect(MONGO_URI)
-  .then(() => console.log('✅ MongoDB connected'))
-  .catch(err => console.error('❌ MongoDB connection error:', err));
+if (!MONGO_URI) {
+  console.error('❌ No MongoDB connection string found!');
+  console.error('   Set MONGO_URL, MONGO_PUBLIC_URL, or DATABASE_URL env var');
+  process.exit(1);
+}
+
+// Connection options for Railway
+const mongoOptions = {
+  serverSelectionTimeoutMS: 10000,
+  socketTimeoutMS: 45000,
+  retryWrites: true,
+  retryReads: true,
+  maxPoolSize: 10
+};
+
+// Connect with retry logic
+async function connectDB(retries = 5) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      console.log(`📊 MongoDB: Connecting (attempt ${i + 1}/${retries})...`);
+      await mongoose.connect(MONGO_URI, mongoOptions);
+      console.log('✅ MongoDB: Connected successfully');
+      return;
+    } catch (err) {
+      console.error(`❌ MongoDB connection attempt ${i + 1} failed:`, err.message);
+      if (i < retries - 1) {
+        const delay = Math.pow(2, i) * 1000;
+        console.log(`   Retrying in ${delay}ms...`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+      } else {
+        console.error('❌ All MongoDB connection attempts failed');
+        console.error('   Check that MongoDB service is running in Railway');
+        console.error('   and MONGO_URL is set correctly');
+        // Don't exit - let the app run in degraded mode
+      }
+    }
+  }
+}
+
+connectDB();
+
+// Connection event handlers
+mongoose.connection.on('connected', () => {
+  console.log('📊 MongoDB: Connection established');
+});
+
+mongoose.connection.on('error', (err) => {
+  console.error('❌ MongoDB: Connection error:', err.message);
+});
+
+mongoose.connection.on('disconnected', () => {
+  console.log('⚠️  MongoDB: Connection lost, attempting to reconnect...');
+});
 
 // Schemas
 const DecisionSchema = new mongoose.Schema({
@@ -57,20 +107,39 @@ const SUPERADMIN_EMAILS = (process.env.SUPERADMIN_EMAILS || 'xfassistant@gmail.c
 const Decision = mongoose.model('Decision', DecisionSchema);
 const User = mongoose.model('User', UserSchema);
 
-// Session configuration with MongoDB store
-app.use(session({
+// Session configuration
+const sessionConfig = {
   secret: process.env.SESSION_SECRET || 'daequan-ai-secret-key-change-in-production',
   resave: false,
   saveUninitialized: false,
-  store: MongoStore.create({
-    mongoUrl: MONGO_URI,
-    ttl: 24 * 60 * 60 // 24 hours
-  }),
   cookie: {
     secure: process.env.NODE_ENV === 'production',
     maxAge: 24 * 60 * 60 * 1000
   }
-}));
+};
+
+// Only use MongoStore if we have a connection
+if (MONGO_URI) {
+  try {
+    sessionConfig.store = MongoStore.create({
+      mongoUrl: MONGO_URI,
+      ttl: 24 * 60 * 60,
+      autoRemove: 'native',
+      mongoOptions: {
+        serverSelectionTimeoutMS: 10000
+      }
+    });
+    console.log('📦 Session store: MongoDB');
+  } catch (err) {
+    console.warn('⚠️  Could not create Mongo session store:', err.message);
+    console.warn('   Using memory store (sessions will not persist)');
+  }
+} else {
+  console.warn('⚠️  No MONGO_URI - using memory session store');
+  console.warn('   Sessions will NOT persist across restarts!');
+}
+
+app.use(session(sessionConfig));
 
 // Passport initialization
 app.use(passport.initialize());
