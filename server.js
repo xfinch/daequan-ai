@@ -260,6 +260,76 @@ async function broadcastDecision(decision) {
   await newDecision.save();
 }
 
+// Health check
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    mongo: mongoose.connection.readyState === 1,
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Home route
+app.get('/', (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Daequan AI</title>
+      <style>
+        body { 
+          font-family: -apple-system, sans-serif; 
+          display: flex; align-items: center; justify-content: center;
+          min-height: 100vh; margin: 0;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card {
+          background: white; padding: 40px; border-radius: 20px;
+          text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+          max-width: 500px;
+        }
+        h1 { color: #333; margin-bottom: 10px; }
+        .subtitle { color: #666; margin-bottom: 30px; }
+        .btn {
+          background: #4285f4; color: white;
+          padding: 14px 28px; border: none; border-radius: 8px;
+          font-size: 16px; cursor: pointer; text-decoration: none;
+          display: inline-block;
+        }
+        .btn:hover { background: #357ae8; }
+        .features { 
+          display: grid; grid-template-columns: 1fr 1fr;
+          gap: 15px; margin: 30px 0; text-align: left;
+        }
+        .feature { display: flex; align-items: center; gap: 10px; }
+        .icon { font-size: 24px; }
+      </style>
+    </head>
+    <body>
+      <div class="card">
+        <h1>🤖 Daequan AI</h1>
+        <p class="subtitle">Your director, right-hand, and operational authority</p>
+        
+        <div class="features">
+          <div class="feature"><span class="icon">💬</span> Chat with Daequan</div>
+          <div class="feature"><span class="icon">📋</span> Task Assignment</div>
+          <div class="feature"><span class="icon">🔧</span> Skill Building</div>
+          <div class="feature"><span class="icon">⚡</span> Results Delivery</div>
+        </div>
+        
+        ${req.isAuthenticated() ? `
+          <p>Welcome, ${req.user.displayName}!</p>
+          <a href="/dashboard" class="btn">Go to Dashboard</a>
+        ` : `
+          <a href="/auth/google" class="btn">Sign in with Google</a>
+        `}
+      </div>
+    </body>
+    </html>
+  `);
+});
+
 // Auth routes
 app.get('/auth/google',
   passport.authenticate('google', { 
