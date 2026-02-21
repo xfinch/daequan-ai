@@ -352,7 +352,7 @@ app.get('/api/visits', async (req, res) => {
     // Add GHL deep link URL to each visit
     const visitsWithGhlLink = visits.map(v => ({
       ...v,
-      ghlUrl: v.ghlContactId ? `https://app.gohighlevel.com/v2/pipelines/contacts/${v.ghlContactId}` : null
+      ghlUrl: v.ghlContactId ? `https://app.gohighlevel.com/location/${GHL_LOCATION_ID}/contacts/detail/${v.ghlContactId}` : null
     }));
     res.json({ visits: visitsWithGhlLink, count: visits.length });
   } catch (err) {
