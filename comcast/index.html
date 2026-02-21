@@ -23,6 +23,69 @@
             z-index: 1000;
             max-height: 90vh;
             overflow-y: auto;
+            transition: transform 0.3s ease;
+        }
+
+        /* Mobile responsive sidebar */
+        @media (max-width: 768px) {
+            .sidebar {
+                top: auto;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                max-height: 60vh;
+                border-radius: 16px 16px 0 0;
+                transform: translateY(calc(100% - 60px));
+                padding: 0;
+            }
+
+            .sidebar.expanded {
+                transform: translateY(0);
+            }
+
+            .sidebar-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 15px 20px;
+                border-bottom: 1px solid #eee;
+                cursor: pointer;
+            }
+
+            .sidebar-header h1 {
+                margin: 0;
+                font-size: 16px;
+            }
+
+            .sidebar-handle {
+                width: 40px;
+                height: 4px;
+                background: #ddd;
+                border-radius: 2px;
+                margin: 0 auto 10px;
+            }
+
+            .sidebar-content {
+                padding: 15px 20px 30px;
+                max-height: calc(60vh - 60px);
+                overflow-y: auto;
+            }
+
+            .sidebar-toggle {
+                background: none;
+                border: none;
+                font-size: 20px;
+                color: #666;
+                cursor: pointer;
+                padding: 5px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .sidebar-header {
+                display: none;
+            }
         }
         
         .sidebar h1 {
@@ -147,18 +210,44 @@
             z-index: 1000;
             font-size: 12px;
         }
-        
+
         .legend-item {
             display: flex;
             align-items: center;
             margin-bottom: 8px;
         }
-        
+
         .legend-color {
             width: 16px;
             height: 16px;
             border-radius: 50%;
             margin-right: 8px;
+        }
+
+        /* Mobile legend */
+        @media (max-width: 768px) {
+            .legend {
+                bottom: 80px;
+                left: 10px;
+                padding: 10px;
+                font-size: 10px;
+                max-width: 140px;
+            }
+
+            .legend-item {
+                margin-bottom: 4px;
+            }
+
+            .legend-color {
+                width: 12px;
+                height: 12px;
+                margin-right: 6px;
+            }
+
+            .legend h3 {
+                font-size: 11px;
+                margin-bottom: 8px;
+            }
         }
         
         .pin-popup {
@@ -359,55 +448,61 @@
 <body>
     <div id="map"></div>
     
-    <div class="sidebar">
-        <div class="back-link">
-            <a href="/">← Back to Daequan AI</a>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header" onclick="toggleSidebar()">
+            <div class="sidebar-handle"></div>
+            <h1>🏢 Comcast Territory</h1>
+            <button class="sidebar-toggle" id="sidebarToggle">▲</button>
         </div>
         
-        <div class="error-banner" id="errorBanner">
-            ⚠️ API connection failed. Make sure the server is running.
-        </div>
-        
-        <h1>🏢 Comcast Territory</h1>
-        <div class="subtitle">Xavier Finch • Olympia/Tacoma Region</div>
-        
-        <button class="add-btn" onclick="enableAddMode()">
-            <span>📍 Add Business Visit</span>
-        </button>
-        
-        <div class="click-hint" id="clickHint" style="display: none;">
-            📍 Click anywhere on the map to place a pin
-            <button onclick="cancelAddMode()" style="margin-left: 10px; font-size: 11px;">Cancel</button>
-        </div>
-        
-        <button class="refresh-btn" onclick="refreshData()">
-            <span class="icon">🔄</span>
-            <span>Refresh Data</span>
-        </button>
-        
-        <div class="stats">
-            <div class="stat-box">
-                <div class="number" id="visitCount">-</div>
-                <div class="label">Visits</div>
+        <div class="sidebar-content">
+            <div class="back-link">
+                <a href="/">← Back to Daequan AI</a>
             </div>
-            <div class="stat-box">
-                <div class="number">14</div>
-                <div class="label">Zip Codes</div>
+            
+            <div class="error-banner" id="errorBanner">
+                ⚠️ API connection failed. Make sure the server is running.
             </div>
-        </div>
-        
-        <div class="territory-list">
-            <h3>Territories</h3>
-            <div id="zipList"></div>
-        </div>
-        
-        <div class="help-text">
-            💡 <strong>How to use:</strong><br>
-            • Message Daequan via WhatsApp to add visits<br>
-            • Pins show your business visits<br>
-            • Click any pin to view details<br>
-            • "Edit in GHL" opens the contact record<br>
-            • Data refreshes automatically every 60s
+            
+            <div class="subtitle">Xavier Finch • Olympia/Tacoma Region</div>
+            
+            <button class="add-btn" onclick="enableAddMode()">
+                <span>📍 Add Business Visit</span>
+            </button>
+            
+            <div class="click-hint" id="clickHint" style="display: none;">
+                📍 Click anywhere on the map to place a pin
+                <button onclick="cancelAddMode()" style="margin-left: 10px; font-size: 11px;">Cancel</button>
+            </div>
+            
+            <button class="refresh-btn" onclick="refreshData()">
+                <span class="icon">🔄</span>
+                <span>Refresh Data</span>
+            </button>
+            
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="number" id="visitCount">-</div>
+                    <div class="label">Visits</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">14</div>
+                    <div class="label">Zip Codes</div>
+                </div>
+            </div>
+            
+            <div class="territory-list">
+                <h3>Territories</h3>
+                <div id="zipList"></div>
+            </div>
+            
+            <div class="help-text">
+                💡 <strong>How to use:</strong><br>
+                • Tap 📍 button, then tap map to add<br>
+                • Tap pins to view details<br>
+                • Swipe up this panel for more<br>
+                • Data refreshes automatically
+            </div>
         </div>
     </div>
     
@@ -635,13 +730,31 @@
             div.textContent = text;
             return div.innerHTML;
         }
-        
+
         function formatDate(dateStr) {
             if (!dateStr) return '';
             const date = new Date(dateStr);
             return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
         }
-        
+
+        // Mobile sidebar toggle
+        let sidebarExpanded = false;
+        function toggleSidebar() {
+            if (window.innerWidth > 768) return; // Only on mobile
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.getElementById('sidebarToggle');
+            sidebarExpanded = !sidebarExpanded;
+            sidebar.classList.toggle('expanded', sidebarExpanded);
+            toggle.textContent = sidebarExpanded ? '▼' : '▲';
+        }
+
+        // Auto-collapse sidebar on mobile when map is clicked
+        function collapseSidebar() {
+            if (window.innerWidth <= 768 && sidebarExpanded) {
+                toggleSidebar();
+            }
+        }
+
         // Add Visit Modal Functions
         let addMode = false;
         let tempMarker = null;
@@ -715,6 +828,9 @@
 
         // Map click handler for adding pins
         function onMapClick(e) {
+            // Collapse sidebar on mobile when map is tapped
+            collapseSidebar();
+
             if (!addMode) return;
 
             const { lat, lng } = e.latlng;
