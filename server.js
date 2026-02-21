@@ -148,7 +148,7 @@ async function syncToGHL(visit) {
   }
 
   try {
-    const response = await fetch('https://services.leadconnectorhq.com/v1/contacts', {
+    const response = await fetch('https://services.leadconnectorhq.com/contacts/', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${GHL_API_KEY}`,
@@ -165,13 +165,6 @@ async function syncToGHL(visit) {
         city: visit.city,
         state: visit.state,
         postalCode: visit.zip,
-        customFields: [
-          { key: 'business_name', value: visit.businessName },
-          { key: 'visit_status', value: visit.status },
-          { key: 'visit_notes', value: visit.notes || '' },
-          { key: 'latitude', value: visit.lat.toString() },
-          { key: 'longitude', value: visit.lng.toString() }
-        ],
         tags: ['Comcast', 'Field Visit', visit.status]
       })
     });
