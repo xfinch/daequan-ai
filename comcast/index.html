@@ -530,11 +530,11 @@
                 if (!visit.lat || !visit.lng) return;
                 
                 // Count by zip
-                if (visitsByZip[visit.zip_code] !== undefined) {
-                    visitsByZip[visit.zip_code]++;
+                if (visitsByZip[visit.zip] !== undefined) {
+                    visitsByZip[visit.zip]++;
                 }
                 
-                const color = statusColors[visit.visit_status] || '#666';
+                const color = statusColors[visit.status] || '#666';
                 
                 const marker = L.marker([visit.lat, visit.lng], {
                     icon: L.divIcon({
@@ -552,19 +552,19 @@
                     })
                 }).addTo(map);
                 
-                const statusClass = `status-${visit.visit_status}`;
-                const statusLabel = visit.visit_status.replace('-', ' ');
+                const statusClass = `status-${visit.status}`;
+                const statusLabel = visit.status ? visit.status.replace('-', ' ') : 'unknown';
                 
                 const popupContent = `
                     <div class="pin-popup">
-                        <h4>${escapeHtml(visit.business_name)}</h4>
+                        <h4>${escapeHtml(visit.businessName)}</h4>
                         
                         <span class="status-badge ${statusClass}">${statusLabel}</span>
                         
-                        ${visit.contact_name ? `
+                        ${visit.contactName ? `
                         <div class="info-row">
                             <div class="label">Contact</div>
-                            <div class="value">${escapeHtml(visit.contact_name)}</div>
+                            <div class="value">${escapeHtml(visit.contactName)}</div>
                         </div>` : ''}
                         
                         ${visit.phone ? `
@@ -575,21 +575,21 @@
                         
                         <div class="info-row">
                             <div class="label">Address</div>
-                            <div class="value">${escapeHtml(visit.address || '')}, ${escapeHtml(visit.zip_code)}</div>
+                            <div class="value">${escapeHtml(visit.address || '')}, ${escapeHtml(visit.zip)}</div>
                         </div>
                         
                         <div class="info-row">
                             <div class="label">Visited</div>
-                            <div class="value">${formatDate(visit.visit_date)}</div>
+                            <div class="value">${formatDate(visit.createdAt)}</div>
                         </div>
                         
                         ${visit.notes ? `
                         <div class="notes">${escapeHtml(visit.notes)}</div>` : ''}
                         
-                        ${visit.ghl_url ? `
-                        <a href="${visit.ghl_url}" target="_blank" class="ghl-btn">
-                            ✏️ Edit in GHL
-                        </a>` : '<p style="font-size: 11px; color: #666; margin-top: 10px;">Not synced to GHL yet</p>'}
+                        ${visit.photo ? `
+                        <div style="margin-top: 10px;">
+                            <img src="${visit.photo}" style="max-width: 100%; border-radius: 8px;">
+                        </div>` : ''}
                     </div>
                 `;
                 
