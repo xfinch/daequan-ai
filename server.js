@@ -136,6 +136,40 @@ const VisitSchema = new mongoose.Schema({
 
 const Visit = mongoose.model('Visit', VisitSchema);
 
+// Change Log Schema - Audit trail for all changes
+const ChangeLogSchema = new mongoose.Schema({
+  visitId: { type: mongoose.Schema.Types.ObjectId, ref: 'Visit', required: true },
+  action: { type: String, enum: ['create', 'update', 'delete'], required: true },
+  field: String, // Which field was changed (for updates)
+  oldValue: mongoose.Schema.Types.Mixed,
+  newValue: mongoose.Schema.Types.Mixed,
+  changedBy: String, // User ID or 'system' or 'whatsapp'
+  changedVia: { type: String, enum: ['api', 'whatsapp', 'web', 'system'], default: 'api' },
+  timestamp: { type: Date, default: Date.now }
+});
+
+const ChangeLog = mongoose.model('ChangeLog', ChangeLogSchema);
+
+// Audit logging function
+async function logChange(visitId, action, field, oldValue, newValue, changedBy = 'system', changedVia = 'api') {
+  try {
+    const log = new ChangeLog({
+      visitId,
+      action,
+      field,
+      oldValue,
+      newValue,
+      changedBy,
+      changedVia,
+      timestamp: new Date()
+    });
+    await log.save();
+    console.log(`📝 Change logged: ${action} ${field || ''} on visit ${visitId}`);
+  } catch (err) {
+    console.error('❌ Failed to log change:', err.message);
+  }
+}
+
 // GHL Sync Configuration
 const GHL_API_KEY = process.env.GHL_API_KEY;
 const GHL_LOCATION_ID = process.env.GHL_LOCATION_ID;
@@ -426,6 +460,18 @@ app.post('/api/visits', async (req, res) => {
 
     await newVisit.save();
 
+    // Log the creation
+    const changedBy = req.user?.email || req.body.source || 'system';
+    const changedVia = req.body.source === 'whatsapp' ? 'whatsapp' : 'api';
+    await logChange(newVisit._id, 'create', null, null, {
+      businessName: newVisit.businessName,
+      contactName: newVisit.contactName,
+      phone: newVisit.phone,
+      email: newVisit.email,
+      address: newVisit.address,
+      status: newVisit.status
+    }, changedBy, changedVia);
+
     // Check if this is a partial visit with missing info
     const hasMissingFields = newVisit.missingFields && newVisit.missingFields.length > 0;
     
@@ -451,6 +497,9 @@ app.post('/api/visits', async (req, res) => {
         newVisit.ghlContactId = ghlContactId;
         newVisit.ghlSyncedAt = new Date();
         await newVisit.save();
+        
+        // Log GHL sync
+        await logChange(newVisit._id, 'update', 'ghlContactId', null, ghlContactId, 'system', 'system');
       }
     }
 
@@ -482,10 +531,21 @@ app.patch('/api/visits/:id/ghl', async (req, res) => {
 app.patch('/api/visits/:id', async (req, res) => {
   try {
     const updateData = { ...req.body, updatedAt: new Date() };
+    const changedBy = req.user?.email || req.body.source || 'system';
+    const changedVia = req.body.source === 'whatsapp' ? 'whatsapp' : 'api';
     
     // Get current visit to check if we're completing missing fields
     const currentVisit = await Visit.findById(req.params.id);
     if (!currentVisit) return res.status(404).json({ error: 'Visit not found' });
+    
+    // Log each field change
+    for (const [field, newValue] of Object.entries(req.body)) {
+      if (field === 'source' || field === 'updatedAt') continue; // Skip metadata
+      const oldValue = currentVisit[field];
+      if (oldValue !== newValue) {
+        await logChange(req.params.id, 'update', field, oldValue, newValue, changedBy, changedVia);
+      }
+    }
     
     // Check if this update completes required fields
     const requiredFields = ['contactName', 'phone', 'email', 'address'];
@@ -525,6 +585,7 @@ app.patch('/api/visits/:id', async (req, res) => {
         if (ghlContactId) {
           updateData.ghlContactId = ghlContactId;
           updateData.ghlSyncedAt = new Date();
+          await logChange(req.params.id, 'update', 'ghlContactId', null, ghlContactId, 'system', 'system');
         }
       }
     }
@@ -534,6 +595,19 @@ app.patch('/api/visits/:id', async (req, res) => {
   } catch (err) {
     console.error('Error updating visit:', err);
     res.status(500).json({ error: 'Failed to update visit' });
+  }
+});
+
+// GET change log for a visit
+app.get('/api/visits/:id/changes', async (req, res) => {
+  try {
+    const changes = await ChangeLog.find({ visitId: req.params.id })
+      .sort({ timestamp: -1 })
+      .limit(100);
+    res.json({ changes, count: changes.length });
+  } catch (err) {
+    console.error('Error fetching change log:', err);
+    res.status(500).json({ error: 'Failed to fetch change log' });
   }
 });
 
