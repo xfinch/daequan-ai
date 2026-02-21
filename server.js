@@ -4,6 +4,7 @@ const session = require('express-session');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const path = require('path');
+const fs = require('fs');
 const http = require('http');
 const { Server } = require('socket.io');
 const mongoose = require('mongoose');
@@ -270,9 +271,48 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Comcast CRM API - Business Visits (static JSON)
+// Comcast CRM API - Business Visits
+const visitsFilePath = path.join(__dirname, 'comcast', 'visits.json');
+
+// GET visits
 app.get('/api/visits', (req, res) => {
-  res.sendFile(path.join(__dirname, 'comcast', 'visits.json'));
+  res.sendFile(visitsFilePath);
+});
+
+// POST new visit
+app.post('/api/visits', (req, res) => {
+  try {
+    const visitsData = JSON.parse(fs.readFileSync(visitsFilePath, 'utf8'));
+    const newVisit = {
+      id: Date.now(),
+      businessName: req.body.businessName,
+      contactName: req.body.contactName || '',
+      phone: req.body.phone || '',
+      email: req.body.email || '',
+      website: null,
+      address: req.body.address || '',
+      city: req.body.city || 'Tacoma',
+      state: 'WA',
+      zip: req.body.zip,
+      lat: req.body.lat,
+      lng: req.body.lng,
+      status: req.body.status || 'interested',
+      date: new Date().toISOString(),
+      notes: req.body.notes || '',
+      photo: null,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+
+    visitsData.visits.push(newVisit);
+    visitsData.count = visitsData.visits.length;
+
+    fs.writeFileSync(visitsFilePath, JSON.stringify(visitsData, null, 2));
+    res.status(201).json(newVisit);
+  } catch (err) {
+    console.error('Error saving visit:', err);
+    res.status(500).json({ error: 'Failed to save visit' });
+  }
 });
 
 // Home route
