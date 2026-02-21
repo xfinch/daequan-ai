@@ -128,11 +128,68 @@ const VisitSchema = new mongoose.Schema({
   status: { type: String, enum: ['interested', 'followup', 'not-interested', 'called', 'customer'], default: 'interested' },
   notes: String,
   photo: String,
+  ghlContactId: String,
+  ghlSyncedAt: Date,
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }
 });
 
 const Visit = mongoose.model('Visit', VisitSchema);
+
+// GHL Sync Configuration
+const GHL_API_KEY = process.env.GHL_API_KEY;
+const GHL_LOCATION_ID = process.env.GHL_LOCATION_ID;
+
+// GHL Sync Function
+async function syncToGHL(visit) {
+  if (!GHL_API_KEY || !GHL_LOCATION_ID) {
+    console.warn('⚠️  GHL not configured - skipping sync');
+    return null;
+  }
+
+  try {
+    const response = await fetch('https://services.leadconnectorhq.com/v1/contacts', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${GHL_API_KEY}`,
+        'Content-Type': 'application/json',
+        'Version': '2021-07-28'
+      },
+      body: JSON.stringify({
+        locationId: GHL_LOCATION_ID,
+        firstName: visit.contactName?.split(' ')[0] || '',
+        lastName: visit.contactName?.split(' ').slice(1).join(' ') || '',
+        email: visit.email || undefined,
+        phone: visit.phone || undefined,
+        address1: visit.address || '',
+        city: visit.city,
+        state: visit.state,
+        postalCode: visit.zip,
+        customFields: [
+          { key: 'business_name', value: visit.businessName },
+          { key: 'visit_status', value: visit.status },
+          { key: 'visit_notes', value: visit.notes || '' },
+          { key: 'latitude', value: visit.lat.toString() },
+          { key: 'longitude', value: visit.lng.toString() }
+        ],
+        tags: ['Comcast', 'Field Visit', visit.status]
+      })
+    });
+
+    if (!response.ok) {
+      const error = await response.text();
+      console.error('❌ GHL sync failed:', error);
+      return null;
+    }
+
+    const data = await response.json();
+    console.log('✅ Synced to GHL:', data.contact?.id);
+    return data.contact?.id;
+  } catch (err) {
+    console.error('❌ GHL sync error:', err.message);
+    return null;
+  }
+}
 
 // Session configuration
 const sessionConfig = {
@@ -325,6 +382,15 @@ app.post('/api/visits', async (req, res) => {
     });
 
     await newVisit.save();
+
+    // Auto-sync to GHL
+    const ghlContactId = await syncToGHL(newVisit);
+    if (ghlContactId) {
+      newVisit.ghlContactId = ghlContactId;
+      newVisit.ghlSyncedAt = new Date();
+      await newVisit.save();
+    }
+
     res.status(201).json(newVisit);
   } catch (err) {
     console.error('Error saving visit:', err);
