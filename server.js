@@ -8,7 +8,7 @@ const http = require('http');
 const { Server } = require('socket.io');
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo');
-const sqlite3 = require('sqlite3').verbose();
+const Database = require('better-sqlite3');
 
 const app = express();
 
@@ -273,35 +273,26 @@ app.get('/health', (req, res) => {
 
 // Comcast CRM API - Business Visits
 app.get('/api/visits', (req, res) => {
-  const dbPath = path.join(__dirname, 'comcast-crm', 'comcast.db');
-  
-  // Check if database exists
-  if (!require('fs').existsSync(dbPath)) {
-    return res.json({ visits: [], error: 'Database not found' });
-  }
-  
-  const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READONLY, (err) => {
-    if (err) {
-      console.error('SQLite error:', err.message);
-      return res.status(500).json({ error: 'Database connection failed' });
+  try {
+    const dbPath = path.join(__dirname, 'comcast-crm', 'comcast.db');
+    
+    // Check if database exists
+    if (!require('fs').existsSync(dbPath)) {
+      return res.json({ visits: [], error: 'Database not found' });
     }
-  });
-  
-  db.all(`
-    SELECT 
-      id, business_name, contact_name, phone, email, website,
-      address, city, state, zip_code, lat, lng,
-      visit_status, visit_date, notes, business_card_photo,
-      created_at, updated_at
-    FROM business_visits
-    WHERE lat IS NOT NULL AND lng IS NOT NULL
-    ORDER BY visit_date DESC
-  `, [], (err, rows) => {
-    if (err) {
-      console.error('Query error:', err.message);
-      db.close();
-      return res.status(500).json({ error: 'Query failed' });
-    }
+    
+    const db = new Database(dbPath, { readonly: true });
+    
+    const rows = db.prepare(`
+      SELECT 
+        id, business_name, contact_name, phone, email, website,
+        address, city, state, zip_code, lat, lng,
+        visit_status, visit_date, notes, business_card_photo,
+        created_at, updated_at
+      FROM business_visits
+      WHERE lat IS NOT NULL AND lng IS NOT NULL
+      ORDER BY visit_date DESC
+    `).all();
     
     // Format visits
     const visits = rows.map(row => ({
@@ -327,7 +318,10 @@ app.get('/api/visits', (req, res) => {
     
     db.close();
     res.json({ visits, count: visits.length });
-  });
+  } catch (err) {
+    console.error('Visits API error:', err.message);
+    res.status(500).json({ error: 'Database error', message: err.message });
+  }
 });
 
 // Home route
