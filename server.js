@@ -8,7 +8,6 @@ const http = require('http');
 const { Server } = require('socket.io');
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo');
-const Database = require('better-sqlite3');
 
 const app = express();
 
@@ -271,57 +270,9 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Comcast CRM API - Business Visits
+// Comcast CRM API - Business Visits (static JSON)
 app.get('/api/visits', (req, res) => {
-  try {
-    const dbPath = path.join(__dirname, 'comcast-crm', 'comcast.db');
-    
-    // Check if database exists
-    if (!require('fs').existsSync(dbPath)) {
-      return res.json({ visits: [], error: 'Database not found' });
-    }
-    
-    const db = new Database(dbPath, { readonly: true });
-    
-    const rows = db.prepare(`
-      SELECT 
-        id, business_name, contact_name, phone, email, website,
-        address, city, state, zip_code, lat, lng,
-        visit_status, visit_date, notes, business_card_photo,
-        created_at, updated_at
-      FROM business_visits
-      WHERE lat IS NOT NULL AND lng IS NOT NULL
-      ORDER BY visit_date DESC
-    `).all();
-    
-    // Format visits
-    const visits = rows.map(row => ({
-      id: row.id,
-      businessName: row.business_name,
-      contactName: row.contact_name,
-      phone: row.phone,
-      email: row.email,
-      website: row.website,
-      address: row.address,
-      city: row.city,
-      state: row.state,
-      zip: row.zip_code,
-      lat: row.lat,
-      lng: row.lng,
-      status: row.visit_status,
-      date: row.visit_date,
-      notes: row.notes,
-      photo: row.business_card_photo,
-      createdAt: row.created_at,
-      updatedAt: row.updated_at
-    }));
-    
-    db.close();
-    res.json({ visits, count: visits.length });
-  } catch (err) {
-    console.error('Visits API error:', err.message);
-    res.status(500).json({ error: 'Database error', message: err.message });
-  }
+  res.sendFile(path.join(__dirname, 'comcast', 'visits.json'));
 });
 
 // Home route
