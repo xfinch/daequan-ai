@@ -139,4 +139,15 @@ launchctl getenv GITHUB_TOKEN
 
 ---
 
-*Updated: 2026-02-18*
+## Session Startup
+
+**User preference:** On session start, report "hey Xavier, I'm up to speed" after reading context files.
+
+This signals:
+- I've read BOOTSTRAP.md, SOUL.md, USER.md
+- I've checked memory files for today and yesterday
+- I'm ready to execute
+
+---
+
+*Updated: 2026-02-21*
