@@ -175,15 +175,70 @@ function isVisitComplete(visit) {
 }
 
 /**
+ * Send GHL notification (creates task that pushes to LC app)
+ */
+async function sendGHLNotification(title, description, assignedTo = null, dueDate = null) {
+  const GHL_API_KEY = process.env.GHL_API_KEY;
+  const GHL_LOCATION_ID = process.env.GHL_LOCATION_ID;
+  const GHL_NOTIFICATION_USER = process.env.GHL_NOTIFICATION_USER;
+  
+  if (!GHL_API_KEY || !GHL_LOCATION_ID) {
+    console.warn('⚠️  GHL not configured - skipping notification');
+    return null;
+  }
+
+  try {
+    const response = await fetch('https://services.leadconnectorhq.com/tasks/', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${GHL_API_KEY}`,
+        'Content-Type': 'application/json',
+        'Version': '2021-07-28'
+      },
+      body: JSON.stringify({
+        locationId: GHL_LOCATION_ID,
+        title: title,
+        description: description,
+        assignedTo: assignedTo || GHL_NOTIFICATION_USER,
+        dueDate: dueDate || new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+        status: 'open',
+        priority: 'high'
+      })
+    });
+
+    if (!response.ok) {
+      const error = await response.text();
+      console.error('❌ GHL notification failed:', error);
+      return null;
+    }
+
+    const data = await response.json();
+    console.log('✅ GHL notification sent:', data.task?.id);
+    return data.task?.id;
+  } catch (err) {
+    console.error('❌ GHL notification error:', err.message);
+    return null;
+  }
+}
+
+/**
  * Complete visit - geocode and finalize
  */
-async function completeVisit(visitId) {
-  // Get full visit data
-  // Geocode address to get lat/lng
-  // Update MongoDB with lat/lng and needsUpdate=false
-  // Update GHL contact with complete info
-  // Remove all "missing-" tags
-  // Send confirmation to user
+async function completeVisit(visitId, visitData) {
+  // Send completion notification
+  await sendGHLNotification(
+    `✅ Complete: ${visitData.businessName}`,
+    `All required information collected for ${visitData.contactName}.\n\n` +
+    `Phone: ${visitData.phone}\n` +
+    `Email: ${visitData.email}\n` +
+    `Address: ${visitData.address}, ${visitData.city}, ${visitData.state} ${visitData.zip}\n\n` +
+    `View on map: https://daequanai.com/comcast`,
+    null,
+    null
+  );
+  
+  // Remove "missing-" tags from GHL contact
+  // This would call the GHL API to remove tags
 }
 
 module.exports = {
@@ -195,5 +250,6 @@ module.exports = {
   removeGHLTag,
   isVisitComplete,
   completeVisit,
+  sendGHLNotification,
   REQUIRED_FIELDS
 };

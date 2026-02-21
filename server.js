@@ -139,6 +139,49 @@ const Visit = mongoose.model('Visit', VisitSchema);
 // GHL Sync Configuration
 const GHL_API_KEY = process.env.GHL_API_KEY;
 const GHL_LOCATION_ID = process.env.GHL_LOCATION_ID;
+const GHL_NOTIFICATION_USER = process.env.GHL_NOTIFICATION_USER; // User ID to notify
+
+// GHL Notification Function (sends task that pushes to LC app)
+async function sendGHLNotification(title, description, assignedTo = null, dueDate = null) {
+  if (!GHL_API_KEY || !GHL_LOCATION_ID) {
+    console.warn('⚠️  GHL not configured - skipping notification');
+    return null;
+  }
+
+  try {
+    // Use GHL Tasks API - tasks trigger LC app push notifications
+    const response = await fetch('https://services.leadconnectorhq.com/tasks/', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${GHL_API_KEY}`,
+        'Content-Type': 'application/json',
+        'Version': '2021-07-28'
+      },
+      body: JSON.stringify({
+        locationId: GHL_LOCATION_ID,
+        title: title,
+        description: description,
+        assignedTo: assignedTo || GHL_NOTIFICATION_USER,
+        dueDate: dueDate || new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // Default 24 hours
+        status: 'open',
+        priority: 'high' // High priority triggers phone notification
+      })
+    });
+
+    if (!response.ok) {
+      const error = await response.text();
+      console.error('❌ GHL notification failed:', error);
+      return null;
+    }
+
+    const data = await response.json();
+    console.log('✅ GHL notification sent:', data.task?.id);
+    return data.task?.id;
+  } catch (err) {
+    console.error('❌ GHL notification error:', err.message);
+    return null;
+  }
+}
 
 // GHL Sync Function
 async function syncToGHL(visit) {
@@ -376,17 +419,39 @@ app.post('/api/visits', async (req, res) => {
       lat: req.body.lat,
       lng: req.body.lng,
       status: req.body.status || 'interested',
-      notes: req.body.notes || ''
+      notes: req.body.notes || '',
+      missingFields: req.body.missingFields || [],
+      needsUpdate: req.body.needsUpdate || false
     });
 
     await newVisit.save();
 
-    // Auto-sync to GHL
-    const ghlContactId = await syncToGHL(newVisit);
-    if (ghlContactId) {
-      newVisit.ghlContactId = ghlContactId;
-      newVisit.ghlSyncedAt = new Date();
-      await newVisit.save();
+    // Check if this is a partial visit with missing info
+    const hasMissingFields = newVisit.missingFields && newVisit.missingFields.length > 0;
+    
+    if (hasMissingFields) {
+      // Send GHL notification for missing info
+      const missingList = newVisit.missingFields.join(', ');
+      await sendGHLNotification(
+        `⚠️ Missing Info: ${newVisit.businessName}`,
+        `Business card scanned but missing: ${missingList}\n\n` +
+        `Contact: ${newVisit.contactName}\n` +
+        `Location: ${newVisit.address}, ${newVisit.city}, ${newVisit.state} ${newVisit.zip}\n\n` +
+        `Reply to this thread with the missing information or visit the map to update.`,
+        null, // assigned to default user
+        new Date(Date.now() + 2 * 60 * 60 * 1000) // Due in 2 hours
+      );
+      console.log('📱 GHL notification sent for missing fields:', missingList);
+    }
+
+    // Auto-sync to GHL (only if no missing required fields)
+    if (!hasMissingFields) {
+      const ghlContactId = await syncToGHL(newVisit);
+      if (ghlContactId) {
+        newVisit.ghlContactId = ghlContactId;
+        newVisit.ghlSyncedAt = new Date();
+        await newVisit.save();
+      }
     }
 
     res.status(201).json(newVisit);
