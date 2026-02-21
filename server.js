@@ -413,6 +413,65 @@ app.patch('/api/visits/:id/ghl', async (req, res) => {
   }
 });
 
+// PATCH visit - general update (for user-provided missing info)
+app.patch('/api/visits/:id', async (req, res) => {
+  try {
+    const updateData = { ...req.body, updatedAt: new Date() };
+    
+    // Get current visit to check if we're completing missing fields
+    const currentVisit = await Visit.findById(req.params.id);
+    if (!currentVisit) return res.status(404).json({ error: 'Visit not found' });
+    
+    // Check if this update completes required fields
+    const requiredFields = ['contactName', 'phone', 'email', 'address'];
+    const willBeComplete = requiredFields.every(field => {
+      const newValue = updateData[field] || currentVisit[field];
+      return newValue && newValue !== 'PENDING' && newValue !== 'Unknown';
+    });
+    
+    // If completing the visit, geocode address and sync to GHL
+    if (willBeComplete && (!currentVisit.lat || !currentVisit.lng)) {
+      const street = updateData.address || currentVisit.address;
+      const city = updateData.city || currentVisit.city;
+      const state = updateData.state || currentVisit.state;
+      const zip = updateData.zip || currentVisit.zip;
+      
+      try {
+        const geoRes = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(`${street}, ${city}, ${state} ${zip}`)}`, {
+          headers: { 'User-Agent': 'DaequanAI/1.0' }
+        });
+        const geoData = await geoRes.json();
+        if (geoData && geoData.length > 0) {
+          updateData.lat = parseFloat(geoData[0].lat);
+          updateData.lng = parseFloat(geoData[0].lon);
+        }
+      } catch (geoErr) {
+        console.warn('Geocoding failed:', geoErr.message);
+      }
+      
+      // Mark as no longer needing update
+      updateData.needsUpdate = false;
+      updateData.missingFields = [];
+      
+      // Sync to GHL if not already synced
+      if (!currentVisit.ghlContactId) {
+        const mergedVisit = { ...currentVisit.toObject(), ...updateData };
+        const ghlContactId = await syncToGHL(mergedVisit);
+        if (ghlContactId) {
+          updateData.ghlContactId = ghlContactId;
+          updateData.ghlSyncedAt = new Date();
+        }
+      }
+    }
+    
+    const visit = await Visit.findByIdAndUpdate(req.params.id, updateData, { new: true });
+    res.json(visit);
+  } catch (err) {
+    console.error('Error updating visit:', err);
+    res.status(500).json({ error: 'Failed to update visit' });
+  }
+});
+
 // Home route
 app.get('/', (req, res) => {
   res.send(`

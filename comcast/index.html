@@ -315,6 +315,7 @@
         .status-not-interested { background: #ffebee; color: #c62828; }
         .status-called { background: #e3f2fd; color: #1565c0; }
         .status-customer { background: #f3e5f5; color: #7b1fa2; }
+        .status-needs-update { background: #fff8e1; color: #f57c00; margin-left: 5px; }
         
         .help-text {
             font-size: 11px;
@@ -650,12 +651,14 @@
                 
                 const statusClass = `status-${visit.status}`;
                 const statusLabel = visit.status ? visit.status.replace('-', ' ') : 'unknown';
+                const needsUpdate = visit.needsUpdate || (visit.missingFields && visit.missingFields.length > 0);
                 
                 const popupContent = `
                     <div class="pin-popup">
                         <h4>${escapeHtml(visit.businessName)}</h4>
                         
                         <span class="status-badge ${statusClass}">${statusLabel}</span>
+                        ${needsUpdate ? `<span class="status-badge status-needs-update">⚠️ Needs Update</span>` : ''}
                         
                         ${visit.contactName ? `
                         <div class="info-row">
@@ -681,6 +684,11 @@
                         
                         ${visit.notes ? `
                         <div class="notes">${escapeHtml(visit.notes)}</div>` : ''}
+                        
+                        ${visit.missingFields && visit.missingFields.length > 0 ? `
+                        <div class="missing-fields" style="background: #fff3e0; border: 1px solid #ffcc02; border-radius: 6px; padding: 10px; margin: 10px 0; font-size: 12px;">
+                            <strong>⚠️ Missing:</strong> ${visit.missingFields.join(', ')}
+                        </div>` : ''}
                         
                         ${visit.photo ? `
                         <div style="margin-top: 10px;">
