@@ -112,6 +112,28 @@ const SUPERADMIN_EMAILS = (process.env.SUPERADMIN_EMAILS || 'xfassistant@gmail.c
 const Decision = mongoose.model('Decision', DecisionSchema);
 const User = mongoose.model('User', UserSchema);
 
+// Comcast Visit Schema
+const VisitSchema = new mongoose.Schema({
+  businessName: { type: String, required: true },
+  contactName: String,
+  phone: String,
+  email: String,
+  website: String,
+  address: String,
+  city: { type: String, default: 'Tacoma' },
+  state: { type: String, default: 'WA' },
+  zip: { type: String, required: true },
+  lat: { type: Number, required: true },
+  lng: { type: Number, required: true },
+  status: { type: String, enum: ['interested', 'followup', 'not-interested', 'called', 'customer'], default: 'interested' },
+  notes: String,
+  photo: String,
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now }
+});
+
+const Visit = mongoose.model('Visit', VisitSchema);
+
 // Session configuration
 const sessionConfig = {
   secret: process.env.SESSION_SECRET || 'daequan-ai-secret-key-change-in-production',
@@ -271,25 +293,27 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Comcast CRM API - Business Visits
-const visitsFilePath = path.join(__dirname, 'comcast', 'visits.json');
+// Comcast CRM API - Business Visits (MongoDB)
 
 // GET visits
-app.get('/api/visits', (req, res) => {
-  res.sendFile(visitsFilePath);
+app.get('/api/visits', async (req, res) => {
+  try {
+    const visits = await Visit.find().sort({ createdAt: -1 });
+    res.json({ visits, count: visits.length });
+  } catch (err) {
+    console.error('Error fetching visits:', err);
+    res.status(500).json({ error: 'Failed to fetch visits' });
+  }
 });
 
 // POST new visit
-app.post('/api/visits', (req, res) => {
+app.post('/api/visits', async (req, res) => {
   try {
-    const visitsData = JSON.parse(fs.readFileSync(visitsFilePath, 'utf8'));
-    const newVisit = {
-      id: Date.now(),
+    const newVisit = new Visit({
       businessName: req.body.businessName,
       contactName: req.body.contactName || '',
       phone: req.body.phone || '',
       email: req.body.email || '',
-      website: null,
       address: req.body.address || '',
       city: req.body.city || 'Tacoma',
       state: 'WA',
@@ -297,17 +321,10 @@ app.post('/api/visits', (req, res) => {
       lat: req.body.lat,
       lng: req.body.lng,
       status: req.body.status || 'interested',
-      date: new Date().toISOString(),
-      notes: req.body.notes || '',
-      photo: null,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
-    };
+      notes: req.body.notes || ''
+    });
 
-    visitsData.visits.push(newVisit);
-    visitsData.count = visitsData.visits.length;
-
-    fs.writeFileSync(visitsFilePath, JSON.stringify(visitsData, null, 2));
+    await newVisit.save();
     res.status(201).json(newVisit);
   } catch (err) {
     console.error('Error saving visit:', err);
