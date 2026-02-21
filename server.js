@@ -396,6 +396,23 @@ app.post('/api/visits', async (req, res) => {
   }
 });
 
+// PATCH visit to add GHL contact ID (for backfilling)
+app.patch('/api/visits/:id/ghl', async (req, res) => {
+  try {
+    const { ghlContactId } = req.body;
+    const visit = await Visit.findByIdAndUpdate(
+      req.params.id,
+      { ghlContactId, ghlSyncedAt: new Date() },
+      { new: true }
+    );
+    if (!visit) return res.status(404).json({ error: 'Visit not found' });
+    res.json(visit);
+  } catch (err) {
+    console.error('Error updating visit:', err);
+    res.status(500).json({ error: 'Failed to update visit' });
+  }
+});
+
 // Home route
 app.get('/', (req, res) => {
   res.send(`
