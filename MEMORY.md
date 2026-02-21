@@ -37,6 +37,37 @@
 **Active Client:**
 - Trina Fallardo — cold email campaign (warming up, launch ~1 week)
 
+### Comcast CRM System — COMPLETE (2026-02-20)
+**Role:** Xavier's sales territory management and lead tracking
+
+**Key Systems:**
+- **Web Map:** https://daequanai.com/comcast — Interactive territory map with visit pins
+- **Database:** MongoDB with audit logging (ChangeLog schema)
+- **GHL Sub-account:** Comcast - Xavier, Location ID: `nPubo6INanVq94ovAQNW`
+- **GHL Domain:** White-labeled at app.thetraffic.link
+
+**Features:**
+- **Business Card Scanner:** WhatsApp → AI OCR → GHL contact creation
+- **Interactive Missing Info:** Asks for required fields, tracks in GHL tags
+- **Mobile Notifications:** High-priority GHL tasks push to LC app → phone
+- **Audit Trail:** All changes logged (who, what, when, how)
+- **Deep Links:** Map pins link directly to GHL contact records
+
+**Required Fields for Business Cards:**
+- Name, Phone, Email, Address (street, city, state, zip)
+
+**If Missing Info:**
+- WhatsApp asks user for missing fields
+- Map shows "⚠️ Needs Update" badge
+- GHL contact tagged: `missing-phone`, `missing-email`, etc.
+- Phone notification via LC app task
+
+**Files:**
+- `comcast-crm/business-card-interactive.js` — Core workflow logic
+- `comcast-crm/BUSINESS_CARD_SCANNER.md` — Documentation
+- `comcast/index.html` — Web map interface
+- `server.js` — API with audit logging
+
 ---
 
 ## Infrastructure Decisions
