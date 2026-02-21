@@ -686,6 +686,11 @@
                         <div style="margin-top: 10px;">
                             <img src="${visit.photo}" style="max-width: 100%; border-radius: 8px;">
                         </div>` : ''}
+                        
+                        ${visit.ghlUrl ? `
+                        <a href="${visit.ghlUrl}" target="_blank" class="ghl-btn" style="display: block; text-align: center; margin-top: 15px; text-decoration: none;">
+                            ✏️ Edit in GHL
+                        </a>` : '<p style="font-size: 11px; color: #666; margin-top: 10px; text-align: center;">Not synced to GHL yet</p>'}
                     </div>
                 `;
                 

@@ -348,8 +348,13 @@ app.get('/health', (req, res) => {
 // GET visits
 app.get('/api/visits', async (req, res) => {
   try {
-    const visits = await Visit.find().sort({ createdAt: -1 });
-    res.json({ visits, count: visits.length });
+    const visits = await Visit.find().sort({ createdAt: -1 }).lean();
+    // Add GHL deep link URL to each visit
+    const visitsWithGhlLink = visits.map(v => ({
+      ...v,
+      ghlUrl: v.ghlContactId ? `https://app.gohighlevel.com/v2/pipelines/contacts/${v.ghlContactId}` : null
+    }));
+    res.json({ visits: visitsWithGhlLink, count: visits.length });
   } catch (err) {
     console.error('Error fetching visits:', err);
     res.status(500).json({ error: 'Failed to fetch visits' });
