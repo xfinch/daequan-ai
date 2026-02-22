@@ -510,6 +510,21 @@ router.get('/reviews/:id/matches', async (req, res) => {
   }
 });
 
+// Serve review queue HTML page
+router.get('/review', (req, res) => {
+  const fs = require('fs');
+  const path = require('path');
+  const reviewPath = path.join(__dirname, 'review.html');
+  
+  try {
+    const content = fs.readFileSync(reviewPath, 'utf8');
+    res.setHeader('Content-Type', 'text/html');
+    res.send(content);
+  } catch (err) {
+    res.status(500).send('Error loading review page: ' + err.message);
+  }
+});
+
 module.exports = router;
 
 // If run directly, start standalone server
