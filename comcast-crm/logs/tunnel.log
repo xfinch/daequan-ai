@@ -1,39 +1,41 @@
-2026-02-19T23:46:22Z INF Thank you for trying Cloudflare Tunnel. Doing so, without a Cloudflare account, is a quick way to experiment and try it out. However, be aware that these account-less Tunnels have no uptime guarantee, are subject to the Cloudflare Online Services Terms of Use (https://www.cloudflare.com/website-terms/), and Cloudflare reserves the right to investigate your use of Tunnels for violations of such terms. If you intend to use Tunnels in production you should use a pre-created named tunnel by following: https://developers.cloudflare.com/cloudflare-one/connections/connect-apps
-2026-02-19T23:46:22Z INF Requesting new quick Tunnel on trycloudflare.com...
-2026-02-19T23:46:25Z INF +--------------------------------------------------------------------------------------------+
-2026-02-19T23:46:25Z INF |  Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):  |
-2026-02-19T23:46:25Z INF |  https://effects-surprised-webcams-sit.trycloudflare.com                                   |
-2026-02-19T23:46:25Z INF +--------------------------------------------------------------------------------------------+
-2026-02-19T23:46:25Z INF Version 2026.2.0 (Checksum 659e90c91014a0017ec933e4a5c924e5ed1c77e3033bf768c47509c2120e598d)
-2026-02-19T23:46:25Z INF GOOS: darwin, GOVersion: go1.25.7, GoArch: arm64
-2026-02-19T23:46:25Z INF Settings: map[cred-file:/Users/xfinch/.cloudflared/22e5e208-114f-43f7-8a98-641ca235990e.json credentials-file:/Users/xfinch/.cloudflared/22e5e208-114f-43f7-8a98-641ca235990e.json ha-connections:1 protocol:quic url:http://localhost:8081]
-2026-02-19T23:46:25Z INF cloudflared will not automatically update if installed by a package manager.
-2026-02-19T23:46:25Z INF Generated Connector ID: e5e48dc8-b20f-4442-9fa8-dddbdc4b68cb
-2026-02-19T23:46:25Z INF Initial protocol quic
-2026-02-19T23:46:25Z INF ICMP proxy will use 192.168.86.24 as source for IPv4
-2026-02-19T23:46:25Z INF ICMP proxy will use fda1:2ecf:869a:713d:10be:31c7:4da6:b7ff in zone en1 as source for IPv6
-2026-02-19T23:46:25Z INF Created ICMP proxy listening on 192.168.86.24:0
-2026-02-19T23:46:25Z INF Created ICMP proxy listening on [fda1:2ecf:869a:713d:10be:31c7:4da6:b7ff]:0
-2026-02-19T23:46:25Z INF ICMP proxy will use 192.168.86.24 as source for IPv4
-2026-02-19T23:46:25Z INF ICMP proxy will use fda1:2ecf:869a:713d:10be:31c7:4da6:b7ff in zone en1 as source for IPv6
-2026-02-19T23:46:25Z INF Starting metrics server on 127.0.0.1:20241/metrics
-2026-02-19T23:46:25Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveP256] connIndex=0 event=0 ip=198.41.192.77
-2026-02-19T23:46:25Z INF Registered tunnel connection connIndex=0 connection=735b19be-dca7-4953-827f-b13a631060b2 event=0 ip=198.41.192.77 location=sea01 protocol=quic
-2026-02-20T04:06:32Z ERR Failed to refresh DNS local resolver error="lookup region1.v2.argotunnel.com: i/o timeout"
-2026-02-20T06:36:38Z ERR Failed to refresh DNS local resolver error="lookup region1.v2.argotunnel.com: i/o timeout"
-2026-02-20T14:36:47Z ERR Failed to refresh DNS local resolver error="lookup region1.v2.argotunnel.com: i/o timeout"
-2026-02-20T14:51:52Z ERR Failed to refresh DNS local resolver error="lookup region1.v2.argotunnel.com: i/o timeout"
-2026-02-20T16:46:58Z ERR Failed to refresh DNS local resolver error="lookup region1.v2.argotunnel.com: i/o timeout"
-2026-02-20T23:46:26Z ERR update check failed error="no release found"
-2026-02-21T19:52:15Z ERR Failed to refresh DNS local resolver error="lookup region1.v2.argotunnel.com: i/o timeout"
-2026-02-21T22:47:22Z ERR Failed to refresh DNS local resolver error="lookup region1.v2.argotunnel.com: i/o timeout"
-2026-02-21T23:46:26Z ERR update check failed error="no release found"
-2026-02-22T02:32:28Z ERR Failed to refresh DNS local resolver error="lookup region1.v2.argotunnel.com: i/o timeout"
-2026-02-22T04:22:34Z ERR Failed to refresh DNS local resolver error="lookup region1.v2.argotunnel.com: i/o timeout"
-2026-02-22T19:06:11Z ERR failed to run the datagram handler error="write udp4 0.0.0.0:64525->198.41.192.77:7844: sendmsg: no route to host" connIndex=0 event=0 ip=198.41.192.77
-2026-02-22T19:06:11Z ERR failed to accept incoming stream requests error="failed to accept QUIC stream: write udp4 0.0.0.0:64525->198.41.192.77:7844: sendmsg: no route to host" connIndex=0 event=0 ip=198.41.192.77
-2026-02-22T19:06:11Z ERR failed to serve tunnel connection error="datagram manager encountered a failure while serving" connIndex=0 event=0 ip=198.41.192.77
-2026-02-22T19:06:11Z ERR Serve tunnel error error="datagram manager encountered a failure while serving" connIndex=0 event=0 ip=198.41.192.77
-2026-02-22T19:06:11Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.77
-2026-02-22T19:06:12Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveP256] connIndex=0 event=0 ip=198.41.192.77
-2026-02-22T19:06:12Z INF Registered tunnel connection connIndex=0 connection=23b66de0-7743-4042-8d5c-ee30ff3bfbb2 event=0 ip=198.41.192.77 location=sea01 protocol=quic
+2026-02-22T23:15:22Z INF Thank you for trying Cloudflare Tunnel. Doing so, without a Cloudflare account, is a quick way to experiment and try it out. However, be aware that these account-less Tunnels have no uptime guarantee, are subject to the Cloudflare Online Services Terms of Use (https://www.cloudflare.com/website-terms/), and Cloudflare reserves the right to investigate your use of Tunnels for violations of such terms. If you intend to use Tunnels in production you should use a pre-created named tunnel by following: https://developers.cloudflare.com/cloudflare-one/connections/connect-apps
+2026-02-22T23:15:22Z INF Requesting new quick Tunnel on trycloudflare.com...
+2026-02-22T23:15:25Z INF +--------------------------------------------------------------------------------------------+
+2026-02-22T23:15:25Z INF |  Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):  |
+2026-02-22T23:15:25Z INF |  https://technologies-hearings-lie-multi.trycloudflare.com                                 |
+2026-02-22T23:15:25Z INF +--------------------------------------------------------------------------------------------+
+2026-02-22T23:15:25Z INF Version 2026.2.0 (Checksum 659e90c91014a0017ec933e4a5c924e5ed1c77e3033bf768c47509c2120e598d)
+2026-02-22T23:15:25Z INF GOOS: darwin, GOVersion: go1.25.7, GoArch: arm64
+2026-02-22T23:15:25Z INF Settings: map[cred-file:/Users/xfinch/.cloudflared/22e5e208-114f-43f7-8a98-641ca235990e.json credentials-file:/Users/xfinch/.cloudflared/22e5e208-114f-43f7-8a98-641ca235990e.json ha-connections:1 protocol:quic url:http://localhost:8081]
+2026-02-22T23:15:25Z INF cloudflared will not automatically update if installed by a package manager.
+2026-02-22T23:15:25Z INF Generated Connector ID: ad444a9a-f48d-4d8c-8429-6d09446c41cf
+2026-02-22T23:15:25Z INF Initial protocol quic
+2026-02-22T23:15:25Z INF ICMP proxy will use 192.168.86.24 as source for IPv4
+2026-02-22T23:15:25Z INF ICMP proxy will use fda1:2ecf:869a:713d:10be:31c7:4da6:b7ff in zone en1 as source for IPv6
+2026-02-22T23:15:25Z INF Created ICMP proxy listening on 192.168.86.24:0
+2026-02-22T23:15:25Z INF Created ICMP proxy listening on [fda1:2ecf:869a:713d:10be:31c7:4da6:b7ff]:0
+2026-02-22T23:15:25Z INF ICMP proxy will use 192.168.86.24 as source for IPv4
+2026-02-22T23:15:25Z INF ICMP proxy will use fda1:2ecf:869a:713d:10be:31c7:4da6:b7ff in zone en1 as source for IPv6
+2026-02-22T23:15:25Z INF Starting metrics server on 127.0.0.1:20241/metrics
+2026-02-22T23:15:25Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveP256] connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:25Z ERR failed to run the datagram handler error="context canceled" connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:25Z ERR failed to serve tunnel connection error="control stream encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:25Z ERR Serve tunnel error error="control stream encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:25Z INF Retrying connection in up to 2s connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:25Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveP256] connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:25Z ERR failed to run the datagram handler error="context canceled" connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:25Z ERR failed to serve tunnel connection error="control stream encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:25Z ERR Serve tunnel error error="control stream encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:25Z INF Retrying connection in up to 4s connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:25Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveP256] connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:25Z ERR failed to run the datagram handler error="context canceled" connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:25Z ERR failed to serve tunnel connection error="control stream encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:25Z ERR Serve tunnel error error="control stream encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:25Z INF Retrying connection in up to 8s connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:32Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveP256] connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:32Z ERR failed to run the datagram handler error="context canceled" connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:32Z ERR failed to serve tunnel connection error="control stream encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:32Z ERR Serve tunnel error error="control stream encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:32Z INF Retrying connection in up to 16s connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:43Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveP256] connIndex=0 event=0 ip=198.41.200.53
+2026-02-22T23:15:43Z INF Registered tunnel connection connIndex=0 connection=ce6b8d6d-6ec2-495c-86b3-0549d892d6bc event=0 ip=198.41.200.53 location=sea09 protocol=quic
