@@ -40,8 +40,38 @@ class APIHandler(BaseHTTPRequestHandler):
             self.handle_get_stats()
         elif path == '/health':
             self.send_json({"status": "ok"})
+        elif path == '/comcast/review' or path == '/comcast/review.html':
+            self.serve_review_html()
+        elif path == '/':
+            self.serve_map_html()
         else:
             self.send_error(404)
+    
+    def serve_html(self, filepath, content_type='text/html'):
+        """Serve static HTML file"""
+        try:
+            with open(filepath, 'r') as f:
+                content = f.read()
+            self.send_response(200)
+            self.send_header('Content-Type', content_type)
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            self.wfile.write(content.encode())
+        except FileNotFoundError:
+            self.send_error(404)
+        except Exception as e:
+            self.send_error(500, str(e))
+    
+    def serve_review_html(self):
+        """Serve review queue page"""
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        self.serve_html(os.path.join(script_dir, 'review.html'))
+    
+    def serve_map_html(self):
+        """Serve main map page"""
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        parent_dir = os.path.dirname(script_dir)
+        self.serve_html(os.path.join(parent_dir, 'comcast', 'index.html'))
     
     def do_POST(self):
         parsed = urlparse(self.path)
