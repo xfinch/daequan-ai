@@ -37,6 +37,32 @@
 **Active Client:**
 - Trina Fallardo — cold email campaign (warming up, launch ~1 week)
 
+### Plaud Webhook Integration — ACTIVE (2026-02-22)
+**Role:** Voice memo transcription routing to 3 buckets (PERSONAL, TTL, COMCAST)
+
+**URL:** `https://xaviers-mac-mini.tailc89dd8.ts.net/plaud-webhook`
+**Tunnel:** Tailscale funnel on port 3456
+
+**3-Bucket Routing:**
+- **PERSONAL:** iCloud Reminders + iMessage to +18176966645
+- **TTL:** GHL contact notes + tasks (if actionable)
+- **COMCAST:** MongoDB CRM notes + package extraction (triple play, etc.)
+
+**Classification:** Hybrid (keywords at start/end override AI)
+**Keywords:** `PERSONAL`, `TTL`, `COMCAST`
+
+**Zapier Config:**
+- URL: `https://xaviers-mac-mini.tailc89dd8.ts.net/plaud-webhook`
+- Headers: `X-Zapier-Signature: xavier_webhook_a893b07804f25caa`
+- Payload: `{transcription, summary, recording_id, timestamp}`
+
+**Files:**
+- `plaud-webhook/server.js` — Webhook endpoint
+- `plaud-webhook/classifier.js` — Keyword + AI classification
+- `plaud-webhook/actions/` — PERSONAL, TTL, COMCAST handlers
+
+---
+
 ### Comcast CRM System — COMPLETE (2026-02-20)
 **Role:** Xavier's sales territory management and lead tracking
 
@@ -110,6 +136,8 @@ launchctl getenv GITHUB_TOKEN
 - `TELNYX_API_KEY` — Telnyx SMS
 - `CLOUDFLARE_API_TOKEN` — Cloudflare
 - `PRIVATEEMAIL_PASSWORD` — xavier@thetraffic.link
+- `PLAUD_WEBHOOK_SECRET` — Plaud webhook auth (xavier_webhook_a893b07804f25caa)
+- `OPENAI_API_KEY` — OpenAI API access (GPT-4o, o1, etc.)
 
 **Stored in macOS Keychain (legacy):**
 - `github-dashboard-token` — xfinch/kanban

@@ -445,6 +445,67 @@
         .add-btn:hover {
             background: #45a049;
         }
+        
+        /* Plaud Notes Section */
+        .plaud-notes-section {
+            margin-top: 12px;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 10px;
+        }
+        .plaud-notes-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .plaud-notes-list {
+            max-height: 100px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #ccc #f5f5f5;
+        }
+        .plaud-notes-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        .plaud-notes-list::-webkit-scrollbar-track {
+            background: #f5f5f5;
+            border-radius: 3px;
+        }
+        .plaud-notes-list::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 3px;
+        }
+        .plaud-note-link {
+            display: block;
+            padding: 8px 10px;
+            margin-bottom: 6px;
+            background: #e3f2fd;
+            border-left: 3px solid #2196f3;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #1565c0;
+            text-decoration: none;
+            transition: background 0.2s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .plaud-note-link:hover {
+            background: #bbdefb;
+        }
+        .plaud-note-date {
+            font-size: 10px;
+            color: #666;
+            margin-top: 2px;
+        }
+        .plaud-notes-empty {
+            font-size: 12px;
+            color: #999;
+            font-style: italic;
+            padding: 8px 0;
+        }
     </style>
 </head>
 <body>
@@ -498,6 +559,15 @@
                 <div id="zipList"></div>
             </div>
             
+            <div style="background: #fff3e0; border-left: 4px solid #ff9800; padding: 12px 15px; margin: 15px 0; border-radius: 0 8px 8px 0;">
+                <h4 style="font-size: 12px; color: #e65100; margin-bottom: 8px; text-transform: uppercase;">🎙️ Voice Notes</h4>
+                <p style="font-size: 12px; color: #666; margin-bottom: 10px;">Unmatched notes waiting for assignment</p>
+                <a href="review.html" style="display: inline-flex; align-items: center; gap: 6px; background: #ff9800; color: white; padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600;">
+                    <span>Review Queue</span>
+                    <span id="reviewBadge" style="background: white; color: #ff9800; padding: 2px 8px; border-radius: 10px; font-size: 11px; min-width: 20px; text-align: center;">-</span>
+                </a>
+            </div>
+            
             <div class="help-text">
                 💡 <strong>How to use:</strong><br>
                 • Tap 📍 button, then tap map to add<br>
@@ -532,8 +602,9 @@
     </div>
 
     <script>
-        // API endpoint - Railway production
+        // API endpoints
         const API_BASE = 'https://daequanai.com';
+        const PLAUD_API = 'https://xaviers-mac-mini.tailc89dd8.ts.net/plaud-webhook';
         
         // Status colors
         const statusColors = {
@@ -653,12 +724,18 @@
                 const statusLabel = visit.status ? visit.status.replace('-', ' ') : 'unknown';
                 const needsUpdate = visit.needsUpdate || (visit.missingFields && visit.missingFields.length > 0);
                 
+                // Create popup with placeholder for Plaud notes
                 const popupContent = `
-                    <div class="pin-popup">
+                    <div class="pin-popup" id="popup-${visit._id || visit.id}">
                         <h4>${escapeHtml(visit.businessName)}</h4>
                         
                         <span class="status-badge ${statusClass}">${statusLabel}</span>
                         ${needsUpdate ? `<span class="status-badge status-needs-update">⚠️ Needs Update</span>` : ''}
+                        
+                        ${visit.ghlUrl ? `
+                        <a href="${visit.ghlUrl}" target="_blank" class="ghl-btn" style="display: block; text-align: center; margin: 12px 0; text-decoration: none; background: #dc3545; color: white; padding: 10px; border-radius: 6px; font-weight: 600;">
+                            ✏️ Edit Notes in GHL
+                        </a>` : ''}
                         
                         ${visit.contactName ? `
                         <div class="info-row">
@@ -695,14 +772,24 @@
                             <img src="${visit.photo}" style="max-width: 100%; border-radius: 8px;">
                         </div>` : ''}
                         
-                        ${visit.ghlUrl ? `
-                        <a href="${visit.ghlUrl}" target="_blank" class="ghl-btn" style="display: block; text-align: center; margin-top: 15px; text-decoration: none;">
-                            ✏️ Edit in GHL
-                        </a>` : '<p style="font-size: 11px; color: #666; margin-top: 10px; text-align: center;">Not synced to GHL yet</p>'}
+                        <!-- Plaud Notes Section -->
+                        <div class="plaud-notes-section" id="plaud-notes-${visit._id || visit.id}">
+                            <div class="plaud-notes-title">🎙️ Voice Notes</div>
+                            <div class="plaud-notes-list">
+                                <div class="plaud-notes-empty">Loading...</div>
+                            </div>
+                        </div>
+                        
+                        ${!visit.ghlUrl ? '<p style="font-size: 11px; color: #666; margin-top: 10px; text-align: center;">Not synced to GHL yet</p>' : ''}
                     </div>
                 `;
                 
                 marker.bindPopup(popupContent);
+                
+                // Load Plaud notes when popup opens
+                marker.on('popupopen', () => {
+                    loadPlaudNotesForBusiness(visit.businessName, visit._id || visit.id, visit.ghlUrl);
+                });
                 markers.push(marker);
             });
             
@@ -751,6 +838,67 @@
             return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
         }
 
+        // Load Plaud notes for a business and display in popup
+        async function loadPlaudNotesForBusiness(businessName, visitId, ghlUrl) {
+            const containerId = `plaud-notes-${visitId}`;
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            const listContainer = container.querySelector('.plaud-notes-list');
+            
+            try {
+                // Fetch notes from Plaud webhook API
+                const response = await fetch(`${PLAUD_API}/notes/by-business?name=${encodeURIComponent(businessName)}&limit=3`);
+                
+                if (!response.ok) {
+                    listContainer.innerHTML = '<div class="plaud-notes-empty">No voice notes found</div>';
+                    return;
+                }
+                
+                const data = await response.json();
+                
+                if (!data.notes || data.notes.length === 0) {
+                    listContainer.innerHTML = '<div class="plaud-notes-empty">No voice notes yet</div>';
+                    return;
+                }
+                
+                // Build note previews (2-3 lines with ellipses)
+                const notesHtml = data.notes.map(note => {
+                    const date = new Date(note.timestamp).toLocaleDateString('en-US', { 
+                        month: 'short', 
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    
+                    // Get first 2-3 lines (roughly 100-120 chars)
+                    let preview = note.summary || note.transcription || 'Voice note';
+                    preview = preview.replace(/\n/g, ' ').trim();
+                    if (preview.length > 100) {
+                        preview = preview.substring(0, 100) + '...';
+                    }
+                    
+                    // Link to GHL contact for editing
+                    const linkUrl = ghlUrl || '#';
+                    
+                    return `
+                        <a href="${linkUrl}" target="_blank" class="plaud-note-link" 
+                           style="display: block; padding: 10px; margin-bottom: 8px; background: #e3f2fd; border-left: 3px solid #2196f3; border-radius: 4px; font-size: 12px; color: #1565c0; text-decoration: none; line-height: 1.4; max-height: 60px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;"
+                           title="${escapeHtml(note.summary || '')}">
+                            ${escapeHtml(preview)}
+                            <div style="font-size: 10px; color: #666; margin-top: 4px;">${date} • ${note.hash}</div>
+                        </a>
+                    `;
+                }).join('');
+                
+                listContainer.innerHTML = notesHtml;
+                
+            } catch (error) {
+                console.warn('Failed to load Plaud notes:', error);
+                listContainer.innerHTML = '<div class="plaud-notes-empty">Unable to load notes</div>';
+            }
+        }
+        
         // Mobile sidebar toggle
         let sidebarExpanded = false;
         function toggleSidebar() {
@@ -867,15 +1015,33 @@
             showAddModal(lat, lng);
         }
 
+        // Load review queue count
+        async function loadReviewCount() {
+            try {
+                const response = await fetch(`${PLAUD_API}/reviews/stats`);
+                const data = await response.json();
+                const badge = document.getElementById('reviewBadge');
+                if (badge) {
+                    badge.textContent = data.stats.pending || 0;
+                    // Hide badge if 0
+                    badge.style.display = data.stats.pending > 0 ? 'inline-block' : 'none';
+                }
+            } catch (error) {
+                console.warn('Failed to load review count:', error);
+            }
+        }
+        
         // Initialize
         initMap();
         loadVisits();
+        loadReviewCount();
 
         // Add click handler
         map.on('click', onMapClick);
 
         // Auto-refresh every 60 seconds
         setInterval(loadVisits, 60000);
+        setInterval(loadReviewCount, 60000);
     </script>
 
     <!-- Add Visit Modal -->

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "review-1771793559299-bxu90",
+    "hash": "p-7027e2a",
+    "recordingId": "test_unmatched_001",
+    "timestamp": "2026-02-22T20:55:00Z",
+    "summary": "COMCAST Unknown Business XYZ gigabit interest",
+    "transcription": "COMCAST: Visited Unknown Business XYZ on Main St. Owner interested in gigabit.",
+    "reason": "no_match",
+    "status": "pending",
+    "suggestedMatches": [],
+    "assignedTo": null,
+    "assignedAt": null,
+    "createdAt": "2026-02-22T20:52:39.299Z"
+  }
+]
