@@ -782,6 +782,21 @@ app.get('/admin/boards', requireAdmin, (req, res) => {
   res.sendFile(kanbanPath);
 });
 
+// API: Get kanban board data
+app.get('/api/kanban/:type', requireAdmin, async (req, res) => {
+  try {
+    const { getKanbanData } = require('./lib/kanban-parser');
+    const data = getKanbanData(req.params.type);
+    if (!data) {
+      return res.status(404).json({ error: 'Board not found' });
+    }
+    res.json(data);
+  } catch (err) {
+    console.error('Error fetching kanban data:', err);
+    res.status(500).json({ error: 'Failed to fetch board data' });
+  }
+});
+
 // Protected routes
 app.get('/dashboard', requireAuth, (req, res) => {
   res.redirect('/admin/skills');
