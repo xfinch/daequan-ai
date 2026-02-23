@@ -694,7 +694,7 @@ app.get('/auth/google/callback',
     failureRedirect: '/login'
   }),
   (req, res) => {
-    res.redirect('/');
+    res.redirect('/admin/skills');
   }
 );
 
@@ -984,8 +984,13 @@ app.get('/api/admin/stats', requireAdmin, async (req, res) => {
   }
 });
 
-// Admin Dashboard
+// Admin Dashboard - Redirect to Skills
 app.get('/admin', requireAdmin, (req, res) => {
+  res.redirect('/admin/skills');
+});
+
+// Legacy Admin Overview (Decisions/Users)
+app.get('/admin/overview', requireAdmin, (req, res) => {
   const isSuper = req.user.role === 'superadmin';
   res.send(`
     <!DOCTYPE html>
