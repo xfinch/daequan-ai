@@ -1031,9 +1031,17 @@ app.get('/admin/overview', requireAdmin, (req, res) => {
     </head>
     <body>
       <div class="container">
-        <h1>Admin Dashboard</h1>
+        <div style="background: #12121a; padding: 20px; border-radius: 12px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center;">
+          <h1 style="margin: 0; color: #667eea;">🎯 Daequan Admin</h1>
+          <nav style="display: flex; gap: 20px;">
+            <a href="/admin/skills" style="color: #94a3b8; text-decoration: none;">Skills</a>
+            <a href="/admin/overview" style="color: #e2e8f0; text-decoration: none; font-weight: 600;">Decisions</a>
+            <a href="/admin/users" style="color: #94a3b8; text-decoration: none;">Users</a>
+            <a href="/" style="color: #6366f1; text-decoration: none;">← Main Site</a>
+            <a href="/auth/logout" style="color: #ef4444; text-decoration: none;">Logout</a>
+          </nav>
+        </div>
         <p>Welcome, ${req.user.displayName} <span class="role-badge ${req.user.role}">${req.user.role}</span></p>
-        <a href="/dashboard" class="back-link">← Back to Dashboard</a>
         
         <div class="stats-grid">
           <div class="stat-card">
