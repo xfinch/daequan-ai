@@ -1,23 +1,38 @@
 {
-  "name": "daequan-ai-website",
+  "name": "daequan-nextjs",
   "version": "1.0.0",
-  "description": "Daequan AI website - homepage and tools",
-  "main": "server.js",
+  "private": true,
   "scripts": {
-    "start": "node server.js",
-    "start:memory": "node server-fallback.js",
-    "dev": "NODE_ENV=development node server.js",
-    "static": "npx http-server -p 8080 --cors"
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "lint": "next lint"
   },
   "dependencies": {
-    "connect-mongo": "^5.1.0",
-    "dotenv": "^17.3.1",
-    "express": "^5.2.1",
-    "express-session": "^1.19.0",
-    "http-server": "^14.1.1",
-    "mongoose": "^8.0.0",
-    "passport": "^0.7.0",
-    "passport-google-oauth20": "^2.0.0",
-    "socket.io": "^4.8.0"
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next-auth": "^5.0.0-beta.15",
+    "mongoose": "^8.8.0",
+    "@auth/mongodb-adapter": "^3.0.0",
+    "leaflet": "^1.9.4",
+    "react-leaflet": "^5.0.0",
+    "socket.io": "^4.8.0",
+    "socket.io-client": "^4.8.0",
+    "recharts": "^2.13.0",
+    "clsx": "^2.1.0",
+    "tailwind-merge": "^2.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/leaflet": "^1.9.0",
+    "typescript": "^5.6.0",
+    "tailwindcss": "^3.4.0",
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.0.0"
   }
 }
