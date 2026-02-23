@@ -776,35 +776,16 @@ app.patch('/api/decisions/:id', async (req, res) => {
   }
 });
 
+// Kanban / Project Boards - Behind Admin Auth
+app.get('/admin/boards', requireAdmin, (req, res) => {
+  const kanbanPath = path.join(__dirname, 'dashboard', 'index.html');
+  res.sendFile(kanbanPath);
+});
+
 // Protected routes
 app.get('/dashboard', requireAuth, (req, res) => {
-  res.send(`
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>Dashboard - Daequan AI</title>
-      <script src="/socket.io/socket.io.js"></script>
-      <style>
-        body { font-family: -apple-system, sans-serif; padding: 40px; background: #f5f5f5; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        h1 { color: #667eea; }
-        .user-info { display: flex; align-items: center; gap: 15px; margin: 20px 0; }
-        .user-info img { width: 60px; height: 60px; border-radius: 50%; }
-        .logout-btn { 
-          background: #dc3545; color: white; padding: 12px 24px; 
-          border: none; border-radius: 8px; cursor: pointer; text-decoration: none;
-          display: inline-block;
-        }
-        .decisions { 
-          background: white; padding: 20px; border-radius: 16px; margin-top: 30px;
-          max-height: 500px; overflow-y: auto;
-        }
-        .decision { 
-          padding: 15px; border-bottom: 1px solid #eee; 
-          animation: slideIn 0.3s ease;
-        }
-        @keyframes slideIn {
-          from { opacity: 0; transform: translateX(-20px); }
+  res.redirect('/admin/skills');
+});
           to { opacity: 1; transform: translateX(0); }
         }
         .decision-header { display: flex; justify-content: space-between; align-items: center; }
@@ -1035,6 +1016,7 @@ app.get('/admin/overview', requireAdmin, (req, res) => {
           <h1 style="margin: 0; color: #667eea;">🎯 Daequan Admin</h1>
           <nav style="display: flex; gap: 20px;">
             <a href="/admin/skills" style="color: #94a3b8; text-decoration: none;">Skills</a>
+            <a href="/admin/boards" style="color: #94a3b8; text-decoration: none;">Boards</a>
             <a href="/admin/overview" style="color: #e2e8f0; text-decoration: none; font-weight: 600;">Decisions</a>
             <a href="/admin/users" style="color: #94a3b8; text-decoration: none;">Users</a>
             <a href="/" style="color: #6366f1; text-decoration: none;">← Main Site</a>
