@@ -9,7 +9,43 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-        #map { height: 100vh; width: 100%; }
+        #map { height: calc(100vh - 48px); width: 100%; margin-top: 48px; }
+        
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 48px;
+            background: #12121a;
+            border-bottom: 1px solid #27272a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 10000;
+        }
+        
+        .top-nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            margin-right: 20px;
+        }
+        
+        .top-nav a:hover {
+            color: #e2e8f0;
+        }
+        
+        .top-nav .nav-left {
+            display: flex;
+            align-items: center;
+        }
+        
+        .top-nav .nav-right {
+            display: flex;
+            align-items: center;
+        }
         
         .sidebar {
             position: fixed;
@@ -509,6 +545,17 @@
     </style>
 </head>
 <body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="/" style="font-weight: 600; color: #6366f1;">🎯 Daequan AI</a>
+            <a href="/comcast">Comcast Map</a>
+        </div>
+        <div class="nav-right" id="authNav">
+            <a href="/login">Sign in</a>
+        </div>
+    </nav>
+    
     <div id="map"></div>
     
     <div class="sidebar" id="sidebar">
@@ -1108,5 +1155,25 @@
             </div>
         </div>
     </div>
+    
+    <!-- Auth Check -->
+    <script>
+        // Check auth status and update nav
+        fetch('/api/user')
+            .then(r => r.json())
+            .then(data => {
+                const nav = document.getElementById('authNav');
+                if (data.authenticated) {
+                    nav.innerHTML = `
+                        <span style="color: #94a3b8; margin-right: 15px;">${data.user.displayName}</span>
+                        <a href="/admin/skills">Admin</a>
+                        <a href="/auth/logout" style="color: #ef4444;">Log out</a>
+                    `;
+                }
+            })
+            .catch(() => {
+                // Not authenticated, keep default
+            });
+    </script>
 </body>
 </html>
