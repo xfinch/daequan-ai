@@ -1206,12 +1206,59 @@ app.get('/api/skills/stats', requireAdmin, async (req, res) => {
   }
 });
 
+// SSE Endpoint for real-time skill activity (for Next.js dashboard)
+const skillListeners = new Set();
+
+app.get('/api/skills/usage/stream', requireAdmin, (req, res) => {
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Connection', 'keep-alive');
+  
+  // Send initial connection message
+  res.write(`data: ${JSON.stringify({ type: 'connected' })}\n\n`);
+  
+  // Add listener
+  const listener = (data) => {
+    res.write(`data: ${JSON.stringify(data)}\n\n`);
+  };
+  skillListeners.add(listener);
+  
+  // Heartbeat
+  const heartbeat = setInterval(() => {
+    res.write(`data: ${JSON.stringify({ type: 'heartbeat' })}\n\n`);
+  }, 30000);
+  
+  // Cleanup
+  req.on('close', () => {
+    clearInterval(heartbeat);
+    skillListeners.delete(listener);
+  });
+});
+
+// Helper to broadcast skill usage
+function broadcastSkillUsage(usage) {
+  const message = {
+    type: 'new_activity',
+    data: usage
+  };
+  skillListeners.forEach(listener => listener(message));
+}
+
+// Hook into skill logging to broadcast
+const originalSkillUsageSave = SkillUsage.prototype.save;
+SkillUsage.prototype.save = async function(...args) {
+  const result = await originalSkillUsageSave.apply(this, args);
+  broadcastSkillUsage(this.toObject());
+  return result;
+};
+
 // Start server
 server.listen(PORT, () => {
   console.log(`🚀 Daequan AI server running on port ${PORT}`);
   console.log(`📊 MongoDB: Connected to Railway`);
   console.log(`⚡ Socket.io: Real-time updates enabled`);
   console.log(`🎯 Skills Dashboard: /admin/skills`);
+  console.log(`📈 SSE Stream: /api/skills/usage/stream`);
 });
 
 module.exports = { app, server, io, broadcastDecision, Decision };

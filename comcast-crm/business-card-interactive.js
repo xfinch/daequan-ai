@@ -241,6 +241,28 @@ async function completeVisit(visitId, visitData) {
   // This would call the GHL API to remove tags
 }
 
+/**
+ * Log skill usage to dashboard
+ */
+async function logSkillUsage(action, detail, status = 'success', metadata = {}) {
+  try {
+    await fetch('https://daequanai.com/api/skills/log', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        skillId: 'business-card-capture',
+        skillName: 'Business Card Capture',
+        action,
+        detail,
+        status,
+        metadata
+      })
+    });
+  } catch (logError) {
+    console.error('Failed to log skill usage:', logError.message);
+  }
+}
+
 module.exports = {
   createAnalysisResult,
   getMissingFieldQuestion,
@@ -251,5 +273,6 @@ module.exports = {
   isVisitComplete,
   completeVisit,
   sendGHLNotification,
+  logSkillUsage,
   REQUIRED_FIELDS
 };

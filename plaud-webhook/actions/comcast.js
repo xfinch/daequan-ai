@@ -385,6 +385,29 @@ async function handle(data) {
     results.error = error.message;
   }
   
+  // Log skill usage
+  try {
+    await fetch('https://daequanai.com/api/skills/log', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        skillId: 'voice-notes-router',
+        skillName: 'Voice Notes Router',
+        action: results.contact ? 'Processed COMCAST note' : 'Queued COMCAST note for review',
+        detail: `${results.businessName || 'Unknown'} → ${packageInfo.interestLevel}`,
+        status: results.error ? 'error' : results.contact ? 'success' : 'warning',
+        metadata: { 
+          bucket: 'COMCAST', 
+          hash: data.hash,
+          packages: results.packages,
+          contactFound: !!results.contact
+        }
+      })
+    });
+  } catch (logError) {
+    console.error('Failed to log skill usage:', logError.message);
+  }
+  
   return results;
 }
 
