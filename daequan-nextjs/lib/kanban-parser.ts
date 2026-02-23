@@ -104,13 +104,24 @@ export function getKanbanData(type: string): KanbanData | null {
   const filename = fileMap[type];
   if (!filename) return null;
   
-  const filepath = path.join(process.cwd(), '..', filename);
+  // Try multiple paths (for local dev and production)
+  const paths = [
+    path.join(process.cwd(), filename),           // Same directory
+    path.join(process.cwd(), '..', filename),     // Parent directory
+    path.join(process.cwd(), '..', '..', filename), // Grandparent (monorepo)
+  ];
   
-  try {
-    const content = fs.readFileSync(filepath, 'utf-8');
-    return parseKanbanMarkdown(content);
-  } catch (err) {
-    console.error(`Error reading ${filename}:`, err);
-    return null;
+  for (const filepath of paths) {
+    try {
+      if (fs.existsSync(filepath)) {
+        const content = fs.readFileSync(filepath, 'utf-8');
+        return parseKanbanMarkdown(content);
+      }
+    } catch (err) {
+      // Try next path
+    }
   }
+  
+  console.error(`Could not find ${filename} in any of:`, paths);
+  return null;
 }

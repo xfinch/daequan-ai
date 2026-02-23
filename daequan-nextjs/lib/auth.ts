@@ -1,10 +1,21 @@
 import NextAuth from 'next-auth';
 import Google from 'next-auth/providers/google';
 import { MongoDBAdapter } from '@auth/mongodb-adapter';
-import { connectDB } from './db';
+import mongoose from 'mongoose';
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID!;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET!;
+
+// Connect to MongoDB for adapter
+async function getMongoClient() {
+  const uri = process.env.MONGODB_URI || process.env.MONGO_URL || process.env.MONGO_PUBLIC_URL || process.env.DATABASE_URL;
+  if (!uri) throw new Error('No MongoDB URI configured');
+  
+  if (mongoose.connection.readyState === 0) {
+    await mongoose.connect(uri);
+  }
+  return mongoose.connection.getClient();
+}
 
 // Admin emails
 const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || '').split(',').map(e => e.trim().toLowerCase());
@@ -16,7 +27,7 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
-  adapter: MongoDBAdapter(connectDB().then(() => mongoose.connection.getClient()) as any),
+  adapter: MongoDBAdapter(getMongoClient() as any),
   providers: [
     Google({
       clientId: GOOGLE_CLIENT_ID,
@@ -51,6 +62,3 @@ export const {
     signIn: '/login',
   },
 });
-
-// Need to import mongoose here for the adapter
-import mongoose from 'mongoose';
