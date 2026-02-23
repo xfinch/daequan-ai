@@ -1020,7 +1020,7 @@ app.get('/admin/overview', requireAdmin, (req, res) => {
             <a href="/admin/overview" style="color: #e2e8f0; text-decoration: none; font-weight: 600;">Decisions</a>
             <a href="/admin/users" style="color: #94a3b8; text-decoration: none;">Users</a>
             <a href="/" style="color: #6366f1; text-decoration: none;">← Main Site</a>
-            <a href="/auth/logout" style="color: #ef4444; text-decoration: none;">Logout</a>
+            <a href="/auth/logout" style="color: #ef4444; text-decoration: none;">Log out</a>
           </nav>
         </div>
         <p>Welcome, ${req.user.displayName} <span class="role-badge ${req.user.role}">${req.user.role}</span></p>
