@@ -778,7 +778,7 @@ app.patch('/api/decisions/:id', async (req, res) => {
 
 // Kanban / Project Boards - Behind Admin Auth
 app.get('/admin/boards', requireAdmin, (req, res) => {
-  const kanbanPath = path.join(__dirname, 'dashboard', 'index.html');
+  const kanbanPath = path.join(__dirname, 'public', 'boards.html');
   res.sendFile(kanbanPath);
 });
 

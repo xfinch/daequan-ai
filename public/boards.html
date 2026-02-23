@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xavier + Daequan | Project Boards</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+        
+        /* Admin Nav */
+        .admin-nav {
+            background: #12121a;
+            padding: 16px 30px;
+            border-bottom: 1px solid #27272a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-nav h1 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #6366f1;
+        }
+        
+        .admin-nav-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        .admin-nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        
+        .admin-nav-links a:hover,
+        .admin-nav-links a.active {
+            color: #e2e8f0;
+        }
+        
+        .admin-nav-links a.logout {
+            color: #ef4444;
+        }
+        
+        /* Board Header */
+        .board-header-bar {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: 20px 30px;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .board-tabs {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .board-tab {
+            padding: 10px 20px;
+            border: none;
+            background: #1e293b;
+            color: #94a3b8;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: 1px solid #334155;
+        }
+        
+        .board-tab:hover {
+            background: #334155;
+            color: #e2e8f0;
+        }
+        
+        .board-tab.active {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+        
+        .refresh-btn {
+            padding: 8px 16px;
+            background: #1e293b;
+            color: #94a3b8;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .refresh-btn:hover {
+            background: #334155;
+            color: #e2e8f0;
+        }
+        
+        .refresh-btn.spinning::after {
+            content: "↻";
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Board Content */
+        .board-content {
+            padding: 30px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .board-section {
+            display: none;
+        }
+        
+        .board-section.active {
+            display: block;
+        }
+        
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #334155;
+        }
+        
+        /* Columns */
+        .columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .column {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 16px;
+            min-height: 200px;
+        }
+        
+        .column-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #334155;
+        }
+        
+        .column-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        
+        .dot-backlog { background: #64748b; }
+        .dot-progress { background: #3b82f6; }
+        .dot-done { background: #22c55e; }
+        .dot-pipeline { background: #f59e0b; }
+        
+        .column-title {
+            font-weight: 600;
+            font-size: 14px;
+            flex: 1;
+        }
+        
+        .column-count {
+            background: #334155;
+            color: #94a3b8;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        /* Cards */
+        .card {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 14px;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+        }
+        
+        .card:hover {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.2);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .card-title {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .card-priority {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        
+        .priority-high { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .priority-medium { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .priority-low { background: rgba(100, 116, 139, 0.2); color: #64748b; }
+        
+        .card-description {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        
+        .card-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            font-size: 12px;
+            color: #64748b;
+        }
+        
+        .card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-top: 4px;
+        }
+        
+        .status-warming { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+        .status-active { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+        .status-blocked { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+        
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: #64748b;
+        }
+        
+        .error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        /* Empty state */
+        .empty {
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Navigation -->
+    <nav class="admin-nav">
+        <h1>🎯 Daequan Admin</h1>
+        <div class="admin-nav-links">
+            <a href="/admin/skills">Skills</a>
+            <a href="/admin/boards" class="active">Boards</a>
+            <a href="/admin/overview">Decisions</a>
+            <a href="/admin/users">Users</a>
+            <a href="/">← Main Site</a>
+            <a href="/auth/logout" class="logout">Log out</a>
+        </div>
+    </nav>
+    
+    <!-- Board Header -->
+    <div class="board-header-bar">
+        <div class="board-tabs">
+            <button class="board-tab active" onclick="switchBoard('ttl')">🚀 TTL</button>
+            <button class="board-tab" onclick="switchBoard('comcast')">📡 Comcast</button>
+            <button class="board-tab" onclick="switchBoard('personal')">👤 Personal</button>
+        </div>
+        <button class="refresh-btn" onclick="refreshAll()">↻ Refresh</button>
+    </div>
+    
+    <!-- Board Content -->
+    <div class="board-content">
+        <div id="loading" class="loading">Loading boards...</div>
+        <div id="error" class="error" style="display: none;"></div>
+        
+        <!-- TTL Board -->
+        <div id="board-ttl" class="board-section active"></div>
+        
+        <!-- Comcast Board -->
+        <div id="board-comcast" class="board-section"></div>
+        
+        <!-- Personal Board -->
+        <div id="board-personal" class="board-section"></div>
+    </div>
+    
+    <script>
+        const boardData = {};
+        
+        async function loadBoard(type) {
+            try {
+                const response = await fetch(`/api/kanban/${type}`);
+                if (!response.ok) throw new Error('Failed to load');
+                const data = await response.json();
+                boardData[type] = data;
+                renderBoard(type, data);
+            } catch (err) {
+                console.error(`Error loading ${type} board:`, err);
+                document.getElementById('error').textContent = `Error loading ${type} board: ${err.message}`;
+                document.getElementById('error').style.display = 'block';
+            }
+        }
+        
+        function renderBoard(type, data) {
+            const container = document.getElementById(`board-${type}`);
+            
+            let html = '';
+            
+            // Internal Projects Section
+            if (data.internal && (data.internal.backlog.length || data.internal.active.length || data.internal.completed.length)) {
+                html += '<h3 class="section-title">🏢 Internal Projects</h3>';
+                html += '<div class="columns">';
+                
+                // Backlog
+                html += '<div class="column">';
+                html += '<div class="column-header"><div class="column-dot dot-backlog"></div><div class="column-title">Backlog</div><div class="column-count">' + data.internal.backlog.length + '</div></div>';
+                data.internal.backlog.forEach(item => {
+                    html += renderInternalCard(item);
+                });
+                if (!data.internal.backlog.length) html += '<div class="empty">No items</div>';
+                html += '</div>';
+                
+                // Active
+                html += '<div class="column">';
+                html += '<div class="column-header"><div class="column-dot dot-progress"></div><div class="column-title">Active</div><div class="column-count">' + data.internal.active.length + '</div></div>';
+                data.internal.active.forEach(item => {
+                    html += renderInternalCard(item);
+                });
+                if (!data.internal.active.length) html += '<div class="empty">No items</div>';
+                html += '</div>';
+                
+                // Completed
+                html += '<div class="column">';
+                html += '<div class="column-header"><div class="column-dot dot-done"></div><div class="column-title">Completed</div><div class="column-count">' + data.internal.completed.length + '</div></div>';
+                data.internal.completed.forEach(item => {
+                    html += renderInternalCard(item);
+                });
+                if (!data.internal.completed.length) html += '<div class="empty">No items</div>';
+                html += '</div>';
+                
+                html += '</div>';
+            }
+            
+            // Client Projects Section
+            if (data.client && (data.client.pipeline.length || data.client.active.length || data.client.completed.length)) {
+                html += '<h3 class="section-title">👥 Client Projects</h3>';
+                html += '<div class="columns">';
+                
+                // Pipeline
+                html += '<div class="column">';
+                html += '<div class="column-header"><div class="column-dot dot-pipeline"></div><div class="column-title">Pipeline</div><div class="column-count">' + data.client.pipeline.length + '</div></div>';
+                data.client.pipeline.forEach(item => {
+                    html += renderClientCard(item);
+                });
+                if (!data.client.pipeline.length) html += '<div class="empty">No items</div>';
+                html += '</div>';
+                
+                // Active
+                html += '<div class="column">';
+                html += '<div class="column-header"><div class="column-dot dot-progress"></div><div class="column-title">Active</div><div class="column-count">' + data.client.active.length + '</div></div>';
+                data.client.active.forEach(item => {
+                    html += renderClientCard(item);
+                });
+                if (!data.client.active.length) html += '<div class="empty">No items</div>';
+                html += '</div>';
+                
+                // Completed
+                html += '<div class="column">';
+                html += '<div class="column-header"><div class="column-dot dot-done"></div><div class="column-title">Completed</div><div class="column-count">' + data.client.completed.length + '</div></div>';
+                data.client.completed.forEach(item => {
+                    html += renderClientCard(item);
+                });
+                if (!data.client.completed.length) html += '<div class="empty">No items</div>';
+                html += '</div>';
+                
+                html += '</div>';
+            }
+            
+            container.innerHTML = html;
+        }
+        
+        function renderInternalCard(item) {
+            const priorityClass = item.priority?.toLowerCase().includes('high') ? 'priority-high' : 
+                                 item.priority?.toLowerCase().includes('medium') ? 'priority-medium' : 'priority-low';
+            return `
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">${escapeHtml(item.title)}</div>
+                        <span class="card-priority ${priorityClass}">${escapeHtml(item.priority)}</span>
+                    </div>
+                    <div class="card-description">${escapeHtml(item.description)}</div>
+                </div>
+            `;
+        }
+        
+        function renderClientCard(item) {
+            const statusClass = item.status?.includes('WARMING') ? 'status-warming' :
+                               item.status?.includes('ACTIVE') ? 'status-active' :
+                               item.status?.includes('BLOCKED') ? 'status-blocked' : '';
+            
+            let meta = '';
+            if (item.lastContact) meta += `<span>📅 Last: ${escapeHtml(item.lastContact)}</span>`;
+            if (item.nextAction) meta += `<span>👉 Next: ${escapeHtml(item.nextAction)}</span>`;
+            
+            return `
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">${escapeHtml(item.client)}</div>
+                    </div>
+                    <div class="card-description">${escapeHtml(item.project)}</div>
+                    ${statusClass ? `<div class="status-badge ${statusClass}">${escapeHtml(item.status)}</div>` : ''}
+                    ${meta ? `<div class="card-meta">${meta}</div>` : ''}
+                </div>
+            `;
+        }
+        
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function switchBoard(type) {
+            // Hide all boards
+            document.querySelectorAll('.board-section').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.board-tab').forEach(t => t.classList.remove('active'));
+            
+            // Show selected
+            document.getElementById(`board-${type}`).classList.add('active');
+            event.target.classList.add('active');
+            
+            // Load if not cached
+            if (!boardData[type]) {
+                loadBoard(type);
+            }
+        }
+        
+        async function refreshAll() {
+            const btn = document.querySelector('.refresh-btn');
+            btn.classList.add('spinning');
+            
+            const activeType = document.querySelector('.board-tab.active').textContent.toLowerCase().includes('comcast') ? 'comcast' : 
+                              document.querySelector('.board-tab.active').textContent.toLowerCase().includes('personal') ? 'personal' : 'ttl';
+            
+            await Promise.all(['ttl', 'comcast', 'personal'].map(type => loadBoard(type)));
+            
+            btn.classList.remove('spinning');
+        }
+        
+        // Initial load
+        document.getElementById('loading').style.display = 'none';
+        loadBoard('ttl');
+        loadBoard('comcast');
+        loadBoard('personal');
+    </script>
+</body>
+</html>
