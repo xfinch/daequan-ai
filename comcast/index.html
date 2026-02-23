@@ -801,6 +801,22 @@
                             <div class="value">${escapeHtml(visit.address || '')}, ${escapeHtml(visit.zip)}</div>
                         </div>
                         
+                        ${visit.lat && visit.lng ? `
+                        <div style="margin: 12px 0;">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=${visit.lat},${visit.lng}" 
+                               target="_blank" 
+                               class="ghl-btn" 
+                               style="display: block; text-align: center; text-decoration: none; background: #4285f4; color: white; padding: 10px; border-radius: 6px; font-weight: 600; margin-bottom: 8px;">
+                                🗺️ Open in Google Maps
+                            </a>
+                            <a href="http://maps.apple.com/?daddr=${visit.lat},${visit.lng}&dirflg=d" 
+                               target="_blank" 
+                               class="ghl-btn" 
+                               style="display: block; text-align: center; text-decoration: none; background: #007aff; color: white; padding: 10px; border-radius: 6px; font-weight: 600;">
+                                🍎 Open in Apple Maps
+                            </a>
+                        </div>` : ''}
+                        
                         <div class="info-row">
                             <div class="label">Visited</div>
                             <div class="value">${formatDate(visit.createdAt)}</div>
