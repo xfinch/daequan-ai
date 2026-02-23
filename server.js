@@ -671,6 +671,16 @@ app.get('/', (req, res) => {
   `);
 });
 
+// Comcast Review Queue - Plaud notes review page
+app.get('/comcast/review', (req, res) => {
+  const reviewPath = path.join(__dirname, 'comcast-crm', 'review.html');
+  if (fs.existsSync(reviewPath)) {
+    res.sendFile(reviewPath);
+  } else {
+    res.status(404).send('Review page not found');
+  }
+});
+
 // Auth routes
 app.get('/auth/google',
   passport.authenticate('google', { 
