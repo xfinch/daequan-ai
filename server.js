@@ -619,11 +619,31 @@ app.get('/', (req, res) => {
     <head>
       <title>Daequan AI</title>
       <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
           font-family: -apple-system, sans-serif; 
-          display: flex; align-items: center; justify-content: center;
           min-height: 100vh; margin: 0;
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .top-nav {
+          background: rgba(18, 18, 26, 0.95);
+          padding: 16px 30px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .top-nav a {
+          color: #94a3b8;
+          text-decoration: none;
+          font-size: 14px;
+          margin-right: 20px;
+        }
+        .top-nav a:hover { color: #e2e8f0; }
+        .container {
+          display: flex; align-items: center; justify-content: center;
+          min-height: calc(100vh - 60px);
+          padding: 20px;
         }
         .card {
           background: white; padding: 40px; border-radius: 20px;
@@ -639,6 +659,13 @@ app.get('/', (req, res) => {
           display: inline-block;
         }
         .btn:hover { background: #357ae8; }
+        .btn-secondary {
+          background: #6c757d; color: white;
+          padding: 10px 20px; border: none; border-radius: 8px;
+          font-size: 14px; cursor: pointer; text-decoration: none;
+          display: inline-block;
+          margin-left: 10px;
+        }
         .features { 
           display: grid; grid-template-columns: 1fr 1fr;
           gap: 15px; margin: 30px 0; text-align: left;
@@ -648,23 +675,42 @@ app.get('/', (req, res) => {
       </style>
     </head>
     <body>
-      <div class="card">
-        <h1>🤖 Daequan AI</h1>
-        <p class="subtitle">Your director, right-hand, and operational authority</p>
-        
-        <div class="features">
-          <div class="feature"><span class="icon">💬</span> Chat with Daequan</div>
-          <div class="feature"><span class="icon">📋</span> Task Assignment</div>
-          <div class="feature"><span class="icon">🔧</span> Skill Building</div>
-          <div class="feature"><span class="icon">⚡</span> Results Delivery</div>
+      <!-- Top Navigation -->
+      <nav class="top-nav">
+        <div>
+          <a href="/" style="font-weight: 600; color: #6366f1;">🎯 Daequan AI</a>
+          <a href="/comcast">Comcast Map</a>
         </div>
-        
-        ${req.isAuthenticated() ? `
-          <p>Welcome, ${req.user.displayName}!</p>
-          <a href="/dashboard" class="btn">Go to Dashboard</a>
-        ` : `
-          <a href="/auth/google" class="btn">Sign in with Google</a>
-        `}
+        <div>
+          ${req.isAuthenticated() ? `
+            <span style="color: #94a3b8; margin-right: 15px;">${req.user.displayName}</span>
+            <a href="/admin/skills">Admin</a>
+            <a href="/auth/logout" style="color: #ef4444;">Log out</a>
+          ` : `
+            <a href="/login">Sign in</a>
+          `}
+        </div>
+      </nav>
+      
+      <div class="container">
+        <div class="card">
+          <h1>🤖 Daequan AI</h1>
+          <p class="subtitle">Your director, right-hand, and operational authority</p>
+          
+          <div class="features">
+            <div class="feature"><span class="icon">💬</span> Chat with Daequan</div>
+            <div class="feature"><span class="icon">📋</span> Task Assignment</div>
+            <div class="feature"><span class="icon">🔧</span> Skill Building</div>
+            <div class="feature"><span class="icon">⚡</span> Results Delivery</div>
+          </div>
+          
+          ${req.isAuthenticated() ? `
+            <a href="/admin/skills" class="btn">Go to Dashboard</a>
+            <a href="/auth/logout" class="btn-secondary">Log out</a>
+          ` : `
+            <a href="/auth/google" class="btn">Sign in with Google</a>
+          `}
+        </div>
       </div>
     </body>
     </html>
