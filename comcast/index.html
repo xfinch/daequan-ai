@@ -803,12 +803,10 @@
                         
                         ${visit.lat && visit.lng ? `
                         <div style="margin: 12px 0;">
-                            <a href="${getDirectionsUrl(visit.lat, visit.lng)}" 
-                               target="_blank" 
-                               class="ghl-btn" 
-                               style="display: block; text-align: center; text-decoration: none; background: ${isIOS() ? '#007aff' : '#4285f4'}; color: white; padding: 10px; border-radius: 6px; font-weight: 600;">
+                            <button onclick="window.location.href='${getDirectionsUrl(visit.lat, visit.lng)}'" 
+                               style="display: block; width: 100%; border: none; text-align: center; background: ${isIOS() ? '#007aff' : '#4285f4'}; color: white; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer;">
                                 ${isIOS() ? '🍎 Get Directions' : '🗺️ Get Directions'}
-                            </a>
+                            </button>
                         </div>` : ''}
                         
                         <div class="info-row">
@@ -880,22 +878,27 @@
                 
                 // Directions button
                 const isApple = isIOS();
-                const dirBtn = document.createElement('a');
-                dirBtn.href = getDirectionsUrl(t.lat, t.lng);
-                dirBtn.target = '_blank';
+                const dirBtn = document.createElement('button');
                 dirBtn.style.cssText = `
                     display: block;
+                    width: 100%;
                     margin-top: 4px;
-                    padding: 6px 10px;
+                    padding: 8px 10px;
                     background: ${isApple ? '#007aff' : '#4285f4'};
                     color: white;
+                    border: none;
                     border-radius: 6px;
                     font-size: 12px;
                     font-weight: 600;
-                    text-decoration: none;
                     text-align: center;
+                    cursor: pointer;
                 `;
                 dirBtn.innerHTML = isApple ? '🍎 Get Directions' : '🗺️ Get Directions';
+                dirBtn.onclick = () => {
+                    const url = getDirectionsUrl(t.lat, t.lng);
+                    console.log('Opening directions:', url);
+                    window.location.href = url;
+                };
                 wrapper.appendChild(dirBtn);
                 
                 container.appendChild(wrapper);
@@ -918,16 +921,36 @@
             return div.innerHTML;
         }
 
-        // Detect if user is on iOS
+        // Detect if user is on iOS - handles WhatsApp, Safari, and other browsers
         function isIOS() {
-            return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            const ua = navigator.userAgent;
+            const platform = navigator.platform;
+            
+            // Check for iPhone, iPad, iPod in user agent
+            const isIPhone = /iPhone/.test(ua);
+            const isIPad = /iPad/.test(ua);
+            const isIPod = /iPod/.test(ua);
+            
+            // Check for iOS in platform
+            const isIOSPlatform = /iPhone|iPad|iPod/.test(platform);
+            
+            // Check for Mac with touch (iPad Pro)
+            const isMacWithTouch = platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+            
+            // Check for iOS-specific features
+            const isWebkit = /WebKit/.test(ua) && !/Chrome/.test(ua);
+            
+            return isIPhone || isIPad || isIPod || isIOSPlatform || isMacWithTouch;
         }
 
         // Get map directions URL based on device
         function getDirectionsUrl(lat, lng) {
-            if (isIOS()) {
-                return `http://maps.apple.com/?daddr=${lat},${lng}&dirflg=d`;
+            const isApple = isIOS();
+            console.log('Device detection - is iOS:', isApple, 'UserAgent:', navigator.userAgent.substring(0, 50));
+            
+            if (isApple) {
+                // Use maps:// protocol for native Apple Maps app
+                return `maps://?daddr=${lat},${lng}&dirflg=d`;
             } else {
                 return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
             }
