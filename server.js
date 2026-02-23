@@ -1116,11 +1116,102 @@ app.get('/admin', requireAdmin, (req, res) => {
   `);
 });
 
+// Skills Dashboard Route
+app.get('/admin/skills', requireAdmin, (req, res) => {
+  const dashboardPath = path.join(__dirname, 'admin-dashboard', 'index.html');
+  res.sendFile(dashboardPath);
+});
+
+// Skills API - Track usage
+const SkillUsageSchema = new mongoose.Schema({
+  skillId: { type: String, required: true },
+  skillName: { type: String, required: true },
+  action: { type: String, required: true },
+  detail: String,
+  status: { type: String, enum: ['success', 'warning', 'error'], default: 'success' },
+  metadata: mongoose.Schema.Types.Mixed,
+  userId: String,
+  createdAt: { type: Date, default: Date.now }
+});
+
+const SkillUsage = mongoose.models.SkillUsage || mongoose.model('SkillUsage', SkillUsageSchema);
+
+// API: Log skill usage
+app.post('/api/skills/log', async (req, res) => {
+  try {
+    const { skillId, skillName, action, detail, status, metadata } = req.body;
+    const usage = new SkillUsage({
+      skillId,
+      skillName,
+      action,
+      detail,
+      status: status || 'success',
+      metadata,
+      userId: req.user?._id?.toString()
+    });
+    await usage.save();
+    res.json({ success: true, id: usage._id });
+  } catch (err) {
+    console.error('Error logging skill usage:', err);
+    res.status(500).json({ error: 'Failed to log usage' });
+  }
+});
+
+// API: Get recent skill usage
+app.get('/api/skills/usage', requireAdmin, async (req, res) => {
+  try {
+    const { limit = 20, skillId } = req.query;
+    const query = skillId ? { skillId } : {};
+    const usage = await SkillUsage.find(query)
+      .sort({ createdAt: -1 })
+      .limit(parseInt(limit))
+      .lean();
+    res.json({ usage, count: usage.length });
+  } catch (err) {
+    console.error('Error fetching skill usage:', err);
+    res.status(500).json({ error: 'Failed to fetch usage' });
+  }
+});
+
+// API: Get skill stats
+app.get('/api/skills/stats', requireAdmin, async (req, res) => {
+  try {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    const stats = await SkillUsage.aggregate([
+      {
+        $group: {
+          _id: '$skillId',
+          name: { $first: '$skillName' },
+          totalUses: { $sum: 1 },
+          todayUses: {
+            $sum: {
+              $cond: [{ $gte: ['$createdAt', today] }, 1, 0]
+            }
+          },
+          successCount: {
+            $sum: { $cond: [{ $eq: ['$status', 'success'] }, 1, 0] }
+          },
+          lastUsed: { $max: '$createdAt' }
+        }
+      },
+      { $sort: { totalUses: -1 } }
+    ]);
+    
+    res.json({ stats });
+  } catch (err) {
+    console.error('Error fetching skill stats:', err);
+    res.status(500).json({ error: 'Failed to fetch stats' });
+  }
+});
+
 // Start server
 server.listen(PORT, () => {
   console.log(`🚀 Daequan AI server running on port ${PORT}`);
   console.log(`📊 MongoDB: Connected to Railway`);
   console.log(`⚡ Socket.io: Real-time updates enabled`);
+  console.log(`🎯 Skills Dashboard: /admin/skills`);
 });
 
 module.exports = { app, server, io, broadcastDecision, Decision };

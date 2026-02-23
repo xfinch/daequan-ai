@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daequan Admin | Skills Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-hover: #1a1a25;
+            --accent: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.3);
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --text: #e2e8f0;
+            --text-muted: #64748b;
+            --border: #27272a;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .header h1::before {
+            content: "🎯";
+            font-size: 1.75rem;
+        }
+        
+        .status-badge {
+            background: var(--success);
+            color: #000;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .nav {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        
+        .nav a:hover, .nav a.active {
+            color: var(--text);
+            background: var(--bg-hover);
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
+        
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.2s ease;
+        }
+        
+        .card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .card-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+        
+        .card-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-delta {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+        
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.2s ease;
+        }
+        
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .skill-card:hover {
+            background: var(--bg-hover);
+            transform: translateY(-2px);
+        }
+        
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .skill-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: var(--bg-dark);
+        }
+        
+        .skill-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .skill-type {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+        
+        .skill-description {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        
+        .skill-stats {
+            display: flex;
+            gap: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .skill-stat {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .skill-stat-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+        
+        .skill-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+        
+        /* Activity Feed */
+        .activity-list {
+            margin-top: 1rem;
+        }
+        
+        .activity-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            transition: background 0.2s ease;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .activity-item:hover {
+            background: var(--bg-hover);
+        }
+        
+        .activity-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .activity-icon.success { background: rgba(34, 197, 94, 0.15); color: var(--success); }
+        .activity-icon.warning { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+        .activity-icon.error { background: rgba(239, 68, 68, 0.15); color: var(--error); }
+        
+        .activity-content {
+            flex: 1;
+        }
+        
+        .activity-title {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+        
+        .activity-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .activity-time {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+        
+        /* Section Headers */
+        .section {
+            margin-bottom: 2.5rem;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .refresh-btn {
+            background: var(--bg-hover);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+        
+        .refresh-btn:hover {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .refresh-btn.spinning::after {
+            content: "↻";
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Tags */
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.125rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .tag-success { background: rgba(34, 197, 94, 0.15); color: var(--success); }
+        .tag-warning { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+        .tag-error { background: rgba(239, 68, 68, 0.15); color: var(--error); }
+        .tag-info { background: rgba(99, 102, 241, 0.15); color: var(--accent); }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+        }
+        
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+        
+        /* Loading */
+        .skeleton {
+            background: linear-gradient(90deg, var(--bg-hover) 25%, var(--bg-card) 50%, var(--bg-hover) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 4px;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .header { padding: 1rem; flex-direction: column; gap: 1rem; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .nav { flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Daequan Admin</h1>
+        <nav class="nav">
+            <a href="/admin">Overview</a>
+            <a href="/admin/skills" class="active">Skills</a>
+            <a href="/admin/decisions">Decisions</a>
+            <a href="/admin/users">Users</a>
+        </nav>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <span id="connection-status" style="color: var(--text-muted); font-size: 0.875rem;">Connecting...</span>
+            <span class="status-badge" id="system-status">Active</span>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Stats Row -->
+        <div class="grid grid-3">
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Active Skills</span>
+                    <span class="tag tag-info">Live</span>
+                </div>
+                <div class="card-value" id="total-skills">-</div>
+                <div class="card-delta">Custom + System skills</div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Today's Executions</span>
+                    <span class="tag tag-success">Live</span>
+                </div>
+                <div class="card-value" id="today-executions">-</div>
+                <div class="card-delta">Skill invocations today</div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Success Rate</span>
+                    <span class="tag tag-success">Healthy</span>
+                </div>
+                <div class="card-value" id="success-rate">-</div>
+                <div class="card-delta">All time average</div>
+            </div>
+        </div>
+        
+        <!-- Skills Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">📦 Available Skills</h2>
+                <button class="refresh-btn" onclick="loadData()">↻ Refresh</button>
+            </div>
+            
+            <div class="skills-grid" id="skills-container">
+                <div class="card">
+                    <div class="skeleton" style="height: 100px;"></div>
+                </div>
+                <div class="card">
+                    <div class="skeleton" style="height: 100px;"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Recent Activity -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">📊 Recent Activity</h2>
+                <span style="color: var(--text-muted); font-size: 0.875rem;">Last 20 invocations</span>
+            </div>
+            
+            <div class="card">
+                <div class="activity-list" id="activity-container">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">⏳</div>
+                        <p>Loading activity...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // Skill definitions (static metadata)
+        const skillMetadata = {
+            'voice-notes-router': {
+                icon: '🎙️',
+                description: 'Route voice memos to PERSONAL, TTL, or COMCAST buckets with AI classification',
+                type: 'Custom',
+                triggers: ['Plaud webhook', 'Manual process'],
+                outputs: ['GHL', 'MongoDB', 'iMessage']
+            },
+            'business-card-capture': {
+                icon: '📇',
+                description: 'Extract contact info from card images with OCR and validate required fields',
+                type: 'Custom',
+                triggers: ['WhatsApp image', 'Manual upload'],
+                outputs: ['GHL contacts', 'MongoDB visits']
+            },
+            'doc-chat': {
+                icon: '📄',
+                description: 'Upload documents and chat with them for answers, summaries, and audio',
+                type: 'System',
+                triggers: ['.upload command', '.podcast command'],
+                outputs: ['Chat responses', 'Audio files']
+            },
+            'model-router': {
+                icon: '🎯',
+                description: 'Route tasks to optimal LLM models based on task type and cost',
+                type: 'System',
+                triggers: ['Heartbeat tasks', 'spawn requests'],
+                outputs: ['Sub-agent execution']
+            },
+            'github': {
+                icon: '🐙',
+                description: 'GitHub operations via gh CLI: issues, PRs, CI, code review',
+                type: 'System',
+                triggers: ['PR checks', 'Issue management'],
+                outputs: ['Git operations']
+            },
+            'gh-issues': {
+                icon: '🔧',
+                description: 'Auto-implement GitHub issues, open PRs, monitor reviews',
+                type: 'System',
+                triggers: ['/gh-issues command'],
+                outputs: ['Pull requests', 'Code changes']
+            },
+            'gog': {
+                icon: '🔑',
+                description: 'Google Workspace: Gmail, Calendar, Drive, Sheets, Docs',
+                type: 'System',
+                triggers: ['Calendar queries', 'Email tasks'],
+                outputs: ['Google API results']
+            },
+            'goplaces': {
+                icon: '📍',
+                description: 'Google Places API for business lookup and reviews',
+                type: 'System',
+                triggers: ['Business search', 'Place details'],
+                outputs: ['Place information']
+            },
+            'nano-pdf': {
+                icon: '📑',
+                description: 'Edit PDFs with natural language instructions',
+                type: 'System',
+                triggers: ['PDF edit requests'],
+                outputs: ['Modified PDFs']
+            },
+            'sag': {
+                icon: '🔊',
+                description: 'ElevenLabs text-to-speech with voice selection',
+                type: 'System',
+                triggers: ['TTS requests', '.podcast'],
+                outputs: ['Audio files']
+            },
+            'wacli': {
+                icon: '💬',
+                description: 'WhatsApp messaging via CLI for external notifications',
+                type: 'System',
+                triggers: ['Automated messages'],
+                outputs: ['WhatsApp sends']
+            },
+            'weather': {
+                icon: '🌤️',
+                description: 'Weather forecasts via wttr.in or Open-Meteo',
+                type: 'System',
+                triggers: ['Weather queries'],
+                outputs: ['Forecast data']
+            },
+            'healthcheck': {
+                icon: '🔒',
+                description: 'Security hardening and risk assessment for OpenClaw',
+                type: 'System',
+                triggers: ['Security audits'],
+                outputs: ['Security reports']
+            },
+            'himalaya': {
+                icon: '📧',
+                description: 'Email management via IMAP/SMTP',
+                type: 'System',
+                triggers: ['Email checks', 'Send mail'],
+                outputs: ['Email operations']
+            }
+        };
+        
+        let skillStats = [];
+        let recentActivity = [];
+        
+        // Load data from API
+        async function loadData() {
+            const refreshBtn = document.querySelector('.refresh-btn');
+            refreshBtn.classList.add('spinning');
+            
+            try {
+                // Fetch stats
+                const statsRes = await fetch('/api/skills/stats');
+                if (statsRes.ok) {
+                    const statsData = await statsRes.json();
+                    skillStats = statsData.stats || [];
+                }
+                
+                // Fetch recent activity
+                const activityRes = await fetch('/api/skills/usage?limit=20');
+                if (activityRes.ok) {
+                    const activityData = await activityRes.json();
+                    recentActivity = activityData.usage || [];
+                }
+                
+                document.getElementById('connection-status').textContent = 'Live';
+                document.getElementById('connection-status').style.color = 'var(--success)';
+                
+                renderStats();
+                renderSkills();
+                renderActivity();
+                
+            } catch (err) {
+                console.error('Error loading data:', err);
+                document.getElementById('connection-status').textContent = 'Error';
+                document.getElementById('connection-status').style.color = 'var(--error)';
+                
+                // Show demo data if API fails
+                showDemoData();
+            } finally {
+                refreshBtn.classList.remove('spinning');
+            }
+        }
+        
+        function renderStats() {
+            // Total skills
+            const totalSkills = Object.keys(skillMetadata).length;
+            document.getElementById('total-skills').textContent = totalSkills;
+            
+            // Today's executions
+            const todayUses = skillStats.reduce((sum, s) => sum + (s.todayUses || 0), 0);
+            document.getElementById('today-executions').textContent = todayUses;
+            
+            // Success rate
+            const totalUses = skillStats.reduce((sum, s) => sum + (s.totalUses || 0), 0);
+            const successUses = skillStats.reduce((sum, s) => sum + (s.successCount || 0), 0);
+            const rate = totalUses > 0 ? Math.round((successUses / totalUses) * 100) : 0;
+            document.getElementById('success-rate').textContent = rate + '%';
+        }
+        
+        function renderSkills() {
+            const container = document.getElementById('skills-container');
+            
+            // Merge metadata with stats
+            const skills = Object.entries(skillMetadata).map(([id, meta]) => {
+                const stats = skillStats.find(s => s._id === id) || {};
+                return {
+                    id,
+                    ...meta,
+                    totalUses: stats.totalUses || 0,
+                    todayUses: stats.todayUses || 0,
+                    lastUsed: stats.lastUsed ? new Date(stats.lastUsed).toLocaleString() : 'Never'
+                };
+            }).sort((a, b) => b.totalUses - a.totalUses);
+            
+            container.innerHTML = skills.map(skill => `
+                <div class="skill-card" onclick="showSkillDetail('${skill.id}')">
+                    <div class="skill-header">
+                        <div class="skill-icon">${skill.icon}</div>
+                        <div>
+                            <div class="skill-name">${skill.name || skill.id}</div>
+                            <div class="skill-type">${skill.type} Skill</div>
+                        </div>
+                    </div>
+                    <div class="skill-description">${skill.description}</div>
+                    <div class="skill-stats">
+                        <div class="skill-stat">
+                            <span class="skill-stat-value">${skill.totalUses}</span>
+                            <span class="skill-stat-label">Total Uses</span>
+                        </div>
+                        <div class="skill-stat">
+                            <span class="skill-stat-value">${skill.todayUses}</span>
+                            <span class="skill-stat-label">Today</span>
+                        </div>
+                        <div class="skill-stat">
+                            <span class="skill-stat-value" style="font-size: 0.875rem;">${skill.lastUsed === 'Never' ? 'Never' : formatRelativeTime(skill.lastUsed)}</span>
+                            <span class="skill-stat-label">Last Used</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function renderActivity() {
+            const container = document.getElementById('activity-container');
+            
+            if (recentActivity.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📭</div>
+                        <p>No recent activity</p>
+                        <p style="font-size: 0.875rem; margin-top: 0.5rem;">Skills will appear here when used</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = recentActivity.map(act => {
+                const meta = skillMetadata[act.skillId] || {};
+                const icon = meta.icon || '🔧';
+                const iconClass = act.status || 'success';
+                const statusIcon = act.status === 'success' ? '✓' : act.status === 'warning' ? '⚠' : '✕';
+                
+                return `
+                    <div class="activity-item">
+                        <div class="activity-icon ${iconClass}">${statusIcon}</div>
+                        <div class="activity-content">
+                            <div class="activity-title">${act.action}</div>
+                            <div class="activity-meta">
+                                <span>${icon} ${act.skillName || act.skillId}</span>
+                                <span>${act.detail || ''}</span>
+                            </div>
+                        </div>
+                        <div class="activity-time">${formatRelativeTime(act.createdAt)}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function formatRelativeTime(dateStr) {
+            const date = new Date(dateStr);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMs / 3600000);
+            const diffDays = Math.floor(diffMs / 86400000);
+            
+            if (diffMins < 1) return 'Just now';
+            if (diffMins < 60) return `${diffMins}m ago`;
+            if (diffHours < 24) return `${diffHours}h ago`;
+            if (diffDays < 7) return `${diffDays}d ago`;
+            return date.toLocaleDateString();
+        }
+        
+        function showSkillDetail(skillId) {
+            const skill = skillMetadata[skillId];
+            const stats = skillStats.find(s => s._id === skillId) || {};
+            if (!skill) return;
+            
+            alert(`Skill: ${skillId}\n\nType: ${skill.type}\nTriggers: ${skill.triggers.join(', ')}\nOutputs: ${skill.outputs.join(', ')}\n\nTotal Uses: ${stats.totalUses || 0}\nSuccess Rate: ${stats.totalUses ? Math.round((stats.successCount/stats.totalUses)*100) : 0}%`);
+        }
+        
+        function showDemoData() {
+            // Fallback demo data for visualization
+            skillStats = [
+                { _id: 'voice-notes-router', name: 'Voice Notes Router', totalUses: 42, todayUses: 5, successCount: 40 },
+                { _id: 'business-card-capture', name: 'Business Card Capture', totalUses: 18, todayUses: 2, successCount: 16 },
+                { _id: 'model-router', name: 'Model Router', totalUses: 156, todayUses: 12, successCount: 154 }
+            ];
+            
+            recentActivity = [
+                { skillId: 'voice-notes-router', skillName: 'Voice Notes Router', action: 'Processed COMCAST note', detail: 'Federal Way Auto Repair', status: 'success', createdAt: new Date().toISOString() },
+                { skillId: 'business-card-capture', skillName: 'Business Card Capture', action: 'Extracted card data', detail: 'Mike\'s Plumbing', status: 'warning', createdAt: new Date(Date.now() - 3600000).toISOString() }
+            ];
+            
+            renderStats();
+            renderSkills();
+            renderActivity();
+            
+            document.getElementById('connection-status').textContent = 'Demo Mode';
+            document.getElementById('connection-status').style.color = 'var(--warning)';
+        }
+        
+        // Initialize
+        loadData();
+        
+        // Auto-refresh every 30 seconds
+        setInterval(loadData, 30000);
+    </script>
+</body>
+</html>
