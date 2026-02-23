@@ -6,6 +6,61 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Navbar } from '@/components/ui/navbar';
 
+// Detect iOS device
+function isIOS(): boolean {
+  if (typeof window === 'undefined') return false;
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
+
+// Smart directions button component
+function SmartDirectionsButton({ lat, lng }: { lat: number; lng: number }) {
+  const [isApple, setIsApple] = useState(false);
+  
+  useEffect(() => {
+    setIsApple(isIOS());
+  }, []);
+  
+  const url = isApple 
+    ? `http://maps.apple.com/?daddr=${lat},${lng}&dirflg=d`
+    : `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+  
+  return (
+    <a 
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white text-center rounded font-semibold transition-colors"
+    >
+      {isApple ? '🍎 Get Directions' : '🗺️ Get Directions'}
+    </a>
+  );
+}
+
+// Zip code directions button
+function ZipDirectionsButton({ zip, lat, lng }: { zip: string; lat: number; lng: number }) {
+  const [isApple, setIsApple] = useState(false);
+  
+  useEffect(() => {
+    setIsApple(isIOS());
+  }, []);
+  
+  const url = isApple 
+    ? `http://maps.apple.com/?daddr=${lat},${lng}&dirflg=d`
+    : `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+  
+  return (
+    <a 
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block w-full py-1.5 px-3 text-sm text-center rounded font-medium transition-colors bg-blue-500/20 hover:bg-blue-500/30 text-blue-400"
+    >
+      {isApple ? '🍎 Directions' : '🗺️ Directions'}
+    </a>
+  );
+}
+
 interface Visit {
   _id: string;
   businessName: string;
@@ -116,27 +171,30 @@ export default function ComcastMapPage() {
           </div>
           
           <h3 className="font-semibold mb-3">Zip Codes</h3>
-          <div className="space-y-2">
+          <div className="space-y-3">
             {territories.map(t => {
               const count = visits.filter(v => v.zip === t.zip).length;
               return (
-                <button
-                  key={t.zip}
-                  onClick={() => handleZipClick(t.zip)}
-                  className={`w-full flex justify-between items-center p-3 rounded-lg border transition-colors ${
-                    selectedZip === t.zip 
-                      ? 'bg-accent/20 border-accent' 
-                      : 'bg-hover border-border hover:border-accent/50'
-                  }`}
-                >
-                  <div>
-                    <div className="font-semibold">{t.zip}</div>
-                    <div className="text-xs text-muted">{t.city}</div>
-                  </div>
-                  <div className="bg-background text-muted text-sm px-2 py-1 rounded-full">
-                    {count}
-                  </div>
-                </button>
+                <div key={t.zip} className="space-y-2">
+                  <button
+                    onClick={() => handleZipClick(t.zip)}
+                    className={`w-full flex justify-between items-center p-3 rounded-lg border transition-colors ${
+                      selectedZip === t.zip 
+                        ? 'bg-accent/20 border-accent' 
+                        : 'bg-hover border-border hover:border-accent/50'
+                    }`}
+                  >
+                    <div>
+                      <div className="font-semibold">{t.zip}</div>
+                      <div className="text-xs text-muted">{t.city}</div>
+                    </div>
+                    <div className="bg-background text-muted text-sm px-2 py-1 rounded-full">
+                      {count}
+                    </div>
+                  </button>
+                  {/* Directions button below zip */}
+                  <ZipDirectionsButton zip={t.zip} lat={t.lat} lng={t.lng} />
+                </div>
               );
             })}
           </div>
@@ -278,25 +336,9 @@ export default function ComcastMapPage() {
                           <div>{visit.address}, {visit.zip}</div>
                         </div>
                         
-                        {/* 🗺️ MAPS DEEP LINKS */}
-                        <div className="mt-3 space-y-2">
-                          <a 
-                            href={`https://www.google.com/maps/dir/?api=1&destination=${visit.lat},${visit.lng}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block py-2 px-4 bg-blue-500 text-white text-center rounded font-semibold hover:bg-blue-600"
-                          >
-                            🗺️ Open in Google Maps
-                          </a>
-                          <a 
-                            href={`http://maps.apple.com/?daddr=${visit.lat},${visit.lng}&dirflg=d`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block py-2 px-4 bg-slate-700 text-white text-center rounded font-semibold hover:bg-slate-800"
-                          >
-                            🍎 Open in Apple Maps
-                          </a>
-                        </div>
+                        {/* 🗺️ SMART MAPS DEEP LINK - Detects iOS/Android */}
+                        <div className="mt-3">
+                          <SmartDirectionsButton lat={visit.lat} lng={visit.lng} />
                         
                         {visit.notes && (
                           <div className="mt-3 p-3 bg-gray-100 rounded text-sm">
