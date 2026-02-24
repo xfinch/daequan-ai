@@ -4,6 +4,7 @@ import { skillMetadata } from '@/lib/skills';
 import { StatsCards } from '@/components/admin/stats-cards';
 import { SkillsGrid } from '@/components/admin/skills-grid';
 import { ActivityFeed } from '@/components/admin/activity-feed';
+import { auth } from '@/lib/auth-server';
 
 async function getSkillStats() {
   await connectDB();
@@ -50,6 +51,7 @@ async function getRecentActivity() {
 }
 
 export default async function SkillsPage() {
+  const session = await auth();
   const [stats, activity] = await Promise.all([
     getSkillStats(),
     getRecentActivity(),
@@ -57,7 +59,7 @@ export default async function SkillsPage() {
 
   return (
     <>
-      <AdminNav activePage="skills" />
+      <AdminNav activePage="skills" user={session?.user} />
       <main className="max-w-7xl mx-auto p-6">
         <StatsCards stats={stats} />
         

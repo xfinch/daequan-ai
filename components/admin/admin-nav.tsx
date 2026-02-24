@@ -1,15 +1,16 @@
 import Link from 'next/link';
-import { auth } from '@/lib/auth-server';
 import { handleSignOut } from '@/lib/actions';
 
 interface AdminNavProps {
   activePage?: 'skills' | 'boards' | 'decisions' | 'users';
+  user?: {
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+  };
 }
 
-export async function AdminNav({ activePage }: AdminNavProps) {
-  const session = await auth();
-  const user = session?.user;
-
+export function AdminNav({ activePage, user }: AdminNavProps) {
   const navItems = [
     { href: '/admin/skills', label: 'Skills', id: 'skills' },
     { href: '/admin/boards', label: 'Boards', id: 'boards' },

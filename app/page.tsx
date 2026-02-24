@@ -8,7 +8,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <Navbar />
+      <Navbar session={session} />
       <main className="min-h-[calc(100vh-64px)] flex items-center justify-center bg-gradient-to-br from-indigo-600 to-purple-700 p-4">
         <div className="bg-white rounded-2xl shadow-2xl p-10 max-w-lg w-full text-center">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">🤖 Daequan AI</h1>

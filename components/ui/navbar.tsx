@@ -1,12 +1,21 @@
 import Link from 'next/link';
-import { auth } from '@/lib/auth-server';
 import { handleSignOut } from '@/lib/actions';
 
-export async function Navbar() {
-  const session = await auth();
+interface NavbarProps {
+  session?: {
+    user?: {
+      name?: string | null;
+      email?: string | null;
+      image?: string | null;
+      role?: string;
+    };
+  } | null;
+}
+
+export function Navbar({ session }: NavbarProps) {
   const isAuthenticated = !!session;
   const user = session?.user;
-  const userRole = (user as any)?.role;
+  const userRole = user?.role;
 
   return (
     <nav className="bg-card border-b border-border px-6 py-4">
