@@ -47,6 +47,7 @@
 | Client | Project | Status | Last Contact | Next Action |
 |--------|---------|--------|--------------|-------------|
 | Trina Fallardo | Cold Email Campaign | 🟡 WARMING UP | 2026-02-16 | Monitor domain warmup, launch ~1 week |
+| Kristy Tivnan | Real Estate Lead Filtering | 🟢 NEW PROJECT | 2026-02-23 | Discovery call, scope requirements, HomeGroup.com integration |
 
 ### ✅ DELIVERED / COMPLETED
 
