@@ -44,3 +44,4 @@ tmp/
 # Separate projects
 daequan-map-app/
 .next/
+ai.daequan.environment.plist
