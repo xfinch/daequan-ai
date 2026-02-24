@@ -1,5 +1,5 @@
 [phases.build]
-cmds = ["rm -rf .next daequan-nextjs/.next dashboard-nextjs/.next node_modules/.cache", "npm run build"]
+cmds = ["echo 'Build timestamp: $(date)' > .build-timestamp", "npm run build"]
 
 [phases.setup]
 nixPkgs = ["nodejs_20"]
