@@ -6,6 +6,14 @@ const nextConfig = {
   images: {
     domains: ['lh3.googleusercontent.com'],
   },
+  // Exclude separate Next.js apps from build
+  webpack: (config) => {
+    config.watchOptions = {
+      ...config.watchOptions,
+      ignored: ['**/dashboard-nextjs/**', '**/daequan-nextjs/**'],
+    };
+    return config;
+  },
 };
 
 module.exports = nextConfig;
