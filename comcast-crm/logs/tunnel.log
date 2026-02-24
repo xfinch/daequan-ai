@@ -39,3 +39,4 @@
 2026-02-22T23:15:32Z INF Retrying connection in up to 16s connIndex=0 event=0 ip=198.41.200.53
 2026-02-22T23:15:43Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveP256] connIndex=0 event=0 ip=198.41.200.53
 2026-02-22T23:15:43Z INF Registered tunnel connection connIndex=0 connection=ce6b8d6d-6ec2-495c-86b3-0549d892d6bc event=0 ip=198.41.200.53 location=sea09 protocol=quic
+2026-02-23T23:15:25Z ERR update check failed error="no release found"

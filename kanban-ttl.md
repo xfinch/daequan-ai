@@ -15,6 +15,7 @@
 | **Proposal/Contract Automation** | MEDIUM | Template-based SOWs, DocuSign integration |
 | **Reporting Dashboard** | MEDIUM | Client metrics, ROI tracking |
 | **Referral System** | LOW | Automated referral requests & rewards |
+| **Research: Julian Goldie SEO Strategy** | LOW | Analyze Twitter thread for TTL insights - https://x.com/juliangoldieseo/status/2025722273160974731 |
 
 ### 🚀 ACTIVE / IN PROGRESS
 

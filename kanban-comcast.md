@@ -68,6 +68,7 @@
 | Date | Project | Notes |
 |------|---------|-------|
 | 2026-02-17 | Role Definition | Senior Business Account Executive |
+| 2026-02-23 | Telnyx 10DLC Campaign Registration | Created campaign letter for A2P certification - includes 5 sample messages, opt-out language, brand registration docs for +1 (253) 999-9067 |
 
 ---
 
