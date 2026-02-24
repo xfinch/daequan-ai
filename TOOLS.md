@@ -7,6 +7,13 @@ See macOS Keychain for actual credential values. No keys in this file.
 
 ---
 
+## Railway
+
+**OAuth Client ID:** `rlwy_oaci_bURelhmjTLEn8hGLAQ8CXTny`
+**Project ID:** `abd953e3-ae34-4e5c-9a6d-8a6bff0521c8`
+**Service ID:** `c8568c23-f757-4080-a596-5984d98d189f`
+**Client Secret:** `[KEYCHAIN:railway-client-secret]` (if available)
+
 ## Cloudflare
 
 **Zone ID:** `96b4deff5c3860f7847687fabd64b81b` (daequanai.com)

@@ -16,6 +16,7 @@
   - `telnyx-api-key`
   - `cloudflare-api-token`
   - `privateemail-xavier`
+  - `railway-client-secret`
 
 ### 2. GIT REPOSITORIES
 

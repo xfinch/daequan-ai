@@ -132,6 +132,8 @@ launchctl getenv GITHUB_TOKEN
 **Current variables:**
 - `GITHUB_TOKEN` — GitHub API
 - `GHL_TTL_TOKEN` — GHL TTL sub-account
+- `RAILWAY_CLIENT_ID` — Railway OAuth (rlwy_oaci_bURelhmjTLEn8hGLAQ8CXTny)
+- `RAILWAY_CLIENT_SECRET` — Railway OAuth secret (rlwy_oacs_...)
 - `GHL_AGENCY_TOKEN` — GHL agency-level
 - `TELNYX_API_KEY` — Telnyx SMS
 - `CLOUDFLARE_API_TOKEN` — Cloudflare
