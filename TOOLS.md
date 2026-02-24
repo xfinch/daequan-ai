@@ -9,7 +9,7 @@ See macOS Keychain for actual credential values. No keys in this file.
 
 ## Google Cloud / Vertex AI
 
-**Vertex AI Studio API Key:** `AQ.Ab8RN6KTPscS-TmBIGzpVc1MVItQNNo8f2J8zGCyGhXEdKA9JA`
+**Vertex AI Studio API Key:** `[KEYCHAIN:vertex-ai-key]`
 
 ## Railway
 
