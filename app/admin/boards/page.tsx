@@ -1,15 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, use } from 'react';
 import { AdminNav } from '@/components/admin/admin-nav';
 import { KanbanBoard } from '@/components/kanban/kanban-board';
 
 interface PageProps {
-  searchParams: { tab?: string };
+  searchParams: Promise<{ tab?: string }>;
 }
 
 export default function BoardsPage({ searchParams }: PageProps) {
-  const [activeTab, setActiveTab] = useState(searchParams.tab || 'ttl');
+  const params = use(searchParams);
+  const [activeTab, setActiveTab] = useState(params.tab || 'ttl');
 
   const tabs = [
     { id: 'ttl', label: '🚀 TTL' },
