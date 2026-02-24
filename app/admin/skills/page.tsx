@@ -4,7 +4,7 @@ import { skillMetadata } from '@/lib/skills';
 import { StatsCards } from '@/components/admin/stats-cards';
 import { SkillsGrid } from '@/components/admin/skills-grid';
 import { ActivityFeed } from '@/components/admin/activity-feed';
-import { auth } from '@/lib/auth-server';
+import { auth } from '@/lib/auth';
 
 async function getSkillStats() {
   await connectDB();

@@ -1,6 +1,6 @@
 import { AdminNav } from '@/components/admin/admin-nav';
 import { KanbanBoardWrapper } from '@/components/kanban/kanban-board-wrapper';
-import { auth } from '@/lib/auth-server';
+import { auth } from '@/lib/auth';
 
 interface PageProps {
   searchParams: { tab?: string };

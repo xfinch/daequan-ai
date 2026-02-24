@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Navbar } from '@/components/ui/navbar';
-import { auth } from '@/lib/auth-server';
+import { auth } from '@/lib/auth';
 
 export default async function HomePage() {
   const session = await auth();

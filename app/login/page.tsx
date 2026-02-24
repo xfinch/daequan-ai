@@ -1,4 +1,4 @@
-import { signIn, auth } from '@/lib/auth-server';
+import { signIn, auth } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 
 export default async function LoginPage() {
