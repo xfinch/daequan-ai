@@ -1,5 +1,5 @@
 [phases.build]
-cmds = ["npm run build"]
+cmds = ["rm -rf .next daequan-nextjs/.next dashboard-nextjs/.next node_modules/.cache", "npm run build"]
 
 [phases.setup]
 nixPkgs = ["nodejs_20"]
