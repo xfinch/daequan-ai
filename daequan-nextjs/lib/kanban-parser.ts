@@ -64,7 +64,7 @@ export function parseKanbanMarkdown(content: string): KanbanData {
         if (currentSection && currentSubsection) {
           const item = parseTableRow(cells, currentSection);
           if (item) {
-            (result[currentSection][currentSubsection] as any[]).push(item);
+            (result as any)[currentSection][currentSubsection].push(item);
           }
         }
       }
