@@ -1,6 +1,5 @@
-import { signIn } from '@/lib/auth';
+import { signIn, auth } from '@/lib/auth-server';
 import { redirect } from 'next/navigation';
-import { auth } from '@/lib/auth';
 
 export default async function LoginPage() {
   const session = await auth();
