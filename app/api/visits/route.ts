@@ -7,7 +7,7 @@ export async function GET() {
     const visits = await Visit.find().sort({ createdAt: -1 }).lean();
     
     // Add GHL URL to each visit
-    const visitsWithGhl = visits.map(v => ({
+    const visitsWithGhl = visits.map((v: any) => ({
       ...v,
       _id: v._id.toString(),
       ghlUrl: v.ghlContactId 

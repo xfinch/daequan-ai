@@ -42,7 +42,7 @@ async function getRecentActivity() {
     .limit(20)
     .lean();
   
-  return activity.map(a => ({
+  return activity.map((a: any) => ({
     ...a,
     _id: a._id.toString(),
     createdAt: a.createdAt.toISOString(),
