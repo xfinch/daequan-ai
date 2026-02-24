@@ -48,9 +48,33 @@ HOMEGroup.COM FORMS
 ### STEP 2: Middle Tier Processing
 
 **IMMEDIATE (0-5 minutes):**
+
+**2A: Email Validation (First Filter)**
 ```
 Lead enters system
     ↓
+EMAIL VALIDATION CHECK:
+    ↓
+❌ INVALID → REJECT (Don't waste agent time)
+   Examples caught:
+   • "gmail at gmail.com" (spelled out, no @)
+   • "noneofyourbusiness@yahoo.com" (fake/obvious)
+   • "fake@fake.com", "test@test.com"
+   • "n/a", "noemail", "123@123.com"
+   • Typos: "gmial.com", "yaho.com"
+    ↓
+✅ VALID → Continue to qualification
+```
+
+**Email Validation Rules:**
+- **Format Check:** Must have valid email format (name@domain.tld)
+- **Spelled Out:** Reject "at" instead of @
+- **Obvious Fakes:** Block common fake patterns
+- **Domain Check:** Verify domain exists (no fake domains)
+- **Disposable:** Flag temp email services (optional)
+
+**2B: Qualification Sequence**
+```
 Auto-tag: "Unqualified - Pending Review"
     ↓
 SMS Sent: "Hi [Name]! Thanks for your interest. Quick question: 
@@ -159,6 +183,9 @@ Last Qualification Date       → Custom Field
 
 ❌ Assumed all leads go to agents
 ✅ COLD leads filtered OUT completely (marketing only)
+
+❌ Missed email validation
+✅ EMAIL VALIDATION is FIRST filter (before qualification)
 
 ---
 
