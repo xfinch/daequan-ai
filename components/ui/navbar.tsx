@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { auth } from '@/lib/auth';
-import { signOut } from 'next-auth/react';
+import { handleSignOut } from '@/lib/actions';
 
 export async function Navbar() {
   const session = await auth();
@@ -32,10 +32,7 @@ export async function Navbar() {
                   Admin
                 </Link>
               ) : null}
-              <form action={async () => {
-                'use server';
-                await signOut({ redirectTo: '/' });
-              }}>
+              <form action={handleSignOut}>
                 <button 
                   type="submit"
                   className="text-sm text-error hover:text-red-400 transition-colors"
