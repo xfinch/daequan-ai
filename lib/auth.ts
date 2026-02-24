@@ -21,7 +21,7 @@ async function getMongoClient() {
 const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || '').split(',').map(e => e.trim().toLowerCase());
 const SUPERADMIN_EMAILS = (process.env.SUPERADMIN_EMAILS || '').split(',').map(e => e.trim().toLowerCase());
 
-const {
+export const {
   handlers,
   auth,
   signIn,
@@ -63,5 +63,4 @@ const {
   },
 });
 
-export { handlers, auth, signIn, signOut };
 export const { GET, POST } = handlers;
