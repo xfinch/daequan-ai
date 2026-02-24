@@ -1,0 +1,98 @@
+{
+  "pages": {
+    "/_not-found/page": [
+      "static/chunks/webpack-010b3ee1e0ee5ee5.js",
+      "static/chunks/4bd1b696-409494caf8c83275.js",
+      "static/chunks/255-091853b4155593e2.js",
+      "static/chunks/main-app-4a710471ad603132.js",
+      "static/chunks/app/_not-found/page-509caa5adb4ab374.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-010b3ee1e0ee5ee5.js",
+      "static/chunks/4bd1b696-409494caf8c83275.js",
+      "static/chunks/255-091853b4155593e2.js",
+      "static/chunks/main-app-4a710471ad603132.js",
+      "static/css/6184f815e3a09eed.css",
+      "static/chunks/app/layout-3b11fdec4c59063f.js"
+    ],
+    "/api/health/route": [
+      "static/chunks/webpack-010b3ee1e0ee5ee5.js",
+      "static/chunks/4bd1b696-409494caf8c83275.js",
+      "static/chunks/255-091853b4155593e2.js",
+      "static/chunks/main-app-4a710471ad603132.js",
+      "static/chunks/app/api/health/route-392b0e61d1c46a44.js"
+    ],
+    "/api/kanban/route": [
+      "static/chunks/webpack-010b3ee1e0ee5ee5.js",
+      "static/chunks/4bd1b696-409494caf8c83275.js",
+      "static/chunks/255-091853b4155593e2.js",
+      "static/chunks/main-app-4a710471ad603132.js",
+      "static/chunks/app/api/kanban/route-392b0e61d1c46a44.js"
+    ],
+    "/api/webhooks/telnyx/route": [
+      "static/chunks/webpack-010b3ee1e0ee5ee5.js",
+      "static/chunks/4bd1b696-409494caf8c83275.js",
+      "static/chunks/255-091853b4155593e2.js",
+      "static/chunks/main-app-4a710471ad603132.js",
+      "static/chunks/app/api/webhooks/telnyx/route-392b0e61d1c46a44.js"
+    ],
+    "/api/visits/route": [
+      "static/chunks/webpack-010b3ee1e0ee5ee5.js",
+      "static/chunks/4bd1b696-409494caf8c83275.js",
+      "static/chunks/255-091853b4155593e2.js",
+      "static/chunks/main-app-4a710471ad603132.js",
+      "static/chunks/app/api/visits/route-392b0e61d1c46a44.js"
+    ],
+    "/admin/skills/page": [
+      "static/chunks/webpack-010b3ee1e0ee5ee5.js",
+      "static/chunks/4bd1b696-409494caf8c83275.js",
+      "static/chunks/255-091853b4155593e2.js",
+      "static/chunks/main-app-4a710471ad603132.js",
+      "static/chunks/619-f072ac750404f9da.js",
+      "static/chunks/app/admin/skills/page-92e08d953154749f.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-010b3ee1e0ee5ee5.js",
+      "static/chunks/4bd1b696-409494caf8c83275.js",
+      "static/chunks/255-091853b4155593e2.js",
+      "static/chunks/main-app-4a710471ad603132.js",
+      "static/chunks/619-f072ac750404f9da.js",
+      "static/chunks/app/page-4065b218c2d287e8.js"
+    ],
+    "/admin/boards/page": [
+      "static/chunks/webpack-010b3ee1e0ee5ee5.js",
+      "static/chunks/4bd1b696-409494caf8c83275.js",
+      "static/chunks/255-091853b4155593e2.js",
+      "static/chunks/main-app-4a710471ad603132.js",
+      "static/chunks/9d7b1695-75a329fd07fd4d63.js",
+      "static/chunks/343fbbf6-2ea8d5230ca9fd23.js",
+      "static/chunks/aaea2bcf-79baa8ded2a1c33d.js",
+      "static/chunks/bb55d925-81b94210ef656225.js",
+      "static/chunks/619-f072ac750404f9da.js",
+      "static/chunks/800-c2d23f266eed0c5f.js",
+      "static/chunks/app/admin/boards/page-d4733eb159cc02e0.js"
+    ],
+    "/login/page": [
+      "static/chunks/webpack-010b3ee1e0ee5ee5.js",
+      "static/chunks/4bd1b696-409494caf8c83275.js",
+      "static/chunks/255-091853b4155593e2.js",
+      "static/chunks/main-app-4a710471ad603132.js",
+      "static/chunks/app/login/page-392b0e61d1c46a44.js"
+    ],
+    "/comcast/page": [
+      "static/chunks/webpack-010b3ee1e0ee5ee5.js",
+      "static/chunks/4bd1b696-409494caf8c83275.js",
+      "static/chunks/255-091853b4155593e2.js",
+      "static/chunks/main-app-4a710471ad603132.js",
+      "static/css/55693049b062c6a3.css",
+      "static/chunks/9d7b1695-75a329fd07fd4d63.js",
+      "static/chunks/343fbbf6-2ea8d5230ca9fd23.js",
+      "static/chunks/aaea2bcf-79baa8ded2a1c33d.js",
+      "static/chunks/bb55d925-81b94210ef656225.js",
+      "static/chunks/d0deef33-a515038d95242dd3.js",
+      "static/chunks/619-f072ac750404f9da.js",
+      "static/chunks/800-c2d23f266eed0c5f.js",
+      "static/chunks/app/comcast/page-8205cca6acdc5a19.js"
+    ]
+  }
+}
