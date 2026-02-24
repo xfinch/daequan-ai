@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { auth } from '@/lib/auth';
+import { handleSignOut } from '@/lib/actions';
 
 interface AdminNavProps {
   activePage?: 'skills' | 'boards' | 'decisions' | 'users';
@@ -50,11 +51,7 @@ export async function AdminNav({ activePage }: AdminNavProps) {
           </Link>
           <span className="text-muted">|</span>
           <span className="text-muted text-sm">{user?.name}</span>
-          <form action={async () => {
-            'use server';
-            const { signOut } = await import('@/lib/auth');
-            await signOut({ redirectTo: '/' });
-          }}>
+          <form action={handleSignOut}>
             <button 
               type="submit"
               className="text-sm text-error hover:text-red-400 transition-colors"

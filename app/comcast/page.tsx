@@ -339,6 +339,7 @@ export default function ComcastMapPage() {
                         {/* 🗺️ SMART MAPS DEEP LINK - Detects iOS/Android */}
                         <div className="mt-3">
                           <SmartDirectionsButton lat={visit.lat} lng={visit.lng} />
+                        </div>
                         
                         {visit.notes && (
                           <div className="mt-3 p-3 bg-gray-100 rounded text-sm">

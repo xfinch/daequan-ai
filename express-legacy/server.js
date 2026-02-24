@@ -299,12 +299,13 @@ app.use(session(sessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Google OAuth Strategy
-passport.use(new GoogleStrategy({
-  clientID: process.env.GOOGLE_CLIENT_ID,
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: 'https://daequanai.com/auth/google/callback'
-}, async (accessToken, refreshToken, profile, done) => {
+// Google OAuth Strategy (optional - server starts without credentials)
+if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
+  passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: 'https://daequanai.com/auth/google/callback'
+  }, async (accessToken, refreshToken, profile, done) => {
   try {
     const email = profile.emails[0]?.value?.toLowerCase();
     let user = await User.findOne({ googleId: profile.id });
@@ -350,6 +351,9 @@ passport.deserializeUser(async (id, done) => {
     done(err, null);
   }
 });
+} else {
+  console.log('⚠️  Google OAuth not configured - auth endpoints disabled');
+}
 
 // Middleware
 app.use(express.json());
@@ -727,29 +731,31 @@ app.get('/comcast/review', (req, res) => {
   }
 });
 
-// Auth routes
-app.get('/auth/google',
-  passport.authenticate('google', { 
-    scope: ['profile', 'email'],
-    prompt: 'select_account'
-  })
-);
+// Auth routes (only if OAuth configured)
+if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
+  app.get('/auth/google',
+    passport.authenticate('google', { 
+      scope: ['profile', 'email'],
+      prompt: 'select_account'
+    })
+  );
 
-app.get('/auth/google/callback',
-  passport.authenticate('google', { 
-    failureRedirect: '/login'
-  }),
-  (req, res) => {
-    res.redirect('/admin/skills');
-  }
-);
+  app.get('/auth/google/callback',
+    passport.authenticate('google', { 
+      failureRedirect: '/login'
+    }),
+    (req, res) => {
+      res.redirect('/admin/skills');
+    }
+  );
 
-app.get('/auth/logout', (req, res) => {
-  req.logout((err) => {
-    if (err) console.error('Logout error:', err);
-    res.redirect('/');
+  app.get('/auth/logout', (req, res) => {
+    req.logout((err) => {
+      if (err) console.error('Logout error:', err);
+      res.redirect('/');
+    });
   });
-});
+}
 
 // API Routes
 app.get('/api/user', (req, res) => {
