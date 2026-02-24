@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Your Dream Home - Demo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .house-display {
+            background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 50%, #90EE90 50%, #7CFC00 100%);
+            height: 300px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 20px;
+        }
+        
+        .house {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+        
+        .foundation {
+            position: absolute;
+            bottom: 0;
+            left: 20px;
+            width: 160px;
+            height: 20px;
+            background: #8B7355;
+            border-radius: 4px;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .foundation.show { opacity: 1; }
+        
+        .walls {
+            position: absolute;
+            bottom: 20px;
+            left: 40px;
+            width: 120px;
+            height: 100px;
+            background: #F5DEB3;
+            border: 3px solid #D2691E;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .walls.show { opacity: 1; }
+        
+        .roof {
+            position: absolute;
+            bottom: 120px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 80px solid transparent;
+            border-right: 80px solid transparent;
+            border-bottom: 60px solid #8B0000;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .roof.show { opacity: 1; }
+        
+        .door {
+            position: absolute;
+            bottom: 20px;
+            left: 85px;
+            width: 30px;
+            height: 50px;
+            background: #4A4A4A;
+            border: 2px solid #2C2C2C;
+            border-radius: 15px 15px 0 0;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .door.show { opacity: 1; }
+        
+        .window {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #87CEEB;
+            border: 3px solid #4A4A4A;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .window.show { opacity: 1; }
+        
+        .window.left {
+            bottom: 70px;
+            left: 50px;
+        }
+        
+        .window.right {
+            bottom: 70px;
+            right: 50px;
+        }
+        
+        .score-display {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.9);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .question-area {
+            padding: 30px;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: #E0E0E0;
+            border-radius: 3px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .question {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .option-btn {
+            padding: 15px 20px;
+            border: 2px solid #E0E0E0;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+        
+        .option-btn:hover {
+            border-color: #667eea;
+            background: #F8F9FF;
+        }
+        
+        .result-screen {
+            display: none;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .result-screen.show {
+            display: block;
+        }
+        
+        .result-emoji {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        
+        .result-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .result-desc {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+        
+        .score-reveal {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .restart-btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .start-screen {
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .start-screen h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .start-screen p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+        
+        .start-btn {
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Start Screen -->
+        <div class="start-screen" id="startScreen">
+            <h1>🏠 Build Your Dream Home</h1>
+            <p>Answer a few questions and we'll help you build the perfect home while finding your ideal property!</p>
+            <button class="start-btn" onclick="startQuiz()">Let's Build!</button>
+        </div>
+        
+        <!-- Quiz Screen -->
+        <div id="quizScreen" style="display: none;">
+            <div class="house-display">
+                <div class="score-display">Score: <span id="score">0</span></div>
+                <div class="house">
+                    <div class="foundation" id="foundation"></div>
+                    <div class="walls" id="walls"></div>
+                    <div class="roof" id="roof"></div>
+                    <div class="window left" id="window1"></div>
+                    <div class="window right" id="window2"></div>
+                    <div class="door" id="door"></div>
+                </div>
+            </div>
+            
+            <div class="question-area">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+                </div>
+                
+                <div class="question" id="questionText">Loading...</div>
+                <div class="subtitle" id="questionSubtitle"></div>
+                
+                <div class="options" id="optionsContainer">
+                    <!-- Options injected by JS -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Result Screen -->
+        <div class="result-screen" id="resultScreen">
+            <div class="result-emoji" id="resultEmoji">🏰</div>
+            <div class="result-title" id="resultTitle">Your Estate is Ready!</div>
+            <div class="score-reveal" id="scoreReveal">Score: 95</div>
+            <div class="result-desc" id="resultDesc">Based on your answers, you're ready to buy! An agent will contact you shortly.</div>
+            <button class="restart-btn" onclick="restartQuiz()">Build Another Home</button>
+        </div>
+    </div>
+
+    <script>
+        let currentQuestion = 0;
+        let totalScore = 0;
+        
+        const questions = [
+            {
+                question: "Let's pour your foundation!",
+                subtitle: "When are you looking to move?",
+                part: "foundation",
+                options: [
+                    { text: "ASAP (0-30 days)", score: 25, points: "Strong foundation!" },
+                    { text: "Soon (1-3 months)", score: 15, points: "Good start!" },
+                    { text: "Planning (3+ months)", score: 5, points: "Taking your time" },
+                    { text: "Just browsing", score: 0, points: "Getting ideas" }
+                ]
+            },
+            {
+                question: "Let's frame your house!",
+                subtitle: "Are you pre-approved for a mortgage?",
+                part: "walls",
+                options: [
+                    { text: "Yes, fully approved!", score: 25, points: "Steel frame!" },
+                    { text: "Pre-qualified", score: 15, points: "Wood frame" },
+                    { text: "Working on it", score: 5, points: "Framing started" },
+                    { text: "Not yet", score: 0, points: "Planning stage" }
+                ]
+            },
+            {
+                question: "Let's add the roof!",
+                subtitle: "What's your price range?",
+                part: "roof",
+                options: [
+                    { text: "$400k - $500k (specific)", score: 20, points: "Complete roof!" },
+                    { text: "Around $400k (ballpark)", score: 10, points: "Roof started" },
+                    { text: "Not sure yet", score: 0, points: "Planning" },
+                    { text: "Just looking", score: 0, points: "Exploring" }
+                ]
+            },
+            {
+                question: "Let's add some windows!",
+                subtitle: "Why are you moving?",
+                part: "windows",
+                options: [
+                    { text: "Relocation/job change", score: 20, points: "Lots of light!" },
+                    { text: "Downsizing/upsizing", score: 10, points: "Nice windows" },
+                    { text: "Investment property", score: 10, points: "Good view" },
+                    { text: "Just looking around", score: 5, points: "Small window" }
+                ]
+            },
+            {
+                question: "Let's add your front door!",
+                subtitle: "How many homes have you toured?",
+                part: "door",
+                options: [
+                    { text: "Several, ready to buy!", score: 15, points: "Grand entrance!" },
+                    { text: "A few, still comparing", score: 10, points: "Nice door" },
+                    { text: "Just started looking", score: 5, points: "Cozy entry" },
+                    { text: "None yet", score: 0, points: "Back door" }
+                ]
+            }
+        ];
+        
+        function startQuiz() {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('quizScreen').style.display = 'block';
+            showQuestion();
+        }
+        
+        function showQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('questionText').textContent = q.question;
+            document.getElementById('questionSubtitle').textContent = q.subtitle;
+            
+            const progress = ((currentQuestion) / questions.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+            
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = opt.text;
+                btn.onclick = () => selectAnswer(idx);
+                container.appendChild(btn);
+            });
+        }
+        
+        function selectAnswer(optionIndex) {
+            const q = questions[currentQuestion];
+            const selected = q.options[optionIndex];
+            
+            totalScore += selected.score;
+            document.getElementById('score').textContent = totalScore;
+            
+            // Show house part
+            document.getElementById(q.part).classList.add('show');
+            
+            currentQuestion++;
+            
+            if (currentQuestion < questions.length) {
+                setTimeout(showQuestion, 600);
+            } else {
+                setTimeout(showResult, 800);
+            }
+        }
+        
+        function showResult() {
+            document.getElementById('quizScreen').style.display = 'none';
+            document.getElementById('resultScreen').classList.add('show');
+            
+            const result = calculateResult();
+            document.getElementById('resultEmoji').textContent = result.emoji;
+            document.getElementById('resultTitle').textContent = result.title;
+            document.getElementById('resultDesc').textContent = result.desc;
+            document.getElementById('scoreReveal').textContent = 'Score: ' + totalScore;
+        }
+        
+        function calculateResult() {
+            if (totalScore >= 85) {
+                return {
+                    emoji: '🏰',
+                    title: 'Your Estate is Ready!',
+                    desc: 'You\'ve built a beautiful estate! Based on your readiness, an agent will contact you within 15 minutes to show you premium properties.'
+                };
+            } else if (totalScore >= 60) {
+                return {
+                    emoji: '🏠',
+                    title: 'Your Family Home is Ready!',
+                    desc: 'You\'ve built a lovely family home! You\'re getting close to buying. We\'ll send you curated listings and follow up soon.'
+                };
+            } else if (totalScore >= 35) {
+                return {
+                    emoji: '🏡',
+                    title: 'Your Starter Home is Ready!',
+                    desc: 'You\'ve built a cozy starter home! You\'re in the early stages. We\'ll add you to our market updates newsletter.'
+                };
+            } else {
+                return {
+                    emoji: '🏕️',
+                    title: 'Your Cabin is Ready!',
+                    desc: 'You\'ve built a cute weekend cabin! You\'re just getting started. We\'ll send you helpful resources for when you\'re ready to buy.'
+                };
+            }
+        }
+        
+        function restartQuiz() {
+            currentQuestion = 0;
+            totalScore = 0;
+            document.getElementById('score').textContent = '0';
+            
+            // Hide all house parts
+            ['foundation', 'walls', 'roof', 'window1', 'window2', 'door'].forEach(id => {
+                document.getElementById(id).classList.remove('show');
+            });
+            
+            document.getElementById('resultScreen').classList.remove('show');
+            document.getElementById('startScreen').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
