@@ -1,9 +1,11 @@
 import mongoose from 'mongoose';
 
-const MONGODB_URI = process.env.MONGODB_URI || process.env.MONGO_URL || process.env.MONGO_PUBLIC_URL || process.env.DATABASE_URL;
-
-if (!MONGODB_URI) {
-  throw new Error('Please define MONGODB_URI, MONGO_URL, or MONGO_PUBLIC_URL environment variable');
+function getMongoUri(): string {
+  const uri = process.env.MONGODB_URI || process.env.MONGO_URL || process.env.MONGO_PUBLIC_URL || process.env.DATABASE_URL;
+  if (!uri) {
+    throw new Error('Please define MONGODB_URI, MONGO_URL, or MONGO_PUBLIC_URL environment variable');
+  }
+  return uri;
 }
 
 interface MongooseCache {
@@ -31,7 +33,8 @@ export async function connectDB() {
       bufferCommands: false,
     };
 
-    cached!.promise = mongoose.connect(MONGODB_URI!, opts).then((mongoose) => {
+    const MONGODB_URI = getMongoUri();
+    cached!.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
       return mongoose;
     });
   }
