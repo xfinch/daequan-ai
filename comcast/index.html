@@ -1157,10 +1157,104 @@
             }
         }
         
+        // Display planned visits (from visit planning page) as grey pins
+        function displayPlannedVisits() {
+            const stored = localStorage.getItem('comcast_visit_plan');
+            if (!stored) return;
+            
+            const visitPlan = JSON.parse(stored);
+            if (!visitPlan.assignments) return;
+            
+            const dayColors = {
+                mon: '#6366f1',
+                tue: '#22c55e',
+                wed: '#f59e0b',
+                thu: '#ec4899',
+                fri: '#8b5cf6'
+            };
+            
+            // Add legend for planned visits
+            const legend = document.querySelector('.legend');
+            if (legend && !document.getElementById('planned-legend')) {
+                const plannedItem = document.createElement('div');
+                plannedItem.className = 'legend-item';
+                plannedItem.id = 'planned-legend';
+                plannedItem.innerHTML = `
+                    <div class="legend-color" style="background: #9ca3af; border: 2px solid #6366f1;"></div>
+                    <span>Planned (not visited)</span>
+                `;
+                legend.insertBefore(plannedItem, legend.firstChild);
+            }
+            
+            // Display each planned visit as grey pin
+            Object.keys(visitPlan.assignments).forEach(day => {
+                const dayColor = dayColors[day];
+                const dayAssignments = visitPlan.assignments[day];
+                
+                dayAssignments.forEach((id, index) => {
+                    const p = visitPlan.prospects.find(prospect => prospect.id === id);
+                    if (!p || !p.lat || !p.lng) return;
+                    
+                    // Create grey marker with day-colored border for planned visits
+                    const marker = L.marker([p.lat, p.lng], {
+                        icon: L.divIcon({
+                            className: 'custom-pin planned-pin',
+                            html: `<div style="
+                                width: 20px;
+                                height: 20px;
+                                background: #9ca3af;
+                                border: 3px solid ${dayColor};
+                                border-radius: 50%;
+                                box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+                            "></div>`,
+                            iconSize: [20, 20],
+                            iconAnchor: [10, 10]
+                        })
+                    }).addTo(map);
+                    
+                    marker.bindPopup(`
+                        <div class="pin-popup">
+                            <h4>${escapeHtml(p.businessName)}</h4>
+                            <span class="status-badge" style="background: #f3f4f6; color: #6b7280;">PLANNED</span>
+                            <div class="info-row" style="margin-top: 10px;">
+                                <div class="label">Scheduled</div>
+                                <div class="value">${day.charAt(0).toUpperCase() + day.slice(1)} - Stop #${index + 1}</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="label">Address</div>
+                                <div class="value">${escapeHtml(p.address || '')}, ${escapeHtml(p.city)}, ${escapeHtml(p.zip)}</div>
+                            </div>
+                            ${p.lat && p.lng ? `
+                            <div style="margin: 12px 0;">
+                                <button onclick="window.location.href='${getDirectionsUrl(p.lat, p.lng)}'" 
+                                   style="display: block; width: 100%; border: none; text-align: center; background: ${isIOS() ? '#007aff' : '#4285f4'}; color: white; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer;">
+                                    ${isIOS() ? '🍎 Get Directions' : '🗺️ Get Directions'}
+                                </button>
+                            </div>` : ''}
+                            <div style="margin-top: 10px; padding: 10px; background: #f3f4f6; border-radius: 6px; font-size: 12px; color: #6b7280;">
+                                💡 Visit this business and update status after your visit.
+                            </div>
+                        </div>
+                    `);
+                    
+                    markers.push(marker);
+                });
+            });
+            
+            // Show notification
+            const totalPlanned = Object.values(visitPlan.assignments).reduce((sum, day) => sum + day.length, 0);
+            if (totalPlanned > 0) {
+                console.log(`Loaded ${totalPlanned} planned visits from visit plan`);
+            }
+        }
+        
         // Initialize
         initMap();
         loadVisits();
         loadReviewCount();
+        
+        // Load planned visits after a short delay to ensure map is ready
+        setTimeout(displayPlannedVisits, 500);
 
         // Add click handler
         map.on('click', onMapClick);

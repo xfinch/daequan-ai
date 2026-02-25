@@ -336,6 +336,7 @@
         .dot-wed { background: #f59e0b; }
         .dot-thu { background: #ec4899; }
         .dot-fri { background: #8b5cf6; }
+        .dot-planned { background: #9ca3af; border: 2px solid #6366f1; }
         
         /* Empty State */
         .empty-state {
@@ -519,8 +520,8 @@
             <!-- Legend -->
             <div class="legend">
                 <div class="legend-item">
-                    <div class="legend-dot dot-pool"></div>
-                    <span>Unassigned</span>
+                    <div class="legend-dot" style="background: #9ca3af; border: 2px solid #6366f1;"></div>
+                    <span>Planned (not visited)</span>
                 </div>
                 <div class="legend-item">
                     <div class="legend-dot dot-mon"></div>
@@ -729,20 +730,21 @@
                     const p = prospects.find(prospect => prospect.id === id);
                     if (!p || !p.lat || !p.lng) return;
                     
-                    // Create custom marker
+                    // Create grey marker for planned visits (not yet visited)
                     const marker = L.circleMarker([p.lat, p.lng], {
                         radius: 10,
-                        fillColor: dayColor,
-                        color: '#fff',
-                        weight: 2,
+                        fillColor: '#9ca3af',  // Grey fill
+                        color: dayColor,          // Day color border
+                        weight: 3,
                         opacity: 1,
-                        fillOpacity: 0.9
+                        fillOpacity: 0.6
                     }).addTo(map);
                     
                     marker.bindPopup(`
                         <strong>${p.businessName}</strong><br>
                         ${p.address}<br>
-                        <span style="color: ${dayColor}">⬤</span> ${day.toUpperCase()} - Stop #${index + 1}
+                        <span style="color: ${dayColor}">⬤</span> ${day.toUpperCase()} - Stop #${index + 1}<br>
+                        <span style="color: #9ca3af; font-size: 11px;">🕐 Planned (not visited)</span>
                     `);
                     
                     markers[`${day}-${id}`] = marker;
