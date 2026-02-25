@@ -2,8 +2,9 @@
 
 Skills define _how_ tools work. This file is for _your_ specifics — the stuff that's unique to your setup.
 
-## ⚠️ SECURITY: ALL KEYS STORED IN KEYCHAIN
-See macOS Keychain for actual credential values. No keys in this file.
+## ⚠️ SECURITY: ALL KEYS STORED IN PLIST
+All credentials are in `~/Library/LaunchAgents/ai.daequan.environment.plist`
+No keys in this file or Keychain.
 
 ---
 
@@ -32,16 +33,14 @@ See macOS Keychain for actual credential values. No keys in this file.
 
 ## TTL (the traffic link) - High Level / GHL
 
-**Agency Token** (multi-location management)
-- Token: `[KEYCHAIN:ghl-agency-token]`
-- Use for: Creating/managing sub-accounts, agency-wide reports
+All GHL tokens stored in `ai.daequan.environment.plist`:
+- `GHL_AGENCY_TOKEN` - Multi-location management
+- `GHL_TTL_TOKEN` - The Traffic Link sub-account operations
+- `GHL_COMCAST_TOKEN` - Comcast sub-account operations
 
-**Sub-account Token** (business operations)
-- Token: `[KEYCHAIN:ghl-ttl-token]`
-- Use for: Sending emails, SMS, managing contacts, workflows
-- This is the primary token for day-to-day client comms
-
-**Location ID:** `mhvGjZGZPcsK3vgjEDwI` (TTL sub-account)
+**Location IDs:**
+- TTL: `mhvGjZGZPcsK3vgjEDwI`
+- Comcast: `nPubo6INanVq94ovAQNW`
 
 **API Base:** https://services.leadconnectorhq.com
 **Docs:** https://marketplace.gohighlevel.com/docs/
