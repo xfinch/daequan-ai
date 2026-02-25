@@ -783,10 +783,10 @@
                         <span class="status-badge ${statusClass}">${statusLabel}</span>
                         ${needsUpdate ? `<span class="status-badge status-needs-update">⚠️ Needs Update</span>` : ''}
                         
-                        ${visit.account_id_8524 ? `
+                        ${visit.account_id_8498 ? `
                         <div class="info-row" style="margin-top: 10px; background: #e3f2fd; padding: 8px; border-radius: 6px;">
-                            <div class="label" style="color: #1976d2;">📋 Account ID (8524)</div>
-                            <div class="value" style="font-weight: 600; color: #1976d2;">${escapeHtml(visit.account_id_8524)}</div>
+                            <div class="label" style="color: #1976d2;">📋 Account ID (8498)</div>
+                            <div class="value" style="font-weight: 600; color: #1976d2;">${escapeHtml(visit.account_id_8498)}</div>
                         </div>` : ''}
                         
                         ${visit.ghlUrl ? `
@@ -1091,7 +1091,7 @@
                 address: document.getElementById('address').value,
                 city: document.getElementById('city').value,
                 zip: document.getElementById('zip').value,
-                account_id_8524: document.getElementById('accountId8524').value,
+                account_id_8498: document.getElementById('accountId8498').value,
                 lat: parseFloat(document.getElementById('modalLat').value),
                 lng: parseFloat(document.getElementById('modalLng').value),
                 status: document.getElementById('status').value,
@@ -1316,8 +1316,8 @@
             </div>
 
             <div class="form-group">
-                <label>📋 Account ID (8524)</label>
-                <input type="text" id="accountId8524" placeholder="e.g., 8524-12345">
+                <label>📋 Account ID (8498)</label>
+                <input type="text" id="accountId8498" placeholder="e.g., 8498-12345">
             </div>
 
             <div class="form-group">

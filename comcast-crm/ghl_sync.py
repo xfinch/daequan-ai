@@ -34,17 +34,17 @@ class GHLComcastSync:
                   lat: float = None,
                   lng: float = None,
                   source: str = "whatsapp",
-                  account_id_8524: str = "") -> int:
+                  account_id_8498: str = "") -> int:
         """Add a new business visit to local DB"""
         
         cursor = self.conn.cursor()
         cursor.execute("""
             INSERT INTO business_visits 
             (business_name, contact_name, phone, email, address, city, zip_code, 
-             notes, visit_status, lat, lng, source, account_id_8524)
+             notes, visit_status, lat, lng, source, account_id_8498)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (business_name, contact_name, phone, email, address, city, zip_code,
-              notes, status, lat, lng, source, account_id_8524))
+              notes, status, lat, lng, source, account_id_8498))
         
         self.conn.commit()
         visit_id = cursor.lastrowid
@@ -76,9 +76,9 @@ class GHLComcastSync:
             {"key": "longitude", "value": str(visit['lng']) if visit['lng'] else ""},
         ]
         
-        # Add 8524 account ID if present
-        if visit.get('account_id_8524'):
-            custom_fields.append({"key": "account_id_8524", "value": visit['account_id_8524']})
+        # Add 8498 account ID if present
+        if visit.get('account_id_8498'):
+            custom_fields.append({"key": "account_id_8498", "value": visit['account_id_8498']})
         
         contact_data = {
             "firstName": visit['contact_name'].split()[0] if visit['contact_name'] else visit['business_name'][:20],
