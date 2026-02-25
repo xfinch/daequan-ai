@@ -33,17 +33,18 @@ class GHLComcastSync:
                   status: str = "interested",
                   lat: float = None,
                   lng: float = None,
-                  source: str = "whatsapp") -> int:
+                  source: str = "whatsapp",
+                  account_id_8524: str = "") -> int:
         """Add a new business visit to local DB"""
         
         cursor = self.conn.cursor()
         cursor.execute("""
             INSERT INTO business_visits 
             (business_name, contact_name, phone, email, address, city, zip_code, 
-             notes, visit_status, lat, lng, source)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+             notes, visit_status, lat, lng, source, account_id_8524)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (business_name, contact_name, phone, email, address, city, zip_code,
-              notes, status, lat, lng, source))
+              notes, status, lat, lng, source, account_id_8524))
         
         self.conn.commit()
         visit_id = cursor.lastrowid
@@ -67,6 +68,18 @@ class GHLComcastSync:
         visit = dict(row)
         
         # Prepare GHL contact data
+        custom_fields = [
+            {"key": "business_name", "value": visit['business_name']},
+            {"key": "zip_code", "value": visit['zip_code']},
+            {"key": "visit_status", "value": visit['visit_status']},
+            {"key": "latitude", "value": str(visit['lat']) if visit['lat'] else ""},
+            {"key": "longitude", "value": str(visit['lng']) if visit['lng'] else ""},
+        ]
+        
+        # Add 8524 account ID if present
+        if visit.get('account_id_8524'):
+            custom_fields.append({"key": "account_id_8524", "value": visit['account_id_8524']})
+        
         contact_data = {
             "firstName": visit['contact_name'].split()[0] if visit['contact_name'] else visit['business_name'][:20],
             "lastName": " ".join(visit['contact_name'].split()[1:]) if visit['contact_name'] and len(visit['contact_name'].split()) > 1 else "",
@@ -76,13 +89,7 @@ class GHLComcastSync:
             "city": visit['city'] or "Tacoma",
             "state": "WA",
             "postalCode": visit['zip_code'],
-            "customFields": [
-                {"key": "business_name", "value": visit['business_name']},
-                {"key": "zip_code", "value": visit['zip_code']},
-                {"key": "visit_status", "value": visit['visit_status']},
-                {"key": "latitude", "value": str(visit['lat']) if visit['lat'] else ""},
-                {"key": "longitude", "value": str(visit['lng']) if visit['lng'] else ""},
-            ],
+            "customFields": custom_fields,
             "tags": ["comcast-prospect", f"zip-{visit['zip_code']}", visit['visit_status']]
         }
         

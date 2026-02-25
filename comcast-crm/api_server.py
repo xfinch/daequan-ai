@@ -98,7 +98,7 @@ class APIHandler(BaseHTTPRequestHandler):
         cursor.execute("""
             SELECT id, business_name, contact_name, phone, email, 
                    address, zip_code, lat, lng, visit_status, 
-                   visit_date, notes, ghl_contact_id
+                   visit_date, notes, ghl_contact_id, account_id_8524
             FROM business_visits
             WHERE lat IS NOT NULL AND lng IS NOT NULL
             ORDER BY visit_date DESC
@@ -187,7 +187,8 @@ class APIHandler(BaseHTTPRequestHandler):
             status=data.get('status', 'interested'),
             lat=data.get('lat'),
             lng=data.get('lng'),
-            source=data.get('source', 'api')
+            source=data.get('source', 'api'),
+            account_id_8524=data.get('account_id_8524', '')
         )
         
         self.send_json({"id": visit_id, "status": "created"}, 201)

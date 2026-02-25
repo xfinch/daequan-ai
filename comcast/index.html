@@ -783,6 +783,12 @@
                         <span class="status-badge ${statusClass}">${statusLabel}</span>
                         ${needsUpdate ? `<span class="status-badge status-needs-update">⚠️ Needs Update</span>` : ''}
                         
+                        ${visit.account_id_8524 ? `
+                        <div class="info-row" style="margin-top: 10px; background: #e3f2fd; padding: 8px; border-radius: 6px;">
+                            <div class="label" style="color: #1976d2;">📋 Account ID (8524)</div>
+                            <div class="value" style="font-weight: 600; color: #1976d2;">${escapeHtml(visit.account_id_8524)}</div>
+                        </div>` : ''}
+                        
                         ${visit.ghlUrl ? `
                         <a href="${visit.ghlUrl}" target="_blank" class="ghl-btn" style="display: block; text-align: center; margin: 12px 0; text-decoration: none; background: #dc3545; color: white; padding: 10px; border-radius: 6px; font-weight: 600;">
                             ✏️ Edit Notes in GHL
@@ -1085,6 +1091,7 @@
                 address: document.getElementById('address').value,
                 city: document.getElementById('city').value,
                 zip: document.getElementById('zip').value,
+                account_id_8524: document.getElementById('accountId8524').value,
                 lat: parseFloat(document.getElementById('modalLat').value),
                 lng: parseFloat(document.getElementById('modalLng').value),
                 status: document.getElementById('status').value,
@@ -1306,6 +1313,11 @@
             <div class="form-group">
                 <label>ZIP Code *</label>
                 <input type="text" id="zip" placeholder="98404">
+            </div>
+
+            <div class="form-group">
+                <label>📋 Account ID (8524)</label>
+                <input type="text" id="accountId8524" placeholder="e.g., 8524-12345">
             </div>
 
             <div class="form-group">
