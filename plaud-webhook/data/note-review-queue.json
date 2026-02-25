@@ -12,5 +12,19 @@
     "assignedTo": null,
     "assignedAt": null,
     "createdAt": "2026-02-22T20:52:39.299Z"
+  },
+  {
+    "id": "review-1772029955770-122o9",
+    "hash": "p-8335b8b",
+    "recordingId": "test_c_4",
+    "timestamp": "2026-02-25T14:32:35Z",
+    "summary": "Federal Way Auto Repair gigabit interest",
+    "transcription": "COMCAST Visited Federal Way Auto Repair, manager wants gigabit quote",
+    "reason": "no_match",
+    "status": "pending",
+    "suggestedMatches": [],
+    "assignedTo": null,
+    "assignedAt": null,
+    "createdAt": "2026-02-25T14:32:35.770Z"
   }
 ]

@@ -224,6 +224,9 @@ async function createComcastFollowUpTask(contactId, data, packageInfo) {
   const GHL_TOKEN = process.env.GHL_TTL_TOKEN;
   const GHL_LOCATION_ID = process.env.GHL_TTL_LOCATION_ID || 'mhvGjZGZPcsK3vgjEDwI';
   
+  // Xavier's GHL user ID for assignment
+  const ASSIGNED_TO = '5Po8DTZAY9j4yeh9LGwN'; // Xavier's GHL user ID
+  
   const priority = packageInfo.interestLevel === 'Hot Lead' ? 'high' : 'medium';
   const dueDate = new Date();
   dueDate.setDate(dueDate.getDate() + (priority === 'high' ? 1 : 3));
@@ -241,7 +244,7 @@ ${data.summary || 'N/A'}
 ${data.transcription ? data.transcription.substring(0, 1000) + '...' : 'N/A'}`;
   
   try {
-    const response = await fetch(`${GHL_BASE_URL}/tasks`, {
+    const response = await fetch(`${GHL_BASE_URL}/contacts/${contactId}/tasks`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${GHL_TOKEN}`,
@@ -249,22 +252,22 @@ ${data.transcription ? data.transcription.substring(0, 1000) + '...' : 'N/A'}`;
         'Version': '2021-07-28'
       },
       body: JSON.stringify({
-        contactId: contactId,
         title: taskTitle,
-        description: taskDesc,
+        body: taskDesc,
         dueDate: dueDate.toISOString().split('T')[0],
-        locationId: GHL_LOCATION_ID,
-        status: 'incomplete'
+        assignedTo: ASSIGNED_TO,
+        completed: false
       })
     });
     
     if (!response.ok) {
-      throw new Error(`GHL task creation failed: ${response.status}`);
+      const errorText = await response.text();
+      throw new Error(`GHL task creation failed: ${response.status} - ${errorText}`);
     }
     
     const task = await response.json();
     console.log('✅ Follow-up task created');
-    return { success: true, taskId: task.id };
+    return { success: true, taskId: task.task?.id || task.id };
     
   } catch (error) {
     console.error('❌ GHL task error:', error.message);

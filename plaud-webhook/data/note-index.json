@@ -25,5 +25,122 @@
     "filePath": "/Users/xfinch/.openclaw/workspace/memory/comcast/2026-02-22.md",
     "summary": "COMCAST Unknown Business XYZ gigabit interest",
     "createdAt": "2026-02-22T20:52:39.300Z"
+  },
+  "p-f340b2a": {
+    "hash": "p-f340b2a",
+    "recordingId": "test_001_$(date +%s)",
+    "timestamp": "2026-02-25T14:30:53Z",
+    "bucket": "PERSONAL",
+    "filePath": "/Users/xfinch/.openclaw/workspace/memory/personal/2026-02-25.md",
+    "summary": "Call mom about dinner plans",
+    "createdAt": "2026-02-25T14:30:54.004Z"
+  },
+  "p-41f9da8": {
+    "hash": "p-41f9da8",
+    "recordingId": "test_ttl_1772029858",
+    "timestamp": "2026-02-25T14:30:58Z",
+    "bucket": "TTL",
+    "filePath": "/Users/xfinch/.openclaw/workspace/memory/ttl/2026-02-25.md",
+    "summary": "Follow up with Trina on email campaign launch",
+    "createdAt": "2026-02-25T14:30:59.337Z"
+  },
+  "p-9517ea9": {
+    "hash": "p-9517ea9",
+    "recordingId": "test_comcast_1772029864",
+    "timestamp": "2026-02-25T14:31:04Z",
+    "bucket": "TTL",
+    "filePath": "/Users/xfinch/.openclaw/workspace/memory/ttl/2026-02-25.md",
+    "summary": "Federal Way Auto Repair interested in gigabit internet",
+    "createdAt": "2026-02-25T14:31:04.570Z"
+  },
+  "p-34006b5": {
+    "hash": "p-34006b5",
+    "recordingId": "test_comcast2_1772029882",
+    "timestamp": "2026-02-25T14:31:22Z",
+    "bucket": "TTL",
+    "filePath": "/Users/xfinch/.openclaw/workspace/memory/ttl/2026-02-25.md",
+    "summary": "Tonys Pizza triple play hot lead",
+    "createdAt": "2026-02-25T14:31:22.681Z"
+  },
+  "p-69eec90": {
+    "hash": "p-69eec90",
+    "recordingId": "test_personal_3",
+    "timestamp": "2026-02-25T14:32:03Z",
+    "bucket": "PERSONAL",
+    "filePath": "/Users/xfinch/.openclaw/workspace/memory/personal/2026-02-25.md",
+    "summary": "Call mom about dinner",
+    "createdAt": "2026-02-25T14:32:03.772Z"
+  },
+  "p-908ea68": {
+    "hash": "p-908ea68",
+    "recordingId": "test_comcast_3",
+    "timestamp": "2026-02-25T14:32:08Z",
+    "bucket": "TTL",
+    "filePath": "/Users/xfinch/.openclaw/workspace/memory/ttl/2026-02-25.md",
+    "summary": "Tonys Pizza triple play hot lead",
+    "createdAt": "2026-02-25T14:32:08.873Z"
+  },
+  "p-7fa173c": {
+    "hash": "p-7fa173c",
+    "recordingId": "test_p_4",
+    "timestamp": "2026-02-25T14:32:34Z",
+    "bucket": "PERSONAL",
+    "filePath": "/Users/xfinch/.openclaw/workspace/memory/personal/2026-02-25.md",
+    "summary": "Call dentist",
+    "createdAt": "2026-02-25T14:32:35.225Z"
+  },
+  "p-8335b8b": {
+    "hash": "p-8335b8b",
+    "recordingId": "test_c_4",
+    "timestamp": "2026-02-25T14:32:35Z",
+    "bucket": "COMCAST",
+    "filePath": "/Users/xfinch/.openclaw/workspace/memory/comcast/2026-02-25.md",
+    "summary": "Federal Way Auto Repair gigabit interest",
+    "createdAt": "2026-02-25T14:32:35.770Z"
+  },
+  "p-50168b1": {
+    "hash": "p-50168b1",
+    "recordingId": "test_t_4",
+    "timestamp": "2026-02-25T14:32:35Z",
+    "bucket": "TTL",
+    "filePath": "/Users/xfinch/.openclaw/workspace/memory/ttl/2026-02-25.md",
+    "summary": "Kristy lead filtering follow up",
+    "createdAt": "2026-02-25T14:32:36.444Z"
+  },
+  "p-10630e4": {
+    "hash": "p-10630e4",
+    "recordingId": "test_ttl_token_1772030703",
+    "timestamp": "2026-02-25T14:45:03Z",
+    "bucket": "TTL",
+    "filePath": "/Users/xfinch/.openclaw/workspace/memory/ttl/2026-02-25.md",
+    "summary": "Trina cold email launch follow up",
+    "createdAt": "2026-02-25T14:45:04.314Z"
+  },
+  "p-0c70584": {
+    "hash": "p-0c70584",
+    "recordingId": "test_ttl_fresh_1772030739",
+    "timestamp": "2026-02-25T14:45:39Z",
+    "bucket": "TTL",
+    "filePath": "/Users/xfinch/.openclaw/workspace/memory/ttl/2026-02-25.md",
+    "summary": "Trina cold email launch follow up",
+    "createdAt": "2026-02-25T14:45:40.810Z"
+  },
+  "p-fa6432c": {
+    "hash": "p-fa6432c",
+    "recordingId": "test_ttl_task_1772031334",
+    "timestamp": "2026-02-25T14:55:34Z",
+    "bucket": "TTL",
+    "filePath": "/Users/xfinch/.openclaw/workspace/memory/ttl/2026-02-25.md",
+    "summary": "Trina cold email launch follow up - urgent",
+    "createdAt": "2026-02-25T14:55:36.045Z"
+  },
+  "p-50b3b65": {
+    "hash": "p-50b3b65",
+    "recordingId": "test_ttl_task2_1772031378",
+    "timestamp": "2026-02-25T14:56:18Z",
+    "bucket": "TTL",
+    "filePath": "/Users/xfinch/.openclaw/workspace/memory/ttl/2026-02-25.md",
+    "summary": "Trina cold email launch follow up",
+    "createdAt": "2026-02-25T14:56:22.522Z"
   }
 }

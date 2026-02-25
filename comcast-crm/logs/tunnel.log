@@ -40,3 +40,11 @@
 2026-02-22T23:15:43Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveP256] connIndex=0 event=0 ip=198.41.200.53
 2026-02-22T23:15:43Z INF Registered tunnel connection connIndex=0 connection=ce6b8d6d-6ec2-495c-86b3-0549d892d6bc event=0 ip=198.41.200.53 location=sea09 protocol=quic
 2026-02-23T23:15:25Z ERR update check failed error="no release found"
+2026-02-24T23:15:26Z ERR update check failed error="no release found"
+2026-02-25T14:40:09Z ERR failed to run the datagram handler error="Application error 0x0 (remote)" connIndex=0 event=0 ip=198.41.200.53
+2026-02-25T14:40:09Z ERR failed to accept incoming stream requests error="failed to accept QUIC stream: Application error 0x0 (remote)" connIndex=0 event=0 ip=198.41.200.53
+2026-02-25T14:40:09Z ERR failed to serve tunnel connection error="datagram manager encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.53
+2026-02-25T14:40:09Z ERR Serve tunnel error error="datagram manager encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.53
+2026-02-25T14:40:09Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.200.53
+2026-02-25T14:40:11Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveP256] connIndex=0 event=0 ip=198.41.200.53
+2026-02-25T14:40:11Z INF Registered tunnel connection connIndex=0 connection=4de18d4e-6a29-4939-b1df-4d7541b88ebb event=0 ip=198.41.200.53 location=sea09 protocol=quic

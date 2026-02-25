@@ -195,8 +195,11 @@ ${data.transcription ? data.transcription.substring(0, 2000) + (data.transcripti
 async function createGHLTask(contactId, title, description, dueDate) {
   console.log(`📋 Creating GHL task: "${title}"`);
   
+  // Xavier's GHL user ID for assignment
+  const ASSIGNED_TO = '5Po8DTZAY9j4yeh9LGwN'; // Xavier's GHL user ID
+  
   try {
-    const response = await fetch(`${GHL_BASE_URL}/tasks`, {
+    const response = await fetch(`${GHL_BASE_URL}/contacts/${contactId}/tasks`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${GHL_TOKEN}`,
@@ -204,22 +207,22 @@ async function createGHLTask(contactId, title, description, dueDate) {
         'Version': '2021-07-28'
       },
       body: JSON.stringify({
-        contactId: contactId,
         title: title,
-        description: description,
+        body: description,
         dueDate: dueDate,
-        locationId: GHL_LOCATION_ID,
-        status: 'incomplete'
+        assignedTo: ASSIGNED_TO,
+        completed: false
       })
     });
     
     if (!response.ok) {
-      throw new Error(`GHL create task failed: ${response.status}`);
+      const errorText = await response.text();
+      throw new Error(`GHL create task failed: ${response.status} - ${errorText}`);
     }
     
     const task = await response.json();
     console.log('✅ GHL task created');
-    return { success: true, taskId: task.id };
+    return { success: true, taskId: task.task?.id || task.id };
     
   } catch (error) {
     console.error('❌ GHL create task error:', error.message);
