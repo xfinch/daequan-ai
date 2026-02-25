@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comcast Visit Planning | Route Optimization</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+        
+        .nav {
+            background: #12121a;
+            padding: 16px 30px;
+            border-bottom: 1px solid #27272a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav h1 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #6366f1;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        .nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: #e2e8f0;
+        }
+        
+        .layout {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            height: calc(100vh - 65px);
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            background: #1e293b;
+            border-right: 1px solid #334155;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 24px;
+        }
+        
+        .sidebar-section h3 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #94a3b8;
+            margin-bottom: 12px;
+        }
+        
+        /* Prospect Pool */
+        .prospect-pool {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .prospect-item {
+            padding: 12px;
+            border-bottom: 1px solid #334155;
+            cursor: grab;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .prospect-item:hover {
+            background: #252f47;
+        }
+        
+        .prospect-item.dragging {
+            opacity: 0.5;
+        }
+        
+        .prospect-item .drag-handle {
+            color: #475569;
+            cursor: grab;
+        }
+        
+        .prospect-item .info {
+            flex: 1;
+        }
+        
+        .prospect-item .name {
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .prospect-item .address {
+            font-size: 11px;
+            color: #94a3b8;
+        }
+        
+        .prospect-item .badge {
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        
+        .badge-high { background: #fef2f2; color: #dc2626; }
+        .badge-medium { background: #fefce8; color: #ca8a04; }
+        .badge-low { background: #f0fdf4; color: #16a34a; }
+        
+        /* Visit Days */
+        .visit-days {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .day-card {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 12px;
+        }
+        
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .day-title {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .day-stats {
+            font-size: 11px;
+            color: #94a3b8;
+        }
+        
+        .day-stops {
+            min-height: 60px;
+            background: #1e293b;
+            border: 2px dashed #475569;
+            border-radius: 6px;
+            padding: 8px;
+        }
+        
+        .day-stops.drag-over {
+            border-color: #6366f1;
+            background: #1e1b4b;
+        }
+        
+        .stop-item {
+            background: #334155;
+            border-radius: 4px;
+            padding: 8px 10px;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+        
+        .stop-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .stop-number {
+            width: 20px;
+            height: 20px;
+            background: #6366f1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        
+        .stop-info {
+            flex: 1;
+            margin: 0 8px;
+        }
+        
+        .stop-name {
+            font-weight: 500;
+        }
+        
+        .stop-address {
+            font-size: 10px;
+            color: #94a3b8;
+        }
+        
+        .stop-remove {
+            color: #ef4444;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        /* Controls */
+        .controls {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        
+        .btn {
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            flex: 1;
+        }
+        
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+        
+        .btn-secondary {
+            background: #334155;
+            color: #e2e8f0;
+        }
+        
+        .btn-secondary:hover {
+            background: #475569;
+        }
+        
+        /* Map */
+        .map-container {
+            position: relative;
+        }
+        
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+        
+        /* Route Info Overlay */
+        .route-info {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 16px;
+            width: 280px;
+            z-index: 1000;
+        }
+        
+        .route-info h4 {
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        
+        .route-stat {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        
+        .route-stat .label {
+            color: #94a3b8;
+        }
+        
+        .route-stat .value {
+            font-weight: 600;
+        }
+        
+        /* Legend */
+        .legend {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 12px 16px;
+            z-index: 1000;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+        
+        .legend-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .dot-pool { background: #94a3b8; }
+        .dot-mon { background: #6366f1; }
+        .dot-tue { background: #22c55e; }
+        .dot-wed { background: #f59e0b; }
+        .dot-thu { background: #ec4899; }
+        .dot-fri { background: #8b5cf6; }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #94a3b8;
+        }
+        
+        .empty-state-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+        
+        .empty-state p {
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+        
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        
+        .modal {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 24px;
+            width: 400px;
+        }
+        
+        .modal h3 {
+            margin-bottom: 16px;
+        }
+        
+        .modal p {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <h1>🗓️ Comcast Visit Planning</h1>
+        <div class="nav-links">
+            <a href="/comcast">← Territory Map</a>
+            <a href="/comcast/research">Research</a>
+            <a href="#" class="active">Visit Planning</a>
+        </div>
+    </nav>
+    
+    <div class="layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Prospect Pool -->
+            <div class="sidebar-section">
+                <h3>📋 Prospect Pool</h3>
+                <div class="prospect-pool" id="prospectPool">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📊</div>
+                        <p>No prospects loaded</p>
+                        <button class="btn btn-primary" onclick="loadFromResearch()">Load from Research</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Visit Days -->
+            <div class="sidebar-section">
+                <h3>📅 Weekly Route</h3>
+                <div class="visit-days">
+                    <div class="day-card">
+                        <div class="day-header">
+                            <span class="day-title">Monday</span>
+                            <span class="day-stats" id="monStats">0 stops</span>
+                        </div>
+                        <div class="day-stops" id="monStops" ondrop="drop(event, 'mon')" ondragover="allowDrop(event)" ondragleave="dragLeave(event)">
+                            <div class="empty-state" style="padding: 20px; font-size: 11px;">
+                                Drag prospects here
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="day-card">
+                        <div class="day-header">
+                            <span class="day-title">Tuesday</span>
+                            <span class="day-stats" id="tueStats">0 stops</span>
+                        </div>
+                        <div class="day-stops" id="tueStops" ondrop="drop(event, 'tue')" ondragover="allowDrop(event)" ondragleave="dragLeave(event)">
+                            <div class="empty-state" style="padding: 20px; font-size: 11px;">
+                                Drag prospects here
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="day-card">
+                        <div class="day-header">
+                            <span class="day-title">Wednesday</span>
+                            <span class="day-stats" id="wedStats">0 stops</span>
+                        </div>
+                        <div class="day-stops" id="wedStops" ondrop="drop(event, 'wed')" ondragover="allowDrop(event)" ondragleave="dragLeave(event)">
+                            <div class="empty-state" style="padding: 20px; font-size: 11px;">
+                                Drag prospects here
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="day-card">
+                        <div class="day-header">
+                            <span class="day-title">Thursday</span>
+                            <span class="day-stats" id="thuStats">0 stops</span>
+                        </div>
+                        <div class="day-stops" id="thuStops" ondrop="drop(event, 'thu')" ondragover="allowDrop(event)" ondragleave="dragLeave(event)">
+                            <div class="empty-state" style="padding: 20px; font-size: 11px;">
+                                Drag prospects here
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="day-card">
+                        <div class="day-header">
+                            <span class="day-title">Friday</span>
+                            <span class="day-stats" id="friStats">0 stops</span>
+                        </div>
+                        <div class="day-stops" id="friStops" ondrop="drop(event, 'fri')" ondragover="allowDrop(event)" ondragleave="dragLeave(event)">
+                            <div class="empty-state" style="padding: 20px; font-size: 11px;">
+                                Drag prospects here
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Controls -->
+            <div class="controls">
+                <button class="btn btn-secondary" onclick="clearAll()">Clear All</button>
+                <button class="btn btn-primary" onclick="pushToMap()">Push to Map →</button>
+            </div>
+        </div>
+        
+        <!-- Map -->
+        <div class="map-container">
+            <div id="map"></div>
+            
+            <!-- Route Info -->
+            <div class="route-info">
+                <h4>📊 Route Summary</h4>
+                <div class="route-stat">
+                    <span class="label">Total Stops:</span>
+                    <span class="value" id="totalStops">0</span>
+                </div>
+                <div class="route-stat">
+                    <span class="label">Est. Drive Time:</span>
+                    <span class="value" id="estDriveTime">--</span>
+                </div>
+                <div class="route-stat">
+                    <span class="label">High Priority:</span>
+                    <span class="value" id="highPriorityCount">0</span>
+                </div>
+                <div class="route-stat">
+                    <span class="label">Coverage:</span>
+                    <span class="value" id="coverage">--</span>
+                </div>
+            </div>
+            
+            <!-- Legend -->
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-dot dot-pool"></div>
+                    <span>Unassigned</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot dot-mon"></div>
+                    <span>Monday</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot dot-tue"></div>
+                    <span>Tuesday</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot dot-wed"></div>
+                    <span>Wednesday</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot dot-thu"></div>
+                    <span>Thursday</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot dot-fri"></div>
+                    <span>Friday</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // State management
+        let prospects = [];
+        let assignments = {
+            mon: [],
+            tue: [],
+            wed: [],
+            thu: [],
+            fri: []
+        };
+        let map;
+        let markers = {};
+        let routeLines = {};
+        
+        const DAY_COLORS = {
+            pool: '#94a3b8',
+            mon: '#6366f1',
+            tue: '#22c55e',
+            wed: '#f59e0b',
+            thu: '#ec4899',
+            fri: '#8b5cf6'
+        };
+        
+        // Initialize map
+        function initMap() {
+            map = L.map('map').setView([47.2529, -122.4443], 11);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+        }
+        
+        // Load prospects from research page
+        function loadFromResearch() {
+            const stored = localStorage.getItem('comcast_prospects');
+            if (stored) {
+                prospects = JSON.parse(stored);
+                renderProspectPool();
+                updateMap();
+                updateStats();
+            } else {
+                alert('No prospects found. Go to Research page and select prospects first.');
+            }
+        }
+        
+        // Render prospect pool
+        function renderProspectPool() {
+            const pool = document.getElementById('prospectPool');
+            
+            // Get unassigned prospects
+            const assignedIds = new Set([
+                ...assignments.mon,
+                ...assignments.tue,
+                ...assignments.wed,
+                ...assignments.thu,
+                ...assignments.fri
+            ]);
+            
+            const unassigned = prospects.filter(p => !assignedIds.has(p.id));
+            
+            if (unassigned.length === 0) {
+                pool.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">✅</div>
+                        <p>All prospects assigned</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            pool.innerHTML = unassigned.map(p => `
+                <div class="prospect-item" draggable="true" ondragstart="drag(event, '${p.id}')" data-id="${p.id}">
+                    <span class="drag-handle">⋮⋮</span>
+                    <div class="info">
+                        <div class="name">${p.businessName}</div>
+                        <div class="address">${p.city}, ${p.zip}</div>
+                    </div>
+                    <span class="badge badge-${p.priority}">${p.priority}</span>
+                </div>
+            `).join('');
+        }
+        
+        // Render day stops
+        function renderDayStops(day) {
+            const container = document.getElementById(`${day}Stops`);
+            const dayAssignments = assignments[day];
+            
+            if (dayAssignments.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state" style="padding: 20px; font-size: 11px;">
+                        Drag prospects here
+                    </div>
+                `;
+            } else {
+                container.innerHTML = dayAssignments.map((id, index) => {
+                    const p = prospects.find(prospect => prospect.id === id);
+                    if (!p) return '';
+                    return `
+                        <div class="stop-item">
+                            <div class="stop-number">${index + 1}</div>
+                            <div class="stop-info">
+                                <div class="stop-name">${p.businessName}</div>
+                                <div class="stop-address">${p.city}</div>
+                            </div>
+                            <span class="stop-remove" onclick="removeFromDay('${day}', '${id}')">×</span>
+                        </div>
+                    `;
+                }).join('');
+            }
+            
+            // Update stats
+            document.getElementById(`${day}Stats`).textContent = `${dayAssignments.length} stops`;
+        }
+        
+        // Drag and drop handlers
+        function drag(ev, prospectId) {
+            ev.dataTransfer.setData("prospectId", prospectId);
+            ev.target.classList.add('dragging');
+        }
+        
+        function allowDrop(ev) {
+            ev.preventDefault();
+            ev.currentTarget.classList.add('drag-over');
+        }
+        
+        function dragLeave(ev) {
+            ev.currentTarget.classList.remove('drag-over');
+        }
+        
+        function drop(ev, day) {
+            ev.preventDefault();
+            ev.currentTarget.classList.remove('drag-over');
+            
+            const prospectId = ev.dataTransfer.getData("prospectId");
+            
+            // Remove from other days if assigned
+            Object.keys(assignments).forEach(d => {
+                assignments[d] = assignments[d].filter(id => id !== prospectId);
+                renderDayStops(d);
+            });
+            
+            // Add to new day
+            if (!assignments[day].includes(prospectId)) {
+                assignments[day].push(prospectId);
+                renderDayStops(day);
+            }
+            
+            renderProspectPool();
+            updateMap();
+            updateStats();
+            
+            // Remove dragging class
+            document.querySelectorAll('.prospect-item.dragging').forEach(el => {
+                el.classList.remove('dragging');
+            });
+        }
+        
+        // Remove from day
+        function removeFromDay(day, prospectId) {
+            assignments[day] = assignments[day].filter(id => id !== prospectId);
+            renderDayStops(day);
+            renderProspectPool();
+            updateMap();
+            updateStats();
+        }
+        
+        // Update map
+        function updateMap() {
+            // Clear existing markers and routes
+            Object.values(markers).forEach(m => map.removeLayer(m));
+            Object.values(routeLines).forEach(l => map.removeLayer(l));
+            markers = {};
+            routeLines = {};
+            
+            // Add markers for all assigned prospects
+            Object.keys(assignments).forEach(day => {
+                const dayColor = DAY_COLORS[day];
+                const dayAssignments = assignments[day];
+                
+                dayAssignments.forEach((id, index) => {
+                    const p = prospects.find(prospect => prospect.id === id);
+                    if (!p || !p.lat || !p.lng) return;
+                    
+                    // Create custom marker
+                    const marker = L.circleMarker([p.lat, p.lng], {
+                        radius: 10,
+                        fillColor: dayColor,
+                        color: '#fff',
+                        weight: 2,
+                        opacity: 1,
+                        fillOpacity: 0.9
+                    }).addTo(map);
+                    
+                    marker.bindPopup(`
+                        <strong>${p.businessName}</strong><br>
+                        ${p.address}<br>
+                        <span style="color: ${dayColor}">⬤</span> ${day.toUpperCase()} - Stop #${index + 1}
+                    `);
+                    
+                    markers[`${day}-${id}`] = marker;
+                });
+            });
+            
+            // Draw route lines for each day
+            Object.keys(assignments).forEach(day => {
+                const dayColor = DAY_COLORS[day];
+                const dayAssignments = assignments[day];
+                const latlngs = [];
+                
+                dayAssignments.forEach(id => {
+                    const p = prospects.find(prospect => prospect.id === id);
+                    if (p && p.lat && p.lng) {
+                        latlngs.push([p.lat, p.lng]);
+                    }
+                });
+                
+                if (latlngs.length > 1) {
+                    const polyline = L.polyline(latlngs, {
+                        color: dayColor,
+                        weight: 3,
+                        opacity: 0.7,
+                        dashArray: '10, 10'
+                    }).addTo(map);
+                    routeLines[day] = polyline;
+                }
+            });
+        }
+        
+        // Update stats
+        function updateStats() {
+            const totalStops = Object.values(assignments).reduce((sum, day) => sum + day.length, 0);
+            document.getElementById('totalStops').textContent = totalStops;
+            
+            // Count high priority
+            const assignedIds = new Set([
+                ...assignments.mon,
+                ...assignments.tue,
+                ...assignments.wed,
+                ...assignments.thu,
+                ...assignments.fri
+            ]);
+            
+            let highPriority = 0;
+            assignedIds.forEach(id => {
+                const p = prospects.find(prospect => prospect.id === id);
+                if (p && p.priority === 'high') highPriority++;
+            });
+            document.getElementById('highPriorityCount').textContent = highPriority;
+            
+            // Estimate drive time (rough estimate: 5 mins per stop + 15 mins between)
+            const estMinutes = totalStops * 20;
+            const hours = Math.floor(estMinutes / 60);
+            const mins = estMinutes % 60;
+            document.getElementById('estDriveTime').textContent = hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
+            
+            // Coverage (unique cities)
+            const cities = new Set();
+            assignedIds.forEach(id => {
+                const p = prospects.find(prospect => prospect.id === id);
+                if (p) cities.add(p.city);
+            });
+            document.getElementById('coverage').textContent = cities.size > 0 ? `${cities.size} cities` : '--';
+        }
+        
+        // Clear all
+        function clearAll() {
+            if (confirm('Clear all assignments?')) {
+                assignments = { mon: [], tue: [], wed: [], thu: [], fri: [] };
+                Object.keys(assignments).forEach(day => renderDayStops(day));
+                renderProspectPool();
+                updateMap();
+                updateStats();
+            }
+        }
+        
+        // Push to map
+        function pushToMap() {
+            const totalStops = Object.values(assignments).reduce((sum, day) => sum + day.length, 0);
+            if (totalStops === 0) {
+                alert('No stops assigned. Drag prospects to days first.');
+                return;
+            }
+            
+            // Store visit plan
+            const visitPlan = {
+                prospects: prospects,
+                assignments: assignments,
+                createdAt: new Date().toISOString()
+            };
+            localStorage.setItem('comcast_visit_plan', JSON.stringify(visitPlan));
+            
+            // Open map with visit plan
+            window.open('/comcast?mode=visit-plan', '_blank');
+        }
+        
+        // Auto-load on page open if prospects exist
+        window.onload = function() {
+            initMap();
+            loadFromResearch();
+        };
+    </script>
+</body>
+</html>
