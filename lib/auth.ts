@@ -6,15 +6,25 @@ import mongoose from 'mongoose';
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID!;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET!;
 
-// Connect to MongoDB for adapter
+// Lazy MongoDB client for adapter
+let mongoClientPromise: Promise<any> | null = null;
+
 async function getMongoClient() {
-  const uri = process.env.MONGODB_URI || process.env.MONGO_URL || process.env.MONGO_PUBLIC_URL || process.env.DATABASE_URL;
-  if (!uri) throw new Error('No MongoDB URI configured');
-  
-  if (mongoose.connection.readyState === 0) {
-    await mongoose.connect(uri);
+  if (mongoClientPromise) {
+    return mongoClientPromise;
   }
-  return mongoose.connection.getClient();
+  
+  mongoClientPromise = (async () => {
+    const uri = process.env.MONGODB_URI || process.env.MONGO_URL || process.env.MONGO_PUBLIC_URL || process.env.DATABASE_URL;
+    if (!uri) throw new Error('No MongoDB URI configured');
+    
+    if (mongoose.connection.readyState === 0) {
+      await mongoose.connect(uri);
+    }
+    return mongoose.connection.getClient();
+  })();
+  
+  return mongoClientPromise;
 }
 
 // Admin emails
@@ -27,7 +37,7 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
-  adapter: MongoDBAdapter(getMongoClient() as any),
+  adapter: MongoDBAdapter(getMongoClient as any),
   providers: [
     Google({
       clientId: GOOGLE_CLIENT_ID,
