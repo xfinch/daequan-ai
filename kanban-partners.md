@@ -16,6 +16,7 @@ Track potential partners from initial contact through signed affiliate agreement
 | Partner | Business | Contact | Source | Notes | Date Added |
 |---------|----------|---------|--------|-------|------------|
 | Anya Evans | Proctor Mercantile | info@proctormercantile.com | Shawn (MQF) | Property owner, potential partner LATER. Currently a prospect for services. Controls multiple Proctor businesses. | 2026-02-26 |
+| **Vance Richardson** | **Logic Staffing** | **vrichardson@logicstaffing.com** | **Direct** | **⭐ REFERRAL PARTNER. Former Comcast BAE. Connects IT pros who need Comcast contacts. Trevor (old Comcast contact) left - opening exists.** | **2026-02-26** |
 
 ### 2. 📧 Outreach Sent
 *Initial contact made, awaiting response*
@@ -86,10 +87,44 @@ Track who referred whom — this becomes your partner pipeline.
 
 | Metric | Count |
 |--------|-------|
+| Partner Prospects | 1 (Vance Richardson) |
 | Prospects with Partner Potential | 1 (Anya Evans) |
 | Active Referral Partners | 0 |
 | Proposals Out | 0 |
 | Signed Partners | 0 |
+
+---
+
+## Partner Profile: Vance Richardson ⭐ FIRST PARTNER
+
+**Business:** Logic Staffing  
+**Contact:** Vance Richardson (Workforce Solutions Advisor)  
+**Address:** 5814 Graham Ave, Suite 200, Sumner, WA 98390  
+**Phone:** 253-863-1296 (Office) / 253-256-9794 (Direct)  
+**Email:** vrichardson@logicstaffing.com  
+
+**Current Status:** 🎯 **Active Partner Prospect** (In Prospecting)  
+**Partner Type:** Referral Source  
+
+**Why He's Strategic:**
+- **Former Comcast Business Account Executive** — knows the business, knows the value
+- **IT Professional Network** — in contact with IT pros daily who need Comcast
+- **Gap in Market** — previous Comcast contact (Trevor) left, opening exists
+- **Warm Referrals** — can send you qualified leads actively looking for service
+
+**The Opportunity:**
+Trevor (previous Comcast rep for this network) left the company. Vance's IT contacts need a new Comcast contact. **You're the natural fit.**
+
+**Separate from Logic Staffing Company:**
+- Logic Staffing (the company) could be a customer → separate prospect
+- Vance is NOT the decision maker for Logic Staffing
+- Vance IS a referral partner for his IT network
+
+**Next Steps:**
+- [ ] Follow up with Vance
+- [ ] Position yourself as the "new Trevor" for his IT network
+- [ ] Ask for 2-3 warm intro calls with IT pros who need Comcast
+- [ ] Keep Logic Staffing company as separate sales prospect (find actual decision maker)
 
 ---
 
