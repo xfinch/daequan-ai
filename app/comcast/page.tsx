@@ -3,7 +3,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import { Navbar } from '@/components/ui/navbar';
-import L from 'leaflet';
 
 // Dynamically import Leaflet components to avoid SSR issues
 const MapContainer = dynamic(() => import('react-leaflet').then(mod => mod.MapContainer), { ssr: false });
@@ -12,6 +11,19 @@ const Marker = dynamic(() => import('react-leaflet').then(mod => mod.Marker), { 
 const Popup = dynamic(() => import('react-leaflet').then(mod => mod.Popup), { ssr: false });
 const Circle = dynamic(() => import('react-leaflet').then(mod => mod.Circle), { ssr: false });
 const useMap = dynamic(() => import('react-leaflet').then(mod => mod.useMap), { ssr: false });
+
+// Hook to get Leaflet instance (client-side only)
+function useLeaflet() {
+  const [leaflet, setLeaflet] = useState<typeof import('leaflet') | null>(null);
+  
+  useEffect(() => {
+    import('leaflet').then(l => {
+      setLeaflet(l);
+    });
+  }, []);
+  
+  return leaflet;
+}
 
 // Import Leaflet CSS only on client
 if (typeof window !== 'undefined') {
@@ -138,6 +150,7 @@ export default function ComcastMapPage() {
   const [loading, setLoading] = useState(true);
   const [selectedZip, setSelectedZip] = useState<string | null>(null);
   const [center, setCenter] = useState<[number, number]>([47.2529, -122.4443]);
+  const L = useLeaflet();
 
   useEffect(() => {
     fetchVisits();
@@ -240,7 +253,7 @@ export default function ComcastMapPage() {
               <MapUpdater center={center} />
               
               {/* Territory labels */}
-              {territories.map(t => (
+              {L && territories.map(t => (
                 <Marker
                   key={t.zip}
                   position={[t.lat, t.lng]}
@@ -278,7 +291,7 @@ export default function ComcastMapPage() {
               ))}
               
               {/* Visit markers */}
-              {filteredVisits.map(visit => {
+              {L && filteredVisits.map(visit => {
                 if (!visit.lat || !visit.lng) return null;
                 const color = statusColors[visit.status] || '#666';
                 
