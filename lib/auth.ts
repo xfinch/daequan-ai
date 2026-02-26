@@ -67,9 +67,20 @@ export const {
       (user as any).role = role;
       return true;
     },
+    async redirect({ url, baseUrl }) {
+      // Ensure redirects always go to valid pages
+      if (url.startsWith('/')) {
+        return `${baseUrl}${url}`;
+      }
+      if (url.startsWith(baseUrl)) {
+        return url;
+      }
+      return baseUrl;
+    },
   },
   pages: {
     signIn: '/login',
+    signOut: '/',
   },
 });
 
