@@ -1,43 +1,16 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
-import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
 import { Navbar } from '@/components/ui/navbar';
 
-// Dynamically import Leaflet components to avoid SSR issues
-const MapContainer = dynamic(() => import('react-leaflet').then(mod => mod.MapContainer), { ssr: false });
-const TileLayer = dynamic(() => import('react-leaflet').then(mod => mod.TileLayer), { ssr: false });
-const Marker = dynamic(() => import('react-leaflet').then(mod => mod.Marker), { ssr: false });
-const Popup = dynamic(() => import('react-leaflet').then(mod => mod.Popup), { ssr: false });
-const Circle = dynamic(() => import('react-leaflet').then(mod => mod.Circle), { ssr: false });
-const useMap = dynamic(() => import('react-leaflet').then(mod => mod.useMap), { ssr: false });
-
-// Hook to get Leaflet instance (client-side only)
-function useLeaflet() {
-  const [leaflet, setLeaflet] = useState<typeof import('leaflet') | null>(null);
-  
-  useEffect(() => {
-    import('leaflet').then(l => {
-      setLeaflet(l);
-    });
-  }, []);
-  
-  return leaflet;
-}
-
-// Import Leaflet CSS only on client
-if (typeof window !== 'undefined') {
-  import('leaflet/dist/leaflet.css');
-}
-
-// Detect iOS device
+// iOS detection
 function isIOS(): boolean {
   if (typeof window === 'undefined') return false;
   return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 }
 
-// Smart directions button component
+// Smart directions button
 function SmartDirectionsButton({ lat, lng }: { lat: number; lng: number }) {
   const [isApple, setIsApple] = useState(false);
   
@@ -62,7 +35,7 @@ function SmartDirectionsButton({ lat, lng }: { lat: number; lng: number }) {
 }
 
 // Zip code directions button
-function ZipDirectionsButton({ zip, lat, lng }: { zip: string; lat: number; lng: number }) {
+function ZipDirectionsButton({ lat, lng }: { lat: number; lng: number }) {
   const [isApple, setIsApple] = useState(false);
   
   useEffect(() => {
@@ -93,16 +66,11 @@ interface Visit {
   address?: string;
   zip?: string;
   city?: string;
-  state?: string;
-  lat?: number;
-  lng?: number;
   status: string;
   notes?: string;
   ghlUrl?: string;
-  ghlContactId?: string;
   needsUpdate?: boolean;
   missingFields?: string[];
-  createdAt: string;
 }
 
 interface Territory {
@@ -137,12 +105,186 @@ const statusColors: Record<string, string> = {
   'customer': '#8b5cf6',
 };
 
-function MapUpdater({ center }: { center: [number, number] }) {
-  const map = useMap();
+// Map component - dynamically loaded with all dependencies
+function Map({ visits, center }: { visits: Visit[]; center: [number, number] }) {
+  const [leaflet, setLeaflet] = useState<typeof import('leaflet') | null>(null);
+  const [reactLeaflet, setReactLeaflet] = useState<any>(null);
+
   useEffect(() => {
-    map.setView(center, map.getZoom());
-  }, [center, map]);
-  return null;
+    // Import CSS first
+    import('leaflet/dist/leaflet.css');
+    
+    // Then import libraries
+    Promise.all([
+      import('leaflet'),
+      import('react-leaflet')
+    ]).then(([L, RL]) => {
+      setLeaflet(L);
+      setReactLeaflet(RL);
+    });
+  }, []);
+
+  if (!leaflet || !reactLeaflet) {
+    return (
+      <div className="flex items-center justify-center h-full text-muted">
+        Loading map...
+      </div>
+    );
+  }
+
+  const { MapContainer, TileLayer, Marker, Popup, Circle, useMap } = reactLeaflet;
+
+  function MapUpdater({ center }: { center: [number, number] }) {
+    const map = useMap();
+    useEffect(() => {
+      map.setView(center, map.getZoom());
+    }, [center, map]);
+    return null;
+  }
+
+  return (
+    <MapContainer
+      center={center}
+      zoom={12}
+      style={{ height: '100%', width: '100%' }}
+    >
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <MapUpdater center={center} />
+      
+      {/* Territory labels */}
+      {territories.map(t => (
+        <Marker
+          key={t.zip}
+          position={[t.lat, t.lng]}
+          icon={leaflet.divIcon({
+            className: 'territory-label',
+            html: `<div style="
+              background: rgba(0,87,184,0.9); 
+              color: white; 
+              padding: 4px 10px; 
+              border-radius: 12px; 
+              font-size: 13px; 
+              font-weight: bold; 
+              border: 2px solid white; 
+              box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            ">${t.zip}</div>`,
+            iconSize: [60, 30],
+            iconAnchor: [30, 15],
+          })}
+        />
+      ))}
+      
+      {/* Territory circles */}
+      {territories.map(t => (
+        <Circle
+          key={`circle-${t.zip}`}
+          center={[t.lat, t.lng]}
+          radius={2000}
+          pathOptions={{
+            color: '#0057b8',
+            fillColor: '#0057b8',
+            fillOpacity: 0.05,
+            weight: 1,
+          }}
+        />
+      ))}
+      
+      {/* Visit markers */}
+      {visits.map(visit => {
+        if (!visit.lat || !visit.lng) return null;
+        const color = statusColors[visit.status] || '#666';
+        
+        return (
+          <Marker
+            key={visit._id}
+            position={[visit.lat, visit.lng]}
+            icon={leaflet.divIcon({
+              className: 'custom-pin',
+              html: `<div style="
+                width: 20px;
+                height: 20px;
+                background: ${color};
+                border: 2px solid white;
+                border-radius: 50%;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+              "></div>`,
+              iconSize: [20, 20],
+              iconAnchor: [10, 10],
+            })}
+          >
+            <Popup>
+              <div className="min-w-[250px]">
+                <h3 className="font-bold text-lg mb-1">{visit.businessName}</h3>
+                <span className={`inline-block px-2 py-1 rounded text-xs font-semibold ${
+                  visit.status === 'interested' ? 'bg-green-100 text-green-800' :
+                  visit.status === 'follow-up' ? 'bg-yellow-100 text-yellow-800' :
+                  visit.status === 'not-interested' ? 'bg-red-100 text-red-800' :
+                  'bg-blue-100 text-blue-800'
+                }`}>
+                  {visit.status}
+                </span>
+                
+                {visit.needsUpdate && (
+                  <span className="ml-2 inline-block px-2 py-1 rounded text-xs font-semibold bg-orange-100 text-orange-800">
+                    ⚠️ Needs Update
+                  </span>
+                )}
+                
+                {visit.ghlUrl && (
+                  <a 
+                    href={visit.ghlUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block mt-3 py-2 px-4 bg-red-600 text-white text-center rounded font-semibold hover:bg-red-700"
+                  >
+                    ✏️ Edit in GHL
+                  </a>
+                )}
+                
+                {visit.contactName && (
+                  <div className="mt-3">
+                    <div className="text-xs text-gray-500 uppercase">Contact</div>
+                    <div>{visit.contactName}</div>
+                  </div>
+                )}
+                
+                {visit.phone && (
+                  <div className="mt-2">
+                    <div className="text-xs text-gray-500 uppercase">Phone</div>
+                    <div>{visit.phone}</div>
+                  </div>
+                )}
+                
+                <div className="mt-2">
+                  <div className="text-xs text-gray-500 uppercase">Address</div>
+                  <div>{visit.address}, {visit.zip}</div>
+                </div>
+                
+                <div className="mt-3">
+                  <SmartDirectionsButton lat={visit.lat} lng={visit.lng} />
+                </div>
+                
+                {visit.notes && (
+                  <div className="mt-3 p-3 bg-gray-100 rounded text-sm">
+                    {visit.notes}
+                  </div>
+                )}
+                
+                {visit.missingFields && visit.missingFields.length > 0 && (
+                  <div className="mt-3 p-3 bg-yellow-50 border border-yellow-200 rounded text-sm">
+                    <strong>⚠️ Missing:</strong> {visit.missingFields.join(', ')}
+                  </div>
+                )}
+              </div>
+            </Popup>
+          </Marker>
+        );
+      })}
+    </MapContainer>
+  );
 }
 
 export default function ComcastMapPage() {
@@ -150,7 +292,6 @@ export default function ComcastMapPage() {
   const [loading, setLoading] = useState(true);
   const [selectedZip, setSelectedZip] = useState<string | null>(null);
   const [center, setCenter] = useState<[number, number]>([47.2529, -122.4443]);
-  const L = useLeaflet();
 
   useEffect(() => {
     fetchVisits();
@@ -217,8 +358,7 @@ export default function ComcastMapPage() {
                       {count}
                     </div>
                   </button>
-                  {/* Directions button below zip */}
-                  <ZipDirectionsButton zip={t.zip} lat={t.lat} lng={t.lng} />
+                  <ZipDirectionsButton lat={t.lat} lng={t.lng} />
                 </div>
               );
             })}
@@ -241,148 +381,7 @@ export default function ComcastMapPage() {
               Loading map...
             </div>
           ) : (
-            <MapContainer
-              center={center}
-              zoom={12}
-              style={{ height: '100%', width: '100%' }}
-            >
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-              <MapUpdater center={center} />
-              
-              {/* Territory labels */}
-              {L && territories.map(t => (
-                <Marker
-                  key={t.zip}
-                  position={[t.lat, t.lng]}
-                  icon={L.divIcon({
-                    className: 'territory-label',
-                    html: `<div style="
-                      background: rgba(0,87,184,0.9); 
-                      color: white; 
-                      padding: 4px 10px; 
-                      border-radius: 12px; 
-                      font-size: 13px; 
-                      font-weight: bold; 
-                      border: 2px solid white; 
-                      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-                    ">${t.zip}</div>`,
-                    iconSize: [60, 30],
-                    iconAnchor: [30, 15],
-                  })}
-                />
-              ))}
-              
-              {/* Territory circles */}
-              {territories.map(t => (
-                <Circle
-                  key={`circle-${t.zip}`}
-                  center={[t.lat, t.lng]}
-                  radius={2000}
-                  pathOptions={{
-                    color: '#0057b8',
-                    fillColor: '#0057b8',
-                    fillOpacity: 0.05,
-                    weight: 1,
-                  }}
-                />
-              ))}
-              
-              {/* Visit markers */}
-              {L && filteredVisits.map(visit => {
-                if (!visit.lat || !visit.lng) return null;
-                const color = statusColors[visit.status] || '#666';
-                
-                return (
-                  <Marker
-                    key={visit._id}
-                    position={[visit.lat, visit.lng]}
-                    icon={L.divIcon({
-                      className: 'custom-pin',
-                      html: `<div style="
-                        width: 20px;
-                        height: 20px;
-                        background: ${color};
-                        border: 2px solid white;
-                        border-radius: 50%;
-                        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-                      "></div>`,
-                      iconSize: [20, 20],
-                      iconAnchor: [10, 10],
-                    })}
-                  >
-                    <Popup>
-                      <div className="min-w-[250px]">
-                        <h3 className="font-bold text-lg mb-1">{visit.businessName}</h3>
-                        <span className={`inline-block px-2 py-1 rounded text-xs font-semibold ${
-                          visit.status === 'interested' ? 'bg-green-100 text-green-800' :
-                          visit.status === 'follow-up' ? 'bg-yellow-100 text-yellow-800' :
-                          visit.status === 'not-interested' ? 'bg-red-100 text-red-800' :
-                          'bg-blue-100 text-blue-800'
-                        }`}>
-                          {visit.status}
-                        </span>
-                        
-                        {visit.needsUpdate && (
-                          <span className="ml-2 inline-block px-2 py-1 rounded text-xs font-semibold bg-orange-100 text-orange-800">
-                            ⚠️ Needs Update
-                          </span>
-                        )}
-                        
-                        {visit.ghlUrl && (
-                          <a 
-                            href={visit.ghlUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block mt-3 py-2 px-4 bg-red-600 text-white text-center rounded font-semibold hover:bg-red-700"
-                          >
-                            ✏️ Edit in GHL
-                          </a>
-                        )}
-                        
-                        {visit.contactName && (
-                          <div className="mt-3">
-                            <div className="text-xs text-gray-500 uppercase">Contact</div>
-                            <div>{visit.contactName}</div>
-                          </div>
-                        )}
-                        
-                        {visit.phone && (
-                          <div className="mt-2">
-                            <div className="text-xs text-gray-500 uppercase">Phone</div>
-                            <div>{visit.phone}</div>
-                          </div>
-                        )}
-                        
-                        <div className="mt-2">
-                          <div className="text-xs text-gray-500 uppercase">Address</div>
-                          <div>{visit.address}, {visit.zip}</div>
-                        </div>
-                        
-                        {/* 🗺️ SMART MAPS DEEP LINK - Detects iOS/Android */}
-                        <div className="mt-3">
-                          <SmartDirectionsButton lat={visit.lat} lng={visit.lng} />
-                        </div>
-                        
-                        {visit.notes && (
-                          <div className="mt-3 p-3 bg-gray-100 rounded text-sm">
-                            {visit.notes}
-                          </div>
-                        )}
-                        
-                        {visit.missingFields && visit.missingFields.length > 0 && (
-                          <div className="mt-3 p-3 bg-yellow-50 border border-yellow-200 rounded text-sm">
-                            <strong>⚠️ Missing:</strong> {visit.missingFields.join(', ')}
-                          </div>
-                        )}
-                      </div>
-                    </Popup>
-                  </Marker>
-                );
-              })}
-            </MapContainer>
+            <Map visits={filteredVisits} center={center} />
           )}
         </div>
       </div>
