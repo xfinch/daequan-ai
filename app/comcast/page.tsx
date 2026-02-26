@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Navbar } from '@/components/ui/navbar';
 
 // iOS detection
@@ -8,6 +8,18 @@ function isIOS(): boolean {
   if (typeof window === 'undefined') return false;
   return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
+
+// Calculate distance between two points in miles
+function calculateDistance(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 3959; // Earth's radius in miles
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLng/2) * Math.sin(dLng/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return R * c;
 }
 
 // Smart directions button
@@ -71,6 +83,8 @@ interface Visit {
   ghlUrl?: string;
   needsUpdate?: boolean;
   missingFields?: string[];
+  lat?: number;
+  lng?: number;
 }
 
 interface Territory {
@@ -105,16 +119,23 @@ const statusColors: Record<string, string> = {
   'customer': '#8b5cf6',
 };
 
-// Map component - dynamically loaded with all dependencies
-function Map({ visits, center }: { visits: Visit[]; center: [number, number] }) {
+// Map component with geolocation
+function Map({ 
+  visits, 
+  center,
+  userLocation,
+  onLocationUpdate
+}: { 
+  visits: Visit[]; 
+  center: [number, number];
+  userLocation: { lat: number; lng: number } | null;
+  onLocationUpdate: (loc: { lat: number; lng: number }) => void;
+}) {
   const [leaflet, setLeaflet] = useState<typeof import('leaflet') | null>(null);
   const [reactLeaflet, setReactLeaflet] = useState<any>(null);
 
   useEffect(() => {
-    // Import CSS first
     import('leaflet/dist/leaflet.css');
-    
-    // Then import libraries
     Promise.all([
       import('leaflet'),
       import('react-leaflet')
@@ -123,6 +144,26 @@ function Map({ visits, center }: { visits: Visit[]; center: [number, number] }) 
       setReactLeaflet(RL);
     });
   }, []);
+
+  // Watch user's location
+  useEffect(() => {
+    if (!navigator.geolocation) return;
+    
+    const watchId = navigator.geolocation.watchPosition(
+      (position) => {
+        onLocationUpdate({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        });
+      },
+      (error) => {
+        console.log('Geolocation error:', error);
+      },
+      { enableHighAccuracy: true, maximumAge: 30000, timeout: 27000 }
+    );
+    
+    return () => navigator.geolocation.clearWatch(watchId);
+  }, [onLocationUpdate]);
 
   if (!leaflet || !reactLeaflet) {
     return (
@@ -153,6 +194,45 @@ function Map({ visits, center }: { visits: Visit[]; center: [number, number] }) 
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <MapUpdater center={center} />
+      
+      {/* User location marker */}
+      {userLocation && (
+        <>
+          <Marker
+            position={[userLocation.lat, userLocation.lng]}
+            icon={leaflet.divIcon({
+              className: 'user-location',
+              html: `<div style="
+                width: 24px;
+                height: 24px;
+                background: #3b82f6;
+                border: 3px solid white;
+                border-radius: 50%;
+                box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+                animation: pulse 2s infinite;
+              "></div>`,
+              iconSize: [24, 24],
+              iconAnchor: [12, 12],
+            })}
+          >
+            <Popup>
+              <div className="text-center">
+                <strong>📍 You are here</strong>
+              </div>
+            </Popup>
+          </Marker>
+          <Circle
+            center={[userLocation.lat, userLocation.lng]}
+            radius={100}
+            pathOptions={{
+              color: '#3b82f6',
+              fillColor: '#3b82f6',
+              fillOpacity: 0.1,
+              weight: 1,
+            }}
+          />
+        </>
+      )}
       
       {/* Territory labels */}
       {territories.map(t => (
@@ -292,10 +372,58 @@ export default function ComcastMapPage() {
   const [loading, setLoading] = useState(true);
   const [selectedZip, setSelectedZip] = useState<string | null>(null);
   const [center, setCenter] = useState<[number, number]>([47.2529, -122.4443]);
+  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
+  const [closestZip, setClosestZip] = useState<{ zip: string; city: string; distance: number } | null>(null);
+  const [geoError, setGeoError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchVisits();
+    requestLocation();
   }, []);
+
+  // Calculate closest ZIP when location updates
+  useEffect(() => {
+    if (!userLocation) return;
+    
+    let closest = territories[0];
+    let minDistance = calculateDistance(userLocation.lat, userLocation.lng, closest.lat, closest.lng);
+    
+    for (const territory of territories) {
+      const distance = calculateDistance(userLocation.lat, userLocation.lng, territory.lat, territory.lng);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closest = territory;
+      }
+    }
+    
+    setClosestZip({
+      zip: closest.zip,
+      city: closest.city,
+      distance: Math.round(minDistance * 10) / 10
+    });
+  }, [userLocation]);
+
+  const requestLocation = () => {
+    if (!navigator.geolocation) {
+      setGeoError('Geolocation not supported');
+      return;
+    }
+    
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setUserLocation({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        });
+        setGeoError(null);
+      },
+      (error) => {
+        console.log('Geolocation error:', error);
+        setGeoError('Location access denied');
+      },
+      { enableHighAccuracy: true, timeout: 10000 }
+    );
+  };
 
   const fetchVisits = async () => {
     try {
@@ -318,6 +446,12 @@ export default function ComcastMapPage() {
     }
   };
 
+  const centerOnUser = () => {
+    if (userLocation) {
+      setCenter([userLocation.lat, userLocation.lng]);
+    }
+  };
+
   const filteredVisits = selectedZip 
     ? visits.filter(v => v.zip === selectedZip)
     : visits;
@@ -331,27 +465,83 @@ export default function ComcastMapPage() {
           <h1 className="text-xl font-bold mb-2">🏢 Comcast Territory</h1>
           <p className="text-sm text-muted mb-4">Senior Business Account Executive</p>
           
+          {/* Location Status Card */}
+          <div className="mb-4 p-3 bg-accent/10 border border-accent/30 rounded-lg">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-lg">📍</span>
+              <span className="font-semibold text-sm">Your Location</span>
+            </div>
+            
+            {userLocation ? (
+              <div className="space-y-2">
+                <div className="text-xs text-muted">
+                  Lat: {userLocation.lat.toFixed(4)}, Lng: {userLocation.lng.toFixed(4)}
+                </div>
+                
+                {closestZip && (
+                  <div className={`p-2 rounded ${closestZip.distance < 3 ? 'bg-green-500/20 border border-green-500/50' : 'bg-yellow-500/20 border border-yellow-500/50'}`}>
+                    <div className="text-sm font-semibold">
+                      {closestZip.distance < 3 ? '✅ In Territory' : '⚠️ Outside Territory'}
+                    </div>
+                    <div className="text-xs mt-1">
+                      Closest: <strong>{closestZip.zip}</strong> ({closestZip.city})
+                    </div>
+                    <div className="text-xs text-muted">
+                      {closestZip.distance} miles away
+                    </div>
+                  </div>
+                )}
+                
+                <button
+                  onClick={centerOnUser}
+                  className="w-full py-2 bg-accent text-accent-foreground rounded text-sm font-medium hover:bg-accent/90 transition-colors"
+                >
+                  Center Map on Me
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-2">
+                <div className="text-xs text-muted">
+                  {geoError || 'Location not available'}
+                </div>
+                <button
+                  onClick={requestLocation}
+                  className="w-full py-2 bg-accent text-accent-foreground rounded text-sm font-medium hover:bg-accent/90 transition-colors"
+                >
+                  Enable Location
+                </button>
+              </div>
+            )}
+          </div>
+          
           <div className="mb-4">
             <div className="text-2xl font-bold">{visits.length}</div>
             <div className="text-sm text-muted">Total Visits</div>
           </div>
           
-          <h3 className="font-semibold mb-3">Zip Codes</h3>
+          <h3 className="font-semibold mb-3">Your 14 ZIP Codes</h3>
           <div className="space-y-3">
             {territories.map(t => {
               const count = visits.filter(v => v.zip === t.zip).length;
+              const isClosest = closestZip?.zip === t.zip;
+              
               return (
-                <div key={t.zip} className="space-y-2">
+                <div key={t.zip} className={`space-y-2 p-2 rounded-lg transition-colors ${
+                  isClosest ? 'bg-accent/20 border border-accent' : ''
+                } ${selectedZip === t.zip ? 'bg-accent/10' : ''}`}>
                   <button
                     onClick={() => handleZipClick(t.zip)}
-                    className={`w-full flex justify-between items-center p-3 rounded-lg border transition-colors ${
+                    className={`w-full flex justify-between items-center p-2 rounded border transition-colors ${
                       selectedZip === t.zip 
                         ? 'bg-accent/20 border-accent' 
                         : 'bg-hover border-border hover:border-accent/50'
-                    }`}
+                    } ${isClosest ? 'ring-2 ring-accent' : ''}`}
                   >
                     <div>
-                      <div className="font-semibold">{t.zip}</div>
+                      <div className="font-semibold flex items-center gap-2">
+                        {t.zip}
+                        {isClosest && <span className="text-xs bg-accent text-accent-foreground px-1.5 py-0.5 rounded">CLOSEST</span>}
+                      </div>
                       <div className="text-xs text-muted">{t.city}</div>
                     </div>
                     <div className="bg-background text-muted text-sm px-2 py-1 rounded-full">
@@ -381,10 +571,24 @@ export default function ComcastMapPage() {
               Loading map...
             </div>
           ) : (
-            <Map visits={filteredVisits} center={center} />
+            <Map 
+              visits={filteredVisits} 
+              center={center}
+              userLocation={userLocation}
+              onLocationUpdate={setUserLocation}
+            />
           )}
         </div>
       </div>
+      
+      {/* Add pulse animation for user location */}
+      <style jsx global>{`
+        @keyframes pulse {
+          0% { box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3); }
+          50% { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.1); }
+          100% { box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3); }
+        }
+      `}</style>
     </>
   );
 }
