@@ -2,6 +2,12 @@
 
 Track potential partners from initial contact through signed affiliate agreement.
 
+**Partner vs. Prospect:**
+- **Prospect** = Direct sales target (business that might buy Comcast services)
+- **Partner** = Referral source (someone who sends you prospects)
+
+---
+
 ## Pipeline Stages
 
 ### 1. 🎯 Prospecting
@@ -9,6 +15,7 @@ Track potential partners from initial contact through signed affiliate agreement
 
 | Partner | Business | Contact | Source | Notes | Date Added |
 |---------|----------|---------|--------|-------|------------|
+| Anya Evans | Proctor Mercantile | info@proctormercantile.com | Shawn (MQF) | Property owner, potential partner LATER. Currently a prospect for services. Controls multiple Proctor businesses. | 2026-02-26 |
 
 ### 2. 📧 Outreach Sent
 *Initial contact made, awaiting response*
@@ -33,7 +40,6 @@ Track potential partners from initial contact through signed affiliate agreement
 
 | Partner | Business | Contact | Signed Date | Commission Structure | Notes |
 |---------|----------|---------|-------------|---------------------|-------|
-| Anya Evans | Proctor Mercantile | info@proctormercantile.com | 2026-02-26 | TBD | Multi-property owner, Proctor District influencer. Controls significant real estate portfolio from Proctor to 30th. Strategic partner for area intel and referrals. |
 
 ### 6. ❌ Not a Fit
 *Declined or determined not viable*
@@ -43,18 +49,33 @@ Track potential partners from initial contact through signed affiliate agreement
 
 ---
 
+## Referral Tracking
+
+Track who referred whom — this becomes your partner pipeline.
+
+| Referral Source | Referred Prospect | Date | Outcome | Partner Potential |
+|-----------------|-------------------|------|---------|-------------------|
+| Shawn Doolin (MQF) | Anya Evans (Proctor Mercantile) | 2026-02-26 | In conversation | ⭐⭐⭐⭐⭐ High — Shawn knows Proctor District well |
+
+---
+
 ## Partner Categories
 
 ### 🏢 Commercial Real Estate Influencers
 *Property owners/managers with multiple locations*
-- Anya Evans (Proctor Mercantile) — Controls multiple Proctor businesses
+- **Anya Evans (Proctor Mercantile)** — PROSPECT NOW, partner potential later
+  - Controls multiple Proctor businesses
+  - Family owns significant real estate (Proctor to 30th)
+  - If she becomes a happy customer, could refer other tenants
 
 ### 🏪 Business Networks
 *Chambers, BIA, merchant associations*
 
 ### 🤝 Referral Partners
-*IT companies, consultants, other service providers*
-- Christy (Montana IT) — Manages MQF chain's tech
+*IT companies, consultants, other service providers who could send you leads*
+- **Christy (Montana IT)** — Manages MQF chain's tech (20 stores)
+  - IT provider to multi-location businesses
+  - Could refer clients needing connectivity
 
 ### 📱 Marketing Partners
 *Social media influencers, local media*
@@ -65,30 +86,50 @@ Track potential partners from initial contact through signed affiliate agreement
 
 | Metric | Count |
 |--------|-------|
-| Total Prospects | 0 |
-| Active Conversations | 0 |
+| Prospects with Partner Potential | 1 (Anya Evans) |
+| Active Referral Partners | 0 |
 | Proposals Out | 0 |
-| Signed Partners | 1 |
+| Signed Partners | 0 |
 
 ---
 
-## Partner Profile: Anya Evans
+## Partner Profile Template
 
 **Business:** Proctor Mercantile  
+**Contact:** Anya Evans  
 **Address:** 2704 North Proctor St, Tacoma, WA 98407  
 **Phone:** 253-759-8850  
 **Email:** info@proctormercantile.com  
 **Website:** www.proctormercantile.com  
+**Referred By:** Shawn Doolin (MQF)
 
+**Current Status:** 🎯 Prospect (services) → Potential Partner (referrals)  
 **Network Value:** ⭐⭐⭐⭐⭐  
-- Controls "good portion" of west side Proctor (Proctor to 30th)
-- Family owns multiple businesses in the district
-- Gatekeeper: Chloe (in-store)
+
+**Why She's Strategic:**
+- Controls multiple commercial properties
+- Family owns businesses across Proctor District
+- Gatekeeper to other business owners
+- If she becomes a happy customer → becomes referral source
 
 **Next Steps:**
 - [ ] Send intro email to info@proctormercantile.com
-- [ ] Propose coffee meeting to discuss partnership
-- [ ] Explore multi-property opportunity
+- [ ] Propose coffee meeting
+- [ ] Assess services need (her own properties)
+- [ ] If deal closes, nurture for referral partnership
+
+---
+
+## How This Works
+
+1. **Meet prospects** (normal sales activity)
+2. **Identify influence** (do they know other business owners?)
+3. **Close the deal** (make them a happy customer first)
+4. **Nurture relationship** (stay in touch, provide value)
+5. **Ask for referrals** (once trust is established)
+6. **Formalize partnership** (affiliate agreement if appropriate)
+
+**Key Insight:** Most partners start as happy customers. Anya is a prospect today, potential partner tomorrow.
 
 ---
 
