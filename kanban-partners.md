@@ -17,6 +17,7 @@ Track potential partners from initial contact through signed affiliate agreement
 |---------|----------|---------|--------|-------|------------|
 | Anya Evans | Proctor Mercantile | info@proctormercantile.com | Shawn (MQF) | Property owner, potential partner LATER. Currently a prospect for services. Controls multiple Proctor businesses. | 2026-02-26 |
 | **Vance Richardson** | **Logic Staffing** | **vrichardson@logicstaffing.com** | **Direct** | **⭐ REFERRAL PARTNER. Former Comcast BAE. Connects IT pros who need Comcast contacts. Trevor (old Comcast contact) left - opening exists.** | **2026-02-26** |
+| **Tara L. Groody** | **GreenHaven Interactive** | **tara@greenhaveninteractive.com** | **Direct** | **⭐ REFERRAL PARTNER. Client Success Manager. MEETING: Tuesday 11:30 AM at 512 Pacific Hwy, Lakewood. Company may also be client prospect.** | **2026-02-26** |
 
 ### 2. 📧 Outreach Sent
 *Initial contact made, awaiting response*
@@ -87,11 +88,37 @@ Track who referred whom — this becomes your partner pipeline.
 
 | Metric | Count |
 |--------|-------|
-| Partner Prospects | 1 (Vance Richardson) |
+| Partner Prospects | 2 (Vance Richardson, Tara Groody) |
 | Prospects with Partner Potential | 1 (Anya Evans) |
 | Active Referral Partners | 0 |
 | Proposals Out | 0 |
 | Signed Partners | 0 |
+| Meetings Scheduled | 1 |
+
+---
+
+## Partner Profile: Tara L. Groody
+
+**Business:** GreenHaven Interactive  
+**Contact:** Tara L. Groody (Client Success Manager)  
+**Address:** 2611 Pacific Hwy E, Suite 312, Tacoma, WA 98424  
+**Phone:** 253-579-1133  
+**Email:** tara@greenhaveninteractive.com  
+
+**Current Status:** 🎯 **Active Partner Prospect** (In Prospecting)  
+**Partner Type:** Referral Source  
+**Company Also Prospect:** ✅ Yes (GreenHaven Interactive could be a client)
+
+**Meeting Scheduled:**
+- **Date:** Tuesday
+- **Time:** 11:30 AM
+- **Location:** 512 Pacific Highway, Lakewood
+
+**Next Steps:**
+- [ ] Attend Tuesday 11:30 AM meeting
+- [ ] Assess partner potential (who can she refer?)
+- [ ] Assess company need (services for GreenHaven)
+- [ ] Follow up post-meeting
 
 ---
 
