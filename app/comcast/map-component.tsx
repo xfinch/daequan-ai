@@ -257,13 +257,13 @@ export default function MapComponent({ visits, center, userLocation, onLocationU
                   <div>{visit.address}, {visit.zip}</div>
                 </div>
                 
-                <a 
+                <a
                   href={getDirectionsUrl(visit.lat, visit.lng)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white text-center rounded font-semibold transition-colors"
                 >
-                  {isApple ? '🍎 Get Directions' : '🗺️ Get Directions'}
+                  Directions
                 </a>
                 
                 {visit.notes && (

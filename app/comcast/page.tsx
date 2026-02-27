@@ -39,13 +39,13 @@ function calculateDistance(lat1: number, lng1: number, lat2: number, lng2: numbe
 function SmartDirectionsButton({ lat, lng }: { lat: number; lng: number }) {
   const [isApple, setIsApple] = useState(false);
   useEffect(() => setIsApple(isIOS()), []);
-  const url = isApple 
+  const url = isApple
     ? `http://maps.apple.com/?daddr=${lat},${lng}&dirflg=d`
     : `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
   return (
     <a href={url} target="_blank" rel="noopener noreferrer"
       className="block py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white text-center rounded font-semibold transition-colors">
-      {isApple ? '🍎 Get Directions' : '🗺️ Get Directions'}
+      Directions
     </a>
   );
 }
@@ -53,13 +53,13 @@ function SmartDirectionsButton({ lat, lng }: { lat: number; lng: number }) {
 function ZipDirectionsButton({ lat, lng }: { lat: number; lng: number }) {
   const [isApple, setIsApple] = useState(false);
   useEffect(() => setIsApple(isIOS()), []);
-  const url = isApple 
+  const url = isApple
     ? `http://maps.apple.com/?daddr=${lat},${lng}&dirflg=d`
     : `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
   return (
     <a href={url} target="_blank" rel="noopener noreferrer"
       className="block w-full py-1.5 px-3 text-sm text-center rounded font-medium transition-colors bg-blue-500/20 hover:bg-blue-500/30 text-blue-400">
-      {isApple ? '🍎 Directions' : '🗺️ Directions'}
+      Directions
     </a>
   );
 }
@@ -284,21 +284,8 @@ export default function ComcastMapPage() {
       {selectedZip && (
         <button onClick={() => setSelectedZip(null)} className="w-full mt-4 py-2 text-sm text-accent hover:underline">Show all visits</button>
       )}
-      
-      {/* Add Pin Button */}
-      <button
-        onClick={() => setAddMode(true)}
-        className={`w-full mt-6 py-3 rounded-lg font-semibold transition-colors ${addMode ? 'bg-green-500 text-white' : 'bg-accent text-accent-foreground hover:bg-accent/90'}`}
-      >
-        {addMode ? '📍 Tap map to place pin' : '➕ Add New Visit (Map)'}
-      </button>
-      {addMode && (
-        <button onClick={() => setAddMode(false)} className="w-full mt-2 py-2 text-sm text-muted hover:text-foreground">
-          Cancel
-        </button>
-      )}
-      
-      {/* Manual Entry Tray */}
+
+      {/* Add Visit Section */}
       <div className="mt-6 p-4 border border-border rounded-lg bg-muted/30">
         <h4 className="font-semibold mb-3 flex items-center gap-2">
           <span>📝</span> Manual Entry
