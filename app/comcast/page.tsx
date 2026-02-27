@@ -119,6 +119,8 @@ export default function ComcastMapPage() {
   const [tempPin, setTempPin] = useState<{ lat: number; lng: number } | null>(null);
   const [showAddModal, setShowAddModal] = useState(false);
   const [newVisit, setNewVisit] = useState({ businessName: '', contactName: '', phone: '', address: '', zip: '', status: 'interested', notes: '' });
+  const [manualAddress, setManualAddress] = useState('');
+  const [geocoding, setGeocoding] = useState(false);
 
   useEffect(() => {
     fetchVisits();
@@ -190,6 +192,29 @@ export default function ComcastMapPage() {
         setNewVisit({ businessName: '', contactName: '', phone: '', address: '', zip: '', status: 'interested', notes: '' });
       }
     } catch (err) { console.error(err); }
+  };
+
+  const handleManualGeocode = async () => {
+    if (!manualAddress) return;
+    setGeocoding(true);
+    try {
+      const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(manualAddress)}`);
+      const data = await res.json();
+      if (data && data[0]) {
+        const { lat, lon, display_name } = data[0];
+        setTempPin({ lat: parseFloat(lat), lng: parseFloat(lon) });
+        setNewVisit({ ...newVisit, address: display_name });
+        setShowAddModal(true);
+        setManualAddress('');
+      } else {
+        alert('Address not found. Try a more specific address.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Geocoding failed. Please try again.');
+    } finally {
+      setGeocoding(false);
+    }
   };
 
   // Desktop Sidebar Content
@@ -265,13 +290,37 @@ export default function ComcastMapPage() {
         onClick={() => setAddMode(true)}
         className={`w-full mt-6 py-3 rounded-lg font-semibold transition-colors ${addMode ? 'bg-green-500 text-white' : 'bg-accent text-accent-foreground hover:bg-accent/90'}`}
       >
-        {addMode ? '📍 Tap map to place pin' : '➕ Add New Visit'}
+        {addMode ? '📍 Tap map to place pin' : '➕ Add New Visit (Map)'}
       </button>
       {addMode && (
         <button onClick={() => setAddMode(false)} className="w-full mt-2 py-2 text-sm text-muted hover:text-foreground">
           Cancel
         </button>
       )}
+      
+      {/* Manual Entry Tray */}
+      <div className="mt-6 p-4 border border-border rounded-lg bg-muted/30">
+        <h4 className="font-semibold mb-3 flex items-center gap-2">
+          <span>📝</span> Manual Entry
+        </h4>
+        <p className="text-xs text-muted mb-3">Enter address to geocode</p>
+        <div className="space-y-3">
+          <input 
+            type="text" 
+            value={manualAddress} 
+            onChange={e => setManualAddress(e.target.value)}
+            className="w-full p-2 rounded border bg-background text-sm"
+            placeholder="123 Main St, Tacoma, WA"
+          />
+          <button 
+            onClick={handleManualGeocode}
+            disabled={!manualAddress || geocoding}
+            className="w-full py-2 bg-secondary text-secondary-foreground rounded text-sm font-medium disabled:opacity-50 hover:bg-secondary/90 transition-colors"
+          >
+            {geocoding ? 'Geocoding...' : 'Find & Add Pin'}
+          </button>
+        </div>
+      </div>
     </>
   );
 

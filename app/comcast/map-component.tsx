@@ -31,6 +31,7 @@ interface Visit {
   missingFields?: string[];
   lat?: number;
   lng?: number;
+  createdAt?: string;
 }
 
 const statusColors: Record<string, string> = {
@@ -267,6 +268,9 @@ export default function MapComponent({ visits, center, userLocation, onLocationU
                 
                 {visit.notes && (
                   <div className="mt-3 p-3 bg-gray-100 rounded text-sm">
+                    <div className="text-xs text-gray-500 mb-1">
+                      📝 {visit.createdAt ? new Date(visit.createdAt).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'Just now'}
+                    </div>
                     {visit.notes}
                   </div>
                 )}
