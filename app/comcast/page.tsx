@@ -117,7 +117,7 @@ export default function ComcastMapPage() {
   const [isMobile, setIsMobile] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
-  const [newVisit, setNewVisit] = useState({ businessName: '', contactName: '', phone: '', address: '', zip: '', status: 'interested', notes: '' });
+  const [newVisit, setNewVisit] = useState({ businessName: '', contactName: '', phone: '', address: '', zip: '', status: 'interested', notes: '', lat: 0, lng: 0 });
 
   useEffect(() => {
     fetchVisits();
@@ -165,7 +165,7 @@ export default function ComcastMapPage() {
       const data = await res.json();
       if (data?.[0]) {
         const { lat, lon, display_name } = data[0];
-        setNewVisit(prev => ({ ...prev, address: display_name }));
+        setNewVisit(prev => ({ ...prev, address: display_name, lat: parseFloat(lat), lng: parseFloat(lon) }));
         setShowAddModal(true);
       } else {
         alert('Address not found');
@@ -183,7 +183,7 @@ export default function ComcastMapPage() {
         body: JSON.stringify(newVisit),
       });
       setShowAddModal(false);
-      setNewVisit({ businessName: '', contactName: '', phone: '', address: '', zip: '', status: 'interested', notes: '' });
+      setNewVisit({ businessName: '', contactName: '', phone: '', address: '', zip: '', status: 'interested', notes: '', lat: 0, lng: 0 });
       fetchVisits();
     } catch (e) { console.error(e); }
   };
