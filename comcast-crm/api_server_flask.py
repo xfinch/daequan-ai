@@ -37,7 +37,7 @@ def get_visits():
     cursor.execute("""
         SELECT id, business_name, contact_name, phone, email, 
                address, zip_code, lat, lng, visit_status, 
-               visit_date, notes, ghl_contact_id
+               visit_date, notes, ghl_contact_id, account_id_8498
         FROM business_visits
         WHERE lat IS NOT NULL AND lng IS NOT NULL
         ORDER BY visit_date DESC
@@ -45,11 +45,30 @@ def get_visits():
     
     visits = []
     for row in cursor.fetchall():
-        visit = dict(row)
+        row_dict = dict(row)
+        # Convert snake_case to camelCase for frontend compatibility
+        visit = {
+            '_id': str(row_dict['id']),
+            'businessName': row_dict['business_name'],
+            'contactName': row_dict['contact_name'],
+            'phone': row_dict['phone'],
+            'email': row_dict['email'],
+            'address': row_dict['address'],
+            'zip': row_dict['zip_code'],
+            'lat': row_dict['lat'],
+            'lng': row_dict['lng'],
+            'status': row_dict['visit_status'],
+            'visitDate': row_dict['visit_date'],
+            'notes': row_dict['notes'],
+            'ghlContactId': row_dict['ghl_contact_id'],
+            'accountId8498': row_dict['account_id_8498'],
+            'createdAt': row_dict['visit_date'],
+            'updatedAt': row_dict['visit_date']
+        }
         # Add deep link if GHL contact exists
-        if visit['ghl_contact_id']:
+        if visit['ghlContactId']:
             loc_id = os.getenv("GHL_COMCAST_LOCATION_ID", "")
-            visit['ghl_url'] = f"https://app.gohighlevel.com/v2/location/{loc_id}/contacts/{visit['ghl_contact_id']}"
+            visit['ghlUrl'] = f"https://app.gohighlevel.com/v2/location/{loc_id}/contacts/{visit['ghlContactId']}"
         visits.append(visit)
     
     return jsonify({"visits": visits, "count": len(visits)})
@@ -109,11 +128,17 @@ def create_visit():
     """Create new visit from API"""
     data = request.get_json()
     
+    # Support both camelCase (frontend) and snake_case (legacy)
+    business_name = data.get('businessName') or data.get('business_name', '')
+    zip_code = data.get('zip') or data.get('zip_code', '')
+    contact_name = data.get('contactName') or data.get('contact_name', '')
+    account_id_8498 = data.get('accountId8498') or data.get('account_id_8498', '')
+    
     sync = GHLComcastSync()
     visit_id = sync.add_visit(
-        business_name=data.get('business_name', ''),
-        zip_code=data.get('zip_code', ''),
-        contact_name=data.get('contact_name', ''),
+        business_name=business_name,
+        zip_code=zip_code,
+        contact_name=contact_name,
         phone=data.get('phone', ''),
         email=data.get('email', ''),
         address=data.get('address', ''),
@@ -122,10 +147,11 @@ def create_visit():
         status=data.get('status', 'interested'),
         lat=data.get('lat'),
         lng=data.get('lng'),
-        source=data.get('source', 'api')
+        source=data.get('source', 'api'),
+        account_id_8498=account_id_8498
     )
     
-    return jsonify({"id": visit_id, "status": "created"}), 201
+    return jsonify({"id": str(visit_id), "status": "created"}), 201
 
 @app.route('/api/whatsapp', methods=['POST'])
 def whatsapp_webhook():
