@@ -106,11 +106,30 @@ class APIHandler(BaseHTTPRequestHandler):
         
         visits = []
         for row in cursor.fetchall():
-            visit = dict(row)
+            row_dict = dict(row)
+            # Convert snake_case to camelCase for frontend compatibility
+            visit = {
+                '_id': str(row_dict['id']),
+                'businessName': row_dict['business_name'],
+                'contactName': row_dict['contact_name'],
+                'phone': row_dict['phone'],
+                'email': row_dict['email'],
+                'address': row_dict['address'],
+                'zip': row_dict['zip_code'],
+                'lat': row_dict['lat'],
+                'lng': row_dict['lng'],
+                'status': row_dict['visit_status'],
+                'visitDate': row_dict['visit_date'],
+                'notes': row_dict['notes'],
+                'ghlContactId': row_dict['ghl_contact_id'],
+                'accountId8498': row_dict['account_id_8498'],
+                'createdAt': row_dict['visit_date'],
+                'updatedAt': row_dict['visit_date']
+            }
             # Add deep link if GHL contact exists
-            if visit['ghl_contact_id']:
+            if visit['ghlContactId']:
                 loc_id = os.getenv("GHL_COMCAST_LOCATION_ID", "")
-                visit['ghl_url'] = f"https://app.gohighlevel.com/v2/location/{loc_id}/contacts/{visit['ghl_contact_id']}"
+                visit['ghlUrl'] = f"https://app.gohighlevel.com/v2/location/{loc_id}/contacts/{visit['ghlContactId']}"
             visits.append(visit)
         
         self.send_json({"visits": visits, "count": len(visits)})

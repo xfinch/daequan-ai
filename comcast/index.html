@@ -70,11 +70,11 @@
                 left: 0;
                 bottom: 0;
                 width: 100%;
-                max-height: 60vh;
+                max-height: 70vh;
                 border-radius: 16px 16px 0 0;
-                transform: translateY(calc(100% - 60px));
+                transform: translateY(calc(100% - 50px));
                 padding: 0;
-                z-index: 2001; /* Above legend (1000) */
+                z-index: 2001;
             }
 
             .sidebar.expanded {
@@ -85,43 +85,139 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                padding: 15px 20px;
+                padding: 12px 16px;
                 border-bottom: 1px solid #eee;
                 cursor: pointer;
+                background: white;
+                border-radius: 16px 16px 0 0;
+                min-height: 50px;
             }
 
             .sidebar-header h1 {
                 margin: 0;
-                font-size: 16px;
+                font-size: 15px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
             }
 
             .sidebar-handle {
-                width: 40px;
+                width: 36px;
                 height: 4px;
-                background: #ddd;
+                background: #ccc;
                 border-radius: 2px;
-                margin: 0 auto 10px;
+                position: absolute;
+                top: 8px;
+                left: 50%;
+                transform: translateX(-50%);
             }
 
             .sidebar-content {
-                padding: 15px 20px 30px;
-                max-height: calc(60vh - 60px);
+                padding: 12px 16px 100px;
+                max-height: calc(70vh - 50px);
                 overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
             }
 
             .sidebar-toggle {
-                background: none;
+                background: #f5f5f5;
                 border: none;
-                font-size: 20px;
+                font-size: 14px;
                 color: #666;
                 cursor: pointer;
-                padding: 5px;
+                padding: 6px 12px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+            }
+
+            .sidebar-toggle:active {
+                background: #e0e0e0;
+            }
+
+            /* Collapsed state - show minimal info */
+            .sidebar:not(.expanded) .sidebar-header {
+                border-bottom: none;
+            }
+
+            .sidebar:not(.expanded) .sidebar-preview {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 13px;
+                color: #666;
+            }
+
+            /* Map overlay hint when sidebar is open */
+            .sidebar.expanded::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 70vh;
+                background: rgba(0,0,0,0.3);
+                pointer-events: none;
+                z-index: -1;
+            }
+
+            /* Floating map button when sidebar expanded */
+            .map-toggle-btn {
+                position: fixed;
+                bottom: calc(70vh + 12px);
+                right: 12px;
+                background: white;
+                border: none;
+                padding: 10px 16px;
+                border-radius: 24px;
+                font-size: 14px;
+                font-weight: 600;
+                color: #333;
+                box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+                cursor: pointer;
+                z-index: 2002;
+                display: none;
+            }
+
+            .map-toggle-btn.visible {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            /* Desktop legend on mobile - make smaller */
+            .legend {
+                bottom: 60px;
+                left: 10px;
+                padding: 8px 10px;
+                font-size: 10px;
+                max-width: 130px;
+                border-radius: 6px;
+            }
+
+            .legend-item {
+                margin-bottom: 3px;
+            }
+
+            .legend-color {
+                width: 10px;
+                height: 10px;
+                margin-right: 5px;
+            }
+
+            .legend h3 {
+                font-size: 10px;
+                margin-bottom: 6px;
             }
         }
 
         @media (min-width: 769px) {
             .sidebar-header {
                 display: none;
+            }
+            .map-toggle-btn {
+                display: none !important;
             }
         }
         
@@ -562,11 +658,19 @@
     
     <div id="map"></div>
     
+    <!-- Map toggle button for mobile -->
+    <button class="map-toggle-btn" id="mapToggleBtn" onclick="toggleSidebar()">
+        🗺️ Show Map
+    </button>
+
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header" onclick="toggleSidebar()">
             <div class="sidebar-handle"></div>
-            <h1>🏢 Comcast Territory</h1>
-            <button class="sidebar-toggle" id="sidebarToggle">▲</button>
+            <h1>🏢 Comcast Territory <span class="sidebar-preview" id="sidebarPreview" style="display: none;">• <span id="previewCount">0</span> visits</span></h1>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <span>⚙️</span>
+                <span id="toggleText">Menu</span>
+            </button>
         </div>
         
         <div class="sidebar-content">
@@ -653,8 +757,8 @@
     </div>
 
     <script>
-        // API endpoints
-        const API_BASE = 'https://daequanai.com';
+        // API endpoints - use relative URLs for tunnel compatibility
+        const API_BASE = '';
         const PLAUD_API = 'https://xaviers-mac-mini.tailc89dd8.ts.net/plaud-webhook';
         
         // Status colors
@@ -866,6 +970,9 @@
         // Update sidebar stats
         function updateStats(visits) {
             document.getElementById('visitCount').textContent = visits.length;
+            // Update mobile preview count
+            const previewCount = document.getElementById('previewCount');
+            if (previewCount) previewCount.textContent = visits.length;
         }
         
         // Update zip code list with counts and directions
@@ -1041,15 +1148,36 @@
             if (window.innerWidth > 768) return; // Only on mobile
             const sidebar = document.getElementById('sidebar');
             const toggle = document.getElementById('sidebarToggle');
+            const toggleText = document.getElementById('toggleText');
+            const mapBtn = document.getElementById('mapToggleBtn');
+            const preview = document.getElementById('sidebarPreview');
+            
             sidebarExpanded = !sidebarExpanded;
             sidebar.classList.toggle('expanded', sidebarExpanded);
-            toggle.textContent = sidebarExpanded ? '▼' : '▲';
+            
+            if (sidebarExpanded) {
+                toggleText.textContent = 'Close';
+                mapBtn.classList.add('visible');
+                if (preview) preview.style.display = 'none';
+            } else {
+                toggleText.textContent = 'Menu';
+                mapBtn.classList.remove('visible');
+                if (preview) preview.style.display = 'inline';
+            }
         }
 
         // Auto-collapse sidebar on mobile when map is clicked
         function collapseSidebar() {
             if (window.innerWidth <= 768 && sidebarExpanded) {
                 toggleSidebar();
+            }
+        }
+        
+        // Initialize mobile sidebar state
+        function initMobileSidebar() {
+            if (window.innerWidth <= 768) {
+                const preview = document.getElementById('sidebarPreview');
+                if (preview) preview.style.display = 'inline';
             }
         }
 
@@ -1263,12 +1391,23 @@
         initMap();
         loadVisits();
         loadReviewCount();
+        initMobileSidebar();
         
         // Load planned visits after a short delay to ensure map is ready
         setTimeout(displayPlannedVisits, 500);
 
         // Add click handler
         map.on('click', onMapClick);
+        
+        // Handle window resize for mobile/desktop transitions
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                // Reset sidebar on desktop
+                document.getElementById('sidebar').classList.remove('expanded');
+                document.getElementById('mapToggleBtn').classList.remove('visible');
+                sidebarExpanded = false;
+            }
+        });
 
         // Auto-refresh every 60 seconds
         setInterval(loadVisits, 60000);
