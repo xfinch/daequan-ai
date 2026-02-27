@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { Navbar } from '@/components/ui/navbar';
 
@@ -26,7 +26,7 @@ function isIOS(): boolean {
 
 // Calculate distance between two points in miles
 function calculateDistance(lat1: number, lng1: number, lat2: number, lng2: number): number {
-  const R = 3959; // Earth's radius in miles
+  const R = 3959;
   const dLat = (lat2 - lat1) * Math.PI / 180;
   const dLng = (lng2 - lng1) * Math.PI / 180;
   const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
@@ -36,49 +36,29 @@ function calculateDistance(lat1: number, lng1: number, lat2: number, lng2: numbe
   return R * c;
 }
 
-// Smart directions button
 function SmartDirectionsButton({ lat, lng }: { lat: number; lng: number }) {
   const [isApple, setIsApple] = useState(false);
-  
-  useEffect(() => {
-    setIsApple(isIOS());
-  }, []);
-  
+  useEffect(() => setIsApple(isIOS()), []);
   const url = isApple 
     ? `http://maps.apple.com/?daddr=${lat},${lng}&dirflg=d`
     : `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
-  
   return (
-    <a 
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white text-center rounded font-semibold transition-colors"
-    >
+    <a href={url} target="_blank" rel="noopener noreferrer"
+      className="block py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white text-center rounded font-semibold transition-colors">
       {isApple ? '🍎 Get Directions' : '🗺️ Get Directions'}
     </a>
   );
 }
 
-// Zip code directions button
 function ZipDirectionsButton({ lat, lng }: { lat: number; lng: number }) {
   const [isApple, setIsApple] = useState(false);
-  
-  useEffect(() => {
-    setIsApple(isIOS());
-  }, []);
-  
+  useEffect(() => setIsApple(isIOS()), []);
   const url = isApple 
     ? `http://maps.apple.com/?daddr=${lat},${lng}&dirflg=d`
     : `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
-  
   return (
-    <a 
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block w-full py-1.5 px-3 text-sm text-center rounded font-medium transition-colors bg-blue-500/20 hover:bg-blue-500/30 text-blue-400"
-    >
+    <a href={url} target="_blank" rel="noopener noreferrer"
+      className="block w-full py-1.5 px-3 text-sm text-center rounded font-medium transition-colors bg-blue-500/20 hover:bg-blue-500/30 text-blue-400">
       {isApple ? '🍎 Directions' : '🗺️ Directions'}
     </a>
   );
@@ -125,14 +105,6 @@ const territories: Territory[] = [
   { zip: '98447', city: 'Tacoma (Midland)', lat: 47.1650, lng: -122.4150 },
 ];
 
-const statusColors: Record<string, string> = {
-  'interested': '#22c55e',
-  'follow-up': '#f59e0b',
-  'not-interested': '#ef4444',
-  'called': '#3b82f6',
-  'customer': '#8b5cf6',
-};
-
 export default function ComcastMapPage() {
   const [visits, setVisits] = useState<Visit[]>([]);
   const [loading, setLoading] = useState(true);
@@ -141,60 +113,35 @@ export default function ComcastMapPage() {
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [closestZip, setClosestZip] = useState<{ zip: string; city: string; distance: number } | null>(null);
   const [geoError, setGeoError] = useState<string | null>(null);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   useEffect(() => {
     fetchVisits();
     requestLocation();
     
-    // Detect mobile
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Calculate closest ZIP when location updates
   useEffect(() => {
     if (!userLocation) return;
-    
     let closest = territories[0];
     let minDistance = calculateDistance(userLocation.lat, userLocation.lng, closest.lat, closest.lng);
-    
-    for (const territory of territories) {
-      const distance = calculateDistance(userLocation.lat, userLocation.lng, territory.lat, territory.lng);
-      if (distance < minDistance) {
-        minDistance = distance;
-        closest = territory;
-      }
+    for (const t of territories) {
+      const d = calculateDistance(userLocation.lat, userLocation.lng, t.lat, t.lng);
+      if (d < minDistance) { minDistance = d; closest = t; }
     }
-    
-    setClosestZip({
-      zip: closest.zip,
-      city: closest.city,
-      distance: Math.round(minDistance * 10) / 10
-    });
+    setClosestZip({ zip: closest.zip, city: closest.city, distance: Math.round(minDistance * 10) / 10 });
   }, [userLocation]);
 
   const requestLocation = () => {
-    if (!navigator.geolocation) {
-      setGeoError('Geolocation not supported');
-      return;
-    }
-    
+    if (!navigator.geolocation) { setGeoError('Geolocation not supported'); return; }
     navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setUserLocation({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        });
-        setGeoError(null);
-      },
-      (error) => {
-        console.log('Geolocation error:', error);
-        setGeoError('Location access denied');
-      },
+      (pos) => { setUserLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude }); setGeoError(null); },
+      () => setGeoError('Location access denied'),
       { enableHighAccuracy: true, timeout: 10000 }
     );
   };
@@ -202,200 +149,156 @@ export default function ComcastMapPage() {
   const fetchVisits = async () => {
     try {
       const res = await fetch('/api/visits');
-      if (!res.ok) throw new Error('Failed to fetch');
+      if (!res.ok) throw new Error('Failed');
       const data = await res.json();
       setVisits(data.visits || []);
-    } catch (err) {
-      console.error('Error fetching visits:', err);
-    } finally {
-      setLoading(false);
-    }
+    } catch (err) { console.error(err); }
+    finally { setLoading(false); }
   };
 
   const handleZipClick = (zip: string) => {
-    const territory = territories.find(t => t.zip === zip);
-    if (territory) {
-      setCenter([territory.lat, territory.lng]);
-      setSelectedZip(zip);
-    }
+    const t = territories.find(x => x.zip === zip);
+    if (t) { setCenter([t.lat, t.lng]); setSelectedZip(zip); }
   };
 
-  const centerOnUser = () => {
-    if (userLocation) {
-      setCenter([userLocation.lat, userLocation.lng]);
-    }
-  };
+  const centerOnUser = () => { if (userLocation) setCenter([userLocation.lat, userLocation.lng]); };
+  const filteredVisits = selectedZip ? visits.filter(v => v.zip === selectedZip) : visits;
 
-  const filteredVisits = selectedZip 
-    ? visits.filter(v => v.zip === selectedZip)
-    : visits;
+  // Desktop Sidebar Content
+  const SidebarContent = () => (
+    <>
+      <h1 className="text-xl font-bold mb-2">🏢 Comcast Territory</h1>
+      <p className="text-sm text-muted mb-4">Senior Business Account Executive</p>
+      
+      {/* Location Card */}
+      <div className="mb-4 p-3 bg-accent/10 border border-accent/30 rounded-lg">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-lg">📍</span>
+          <span className="font-semibold text-sm">Your Location</span>
+        </div>
+        {userLocation ? (
+          <div className="space-y-2">
+            {closestZip && (
+              <div className={`p-2 rounded ${closestZip.distance < 3 ? 'bg-green-500/20 border border-green-500/50' : 'bg-yellow-500/20 border border-yellow-500/50'}`}>
+                <div className="text-sm font-semibold">{closestZip.distance < 3 ? '✅ In Territory' : '⚠️ Outside Territory'}</div>
+                <div className="text-xs mt-1">Closest: <strong>{closestZip.zip}</strong> ({closestZip.city}) • {closestZip.distance}mi</div>
+              </div>
+            )}
+            <button onClick={centerOnUser} className="w-full py-2 bg-accent text-accent-foreground rounded text-sm font-medium">Center Map on Me</button>
+          </div>
+        ) : (
+          <div className="space-y-2">
+            <div className="text-xs text-muted">{geoError || 'Location not available'}</div>
+            <button onClick={requestLocation} className="w-full py-2 bg-accent text-accent-foreground rounded text-sm font-medium">Enable Location</button>
+          </div>
+        )}
+      </div>
+      
+      {/* Stats */}
+      <div className="mb-4 flex items-center gap-4">
+        <div>
+          <div className="text-2xl font-bold">{visits.length}</div>
+          <div className="text-sm text-muted">Visits</div>
+        </div>
+        {closestZip && (
+          <div className="text-sm">
+            <span className="text-muted">Closest:</span> <strong>{closestZip.zip}</strong>
+          </div>
+        )}
+      </div>
+      
+      {/* ZIP Codes */}
+      <h3 className="font-semibold mb-3">14 ZIP Codes</h3>
+      <div className="space-y-2">
+        {territories.map(t => {
+          const count = visits.filter(v => v.zip === t.zip).length;
+          const isClosest = closestZip?.zip === t.zip;
+          return (
+            <div key={t.zip} className={`p-2 rounded-lg ${isClosest ? 'bg-accent/20 border border-accent' : ''} ${selectedZip === t.zip ? 'bg-accent/10' : ''}`}>
+              <button onClick={() => handleZipClick(t.zip)} className={`w-full flex justify-between items-center p-2 rounded border transition-colors ${selectedZip === t.zip ? 'bg-accent/20 border-accent' : 'bg-hover border-border hover:border-accent/50'} ${isClosest ? 'ring-2 ring-accent' : ''}`}>
+                <div>
+                  <div className="font-semibold flex items-center gap-2">{t.zip} {isClosest && <span className="text-xs bg-accent text-accent-foreground px-1.5 py-0.5 rounded">NEAR</span>}</div>
+                  <div className="text-xs text-muted">{t.city}</div>
+                </div>
+                <div className="bg-background text-muted text-sm px-2 py-1 rounded-full">{count}</div>
+              </button>
+              <div className="mt-1"><ZipDirectionsButton lat={t.lat} lng={t.lng} /></div>
+            </div>
+          );
+        })}
+      </div>
+      
+      {selectedZip && (
+        <button onClick={() => setSelectedZip(null)} className="w-full mt-4 py-2 text-sm text-accent hover:underline">Show all visits</button>
+      )}
+    </>
+  );
 
   return (
     <>
       <Navbar />
-      {/* Mobile Sidebar Toggle */}
-      {isMobile && !sidebarOpen && (
-        <button
-          onClick={() => setSidebarOpen(true)}
-          className="fixed bottom-4 left-4 z-50 bg-accent text-accent-foreground px-4 py-2 rounded-lg shadow-lg flex items-center gap-2"
-        >
-          <span>☰</span>
-          <span>Menu ({visits.length})</span>
-        </button>
-      )}
-      
-      <div className="flex h-[calc(100vh-64px)]">
-        {/* Mobile Overlay */}
-        {isMobile && sidebarOpen && (
-          <div 
-            className="fixed inset-0 bg-black/50 z-30"
-            onClick={() => setSidebarOpen(false)}
-          />
-        )}
-        
-        {/* Sidebar */}
-        <div className={`
-          bg-card border-r border-border overflow-y-auto p-4 transition-all duration-300
-          ${isMobile 
-            ? sidebarOpen 
-              ? 'fixed inset-y-0 left-0 z-40 w-80 shadow-2xl' 
-              : 'w-0 p-0 overflow-hidden'
-            : 'w-80'
-          }
-        `}>
-          {/* Mobile Close Button */}
-          {isMobile && (
-            <div className="flex justify-between items-center mb-4">
-              <h1 className="text-xl font-bold">🏢 Comcast Territory</h1>
-              <button
-                onClick={() => setSidebarOpen(false)}
-                className="p-2 bg-muted rounded-lg"
-              >
-                ✕ Close
-              </button>
-            </div>
-          )}
-          
-          {!isMobile && <h1 className="text-xl font-bold mb-2">🏢 Comcast Territory</h1>}
-          <p className="text-sm text-muted mb-4">Senior Business Account Executive</p>
-          
-          {/* Location Status Card */}
-          <div className="mb-4 p-3 bg-accent/10 border border-accent/30 rounded-lg">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-lg">📍</span>
-              <span className="font-semibold text-sm">Your Location</span>
-            </div>
-            
-            {userLocation ? (
-              <div className="space-y-2">
-                <div className="text-xs text-muted">
-                  Lat: {userLocation.lat.toFixed(4)}, Lng: {userLocation.lng.toFixed(4)}
-                </div>
-                
-                {closestZip && (
-                  <div className={`p-2 rounded ${closestZip.distance < 3 ? 'bg-green-500/20 border border-green-500/50' : 'bg-yellow-500/20 border border-yellow-500/50'}`}>
-                    <div className="text-sm font-semibold">
-                      {closestZip.distance < 3 ? '✅ In Territory' : '⚠️ Outside Territory'}
-                    </div>
-                    <div className="text-xs mt-1">
-                      Closest: <strong>{closestZip.zip}</strong> ({closestZip.city})
-                    </div>
-                    <div className="text-xs text-muted">
-                      {closestZip.distance} miles away
-                    </div>
-                  </div>
-                )}
-                
-                <button
-                  onClick={centerOnUser}
-                  className="w-full py-2 bg-accent text-accent-foreground rounded text-sm font-medium hover:bg-accent/90 transition-colors"
-                >
-                  Center Map on Me
-                </button>
-              </div>
-            ) : (
-              <div className="space-y-2">
-                <div className="text-xs text-muted">
-                  {geoError || 'Location not available'}
-                </div>
-                <button
-                  onClick={requestLocation}
-                  className="w-full py-2 bg-accent text-accent-foreground rounded text-sm font-medium hover:bg-accent/90 transition-colors"
-                >
-                  Enable Location
-                </button>
-              </div>
-            )}
-          </div>
-          
-          <div className="mb-4">
-            <div className="text-2xl font-bold">{visits.length}</div>
-            <div className="text-sm text-muted">Total Visits</div>
-          </div>
-          
-          <h3 className="font-semibold mb-3">Your 14 ZIP Codes</h3>
-          <div className="space-y-3">
-            {territories.map(t => {
-              const count = visits.filter(v => v.zip === t.zip).length;
-              const isClosest = closestZip?.zip === t.zip;
-              
-              return (
-                <div key={t.zip} className={`space-y-2 p-2 rounded-lg transition-colors ${
-                  isClosest ? 'bg-accent/20 border border-accent' : ''
-                } ${selectedZip === t.zip ? 'bg-accent/10' : ''}`}>
-                  <button
-                    onClick={() => handleZipClick(t.zip)}
-                    className={`w-full flex justify-between items-center p-2 rounded border transition-colors ${
-                      selectedZip === t.zip 
-                        ? 'bg-accent/20 border-accent' 
-                        : 'bg-hover border-border hover:border-accent/50'
-                    } ${isClosest ? 'ring-2 ring-accent' : ''}`}
-                  >
-                    <div>
-                      <div className="font-semibold flex items-center gap-2">
-                        {t.zip}
-                        {isClosest && <span className="text-xs bg-accent text-accent-foreground px-1.5 py-0.5 rounded">CLOSEST</span>}
-                      </div>
-                      <div className="text-xs text-muted">{t.city}</div>
-                    </div>
-                    <div className="bg-background text-muted text-sm px-2 py-1 rounded-full">
-                      {count}
-                    </div>
-                  </button>
-                  <ZipDirectionsButton lat={t.lat} lng={t.lng} />
-                </div>
-              );
-            })}
-          </div>
-          
-          {selectedZip && (
-            <button
-              onClick={() => setSelectedZip(null)}
-              className="w-full mt-4 py-2 text-sm text-accent hover:underline"
-            >
-              Show all visits
-            </button>
-          )}
+      <div className="flex h-[calc(100vh-64px)] relative">
+        {/* Desktop Sidebar */}
+        <div className="hidden md:block w-80 bg-card border-r border-border overflow-y-auto p-4">
+          <SidebarContent />
         </div>
         
         {/* Map */}
         <div className="flex-1 relative">
           {loading ? (
-            <div className="flex items-center justify-center h-full text-muted">
-              Loading visits...
-            </div>
+            <div className="flex items-center justify-center h-full text-muted">Loading visits...</div>
           ) : (
-            <MapComponent 
-              visits={filteredVisits} 
-              center={center}
-              userLocation={userLocation}
-              onLocationUpdate={setUserLocation}
-            />
+            <MapComponent visits={filteredVisits} center={center} userLocation={userLocation} onLocationUpdate={setUserLocation} />
           )}
         </div>
+        
+        {/* Mobile Bottom Sheet Drawer */}
+        {isMobile && (
+          <>
+            {/* Backdrop */}
+            {drawerOpen && (
+              <div className="fixed inset-0 bg-black/40 z-30" onClick={() => setDrawerOpen(false)} />
+            )}
+            
+            {/* Drawer */}
+            <div className={`fixed left-0 right-0 bg-card border-t border-border z-40 transition-transform duration-300 ease-out ${drawerOpen ? 'translate-y-0' : 'translate-y-[calc(100%-80px)]'} bottom-0 rounded-t-2xl shadow-2xl max-h-[70vh]`}>
+              {/* Handle Bar - Always Visible */}
+              <div 
+                className="flex flex-col items-center pt-3 pb-2 cursor-pointer"
+                onClick={() => setDrawerOpen(!drawerOpen)}
+              >
+                {/* Drag Handle */}
+                <div className="w-12 h-1.5 bg-muted-foreground/30 rounded-full mb-3" />
+                
+                {/* Peek Content */}
+                <div className="flex items-center justify-between w-full px-4">
+                  <div className="flex items-center gap-3">
+                    <span className="text-lg">🏢</span>
+                    <div>
+                      <span className="font-semibold">Comcast Territory</span>
+                      <span className="text-muted text-sm ml-2">{visits.length} visits</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {closestZip && (
+                      <span className="text-xs bg-accent/20 text-accent px-2 py-1 rounded">
+                        Near {closestZip.zip}
+                      </span>
+                    )}
+                    <span className="text-muted text-lg">{drawerOpen ? '▼' : '▲'}</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Expanded Content */}
+              <div className={`overflow-y-auto px-4 pb-6 transition-all ${drawerOpen ? 'opacity-100' : 'opacity-0'}`} style={{ maxHeight: 'calc(70vh - 80px)' }}>
+                <SidebarContent />
+              </div>
+            </div>
+          </>
+        )}
       </div>
       
-      {/* Add pulse animation for user location */}
       <style jsx global>{`
         @keyframes pulse {
           0% { box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3); }
