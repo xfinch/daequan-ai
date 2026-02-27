@@ -6,6 +6,10 @@ Track potential partners from initial contact through signed affiliate agreement
 - **Prospect** = Direct sales target (business that might buy Comcast services)
 - **Partner** = Referral source (someone who sends you prospects)
 
+**Partner Types:**
+- **Paid Partner** = Signed Comcast affiliate agreement, earns commissions (max $10K/year)
+- **Non-Paid Partner** = Pure referral partner, makes introductions as part of their business, no formal agreement
+
 ---
 
 ## Pipeline Stages
@@ -16,8 +20,8 @@ Track potential partners from initial contact through signed affiliate agreement
 | Partner | Business | Contact | Source | Notes | Date Added |
 |---------|----------|---------|--------|-------|------------|
 | Anya Evans | Proctor Mercantile | info@proctormercantile.com | Shawn (MQF) | Property owner, potential partner LATER. Currently a prospect for services. Controls multiple Proctor businesses. | 2026-02-26 |
-| **Vance Richardson** | **Logic Staffing** | **vrichardson@logicstaffing.com** | **Direct** | **⭐ REFERRAL PARTNER. Former Comcast BAE. Connects IT pros who need Comcast contacts. Trevor (old Comcast contact) left - opening exists.** | **2026-02-26** |
-| **Tara L. Groody** | **GreenHaven Interactive** | **tara@greenhaveninteractive.com** | **Direct** | **⭐ REFERRAL PARTNER. Client Success Manager. MEETING: Tuesday 11:30 AM at 512 Pacific Hwy, Lakewood. Company may also be client prospect.** | **2026-02-26** |
+| **Vance Richardson** | **Logic Staffing** | **vrichardson@logicstaffing.com** | **Direct** | **⭐ NON-PAID PARTNER (Referral). Former Comcast BAE. Connects IT pros who need Comcast contacts. Makes intros as part of his network. Trevor (old Comcast contact) left - opening exists.** | **2026-02-26** |
+| **Tara L. Groody** | **GreenHaven Interactive** | **tara@greenhaveninteractive.com** | **Direct** | **⭐ NON-PAID PARTNER (Referral). Client Success Manager. Connects people as part of her business. MEETING: Tuesday 11:30 AM at 512 Pacific Hwy, Lakewood. Company may also be client prospect.** | **2026-02-26** |
 
 ### 2. 📧 Outreach Sent
 *Initial contact made, awaiting response*
@@ -88,12 +92,31 @@ Track who referred whom — this becomes your partner pipeline.
 
 | Metric | Count |
 |--------|-------|
-| Partner Prospects | 2 (Vance Richardson, Tara Groody) |
+| Non-Paid Partner Prospects | 2 (Vance, Tara) |
+| Paid Partner Prospects | 0 |
 | Prospects with Partner Potential | 1 (Anya Evans) |
-| Active Referral Partners | 0 |
-| Proposals Out | 0 |
-| Signed Partners | 0 |
+| Active Non-Paid Partners | 0 |
+| Signed Paid Partners | 0 |
 | Meetings Scheduled | 1 |
+
+---
+
+## Partner Type Tracking
+
+### Non-Paid Partners (Referral Sources)
+People who make introductions because connecting people is part of their business. No formal agreement, no commission.
+
+| Name | Business | Why They Refer | Status |
+|------|----------|----------------|--------|
+| Vance Richardson | Logic Staffing | Former Comcast BAE, knows IT pros who need service | 🎯 Prospecting |
+| Tara Groody | GreenHaven Interactive | Client Success Manager, connects people professionally | 🎯 Prospecting |
+
+### Paid Partners (Affiliates)
+Signed Comcast affiliates with formal agreement, earn commissions (up to $10K/year).
+
+| Name | Business | Commission Tier | Status |
+|------|----------|-----------------|--------|
+| (None yet) | — | — | — |
 
 ---
 
@@ -106,7 +129,7 @@ Track who referred whom — this becomes your partner pipeline.
 **Email:** tara@greenhaveninteractive.com  
 
 **Current Status:** 🎯 **Active Partner Prospect** (In Prospecting)  
-**Partner Type:** Referral Source  
+**Partner Type:** Non-Paid Partner (Referral Source)  
 **Company Also Prospect:** ✅ Yes (GreenHaven Interactive could be a client)
 
 **Meeting Scheduled:**
@@ -131,7 +154,7 @@ Track who referred whom — this becomes your partner pipeline.
 **Email:** vrichardson@logicstaffing.com  
 
 **Current Status:** 🎯 **Active Partner Prospect** (In Prospecting)  
-**Partner Type:** Referral Source  
+**Partner Type:** Non-Paid Partner (Referral Source)  
 
 **Why He's Strategic:**
 - **Former Comcast Business Account Executive** — knows the business, knows the value
