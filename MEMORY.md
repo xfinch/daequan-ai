@@ -63,32 +63,37 @@
 
 ---
 
-### Comcast CRM System — ACTIVE (2026-02-26)
+### Comcast CRM System — ACTIVE (2026-02-27)
 **Role:** Xavier's sales territory management and lead tracking
 
 **Key Systems:**
 - **Web Map:** https://daequanai.com/comcast — Interactive territory map with visit pins
-- **Database:** MongoDB with audit logging (ChangeLog schema)
+- **Backup URL:** https://xaviers-mac-mini.tailc89dd8.ts.net/ (Tailscale funnel)
+- **Database:** MongoDB (Railway deployment)
 - **GHL Sub-account:** Comcast - Xavier, Location ID: `nPubo6INanVq94ovAQNW`
 - **GHL Domain:** White-labeled at app.thetraffic.link
 
-**Recent Fixes (2026-02-26):**
-- Fixed Leaflet SSR issues causing "client-side exception" errors
-- Added geolocation: user position, closest ZIP detection, territory status
-- Fixed logout redirect to prevent 404 errors
+**Recent Fixes (2026-02-27):**
+- Fixed Leaflet dynamic import with SSR-disabled component
+- Added marker icon assets to public folder
+- Fixed middleware to allow static image files
+- Mobile sidebar now collapsible (shows ~50px header by default on mobile)
+- Added "Show Map" floating button when sidebar expanded on mobile
 
 **Map Features:**
 - **Geolocation:** Shows user position, nearest ZIP, in/out of territory status
 - **Visit Pins:** Color-coded by status (interested, follow-up, not-interested, called, customer)
 - **Territory Boundaries:** 14 ZIP codes displayed with approximate radius circles
-- **Mobile Responsive:** Works on phone with tap-to-add pins
+- **Mobile Responsive:** Collapsible sidebar, full map view on mobile
 
-**Active Prospects (2026-02-26):**
+**Active Prospects (9 visits):**
 - **Proctor District (98407):** Knapp's Restaurant (Billy), MQF (Shawn), Rudy's (Sarah), Proctor Mercantile (Anya Evans)
+- **Downtown (98403):** Powder Room Champagne Bar, Franco's Tailor, Morrell's Cleaners
 - **Outside Territory:** Logic Staffing (Sumner), GreenHaven Interactive (Tacoma 98424)
 
 **Files:**
-- `app/comcast/page.tsx` — Next.js map component
+- `app/comcast/page.tsx` — Next.js page with dynamic MapComponent import
+- `app/comcast/map-component.tsx` — Leaflet map (SSR disabled)
 - `app/api/visits/route.ts` — Visit CRUD API
 - `kanban-partners.md` — Partner pipeline tracking
 
