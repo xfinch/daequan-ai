@@ -70,6 +70,9 @@ interface MapProps {
   center: [number, number];
   userLocation: { lat: number; lng: number } | null;
   onLocationUpdate: (loc: { lat: number; lng: number }) => void;
+  onMapClick?: (lat: number, lng: number) => void;
+  addMode?: boolean;
+  tempPin?: { lat: number; lng: number } | null;
 }
 
 function MapUpdater({ center }: { center: [number, number] }) {
@@ -80,7 +83,18 @@ function MapUpdater({ center }: { center: [number, number] }) {
   return null;
 }
 
-export default function MapComponent({ visits, center, userLocation, onLocationUpdate }: MapProps) {
+function MapClickHandler({ onClick, addMode }: { onClick?: (lat: number, lng: number) => void; addMode?: boolean }) {
+  const map = useMap();
+  useEffect(() => {
+    if (!onClick || !addMode) return;
+    const handler = (e: L.LeafletMouseEvent) => onClick(e.latlng.lat, e.latlng.lng);
+    map.on('click', handler);
+    return () => { map.off('click', handler); };
+  }, [map, onClick, addMode]);
+  return null;
+}
+
+export default function MapComponent({ visits, center, userLocation, onLocationUpdate, onMapClick, addMode, tempPin }: MapProps) {
   const [isApple, setIsApple] = useState(false);
 
   useEffect(() => {
@@ -125,6 +139,7 @@ export default function MapComponent({ visits, center, userLocation, onLocationU
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <MapUpdater center={center} />
+      <MapClickHandler onClick={onMapClick} addMode={addMode} />
       
       {/* User location marker */}
       {userLocation && (
@@ -155,6 +170,27 @@ export default function MapComponent({ visits, center, userLocation, onLocationU
             pathOptions={{ color: '#3b82f6', fillColor: '#3b82f6', fillOpacity: 0.1, weight: 1 }}
           />
         </>
+      )}
+      
+      {/* Temp pin marker */}
+      {tempPin && (
+        <Marker 
+          position={[tempPin.lat, tempPin.lng]}
+          icon={L.divIcon({
+            className: 'temp-pin',
+            html: `<div style="
+              width: 24px;
+              height: 24px;
+              background: #f59e0b;
+              border: 3px solid white;
+              border-radius: 50% 50% 50% 0;
+              transform: rotate(-45deg);
+              box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            "></div>`,
+            iconSize: [24, 24],
+            iconAnchor: [12, 24]
+          })}
+        />
       )}
       
       {/* Visit markers */}

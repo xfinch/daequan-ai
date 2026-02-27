@@ -115,6 +115,10 @@ export default function ComcastMapPage() {
   const [geoError, setGeoError] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [addMode, setAddMode] = useState(false);
+  const [tempPin, setTempPin] = useState<{ lat: number; lng: number } | null>(null);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [newVisit, setNewVisit] = useState({ businessName: '', contactName: '', phone: '', address: '', zip: '', status: 'interested', notes: '' });
 
   useEffect(() => {
     fetchVisits();
@@ -163,6 +167,30 @@ export default function ComcastMapPage() {
 
   const centerOnUser = () => { if (userLocation) setCenter([userLocation.lat, userLocation.lng]); };
   const filteredVisits = selectedZip ? visits.filter(v => v.zip === selectedZip) : visits;
+
+  const handleMapClick = (lat: number, lng: number) => {
+    if (!addMode) return;
+    setTempPin({ lat, lng });
+    setShowAddModal(true);
+    setAddMode(false);
+  };
+
+  const handleAddVisit = async () => {
+    if (!tempPin) return;
+    try {
+      const res = await fetch('/api/visits', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...newVisit, lat: tempPin.lat, lng: tempPin.lng }),
+      });
+      if (res.ok) {
+        await fetchVisits();
+        setShowAddModal(false);
+        setTempPin(null);
+        setNewVisit({ businessName: '', contactName: '', phone: '', address: '', zip: '', status: 'interested', notes: '' });
+      }
+    } catch (err) { console.error(err); }
+  };
 
   // Desktop Sidebar Content
   const SidebarContent = () => (
@@ -231,6 +259,19 @@ export default function ComcastMapPage() {
       {selectedZip && (
         <button onClick={() => setSelectedZip(null)} className="w-full mt-4 py-2 text-sm text-accent hover:underline">Show all visits</button>
       )}
+      
+      {/* Add Pin Button */}
+      <button
+        onClick={() => setAddMode(true)}
+        className={`w-full mt-6 py-3 rounded-lg font-semibold transition-colors ${addMode ? 'bg-green-500 text-white' : 'bg-accent text-accent-foreground hover:bg-accent/90'}`}
+      >
+        {addMode ? '📍 Tap map to place pin' : '➕ Add New Visit'}
+      </button>
+      {addMode && (
+        <button onClick={() => setAddMode(false)} className="w-full mt-2 py-2 text-sm text-muted hover:text-foreground">
+          Cancel
+        </button>
+      )}
     </>
   );
 
@@ -248,7 +289,7 @@ export default function ComcastMapPage() {
           {loading ? (
             <div className="flex items-center justify-center h-full text-muted">Loading visits...</div>
           ) : (
-            <MapComponent visits={filteredVisits} center={center} userLocation={userLocation} onLocationUpdate={setUserLocation} />
+            <MapComponent visits={filteredVisits} center={center} userLocation={userLocation} onLocationUpdate={setUserLocation} onMapClick={handleMapClick} addMode={addMode} tempPin={tempPin} />
           )}
         </div>
         
@@ -299,6 +340,58 @@ export default function ComcastMapPage() {
         )}
       </div>
       
+      {/* Add Visit Modal */}
+      {showAddModal && tempPin && (
+        <div className="fixed inset-0 bg-black/50 z-[10000] flex items-center justify-center p-4">
+          <div className="bg-card rounded-xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto p-6">
+            <h2 className="text-xl font-bold mb-4">📍 Add New Visit</h2>
+            <p className="text-sm text-muted mb-4">Location: {tempPin.lat.toFixed(5)}, {tempPin.lng.toFixed(5)}</p>
+            
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-1">Business Name *</label>
+                <input type="text" value={newVisit.businessName} onChange={e => setNewVisit({...newVisit, businessName: e.target.value})} className="w-full p-2 rounded border bg-background" placeholder="Joe's Plumbing" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Contact Name</label>
+                <input type="text" value={newVisit.contactName} onChange={e => setNewVisit({...newVisit, contactName: e.target.value})} className="w-full p-2 rounded border bg-background" placeholder="John Smith" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Phone</label>
+                <input type="tel" value={newVisit.phone} onChange={e => setNewVisit({...newVisit, phone: e.target.value})} className="w-full p-2 rounded border bg-background" placeholder="253-555-0123" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Address</label>
+                <input type="text" value={newVisit.address} onChange={e => setNewVisit({...newVisit, address: e.target.value})} className="w-full p-2 rounded border bg-background" placeholder="123 Main St" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">ZIP</label>
+                <input type="text" value={newVisit.zip} onChange={e => setNewVisit({...newVisit, zip: e.target.value})} className="w-full p-2 rounded border bg-background" placeholder="98407" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Status</label>
+                <select value={newVisit.status} onChange={e => setNewVisit({...newVisit, status: e.target.value})} className="w-full p-2 rounded border bg-background">
+                  <option value="interested">Interested</option>
+                  <option value="follow-up">Follow-up</option>
+                  <option value="not-interested">Not Interested</option>
+                  <option value="called">Called</option>
+                  <option value="customer">Customer</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Notes</label>
+                <textarea value={newVisit.notes} onChange={e => setNewVisit({...newVisit, notes: e.target.value})} className="w-full p-2 rounded border bg-background" rows={3} placeholder="Any notes..." />
+              </div>
+            </div>
+            
+            <div className="flex gap-3 mt-6">
+              <button onClick={() => { setShowAddModal(false); setTempPin(null); }} className="flex-1 py-2 rounded border hover:bg-muted transition-colors">Cancel</button>
+              <button onClick={handleAddVisit} disabled={!newVisit.businessName} className="flex-1 py-2 rounded bg-accent text-accent-foreground font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-accent/90 transition-colors">Save Visit</button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <style jsx global>{`
         @keyframes pulse {
           0% { box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3); }
