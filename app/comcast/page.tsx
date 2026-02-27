@@ -134,15 +134,24 @@ function Map({
   const [leaflet, setLeaflet] = useState<typeof import('leaflet') | null>(null);
   const [reactLeaflet, setReactLeaflet] = useState<any>(null);
 
+  const [loadError, setLoadError] = useState<string | null>(null);
+
   useEffect(() => {
-    import('leaflet/dist/leaflet.css');
-    Promise.all([
-      import('leaflet'),
-      import('react-leaflet')
-    ]).then(([L, RL]) => {
-      setLeaflet(L);
-      setReactLeaflet(RL);
-    });
+    const loadLibraries = async () => {
+      try {
+        await import('leaflet/dist/leaflet.css');
+        const [L, RL] = await Promise.all([
+          import('leaflet'),
+          import('react-leaflet')
+        ]);
+        setLeaflet(L);
+        setReactLeaflet(RL);
+      } catch (err) {
+        console.error('Failed to load map libraries:', err);
+        setLoadError('Failed to load map. Please refresh.');
+      }
+    };
+    loadLibraries();
   }, []);
 
   // Watch user's location
@@ -165,10 +174,27 @@ function Map({
     return () => navigator.geolocation.clearWatch(watchId);
   }, [onLocationUpdate]);
 
+  if (loadError) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full text-muted p-4">
+        <p className="text-red-500 mb-2">{loadError}</p>
+        <button 
+          onClick={() => window.location.reload()}
+          className="px-4 py-2 bg-blue-500 text-white rounded"
+        >
+          Refresh
+        </button>
+      </div>
+    );
+  }
+
   if (!leaflet || !reactLeaflet) {
     return (
       <div className="flex items-center justify-center h-full text-muted">
-        Loading map...
+        <div className="flex flex-col items-center gap-2">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+          <span>Loading map...</span>
+        </div>
       </div>
     );
   }
