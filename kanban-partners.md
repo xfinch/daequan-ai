@@ -97,7 +97,7 @@ Track who referred whom — this becomes your partner pipeline.
 | Prospects with Partner Potential | 1 (Anya Evans) |
 | Active Non-Paid Partners | 0 |
 | Signed Paid Partners | 0 |
-| Meetings Scheduled | 1 |
+| Meetings Scheduled | 2 |
 
 ---
 
@@ -132,10 +132,12 @@ Signed Comcast affiliates with formal agreement, earn commissions (up to $10K/ye
 **Partner Type:** Non-Paid Partner (Referral Source)  
 **Company Also Prospect:** ✅ Yes (GreenHaven Interactive could be a client)
 
-**Meeting Scheduled:**
-- **Date:** Tuesday
-- **Time:** 11:30 AM
-- **Location:** 512 Pacific Highway, Lakewood
+**Meetings Scheduled:**
+
+| Partner | Date | Time | Location |
+|---------|------|------|----------|
+| Vance Richardson | Monday the 2nd | 2:00 PM | Coffee shop at Point Ruston (next to WildFin) |
+| Tara Groody | Tuesday | 11:30 AM | 512 Pacific Highway, Lakewood |
 
 **Next Steps:**
 - [ ] Attend Tuesday 11:30 AM meeting
@@ -170,8 +172,13 @@ Trevor (previous Comcast rep for this network) left the company. Vance's IT cont
 - Vance is NOT the decision maker for Logic Staffing
 - Vance IS a referral partner for his IT network
 
+**Meeting Scheduled:**
+- **Date:** Monday the 2nd
+- **Time:** 2:00 PM
+- **Location:** Coffee shop at Point Ruston (next to WildFin)
+
 **Next Steps:**
-- [ ] Follow up with Vance
+- [x] Meeting scheduled — Monday 2 PM at Point Ruston
 - [ ] Position yourself as the "new Trevor" for his IT network
 - [ ] Ask for 2-3 warm intro calls with IT pros who need Comcast
 - [ ] Keep Logic Staffing company as separate sales prospect (find actual decision maker)
