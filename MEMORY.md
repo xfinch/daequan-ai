@@ -63,7 +63,7 @@
 
 ---
 
-### Comcast CRM System — COMPLETE (2026-02-20)
+### Comcast CRM System — ACTIVE (2026-02-26)
 **Role:** Xavier's sales territory management and lead tracking
 
 **Key Systems:**
@@ -72,27 +72,44 @@
 - **GHL Sub-account:** Comcast - Xavier, Location ID: `nPubo6INanVq94ovAQNW`
 - **GHL Domain:** White-labeled at app.thetraffic.link
 
-**Features:**
-- **Business Card Scanner:** WhatsApp → AI OCR → GHL contact creation
-- **Interactive Missing Info:** Asks for required fields, tracks in GHL tags
-- **Mobile Notifications:** High-priority GHL tasks push to LC app → phone
-- **Audit Trail:** All changes logged (who, what, when, how)
-- **Deep Links:** Map pins link directly to GHL contact records
+**Recent Fixes (2026-02-26):**
+- Fixed Leaflet SSR issues causing "client-side exception" errors
+- Added geolocation: user position, closest ZIP detection, territory status
+- Fixed logout redirect to prevent 404 errors
 
-**Required Fields for Business Cards:**
-- Name, Phone, Email, Address (street, city, state, zip)
+**Map Features:**
+- **Geolocation:** Shows user position, nearest ZIP, in/out of territory status
+- **Visit Pins:** Color-coded by status (interested, follow-up, not-interested, called, customer)
+- **Territory Boundaries:** 14 ZIP codes displayed with approximate radius circles
+- **Mobile Responsive:** Works on phone with tap-to-add pins
 
-**If Missing Info:**
-- WhatsApp asks user for missing fields
-- Map shows "⚠️ Needs Update" badge
-- GHL contact tagged: `missing-phone`, `missing-email`, etc.
-- Phone notification via LC app task
+**Active Prospects (2026-02-26):**
+- **Proctor District (98407):** Knapp's Restaurant (Billy), MQF (Shawn), Rudy's (Sarah), Proctor Mercantile (Anya Evans)
+- **Outside Territory:** Logic Staffing (Sumner), GreenHaven Interactive (Tacoma 98424)
 
 **Files:**
-- `comcast-crm/business-card-interactive.js` — Core workflow logic
-- `comcast-crm/BUSINESS_CARD_SCANNER.md` — Documentation
-- `comcast/index.html` — Web map interface
-- `server.js` — API with audit logging
+- `app/comcast/page.tsx` — Next.js map component
+- `app/api/visits/route.ts` — Visit CRUD API
+- `kanban-partners.md` — Partner pipeline tracking
+
+---
+
+### Partners Pipeline — NEW (2026-02-26)
+**Role:** Track referral partners (paid and non-paid) for Comcast
+
+**Partner Types:**
+- **Non-Paid Partners:** Referral sources who connect people professionally (no commission)
+- **Paid Partners:** Signed Comcast affiliates earning up to $10K/year commission
+
+**Current Prospects:**
+- **Vance Richardson** (Logic Staffing) — Former Comcast BAE, IT network referrals
+- **Tara Groody** (GreenHaven Interactive) — Client Success Manager, connects people professionally
+
+**Scheduled Meetings:**
+- Monday 2nd, 2 PM: Vance at Point Ruston (next to WildFin)
+- Tuesday 11:30 AM: Tara at 512 Pacific Hwy, Lakewood
+
+**File:** `kanban-partners.md`
 
 ---
 
@@ -180,4 +197,4 @@ This signals:
 
 ---
 
-*Updated: 2026-02-21*
+*Updated: 2026-02-26*
