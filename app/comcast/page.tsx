@@ -257,11 +257,11 @@ export default function ComcastMapPage() {
           <>
             {/* Backdrop */}
             {drawerOpen && (
-              <div className="fixed inset-0 bg-black/40 z-30" onClick={() => setDrawerOpen(false)} />
+              <div className="fixed inset-0 bg-black/40 z-[9998]" onClick={() => setDrawerOpen(false)} />
             )}
             
             {/* Drawer */}
-            <div className={`fixed left-0 right-0 bg-card border-t border-border z-40 transition-transform duration-300 ease-out ${drawerOpen ? 'translate-y-0' : 'translate-y-[calc(100%-80px)]'} bottom-0 rounded-t-2xl shadow-2xl max-h-[70vh]`}>
+            <div className={`fixed left-0 right-0 bg-card border-t border-border z-[9999] transition-transform duration-300 ease-out ${drawerOpen ? 'translate-y-0' : 'translate-y-[calc(100%-80px)]'} bottom-0 rounded-t-2xl shadow-2xl max-h-[70vh]`}>
               {/* Handle Bar - Always Visible */}
               <div 
                 className="flex flex-col items-center pt-3 pb-2 cursor-pointer"
