@@ -141,10 +141,18 @@ export default function ComcastMapPage() {
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [closestZip, setClosestZip] = useState<{ zip: string; city: string; distance: number } | null>(null);
   const [geoError, setGeoError] = useState<string | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     fetchVisits();
     requestLocation();
+    
+    // Detect mobile
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   // Calculate closest ZIP when location updates
@@ -225,10 +233,50 @@ export default function ComcastMapPage() {
   return (
     <>
       <Navbar />
+      {/* Mobile Sidebar Toggle */}
+      {isMobile && !sidebarOpen && (
+        <button
+          onClick={() => setSidebarOpen(true)}
+          className="fixed bottom-4 left-4 z-50 bg-accent text-accent-foreground px-4 py-2 rounded-lg shadow-lg flex items-center gap-2"
+        >
+          <span>☰</span>
+          <span>Menu ({visits.length})</span>
+        </button>
+      )}
+      
       <div className="flex h-[calc(100vh-64px)]">
+        {/* Mobile Overlay */}
+        {isMobile && sidebarOpen && (
+          <div 
+            className="fixed inset-0 bg-black/50 z-30"
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
+        
         {/* Sidebar */}
-        <div className="w-80 bg-card border-r border-border overflow-y-auto p-4">
-          <h1 className="text-xl font-bold mb-2">🏢 Comcast Territory</h1>
+        <div className={`
+          bg-card border-r border-border overflow-y-auto p-4 transition-all duration-300
+          ${isMobile 
+            ? sidebarOpen 
+              ? 'fixed inset-y-0 left-0 z-40 w-80 shadow-2xl' 
+              : 'w-0 p-0 overflow-hidden'
+            : 'w-80'
+          }
+        `}>
+          {/* Mobile Close Button */}
+          {isMobile && (
+            <div className="flex justify-between items-center mb-4">
+              <h1 className="text-xl font-bold">🏢 Comcast Territory</h1>
+              <button
+                onClick={() => setSidebarOpen(false)}
+                className="p-2 bg-muted rounded-lg"
+              >
+                ✕ Close
+              </button>
+            </div>
+          )}
+          
+          {!isMobile && <h1 className="text-xl font-bold mb-2">🏢 Comcast Territory</h1>}
           <p className="text-sm text-muted mb-4">Senior Business Account Executive</p>
           
           {/* Location Status Card */}
