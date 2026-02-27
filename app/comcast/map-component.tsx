@@ -102,25 +102,7 @@ export default function MapComponent({ visits, center, userLocation, onLocationU
     setIsApple(isIOS());
   }, []);
 
-  // Watch user's location
-  useEffect(() => {
-    if (!navigator.geolocation) return;
-    
-    const watchId = navigator.geolocation.watchPosition(
-      (position) => {
-        onLocationUpdate({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        });
-      },
-      (error) => {
-        console.log('Geolocation error:', error);
-      },
-      { enableHighAccuracy: true, maximumAge: 30000, timeout: 27000 }
-    );
-    
-    return () => navigator.geolocation.clearWatch(watchId);
-  }, [onLocationUpdate]);
+  // Location is watched by parent component to avoid re-renders
 
   const getDirectionsUrl = (lat: number, lng: number) => {
     if (isApple) {

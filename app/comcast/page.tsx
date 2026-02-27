@@ -122,10 +122,14 @@ export default function ComcastMapPage() {
   const [manualAddress, setManualAddress] = useState('');
   const [geocoding, setGeocoding] = useState(false);
 
+  // Initial load only - no polling to prevent keyboard issues
   useEffect(() => {
     fetchVisits();
     requestLocation();
-    
+  }, []);
+
+  // Mobile detection - separate to avoid re-renders
+  useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
