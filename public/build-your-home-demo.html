@@ -400,8 +400,13 @@
             totalScore += selected.score;
             document.getElementById('score').textContent = totalScore;
             
-            // Show house part
-            document.getElementById(q.part).classList.add('show');
+            // Show house part(s)
+            if (q.part === 'windows') {
+                document.getElementById('window1').classList.add('show');
+                document.getElementById('window2').classList.add('show');
+            } else {
+                document.getElementById(q.part).classList.add('show');
+            }
             
             currentQuestion++;
             
