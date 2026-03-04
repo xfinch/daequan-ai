@@ -3,383 +3,629 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HomeGroup | Find Your Perfect Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <title>HomeGroup | Buyer Consultation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1a1a1a;
-            --primary-light: #2d2d2d;
-            --accent: #c9a962;
-            --bg-warm: #faf9f7;
-            --bg-cream: #f5f3ef;
-            --text-primary: #1a1a1a;
-            --text-secondary: #666666;
-            --text-muted: #999999;
-            --border: #e5e5e5;
-            --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
-            --radius-md: 12px;
-            --radius-lg: 16px;
+            --black: #0a0a0a;
+            --charcoal: #1a1a1a;
+            --gray-dark: #2d2d2d;
+            --gray: #666;
+            --gray-light: #999;
+            --silver: #c4c4c4;
+            --cream: #f8f7f4;
+            --white: #ffffff;
+            --accent: #8b7355;
+            --accent-light: #a08060;
+            --border: #e8e8e8;
+            
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-warm);
-            min-height: 100vh;
-            color: var(--text-primary);
+            font-family: var(--font-sans);
+            background: var(--cream);
+            color: var(--charcoal);
             line-height: 1.6;
-        }
-        .app-container {
-            max-width: 1200px;
-            margin: 0 auto;
+            font-weight: 300;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
-        .header {
-            padding: 24px 40px;
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 32px 64px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--border);
+            background: linear-gradient(to bottom, var(--cream) 0%, transparent 100%);
         }
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-weight: 600;
-            letter-spacing: -0.5px;
+
+        .brand {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: var(--black);
         }
-        .logo span { color: var(--accent); }
-        .header-cta { font-size: 14px; color: var(--text-secondary); }
-        .header-cta a { color: var(--accent); text-decoration: none; font-weight: 500; }
-        .main-content {
-            flex: 1;
+
+        .brand span {
+            font-weight: 400;
+            color: var(--gray);
+        }
+
+        .nav-contact {
+            font-size: 13px;
+            color: var(--gray);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .nav-contact a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .nav-contact a:hover {
+            border-bottom-color: var(--accent);
+        }
+
+        /* Main Container */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 140px 64px 80px;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 120px;
+            align-items: start;
+        }
+
+        /* Left Column - Visual */
+        .visual-column {
+            position: sticky;
+            top: 140px;
+        }
+
+        .house-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
             display: flex;
-            padding: 40px;
-            gap: 60px;
             align-items: center;
             justify-content: center;
         }
-        .visual-side {
-            flex: 1;
-            max-width: 500px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+
+        .house-svg {
+            width: 80%;
+            height: 80%;
         }
-        .progress-ring-container {
-            position: relative;
-            width: 320px;
-            height: 320px;
-            margin-bottom: 40px;
-        }
-        .progress-ring { transform: rotate(-90deg); }
-        .progress-ring-bg { fill: none; stroke: var(--border); stroke-width: 8; }
-        .progress-ring-fill {
-            fill: none; stroke: var(--accent); stroke-width: 8; stroke-linecap: round;
-            stroke-dasharray: 880; stroke-dashoffset: 880;
-            transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .house-visual {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 200px; height: 200px;
-        }
-        .house-svg { width: 100%; height: 100%; }
+
         .house-part {
-            opacity: 0; transform: translateY(10px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .house-part.show { opacity: 1; transform: translateY(0); }
-        .stage-indicator { display: flex; gap: 8px; margin-top: 20px; }
-        .stage-dot {
-            width: 8px; height: 8px; border-radius: 50%;
-            background: var(--border); transition: all 0.3s ease;
+
+        .house-part.revealed {
+            opacity: 1;
+            transform: translateY(0);
         }
-        .stage-dot.active { background: var(--accent); width: 24px; border-radius: 4px; }
-        .stage-labels {
-            display: flex; gap: 40px; margin-top: 16px;
-            font-size: 12px; color: var(--text-muted);
-            text-transform: uppercase; letter-spacing: 1px;
+
+        /* Architectural drawing style */
+        .arch-line {
+            fill: none;
+            stroke: var(--charcoal);
+            stroke-width: 1.5;
+            stroke-linecap: round;
         }
-        .stage-label { opacity: 0.4; transition: opacity 0.3s ease; }
-        .stage-label.active { opacity: 1; color: var(--text-primary); font-weight: 500; }
-        .content-side { flex: 1; max-width: 480px; }
-        .start-screen { text-align: left; }
-        .start-screen h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px; font-weight: 600; line-height: 1.2; margin-bottom: 20px;
+
+        .arch-fill {
+            fill: var(--white);
+            stroke: var(--charcoal);
+            stroke-width: 1.5;
         }
-        .start-screen .subtitle {
-            font-size: 18px; color: var(--text-secondary);
-            margin-bottom: 40px; line-height: 1.7;
+
+        .arch-detail {
+            fill: none;
+            stroke: var(--gray-light);
+            stroke-width: 1;
         }
-        .benefits { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
-        .benefit-item { display: flex; align-items: center; gap: 16px; font-size: 15px; color: var(--text-secondary); }
-        .benefit-icon {
-            width: 40px; height: 40px; background: var(--bg-cream);
-            border-radius: 8px; display: flex; align-items: center; justify-content: center;
-            font-size: 18px;
+
+        /* Progress indicator */
+        .progress {
+            margin-top: 48px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
-        .primary-btn {
-            display: inline-flex; align-items: center; gap: 12px;
-            padding: 18px 36px; background: var(--primary); color: white;
-            border: none; border-radius: var(--radius-md);
-            font-size: 16px; font-weight: 500; cursor: pointer;
-            transition: all 0.3s ease; font-family: inherit;
+
+        .progress-bar {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+            position: relative;
         }
-        .primary-btn:hover { background: var(--primary-light); transform: translateY(-2px); box-shadow: var(--shadow-md); }
-        .primary-btn .arrow { transition: transform 0.3s ease; }
-        .primary-btn:hover .arrow { transform: translateX(4px); }
-        .quiz-screen { display: none; }
-        .quiz-header { margin-bottom: 32px; }
-        .step-badge {
-            display: inline-block; padding: 6px 14px; background: var(--bg-cream);
-            border-radius: 20px; font-size: 12px; font-weight: 600;
-            color: var(--accent); text-transform: uppercase; letter-spacing: 1px;
-            margin-bottom: 16px;
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            transition: width 0.6s ease;
         }
-        .question-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px; font-weight: 600; line-height: 1.3; margin-bottom: 12px;
+
+        .progress-text {
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gray);
+            min-width: 80px;
+            text-align: right;
         }
-        .question-subtitle { font-size: 16px; color: var(--text-secondary); }
-        .options-list { display: flex; flex-direction: column; gap: 12px; }
-        .option-card {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 20px 24px; background: white; border: 1px solid var(--border);
-            border-radius: var(--radius-md); cursor: pointer; transition: all 0.2s ease;
+
+        /* Right Column - Content */
+        .content-column {
+            padding-top: 40px;
         }
-        .option-card:hover { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateX(4px); }
-        .option-text { font-size: 16px; font-weight: 500; color: var(--text-primary); }
-        .option-hint { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
-        .option-arrow { color: var(--text-muted); font-size: 20px; transition: all 0.2s ease; }
-        .option-card:hover .option-arrow { color: var(--accent); transform: translateX(4px); }
-        .result-screen { display: none; text-align: center; padding: 40px 0; }
-        .result-icon {
-            width: 120px; height: 120px; margin: 0 auto 32px;
-            background: var(--bg-cream); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 48px;
+
+        /* Screens */
+        .screen {
+            display: none;
         }
-        .result-tier {
-            display: inline-block; padding: 8px 20px; border-radius: 20px;
-            font-size: 12px; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 1.5px; margin-bottom: 20px;
+
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.6s ease;
         }
-        .result-tier.premium { background: #fef3c7; color: #92400e; }
-        .result-tier.standard { background: #dbeafe; color: #1e40af; }
-        .result-tier.basic { background: #f3f4f6; color: #4b5563; }
-        .result-tier.exploring { background: #f3e8ff; color: #6b21a8; }
-        .result-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 36px; font-weight: 600; margin-bottom: 16px;
-        }
-        .result-description {
-            font-size: 17px; color: var(--text-secondary); line-height: 1.7;
-            margin-bottom: 40px; max-width: 400px; margin-left: auto; margin-right: auto;
-        }
-        .next-steps {
-            background: white; border-radius: var(--radius-lg);
-            padding: 32px; margin-bottom: 32px; border: 1px solid var(--border);
-            text-align: left;
-        }
-        .next-steps h3 {
-            font-size: 14px; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 1px; color: var(--text-secondary); margin-bottom: 20px;
-        }
-        .step-item { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
-        .step-item:last-child { border-bottom: none; padding-bottom: 0; }
-        .step-number {
-            width: 32px; height: 32px; background: var(--accent); color: white;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 14px; font-weight: 600; flex-shrink: 0;
-        }
-        .step-content h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-        .step-content p { font-size: 14px; color: var(--text-secondary); }
-        .contact-form { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
-        .form-row { display: flex; gap: 16px; }
-        .form-input {
-            flex: 1; padding: 16px 20px; border: 1px solid var(--border);
-            border-radius: var(--radius-md); font-size: 15px;
-            font-family: inherit; transition: all 0.2s ease; background: white;
-        }
-        .form-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(201, 169, 98, 0.1); }
-        .form-input::placeholder { color: var(--text-muted); }
-        .secondary-btn {
-            padding: 16px 32px; background: transparent; border: 1px solid var(--border);
-            border-radius: var(--radius-md); font-size: 15px; font-weight: 500;
-            color: var(--text-secondary); cursor: pointer; transition: all 0.2s ease; font-family: inherit;
-        }
-        .secondary-btn:hover { border-color: var(--text-secondary); color: var(--text-primary); }
-        .footer {
-            padding: 24px 40px; border-top: 1px solid var(--border);
-            display: flex; justify-content: space-between; align-items: center;
-            font-size: 13px; color: var(--text-muted);
-        }
-        .footer-links { display: flex; gap: 24px; }
-        .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s ease; }
-        .footer-links a:hover { color: var(--text-primary); }
-        @media (max-width: 900px) {
-            .main-content { flex-direction: column; padding: 24px; gap: 40px; }
-            .header { padding: 20px 24px; }
-            .start-screen h1 { font-size: 36px; }
-            .question-title { font-size: 26px; }
-            .progress-ring-container { width: 260px; height: 260px; }
-            .form-row { flex-direction: column; }
-            .stage-labels { display: none; }
-        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-in { animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+
+        /* Typography */
+        h1 {
+            font-family: var(--font-serif);
+            font-size: 56px;
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--black);
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-family: var(--font-serif);
+            font-size: 42px;
+            font-weight: 400;
+            line-height: 1.2;
+            color: var(--black);
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 48px;
+            max-width: 480px;
+        }
+
+        .step-label {
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        /* Value props */
+        .values {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 48px 0;
+        }
+
+        .value-item {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            font-size: 15px;
+            color: var(--gray-dark);
+        }
+
+        .value-number {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-style: italic;
+            color: var(--accent);
+            min-width: 32px;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 40px;
+            background: var(--charcoal);
+            color: var(--white);
+            border: none;
+            font-family: var(--font-sans);
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 16px;
+        }
+
+        .btn-primary:hover {
+            background: var(--black);
+            transform: translateX(4px);
+        }
+
+        .btn-primary svg {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Options */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 48px;
+        }
+
+        .option {
+            padding: 24px 32px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .option:hover {
+            border-color: var(--accent);
+            background: var(--white);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        }
+
+        .option-content h3 {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--charcoal);
+            margin-bottom: 4px;
+        }
+
+        .option-content p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .option-arrow {
+            color: var(--silver);
+            transition: all 0.3s ease;
+        }
+
+        .option:hover .option-arrow {
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        /* Results */
+        .result-tier {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid var(--accent);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 32px;
+        }
+
+        .result-description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--gray-dark);
+            margin: 32px 0 48px;
+        }
+
+        .next-steps {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 40px;
+            margin-bottom: 32px;
+        }
+
+        .next-steps h3 {
+            font-family: var(--font-sans);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 32px;
+            font-weight: 500;
+        }
+
+        .step {
+            display: flex;
+            gap: 24px;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .step:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .step:first-child {
+            padding-top: 0;
+        }
+
+        .step-number {
+            font-family: var(--font-serif);
+            font-size: 32px;
+            font-style: italic;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .step-content h4 {
+            font-family: var(--font-sans);
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--charcoal);
+            margin-bottom: 4px;
+        }
+
+        .step-content p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            display: grid;
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            padding: 16px 20px;
+            border: 1px solid var(--border);
+            font-family: var(--font-sans);
+            font-size: 15px;
+            background: var(--white);
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        input::placeholder {
+            color: var(--silver);
+        }
+
+        .btn-secondary {
+            padding: 16px 32px;
+            background: transparent;
+            border: 1px solid var(--border);
+            font-family: var(--font-sans);
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gray);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gray);
+            color: var(--charcoal);
+        }
+
+        /* Footer */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px 64px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--gray-light);
+            background: linear-gradient(to top, var(--cream) 0%, transparent 100%);
+        }
+
+        footer a {
+            color: var(--gray);
+            text-decoration: none;
+            margin-left: 32px;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--charcoal);
+        }
     </style>
 </head>
 <body>
-    <div class="app-container">
-        <header class="header">
-            <div class="logo">Home<span>Group</span></div>
-            <div class="header-cta">
-                Questions? <a href="tel:+12533676245">(253) 367-6245</a>
-            </div>
-        </header>
+    <nav>
+        <div class="brand">Home<span>Group</span></div>
+        <div class="nav-contact">
+            Questions? <a href="tel:+12533676245">(253) 367-6245</a>
+        </div>
+    </nav>
 
-        <main class="main-content">
-            <div class="visual-side">
-                <div class="progress-ring-container">
-                    <svg class="progress-ring" width="320" height="320">
-                        <circle class="progress-ring-bg" cx="160" cy="160" r="140"/>
-                        <circle class="progress-ring-fill" id="progressCircle" cx="160" cy="160" r="140"/>
+    <main>
+        <div class="visual-column">
+            <div class="house-container">
+                <svg class="house-svg" viewBox="0 0 400 400">
+                    <!-- Foundation -->
+                    <g class="house-part" id="part-foundation">
+                        <rect x="100" y="320" width="200" height="20" class="arch-fill" rx="2"/>
+                        <line x1="90" y1="340" x2="310" y2="340" class="arch-line"/>
+                    </g>
+                    
+                    <!-- Walls -->
+                    <g class="house-part" id="part-walls">
+                        <rect x="120" y="200" width="160" height="120" class="arch-fill" rx="1"/>
+                        <!-- Vertical lines for architectural detail -->
+                        <line x1="160" y1="200" x2="160" y2="320" class="arch-detail"/>
+                        <line x1="200" y1="200" x2="200" y2="320" class="arch-detail"/>
+                        <line x1="240" y1="200" x2="240" y2="320" class="arch-detail"/>
+                        <!-- Header -->
+                        <rect x="110" y="190" width="180" height="10" class="arch-fill" rx="1"/>
+                    </g>
+                    
+                    <!-- Windows -->
+                    <g class="house-part" id="part-windows">
+                        <rect x="135" y="230" width="40" height="60" class="arch-fill" rx="1"/>
+                        <line x1="155" y1="230" x2="155" y2="290" class="arch-detail"/>
+                        <line x1="135" y1="260" x2="175" y2="260" class="arch-detail"/>
+                        
+                        <rect x="225" y="230" width="40" height="60" class="arch-fill" rx="1"/>
+                        <line x1="245" y1="230" x2="245" y2="290" class="arch-detail"/>
+                        <line x1="225" y1="260" x2="265" y2="260" class="arch-detail"/>
+                    </g>
+                    
+                    <!-- Door -->
+                    <g class="house-part" id="part-door">
+                        <rect x="185" y="270" width="30" height="50" class="arch-fill" rx="1"/>
+                        <circle cx="208" cy="295" r="2" fill="var(--accent)"/>
+                        <line x1="185" y1="320" x2="215" y2="320" class="arch-line"/>
+                    </g>
+                    
+                    <!-- Roof -->
+                    <g class="house-part" id="part-roof">
+                        <path d="M 100 200 L 200 100 L 300 200" class="arch-line"/>
+                        <path d="M 110 195 L 200 110 L 290 195" class="arch-fill"/>
+                        <!-- Dormer -->
+                        <rect x="180" y="140" width="40" height="30" class="arch-fill" rx="1"/>
+                        <path d="M 175 140 L 200 115 L 225 140" class="arch-line"/>
+                    </g>
+                </svg>
+            </div>
+            
+            <div class="progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+                <div class="progress-text" id="progressText">Step 1/5</div>
+            </div>
+        </div>
+
+        <div class="content-column">
+            <!-- Start Screen -->
+            <div class="screen active" id="startScreen">
+                <h1>Discover homes matched to your life.</h1>
+                <p class="subtitle">A brief consultation to understand your priorities, timeline, and preferences. We'll identify properties that align with your goals.</p>
+                
+                <div class="values">
+                    <div class="value-item">
+                        <span class="value-number">01</span>
+                        <span>Tell us about your timeline and priorities</span>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-number">02</span>
+                        <span>We identify suitable properties</span>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-number">03</span>
+                        <span>Receive curated listings within 24 hours</span>
+                    </div>
+                </div>
+
+                <button class="btn-primary" onclick="startQuiz()">
+                    Begin Consultation
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 8h10M10 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    
-                    <div class="house-visual">
-                        <svg class="house-svg" viewBox="0 0 200 200">
-                            <g class="house-part" id="part-foundation">
-                                <rect x="40" y="170" width="120" height="15" fill="#4a4a4a" rx="2"/>
-                                <rect x="35" y="182" width="130" height="6" fill="#2d2d2d" rx="1"/>
-                            </g>
-                            
-                            <g class="house-part" id="part-walls">
-                                <rect x="50" y="100" width="100" height="70" fill="#f5f3ef" stroke="#d4d0c8" stroke-width="2"/>
-                                <rect x="45" y="95" width="110" height="8" fill="#e8e4dc" rx="1"/>
-                            </g>
-                            
-                            <g class="house-part" id="part-windows">
-                                <rect x="60" y="115" width="28" height="35" fill="#e8f4fc" stroke="#4a4a4a" stroke-width="2"/>
-                                <line x1="74" y1="115" x2="74" y2="150" stroke="#4a4a4a" stroke-width="1.5"/>
-                                <line x1="60" y1="132.5" x2="88" y2="132.5" stroke="#4a4a4a" stroke-width="1.5"/>
-                                <rect x="112" y="115" width="28" height="35" fill="#e8f4fc" stroke="#4a4a4a" stroke-width="2"/>
-                                <line x1="126" y1="115" x2="126" y2="150" stroke="#4a4a4a" stroke-width="1.5"/>
-                                <line x1="112" y1="132.5" x2="140" y2="132.5" stroke="#4a4a4a" stroke-width="1.5"/>
-                            </g>
-                            
-                            <g class="house-part" id="part-door">
-                                <rect x="88" y="135" width="24" height="35" fill="#5c4a3d" rx="1"/>
-                                <circle cx="107" cy="155" r="2" fill="#c9a962"/>
-                                <rect x="88" y="168" width="24" height="2" fill="#4a4a4a"/>
-                            </g>
-                            
-                            <g class="house-part" id="part-roof">
-                                <path d="M 35 100 L 100 35 L 165 100" fill="none" stroke="#2d2d2d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M 40 98 L 100 40 L 160 98" fill="#2d2d2d"/>
-                                <rect x="85" y="55" width="30" height="20" fill="#4a4a4a" rx="2"/>
-                            </g>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="stage-indicator">
-                    <div class="stage-dot active" data-stage="0"></div>
-                    <div class="stage-dot" data-stage="1"></div>
-                    <div class="stage-dot" data-stage="2"></div>
-                    <div class="stage-dot" data-stage="3"></div>
-                    <div class="stage-dot" data-stage="4"></div>
-                </div>
-
-                <div class="stage-labels">
-                    <span class="stage-label active" data-stage="0">Foundation</span>
-                    <span class="stage-label" data-stage="1">Structure</span>
-                    <span class="stage-label" data-stage="2">Design</span>
-                    <span class="stage-label" data-stage="3">Details</span>
-                    <span class="stage-label" data-stage="4">Complete</span>
-                </div>
+                </button>
             </div>
 
-            <div class="content-side">
-                <div class="start-screen" id="startScreen">
-                    <h1 class="animate-in">Discover your ideal home in minutes</h1>
-                    <p class="subtitle animate-in" style="animation-delay: 0.1s">
-                        Answer a few questions about your preferences and we'll match you with properties that fit your lifestyle and budget.
-                    </p>
-                    
-                    <div class="benefits animate-in" style="animation-delay: 0.2s">
-                        <div class="benefit-item">
-                            <div class="benefit-icon">&#9889;</div>
-                            <span>Get matched in under 2 minutes</span>
-                        </div>
-                        <div class="benefit-item">
-                            <div class="benefit-icon">&#127919;</div>
-                            <span>See only relevant listings</span>
-                        </div>
-                        <div class="benefit-item">
-                            <div class="benefit-icon">&#128100;</div>
-                            <span>Personalized agent support</span>
-                        </div>
-                    </div>
+            <!-- Question Screen -->
+            <div class="screen" id="questionScreen">
+                <div class="step-label" id="stepLabel">Step 1 of 5</div>
+                <h2 id="questionTitle">When are you looking to move?</h2>
+                <p class="subtitle" id="questionSubtitle">This helps us prioritize properties that match your timeline</p>
 
-                    <button class="primary-btn animate-in" style="animation-delay: 0.3s" onclick="startQuiz()">
-                        Start Your Search
-                        <span class="arrow">&#8594;</span>
+                <div class="options" id="optionsList"></div>
+            </div>
+
+            <!-- Result Screen -->
+            <div class="screen" id="resultScreen">
+                <span class="result-tier" id="resultTier">Priority Client</span>
+                <h2 id="resultTitle">You're ready to move quickly</h2>
+                <p class="result-description" id="resultDescription">Based on your consultation, you're in an excellent position to purchase. You have financing clarity, a defined timeline, and specific criteria.</p>
+
+                <div class="next-steps" id="nextSteps">
+                    <h3>What happens next</h3>
+                </div>
+
+                <div class="contact-form" id="contactForm">
+                    <div class="form-row">
+                        <input type="text" id="firstName" placeholder="First name">
+                        <input type="text" id="lastName" placeholder="Last name">
+                    </div>
+                    <input type="email" id="email" placeholder="Email address">
+                    <input type="tel" id="phone" placeholder="Phone number">
+                    <button class="btn-primary" onclick="submitLead()" style="width: 100%; justify-content: center;">
+                        Receive My Matches
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8h10M10 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </button>
                 </div>
 
-                <div class="quiz-screen" id="quizScreen">
-                    <div class="quiz-header">
-                        <span class="step-badge" id="stepBadge">Step 1 of 5</span>
-                        <h2 class="question-title" id="questionTitle">When are you looking to move?</h2>
-                        <p class="question-subtitle" id="questionSubtitle">This helps us prioritize properties that match your timeline</p>
-                    </div>
-
-                    <div class="options-list" id="optionsList"></div>
-                </div>
-
-                <div class="result-screen" id="resultScreen">
-                    <div class="result-icon" id="resultIcon">&#127969;</div>
-                    <span class="result-tier" id="resultTier">Priority Client</span>
-                    <h2 class="result-title" id="resultTitle">Your home profile is ready</h2>
-                    <p class="result-description" id="resultDescription">Based on your responses, you're in an excellent position to purchase. Our team will reach out within 15 minutes.</p>
-
-                    <div class="next-steps" id="nextSteps">
-                        <h3>What happens next</h3>
-                    </div>
-
-                    <div class="contact-form" id="contactForm">
-                        <div class="form-row">
-                            <input type="text" class="form-input" placeholder="First name" id="firstName">
-                            <input type="text" class="form-input" placeholder="Last name" id="lastName">
-                        </div>
-                        <input type="email" class="form-input" placeholder="Email address" id="email">
-                        <input type="tel" class="form-input" placeholder="Phone number" id="phone">
-                        <button class="primary-btn" onclick="submitLead()" style="width: 100%; justify-content: center;">
-                            Get My Property Matches
-                            <span class="arrow">&#8594;</span>
-                        </button>
-                    </div>
-
-                    <button class="secondary-btn" onclick="restartQuiz()">Start Over</button>
-                </div>
+                <button class="btn-secondary" onclick="restartQuiz()">Start Over</button>
             </div>
-        </main>
+        </div>
+    </main>
 
-        <footer class="footer">
-            <span>&#169; 2026 HomeGroup. All rights reserved.</span>
-            <div class="footer-links">
-                <a href="#">Privacy</a>
-                <a href="#">Terms</a>
-                <a href="#">Contact</a>
-            </div>
-        </footer>
-    </div>
+    <footer>
+        <span>&copy; 2026 HomeGroup. All rights reserved.</span>
+        <div>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Contact</a>
+        </div>
+    </footer>
 
     <script>
         let currentQuestion = 0;
@@ -392,176 +638,173 @@
                 subtitle: "This helps us prioritize properties that match your timeline",
                 part: "foundation",
                 options: [
-                    { text: "Immediately (0-30 days)", hint: "Ready to make an offer", score: 25 },
-                    { text: "Soon (1-3 months)", hint: "Actively searching", score: 15 },
-                    { text: "Planning ahead (3-6 months)", hint: "Getting finances ready", score: 5 },
-                    { text: "Just exploring", hint: "No specific timeline", score: 0 }
+                    { title: "Immediately", subtitle: "0-30 days, ready to make an offer", score: 25 },
+                    { title: "Soon", subtitle: "1-3 months, actively searching", score: 15 },
+                    { title: "Planning ahead", subtitle: "3-6 months, getting finances ready", score: 5 },
+                    { title: "Just exploring", subtitle: "No specific timeline yet", score: 0 }
                 ]
             },
             {
                 step: "Step 2 of 5",
                 title: "What's your financing status?",
-                subtitle: "Understanding your buying power helps us recommend the right properties",
+                subtitle: "Understanding your buying power helps us recommend appropriately",
                 part: "walls",
                 options: [
-                    { text: "Pre-approved for a mortgage", hint: "Ready to move quickly", score: 25 },
-                    { text: "Pre-qualified / In progress", hint: "Working with a lender", score: 15 },
-                    { text: "Planning to get pre-approved", hint: "Next step in process", score: 5 },
-                    { text: "Paying cash", hint: "No financing needed", score: 25 },
-                    { text: "Not sure yet", hint: "Need guidance", score: 0 }
+                    { title: "Pre-approved", subtitle: "Mortgage approval in hand, ready to move", score: 25 },
+                    { title: "In progress", subtitle: "Working with a lender on pre-approval", score: 15 },
+                    { title: "Planning to apply", subtitle: "Next step in the process", score: 5 },
+                    { title: "Paying cash", subtitle: "No financing needed", score: 25 },
+                    { title: "Not sure", subtitle: "Need guidance on where to start", score: 0 }
                 ]
             },
             {
                 step: "Step 3 of 5",
-                title: "What's your target price range?",
-                subtitle: "We'll only show you properties within your budget",
+                title: "What is your target price range?",
+                subtitle: "We focus on properties that fit your budget",
                 part: "roof",
                 options: [
-                    { text: "$600,000 - $800,000", hint: "Entry-level homes", score: 20 },
-                    { text: "$800,000 - $1,200,000", hint: "Mid-range properties", score: 20 },
-                    { text: "$1,200,000 - $1,800,000", hint: "Premium homes", score: 20 },
-                    { text: "$1,800,000+", hint: "Luxury properties", score: 20 },
-                    { text: "Not sure / Need guidance", hint: "We'll help you determine", score: 10 }
+                    { title: "$600,000 - $800,000", subtitle: "Entry-level homes and condos", score: 20 },
+                    { title: "$800,000 - $1,200,000", subtitle: "Mid-range single family homes", score: 20 },
+                    { title: "$1,200,000 - $1,800,000", subtitle: "Premium homes and estates", score: 20 },
+                    { title: "$1,800,000+", subtitle: "Luxury properties", score: 20 },
+                    { title: "Need guidance", subtitle: "Unsure what budget makes sense", score: 10 }
                 ]
             },
             {
                 step: "Step 4 of 5",
-                title: "What's motivating your move?",
+                title: "What's your primary motivation?",
                 subtitle: "This helps us understand what matters most to you",
                 part: "windows",
                 options: [
-                    { text: "Relocating for work", hint: "New job or transfer", score: 20 },
-                    { text: "Upgrading for family", hint: "Need more space", score: 20 },
-                    { text: "Downsizing", hint: "Simplifying lifestyle", score: 20 },
-                    { text: "Investment property", hint: "Building wealth through real estate", score: 15 },
-                    { text: "First-time buyer", hint: "Starting your journey", score: 15 }
+                    { title: "Relocation", subtitle: "New job or transferring for work", score: 20 },
+                    { title: "Growing family", subtitle: "Need more space for children", score: 20 },
+                    { title: "Downsizing", subtitle: "Simplifying or empty nesting", score: 20 },
+                    { title: "Investment", subtitle: "Building wealth through real estate", score: 15 },
+                    { title: "First purchase", subtitle: "Beginning your homeownership journey", score: 15 }
                 ]
             },
             {
                 step: "Step 5 of 5",
-                title: "How far along are you in your search?",
-                subtitle: "This helps us tailor our recommendations",
+                title: "How far along is your search?",
+                subtitle: "This helps us calibrate our recommendations",
                 part: "door",
                 options: [
-                    { text: "Viewed several homes, ready to buy", hint: "Serious buyer", score: 15 },
-                    { text: "Started looking, comparing options", hint: "Active search", score: 10 },
-                    { text: "Just beginning to explore", hint: "Early research phase", score: 5 },
-                    { text: "Haven't started looking yet", hint: "Information gathering", score: 0 }
+                    { title: "Viewed homes, ready", subtitle: "Serious buyer, pre-approved, ready to make offers", score: 15 },
+                    { title: "Started looking", subtitle: "Viewing properties, comparing options", score: 10 },
+                    { title: "Just beginning", subtitle: "Early research phase", score: 5 },
+                    { title: "Not started", subtitle: "Information gathering before searching", score: 0 }
                 ]
             }
         ];
 
         const results = {
             premium: {
-                icon: "&#11088;",
-                tier: "Premium Client",
-                tierClass: "premium",
-                title: "You're ready to move fast",
-                description: "Based on your responses, you're in an excellent position to purchase. You have financing in place, a clear timeline, and specific criteria. Our team will prioritize your search and reach out within 15 minutes.",
+                tier: "Priority Client",
+                title: "You're ready to move quickly",
+                description: "Based on your consultation, you're in an excellent position to purchase. You have financing clarity, a defined timeline, and specific criteria. Our team will prioritize your search and contact you within 15 minutes.",
                 steps: [
-                    { number: 1, title: "Agent contact", desc: "A specialist will call you within 15 minutes" },
-                    { number: 2, title: "Priority listings", desc: "Access to new properties before they hit the market" },
-                    { number: 3, title: "Private showings", desc: "Schedule viewings on your schedule" }
+                    { number: "01", title: "Agent Contact", desc: "A specialist will call you within 15 minutes" },
+                    { number: "02", title: "Priority Listings", desc: "Access to new properties before they hit the market" },
+                    { number: "03", title: "Private Showings", desc: "Schedule viewings on your timeline" }
                 ]
             },
             standard: {
-                icon: "&#127969;",
                 tier: "Active Buyer",
-                tierClass: "standard",
-                title: "You're well on your way",
-                description: "You're making good progress toward your home purchase. You have a clear direction and we're here to help you find the perfect property. Expect a call from our team within a few hours.",
+                title: "You're well positioned",
+                description: "You're making good progress toward your purchase. You have a clear direction and we're here to help you find the right property. Expect a call from our team within a few hours.",
                 steps: [
-                    { number: 1, title: "Agent assignment", desc: "Matched with a specialist in your area" },
-                    { number: 2, title: "Curated listings", desc: "Personalized properties sent to your inbox" },
-                    { number: 3, title: "Consultation", desc: "Discuss your goals and next steps" }
+                    { number: "01", title: "Agent Assignment", desc: "Matched with a specialist in your market" },
+                    { number: "02", title: "Curated Listings", desc: "Personalized properties sent to your inbox" },
+                    { number: "03", title: "Consultation", desc: "Discuss your goals and next steps" }
                 ]
             },
             basic: {
-                icon: "&#128269;",
-                tier: "Early Explorer",
-                tierClass: "basic",
+                tier: "Early Stage",
                 title: "Let's build your foundation",
-                description: "You're in the early stages of your home buying journey. That's great — the more prepared you are, the better your experience will be. We'll send you resources and check in when you're ready.",
+                description: "You're in the early stages of your home buying journey. That's valuable time to prepare. We'll send you resources and be ready when you are.",
                 steps: [
-                    { number: 1, title: "Email resources", desc: "Home buying guide sent to your inbox" },
-                    { number: 2, title: "Market updates", desc: "Weekly newsletter with new listings" },
-                    { number: 3, title: "Future follow-up", desc: "We'll reach out when you're ready to move" }
+                    { number: "01", title: "Buyer Resources", desc: "Home buying guide sent to your inbox" },
+                    { number: "02", title: "Market Updates", desc: "Weekly newsletter with new listings" },
+                    { number: "03", title: "Future Follow-up", desc: "We'll reach out when you're ready to move" }
                 ]
             },
             exploring: {
-                icon: "&#128218;",
-                tier: "Information Gathering",
-                tierClass: "exploring",
-                title: "Knowledge is power",
-                description: "You're smart to start with research. Understanding the market before you're ready to buy puts you ahead. We'll keep you informed with market insights and be here when you're ready.",
+                tier: "Research Phase",
+                title: "Knowledge is the first step",
+                description: "You're wise to start with research. Understanding the market before you're ready puts you ahead. We'll keep you informed with market insights.",
                 steps: [
-                    { number: 1, title: "Market insights", desc: "Monthly market report delivered" },
-                    { number: 2, title: "Educational content", desc: "Tips on financing, neighborhoods, timing" }
+                    { number: "01", title: "Market Reports", desc: "Monthly market analysis delivered" },
+                    { number: "02", title: "Educational Content", desc: "Financing, neighborhoods, timing guidance" }
                 ]
             }
         };
 
         function startQuiz() {
-            document.getElementById('startScreen').style.display = 'none';
-            document.getElementById('quizScreen').style.display = 'block';
+            document.getElementById('startScreen').classList.remove('active');
+            document.getElementById('questionScreen').classList.add('active');
             showQuestion();
         }
 
         function showQuestion() {
             const q = questions[currentQuestion];
-            document.getElementById('stepBadge').textContent = q.step;
+            document.getElementById('stepLabel').textContent = q.step;
             document.getElementById('questionTitle').textContent = q.title;
             document.getElementById('questionSubtitle').textContent = q.subtitle;
-
-            const progress = ((currentQuestion + 1) / questions.length) * 880;
-            document.getElementById('progressCircle').style.strokeDashoffset = 880 - progress;
-
-            updateStageIndicators(currentQuestion);
-
+            
+            // Update progress
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `Step ${currentQuestion + 1}/${questions.length}`;
+            
+            // Reveal house part
+            const partElement = document.getElementById('part-' + q.part);
+            if (partElement) {
+                partElement.classList.add('revealed');
+            }
+            
+            // Render options
             const container = document.getElementById('optionsList');
             container.innerHTML = '';
-
+            
             q.options.forEach((opt, idx) => {
-                const card = document.createElement('div');
-                card.className = 'option-card';
-                card.innerHTML = '<div><div class="option-text">' + opt.text + '</div><div class="option-hint">' + opt.hint + '</div></div><span class="option-arrow">&#8594;</span>';
-                card.onclick = () => selectAnswer(idx);
-                container.appendChild(card);
+                const option = document.createElement('div');
+                option.className = 'option';
+                option.innerHTML = `
+                    <div class="option-content">
+                        <h3>${opt.title}</h3>
+                        <p>${opt.subtitle}</p>
+                    </div>
+                    <svg class="option-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                `;
+                option.onclick = () => selectAnswer(idx);
+                container.appendChild(option);
             });
         }
 
         function selectAnswer(optionIndex) {
             const q = questions[currentQuestion];
-            const selected = q.options[optionIndex];
-            
-            totalScore += selected.score;
-            
-            const partElement = document.getElementById('part-' + q.part);
-            if (partElement) {
-                partElement.classList.add('show');
-            }
-            
+            totalScore += q.options[optionIndex].score;
             currentQuestion++;
             
             if (currentQuestion < questions.length) {
-                setTimeout(showQuestion, 400);
+                setTimeout(showQuestion, 300);
             } else {
-                setTimeout(showResult, 600);
+                setTimeout(showResult, 500);
             }
         }
 
-        function updateStageIndicators(stage) {
-            document.querySelectorAll('.stage-dot').forEach((dot, idx) => {
-                dot.classList.toggle('active', idx <= stage);
-            });
-            document.querySelectorAll('.stage-label').forEach((label, idx) => {
-                label.classList.toggle('active', idx <= stage);
-            });
-        }
-
         function showResult() {
-            document.getElementById('quizScreen').style.display = 'none';
-            document.getElementById('resultScreen').style.display = 'block';
+            document.getElementById('questionScreen').classList.remove('active');
+            document.getElementById('resultScreen').classList.add('active');
+            
+            // Complete the house
+            document.querySelectorAll('.house-part').forEach(part => {
+                part.classList.add('revealed');
+            });
+            document.getElementById('progressFill').style.width = '100%';
+            document.getElementById('progressText').textContent = 'Complete';
             
             let result;
             if (totalScore >= 85) result = results.premium;
@@ -569,16 +812,22 @@
             else if (totalScore >= 35) result = results.basic;
             else result = results.exploring;
             
-            document.getElementById('resultIcon').innerHTML = result.icon;
             document.getElementById('resultTier').textContent = result.tier;
-            document.getElementById('resultTier').className = 'result-tier ' + result.tierClass;
             document.getElementById('resultTitle').textContent = result.title;
             document.getElementById('resultDescription').textContent = result.description;
             
             const stepsContainer = document.getElementById('nextSteps');
             stepsContainer.innerHTML = '<h3>What happens next</h3>';
             result.steps.forEach(step => {
-                stepsContainer.innerHTML += '<div class="step-item"><div class="step-number">' + step.number + '</div><div class="step-content"><h4>' + step.title + '</h4><p>' + step.desc + '</p></div></div>';
+                stepsContainer.innerHTML += `
+                    <div class="step">
+                        <div class="step-number">${step.number}</div>
+                        <div class="step-content">
+                            <h4>${step.title}</h4>
+                            <p>${step.desc}</p>
+                        </div>
+                    </div>
+                `;
             });
         }
 
@@ -589,11 +838,11 @@
             const phone = document.getElementById('phone').value;
             
             if (!firstName || !lastName || !email || !phone) {
-                alert('Please fill in all fields');
+                alert('Please complete all fields');
                 return;
             }
             
-            alert('Thank you! Your information has been submitted. An agent will contact you shortly.');
+            alert('Thank you. Your information has been submitted and an agent will contact you shortly.');
         }
 
         function restartQuiz() {
@@ -601,16 +850,13 @@
             totalScore = 0;
             
             document.querySelectorAll('.house-part').forEach(part => {
-                part.classList.remove('show');
+                part.classList.remove('revealed');
             });
             
-            document.getElementById('resultScreen').style.display = 'none';
-            document.getElementById('startScreen').style.display = 'block';
-            document.getElementById('progressCircle').style.strokeDashoffset = 880;
-            
-            updateStageIndicators(-1);
-            document.querySelector('.stage-dot[data-stage="0"]').classList.add('active');
-            document.querySelector('.stage-label[data-stage="0"]').classList.add('active');
+            document.getElementById('resultScreen').classList.remove('active');
+            document.getElementById('startScreen').classList.add('active');
+            document.getElementById('progressFill').style.width = '0%';
+            document.getElementById('progressText').textContent = 'Step 1/5';
             
             document.getElementById('firstName').value = '';
             document.getElementById('lastName').value = '';
