@@ -55,8 +55,12 @@ export function KanbanBoard({ type }: KanbanBoardProps) {
   useEffect(() => {
     setLoading(true);
     fetch(`/api/kanban?type=${type}`)
-      .then(r => r.json())
+      .then(r => {
+        if (!r.ok) throw new Error('Failed to fetch');
+        return r.json();
+      })
       .then(setData)
+      .catch(() => setData(null))
       .finally(() => setLoading(false));
   }, [type]);
 
@@ -64,7 +68,7 @@ export function KanbanBoard({ type }: KanbanBoardProps) {
     return <div className="text-center py-12 text-muted">Loading board...</div>;
   }
 
-  if (!data) {
+  if (!data || data.error || !data.internal) {
     return <div className="text-center py-12 text-error">Failed to load board</div>;
   }
 
