@@ -92,7 +92,7 @@ Track who referred whom — this becomes your partner pipeline.
 
 | Metric | Count |
 |--------|-------|
-| Non-Paid Partner Prospects | 2 (Vance, Tara) |
+| Non-Paid Partner Prospects | 3 (Vance, Tara, Jamar) |
 | Paid Partner Prospects | 0 |
 | Prospects with Partner Potential | 1 (Anya Evans) |
 | Active Non-Paid Partners | 0 |
@@ -110,6 +110,7 @@ People who make introductions because connecting people is part of their busines
 |------|----------|----------------|--------|
 | Vance Richardson | Logic Staffing | Former Comcast BAE, knows IT pros who need service | 🎯 Prospecting |
 | Tara Groody | GreenHaven Interactive | Client Success Manager, connects people professionally | 🎯 Prospecting |
+| **Jamar Sample** | **Tacoma Public Utilities** | **Engineer with visibility into new power needs → new businesses | ✅ **Active Partner** |
 
 ### Paid Partners (Affiliates)
 Signed Comcast affiliates with formal agreement, earn commissions (up to $10K/year).
@@ -225,4 +226,35 @@ Trevor (previous Comcast rep for this network) left the company. Vance's IT cont
 
 ---
 
-*Last Updated: 2026-02-26*
+## Partner Profile: Jamar Sample ⭐ STRATEGIC PARTNER
+
+**Business:** Tacoma Public Utilities  
+**Contact:** Jamar Sample (Engineer)  
+**Phone:** 318-840-7676  
+**Email:** (To be collected)
+
+**Current Status:** ✅ **Active Partner** (In Conversation)  
+**Partner Type:** Non-Paid Partner (Referral Source)  
+
+**Why He's Strategic:**
+- **First Dibs on New Businesses** — Engineer role gives visibility into who needs power
+- **Pre-Launch Access** — Knows about businesses before they open
+- **Site Visit Partner** — Will bring Xavier along for site visits
+- **Warm Introductions** — Active referral pipeline, not just passive connections
+
+**The Opportunity:**
+Businesses needing new power = businesses needing new internet. Jamar sees the infrastructure needs before anyone else. **You're getting leads before they even know they need Comcast.**
+
+**Meeting Note:**
+- **Date:** March 5, 2026
+- **Status:** First meeting completed
+- **Commitment:** Active referral partnership established
+
+**Next Steps:**
+- [ ] Collect email address
+- [ ] Stay in regular contact (monthly check-ins)
+- [ ] Prepare for site visit invitations
+
+---
+
+*Last Updated: 2026-03-05*
