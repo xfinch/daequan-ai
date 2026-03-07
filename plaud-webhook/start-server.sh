@@ -8,7 +8,7 @@ pkill -f "node server.js" 2>/dev/null
 sleep 1
 
 # Start server
-nohup node server.js > logs/server.log 2>&1 &
+nohup /opt/homebrew/bin/node server.js > logs/server.log 2>&1 &
 
 # Wait and verify
 sleep 3

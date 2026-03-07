@@ -142,5 +142,59 @@
     "filePath": "/Users/xfinch/.openclaw/workspace/memory/ttl/2026-02-25.md",
     "summary": "Trina cold email launch follow up",
     "createdAt": "2026-02-25T14:56:22.522Z"
+  },
+  "p-febb7d5": {
+    "hash": "p-febb7d5",
+    "recordingId": "plaud_1772825497268",
+    "timestamp": "2026-03-06T19:31:37.268Z",
+    "bucket": "PERSONAL",
+    "filePath": "/Users/xfinch/.openclaw/workspace/memory/personal/2026-03-06.md",
+    "summary": "test summary",
+    "createdAt": "2026-03-06T19:31:38.023Z"
+  },
+  "p-d5fe8a9": {
+    "hash": "p-d5fe8a9",
+    "recordingId": "plaud_1772825500946",
+    "timestamp": "2026-03-06T19:31:40.946Z",
+    "bucket": "PERSONAL",
+    "filePath": "/Users/xfinch/.openclaw/workspace/memory/personal/2026-03-06.md",
+    "summary": "test summary",
+    "createdAt": "2026-03-06T19:31:41.462Z"
+  },
+  "p-842c3ab": {
+    "hash": "p-842c3ab",
+    "recordingId": "plaud_1772825708174",
+    "timestamp": "2026-03-06T19:35:08.174Z",
+    "bucket": "PERSONAL",
+    "filePath": "/Users/xfinch/.openclaw/workspace/memory/personal/2026-03-06.md",
+    "summary": "test from zapier",
+    "createdAt": "2026-03-06T19:35:08.717Z"
+  },
+  "p-a589494": {
+    "hash": "p-a589494",
+    "recordingId": "plaud_1772825750862",
+    "timestamp": "2026-03-06T19:35:50.862Z",
+    "bucket": "PERSONAL",
+    "filePath": "/Users/xfinch/.openclaw/workspace/memory/personal/2026-03-06.md",
+    "summary": "testing the webhook",
+    "createdAt": "2026-03-06T19:35:51.387Z"
+  },
+  "p-909b2bd": {
+    "hash": "p-909b2bd",
+    "recordingId": "02-19 Weekly Meeting",
+    "timestamp": "2026-02-19T14:05:27Z",
+    "bucket": "PERSONAL",
+    "filePath": "/Users/xfinch/.openclaw/workspace/memory/personal/2026-02-19.md",
+    "summary": "Team discussed pricing strategy for new product",
+    "createdAt": "2026-03-06T20:30:49.026Z"
+  },
+  "p-4ab3c21": {
+    "hash": "p-4ab3c21",
+    "recordingId": "03-05 New Studio Expansion Hampered by Apple Maps Error; Comcast Rep Seeking Decision-Maker for Internet Assessment",
+    "timestamp": "2026-03-05T11:49:44Z",
+    "bucket": "TTL",
+    "filePath": "/Users/xfinch/.openclaw/workspace/memory/ttl/2026-03-05.md",
+    "summary": "![PLAUD NOTE](permanent/066cdb92b31c41219fd618bb3e809723/summary_poster/card_20260306221235-v2@6c88f8f54faf783010a76b_20260306221358_027fa0d4.png)\n\n## Core Synopsis\n\nThe business has expanded into a l",
+    "createdAt": "2026-03-06T22:15:36.260Z"
   }
 }

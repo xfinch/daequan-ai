@@ -2,7 +2,7 @@
 # Plaud Webhook Health Monitor
 # Runs every 5 minutes via cron, restarts if unhealthy
 
-WEBHOOK_URL="https://xaviers-mac-mini.tailc89dd8.ts.net/plaud-webhook/health"
+WEBHOOK_URL="https://xaviers-mac-mini.tailc89dd8.ts.net/plaud/plaud-webhook/health"
 LOG_FILE="/Users/xfinch/.openclaw/workspace/plaud-webhook/logs/health.log"
 SERVER_DIR="/Users/xfinch/.openclaw/workspace/plaud-webhook"
 
@@ -23,7 +23,7 @@ pkill -f "node server.js" 2>/dev/null
 sleep 2
 
 # Restart
-cd "$SERVER_DIR" && nohup node server.js > logs/server.log 2>&1 &
+cd "$SERVER_DIR" && nohup /opt/homebrew/bin/node server.js > logs/server.log 2>&1 &
 sleep 5
 
 # Verify restart
