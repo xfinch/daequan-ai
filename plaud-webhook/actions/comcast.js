@@ -3,11 +3,14 @@
  * - Add note to MongoDB CRM
  * - Extract package mentions (triple play, internet, etc.)
  * - Update contact in CRM
+ * - Send SalesLoft-formatted notes to work iPhone
  */
 
 const fs = require('fs');
 const path = require('path');
 const { MongoClient } = require('mongodb');
+const { formatForSalesLoft } = require('../utils/salesloft-formatter');
+const { sendToWorkPhone } = require('../utils/imessage-sender');
 
 // MongoDB Configuration
 const MONGODB_URI = process.env.COMCAST_MONGODB_URI || 'mongodb://localhost:27017';
@@ -276,9 +279,41 @@ ${data.transcription ? data.transcription.substring(0, 1000) + '...' : 'N/A'}`;
 }
 
 /**
+ * Send SalesLoft-formatted note to work iPhone
+ */
+async function sendSalesLoftNote(data) {
+  console.log('📱 Formatting and sending SalesLoft note to work phone...');
+  
+  try {
+    // Format for iMessage
+    const formatted = formatForSalesLoft(data, { format: 'imessage' });
+    
+    // Send to work phone
+    const result = await sendToWorkPhone(formatted.text);
+    
+    if (result.success) {
+      console.log('✅ SalesLoft note sent to work iPhone');
+    } else {
+      console.warn('⚠️ iMessage failed, logging for manual retrieval:', result.error);
+    }
+    
+    return {
+      success: result.success,
+      formatted: formatted.text,
+      details: formatted.details,
+      error: result.error || null
+    };
+    
+  } catch (error) {
+    console.error('❌ Failed to send SalesLoft note:', error.message);
+    return { success: false, error: error.message };
+  }
+}
+
+/**
  * Log to memory file for Comcast
  */
-async function logToMemory(data, packageInfo, actions) {
+async function logToMemory(data, packageInfo, actions, salesloftResult = null) {
   const memoryDir = path.join(process.cwd(), '..', 'memory', 'comcast');
   
   if (!fs.existsSync(memoryDir)) {
@@ -295,7 +330,14 @@ async function logToMemory(data, packageInfo, actions) {
     minute: '2-digit'
   });
   
-  const entry = `
+  const salesloftSection = salesloftResult ? `
+**SalesLoft Note:**
+\`\`\`
+${salesloftResult.formatted}
+\`\`\`
+` : '';
+
+const entry = `
 ## [${timestamp}] Comcast Voice Memo - ${data.recordingId}
 
 **Business:** ${extractBusinessName(data.summary, data.transcription) || 'Unknown'}
@@ -312,7 +354,7 @@ ${data.transcription || 'N/A'}
 
 **Actions Taken:**
 ${actions.map(a => `- [x] ${a}`).join('\n')}
-
+${salesloftSection}
 ---
 `;
   
@@ -339,6 +381,7 @@ async function handle(data) {
     note: null,
     task: null,
     memory: null,
+    salesloft: null,
     packages: []
   };
   
@@ -374,12 +417,16 @@ async function handle(data) {
       // TODO: Queue for manual entry or create new contact
     }
     
+    // Send SalesLoft-formatted note to work iPhone (automatic bridge)
+    results.salesloft = await sendSalesLoftNote(data);
+    
     // Log to memory
     const actions = ['Processed via COMCAST bucket'];
     if (results.note?.success) actions.push('Added note to CRM');
     if (results.task?.success) actions.push('Created follow-up task');
+    if (results.salesloft?.success) actions.push('Sent SalesLoft note to work iPhone');
     
-    results.memory = await logToMemory(data, packageInfo, actions);
+    results.memory = await logToMemory(data, packageInfo, actions, results.salesloft);
     
     console.log('✅ COMCAST actions completed');
     
@@ -403,7 +450,8 @@ async function handle(data) {
           bucket: 'COMCAST', 
           hash: data.hash,
           packages: results.packages,
-          contactFound: !!results.contact
+          contactFound: !!results.contact,
+          salesloftSent: results.salesloft?.success || false
         }
       })
     });
@@ -421,5 +469,6 @@ module.exports = {
   extractAddress,
   searchComcastContact,
   addNoteToComcastContact,
-  createComcastFollowUpTask
+  createComcastFollowUpTask,
+  sendSalesLoftNote
 };
