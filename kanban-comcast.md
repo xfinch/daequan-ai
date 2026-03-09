@@ -16,6 +16,41 @@
 
 ---
 
+## 🎯 SALES PIPELINE
+
+### Pipeline Stages (Comcast Process)
+1. **Initial Contact** — First meeting/qualification
+2. **Needs Analysis** — Requirements gathering
+3. **Second Review** — Sales Engineer review / team meeting
+4. **Proposal Sent** — Documentation for signing
+5. **Contract Signed** — Closed won
+
+### Active Prospects
+
+| Business | Contact | Stage | Status | Next Step | Updated |
+|----------|---------|-------|--------|-----------|---------|
+| **Knapp's Restaurant** | **Billy Brewer** | **3 - Second Review** | 🟡 Active | Sales Engineer review meeting completed → Documentation signing | 2026-03-09 |
+| **KO Construction** | **Keith Osmonson** | **4 - Proposal Sent** | 🟡 Active | Bill reviewed and contacted → Documentation signing | 2026-03-09 |
+
+### Prospect Details
+
+**Knapp's Restaurant — Billy Brewer**
+- **Stage:** 3rd Stage (Second Sales Engineer Review Teams Meeting) ✅
+- **Status:** Completed review, moving to documentation
+- **Next Step:** Documentation signing
+- **Product:** Triple Play (Gigabit + Voice + Video)
+- **Location:** Proctor District
+- **GHL Contact:** [Update in GHL]
+
+**KO Construction — Keith Osmonson**
+- **Stage:** Bill Reviewed & Contacted ✅
+- **Status:** High-intent upsell
+- **Next Step:** Documentation signing
+- **Notes:** Address qualification pending (verify if in territory)
+- **GHL Contact:** [Update in GHL]
+
+---
+
 ## 📥 BACKLOG / TODO
 
 ### 1. Lead Research Automation

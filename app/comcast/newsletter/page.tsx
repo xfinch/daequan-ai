@@ -1,0 +1,253 @@
+'use client';
+
+export default function NewsletterPage() {
+  return (
+    <div className="min-h-screen bg-slate-100 py-8 px-4">
+      <div className="max-w-3xl mx-auto">
+        {/* Preview Header */}
+        <div className="mb-6 text-center">
+          <h1 className="text-2xl font-bold text-slate-800">Connected Partners</h1>
+          <p className="text-slate-500 text-sm">Newsletter Preview — Issue 001</p>
+        </div>
+
+        {/* Email Container */}
+        <div 
+          className="mx-auto bg-white rounded-2xl shadow-lg overflow-hidden"
+          style={{ maxWidth: '600px' }}
+          dangerouslySetInnerHTML={{ __html: newsletterHTML }}
+        />
+
+        {/* Action Buttons */}
+        <div className="mt-8 flex justify-center gap-4">
+          <a 
+            href="/newsletter/issue-001-sample.html" 
+            download
+            className="px-4 py-2 bg-slate-800 text-white rounded-lg text-sm font-medium hover:bg-slate-700 transition"
+          >
+            Download HTML
+          </a>
+          <button 
+            onClick={() => navigator.clipboard.writeText(newsletterHTML)}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-500 transition"
+          >
+            Copy HTML for SalesLoft
+          </button>
+        </div>
+
+        {/* Instructions */}
+        <div className="mt-8 bg-white rounded-lg p-6 shadow-sm">
+          <h2 className="text-lg font-semibold text-slate-800 mb-4">How to Use</h2>
+          <ol className="space-y-3 text-sm text-slate-600 list-decimal list-inside">
+            <li>Review the preview above — this is exactly how it'll look in email</li>
+            <li>Click "Copy HTML for SalesLoft" to copy the code</li>
+            <li>In SalesLoft: Email → Templates → New Template</li>
+            <li>Click "Source" and paste the HTML</li>
+            <li>Send a test to yourself first</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const newsletterHTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connected Partners — Issue 001</title>
+    <style>
+        body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+        table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+        
+        @media screen and (max-width: 600px) {
+            .container { width: 100% !important; }
+            .mobile-padding { padding-left: 24px !important; padding-right: 24px !important; }
+            .mobile-font-large { font-size: 28px !important; line-height: 34px !important; }
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0; background-color: #F1F5F9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+    
+    <div style="display: none; max-height: 0; overflow: hidden;">
+        New gigabit pricing, a restaurant win in Proctor, and what I'm looking for this week — Issue 001 of Connected Partners
+    </div>
+    
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #F1F5F9;">
+        <tr>
+            <td align="center" style="padding: 40px 20px;">
+                
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" class="container" style="max-width: 600px; background-color: #FFFFFF; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                    
+                    <!-- Header -->
+                    <tr>
+                        <td style="background: linear-gradient(135deg, #0A192F 0%, #1E3A5F 100%); padding: 48px 40px 40px;" class="mobile-padding">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                <tr>
+                                    <td>
+                                        <h1 style="margin: 0; font-size: 32px; font-weight: 700; color: #FFFFFF; letter-spacing: -0.5px;" class="mobile-font-large">
+                                            Connected Partners
+                                        </h1>
+                                        <p style="margin: 8px 0 0; font-size: 14px; color: #60A5FA; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase;">
+                                            Comcast Business Intelligence
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top: 32px;">
+                                        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                                            <tr>
+                                                <td style="background-color: rgba(255,255,255,0.1); border-radius: 20px; padding: 6px 16px;">
+                                                    <span style="font-size: 12px; color: #FFFFFF; font-weight: 600;">Issue 001</span>
+                                                    <span style="color: #60A5FA; margin: 0 8px;">•</span>
+                                                    <span style="font-size: 12px; color: #94A3B8;">March 10, 2026</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Lead Story -->
+                    <tr>
+                        <td style="padding: 48px 40px 32px;" class="mobile-padding">
+                            <span style="display: inline-block; background-color: #00D4AA; color: #0A192F; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 4px 12px; border-radius: 4px; margin-bottom: 16px;">
+                                Lead Story
+                            </span>
+                            <h2 style="margin: 0 0 16px; font-size: 28px; font-weight: 700; color: #0F172A; line-height: 1.3; letter-spacing: -0.5px;" class="mobile-font-large">
+                                Closed My First Triple Play in Proctor District
+                            </h2>
+                            <p style="margin: 0 0 24px; font-size: 16px; line-height: 1.7; color: #475569;">
+                                Knapp's Restaurant is upgrading from residential internet to a full business package: symmetrical gigabit, business voice with 5 lines, and video for the bar area. Owner Billy cited downtime during peak hours as the main pain point — something I hear constantly from restaurants with 20+ seats.
+                            </p>
+                            <a href="mailto:xavier.finch@comcast.com?subject=Restaurant%20Referral" style="display: inline-block; background-color: #0A192F; color: #FFFFFF; font-size: 14px; font-weight: 600; text-decoration: none; padding: 12px 24px; border-radius: 8px;">
+                                Know a restaurant owner? →
+                            </a>
+                        </td>
+                    </tr>
+                    
+                    <!-- Divider -->
+                    <tr>
+                        <td style="padding: 0 40px;" class="mobile-padding">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                <tr><td style="border-top: 1px solid #E2E8F0;"></td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Quick Hits -->
+                    <tr>
+                        <td style="padding: 40px;" class="mobile-padding">
+                            <h3 style="margin: 0 0 24px; font-size: 14px; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 1.5px;">
+                                Quick Hits
+                            </h3>
+                            
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom: 24px;">
+                                <tr>
+                                    <td width="8" style="background-color: #00D4AA; border-radius: 4px;"></td>
+                                    <td width="16"></td>
+                                    <td>
+                                        <h4 style="margin: 0 0 4px; font-size: 16px; font-weight: 600; color: #0F172A;">New Gigabit Pricing Tiers</h4>
+                                        <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #64748B;">Symmetrical gigabit now starts at $149/mo for 2-year agreements — down from $179. Free installation through Q2.</p>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom: 24px;">
+                                <tr>
+                                    <td width="8" style="background-color: #3B82F6; border-radius: 4px;"></td>
+                                    <td width="16"></td>
+                                    <td>
+                                        <h4 style="margin: 0 0 4px; font-size: 16px; font-weight: 600; color: #0F172A;">5G Backup Now Available</h4>
+                                        <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #64748B;">Businesses can add automatic 5G failover for $30/mo. Kicks in within 30 seconds of primary outage.</p>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                <tr>
+                                    <td width="8" style="background-color: #8B5CF6; border-radius: 4px;"></td>
+                                    <td width="16"></td>
+                                    <td>
+                                        <h4 style="margin: 0 0 4px; font-size: 16px; font-weight: 600; color: #0F172A;">Territory Map Live</h4>
+                                        <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #64748B;">Check out my interactive territory map to see where I'm focused and where your referrals fit best.</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Partner Opportunity Box -->
+                    <tr>
+                        <td style="padding: 0 40px 40px;" class="mobile-padding">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #F8FAFC; border-radius: 12px; border-left: 4px solid #00D4AA;">
+                                <tr>
+                                    <td style="padding: 24px;">
+                                        <span style="display: block; font-size: 11px; font-weight: 700; color: #00D4AA; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">
+                                            This Week's Opportunity
+                                        </span>
+                                        <h4 style="margin: 0 0 12px; font-size: 18px; font-weight: 700; color: #0F172A;">
+                                            Looking for Multi-Location Businesses
+                                        </h4>
+                                        <p style="margin: 0 0 16px; font-size: 14px; line-height: 1.6; color: #475569;">
+                                            I'm prioritizing businesses with 2+ locations in Pierce County. Think: dental groups, auto shops, restaurant chains, or retail with multiple storefronts. These deals close faster and have higher contract values.
+                                        </p>
+                                        <p style="margin: 0; font-size: 13px; color: #64748B;">
+                                            <strong>Referral target:</strong> Decision-makers at multi-location businesses in Tacoma, Lakewood, or Puyallup
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Territory Map Preview -->
+                    <tr>
+                        <td style="padding: 0 40px 40px;" class="mobile-padding">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #0A192F; border-radius: 12px; overflow: hidden;">
+                                <tr>
+                                    <td style="padding: 24px;">
+                                        <h4 style="margin: 0 0 8px; font-size: 14px; font-weight: 600; color: #FFFFFF;">My Territory</h4>
+                                        <p style="margin: 0 0 16px; font-size: 13px; color: #94A3B8;">Downtown Tacoma • Proctor District • Stadium • Ruston</p>
+                                        <a href="https://daequanai.com/comcast" style="font-size: 13px; color: #00D4AA; text-decoration: none; font-weight: 600;">
+                                            View live map →
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #F8FAFC; padding: 32px 40px; border-top: 1px solid #E2E8F0;" class="mobile-padding">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                <tr>
+                                    <td style="text-align: center;">
+                                        <p style="margin: 0 0 8px; font-size: 14px; font-weight: 600; color: #0F172A;">
+                                            Xavier Finch
+                                        </p>
+                                        <p style="margin: 0 0 16px; font-size: 13px; color: #64748B;">
+                                            Business Account Executive, Comcast Business<br>
+                                            📧 xavier.finch@comcast.com | 📱 360-999-8793
+                                        </p>
+                                        <p style="margin: 0; font-size: 12px; color: #94A3B8; line-height: 1.6;">
+                                            <a href="#" style="color: #94A3B8; text-decoration: underline;">Unsubscribe</a> • 
+                                            <a href="#" style="color: #94A3B8; text-decoration: underline;">View in browser</a>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                </table>
+                
+            </td>
+        </tr>
+    </table>
+    
+</body>
+</html>`;
