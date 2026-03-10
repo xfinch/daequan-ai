@@ -44,3 +44,22 @@ All GHL tokens stored in `ai.daequan.environment.plist`:
 
 **API Base:** https://services.leadconnectorhq.com
 **Docs:** https://marketplace.gohighlevel.com/docs/
+
+### Sending Email via GHL API
+
+**Endpoint:** `POST /conversations/messages`
+
+**Example:**
+```bash
+curl -X POST "https://services.leadconnectorhq.com/conversations/messages" \
+  -H "Authorization: Bearer $GHL_TTL_TOKEN" \
+  -H "Version: 2021-04-15" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contactId": "CONTACT_ID_HERE",
+    "type": "Email",
+    "message": "Email body here"
+  }'
+```
+
+**Note:** Must use contactId (not email address directly). Lookup contact first via `/contacts?query=...`

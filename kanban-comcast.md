@@ -96,7 +96,19 @@
 - **Description:** Map accounts, plan routes, prioritize prospects
 - **Tools:** Mapping, scheduling optimization
 
-### 7. Telnyx 10DLC Campaign Registration - FINISH TOMORROW
+### 7. Map Business Density by ZIP Code
+- **Priority:** MEDIUM
+- **Automation Level:** MEDIUM
+- **Description:** Show business potential/community density per ZIP code on the territory map
+- **Use Case:** Plan field days by seeing what business communities exist in each ZIP before going out
+- **Data Options:** 
+  - Aggregate existing visit pins by ZIP
+  - Business count estimates (Census/city data)
+  - Live business lookup (Google Places/Yelp API)
+- **Display:** Heatmap layer or click-to-view business list per ZIP
+- **Status:** 🆕 Requested 2026-03-10
+
+### 8. Telnyx 10DLC Campaign Registration - FINISH TOMORROW
 - **Priority:** HIGH
 - **Status:** 🔴 INCOMPLETE - Session crashed
 - **Description:** Complete Telnyx A2P 10DLC campaign registration for +1 (253) 999-9067
@@ -142,7 +154,7 @@
 
 ---
 
-**Last Updated:** 2026-02-17
+**Last Updated:** 2026-03-10
 **Maintained By:** Daequan
 
 *This board tracks all Comcast sales operations. Need Xavier's input on priorities and system access.*
