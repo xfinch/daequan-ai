@@ -31,6 +31,15 @@
 |----------|---------|-------|--------|-----------|---------|
 | **Knapp's Restaurant** | **Billy Brewer** | **3 - Second Review** | 🟡 Active | Sales Engineer review meeting completed → Documentation signing | 2026-03-09 |
 | **KO Construction** | **Keith Osmonson** | **4 - Proposal Sent** | 🟡 Active | Bill reviewed and contacted → Documentation signing | 2026-03-09 |
+| **Chirp & Co** | **Liz Bright** | **1 - Initial Contact** | 🟡 Follow-up Later | Had past issues during fiber install, check back after construction settles | 2026-03-10 |
+| **Proctor Art Gallery** | **Pamela Phelps** | **2 - Needs Analysis** | 🔥 Hot Lead | Paying $100+/mo, wants better deal, review building for options | 2026-03-10 |
+| **Compass Rose** | **Tanya Brooks** | **1 - Initial Contact** | 🟡 New | 13-year Proctor District staple, need email for follow-up | 2026-03-10 |
+| **Proctor Shoe Repair** | **Henry** | **1 - Initial Contact** | 🟡 Existing Customer | Has internet + TV, need email for newsletter | 2026-03-10 |
+| **Lapis** | **Emily** | **1 - Initial Contact** | 🟡 New | Jewelry store, met Peyton (gatekeeper), card pending | 2026-03-10 |
+| **New Era Cleaners** | **Yesi** | **1 - Initial Contact** | 🟡 New | Gatekeeper Natasha, card pending | 2026-03-10 |
+| **Strategy Three** | **Leah Noel Knoll** | **N/A** | 🔴 Lost to Competitor | Switched to Lightcurve (from Comcast), not interested in returning | 2026-03-10 |
+| **Tacoma Glass Gallery** | **Janine Sigafoose** | **1 - Initial Contact** | 🟡 New | Proctor location (2nd), Dirk gatekeeper, card pending | 2026-03-10 |
+| **Proctor Family Dentistry** | **Greg Dent** | **1 - Initial Contact** | 🟡 New | Dental office, Andy gatekeeper, need email | 2026-03-10 |
 
 ### Prospect Details
 
@@ -48,6 +57,132 @@
 - **Next Step:** Documentation signing
 - **Notes:** Address qualification pending (verify if in territory)
 - **GHL Contact:** [Update in GHL]
+
+**Chirp & Co — Liz Bright**
+- **Stage:** 1st Stage (Initial Contact) 🆕
+- **Status:** Follow-up later — timing not right
+- **Business Type:** Wild Bird And Gift Store
+- **Location:** 3803 North 26th Street, Tacoma, WA 98407 (Proctor District)
+- **Phone:** 253-759-2884
+- **Fax:** 253-759-3828
+- **Email:** chirpandco@hotmail.com
+- **Current Service:** Comcast (live stream service)
+- **Pain Points:** Technical issues ~2 years ago (possibly during area fiber installation), ongoing construction disruption
+- **Context:** Liz on live stream, mentioned past back-to-back issues, recent construction in area
+- **Next Step:** Revisit in 2-4 weeks after construction settles, assess service stability
+- **Opportunity:** Existing Comcast customer with service history — potential for service upgrade/retention
+
+**Proctor Art Gallery — Pamela Phelps**
+- **Stage:** 2nd Stage (Needs Analysis) 🔥
+- **Status:** Hot Lead — immediate follow-up required
+- **Business Type:** Art Gallery
+- **Location:** 3811 North 26th Street, Tacoma, WA 98407 (Proctor District)
+- **Phone:** 253-759-4238
+- **Email:** pamelaphelps@proctorart.com
+- **Current Service:** Comcast (paying $100+/month)
+- **Pain Points:** High bill, previous rep promised lower rate but never followed through (~1 month ago)
+- **Context:** Proper, conservative, well-put-together lady; wants better deal/promotion
+- **Commitment:** Review building and respond within 24-48 hours
+- **Next Step:** Email follow-up confirming review in progress, schedule call with options
+- **Opportunity:** Existing customer retention/save — upgrade or bundle for better value
+
+**Compass Rose — Tanya Brooks**
+- **Stage:** 1st Stage (Initial Contact) 🆕
+- **Status:** New prospect — need email address
+- **Business Type:** Café/Restaurant
+- **Location:** 3815 North 26th Street, Tacoma, WA 98407 (Proctor District)
+- **Phone:** 253-773-0077
+- **Email:** *Need to research/find*
+- **Ownership:** Paul (owner, 13 years in location), Tanya Brooks (owner/manager)
+- **Tanya's Other Ventures:** Moroccan Rug Dealer, Wilderness Survivalist
+- **Context:** 13-year Proctor District staple; Xavier had seen but never visited until today. Tanya is multi-faceted business owner.
+- **Next Step:** Research email address (website, social media, or call to request)
+- **Opportunity:** Long-established local business — relationship building, potential for bundled services
+
+**Proctor Shoe Repair — Henry**
+- **Stage:** 1st Stage (Initial Contact) 🆕
+- **Status:** Existing customer — need email for newsletter
+- **Business Type:** Shoe Repair
+- **Location:** 3817 1/2 North 26th Street, Tacoma, WA 98407 (Proctor District)
+- **Phone:** 253-883-9136
+- **Email:** *Need to collect on callback*
+- **Current Service:** Comcast Internet + TV
+- **Context:** Really cool guy, Xavier enjoyed meeting him
+- **Next Step:** Call back to get email address for newsletter inclusion
+- **Opportunity:** Existing customer relationship, newsletter subscriber, potential upsell/cross-sell
+
+**Lapis — Emily**
+- **Stage:** 1st Stage (Initial Contact) 🆕
+- **Status:** New prospect — details confirmed
+- **Business Type:** Jewelry Store
+- **Location:** 3823 N 26th Street, Tacoma, WA 98407 (Proctor District)
+- **Phone:** 253-507-4969
+- **Email:** hello@lapistacoma.com
+- **Website:** www.lapistacoma.com
+- **Instagram:** @lapis_tacoma
+- **Gatekeeper:** Peyton (very nice young lady)
+- **Owner:** Emily
+- **Context:** Just walked in, met Peyton, owner is Emily
+- **Next Step:** Follow up email to Emily, introduce services
+- **Opportunity:** New relationship in Proctor District jewelry vertical
+
+**New Era Cleaners & Laundry / Fuzzy Wuzzy Rug Cleaning Co. — Yesi**
+- **Stage:** 1st Stage (Initial Contact) 🆕
+- **Status:** New prospect — details confirmed
+- **Business Type:** Cleaners & High-End Rug Restoration (dual operation)
+- **Location:** 2621 N Proctor Street, Tacoma, WA 98407 (Proctor District)
+- **Phone:** 253-759-3501
+- **Email:** fuzzywuzzy@q.com
+- **Website:** neweracleaner.com
+- **Gatekeeper:** Natasha
+- **Owner:** Yesi (Y-E-S-I)
+- **Services:** Oriental & Persian Rugs, Window Treatments, Carpet & Upholstery, Apparel, Water & Smoke Damage Restoration, Free Pick-up & Delivery
+- **Tagline:** "America's Award-winning Total Fabricare Specialists"
+- **Context:** Just visited, met Natasha. Dual business operation — neighborhood cleaners + high-end rug restoration. More sophisticated than typical cleaners.
+- **Next Step:** Follow up email to introduce services
+- **Opportunity:** Established local business with specialized services (rug restoration = higher value clientele), potential for business-grade internet/phone needs
+
+**Strategy Three — Leah Knoll**
+- **Stage:** Lost to Competitor 🔴
+- **Status:** Not interested — recently switched FROM Comcast TO Lightcurve
+- **Business Type:** Strategy/Consulting
+- **Location:** 2607 N Proctor Street, Tacoma, WA 98407 (Proctor District)
+- **Phone:** 253-267-7704
+- **Email:** leah@strategythree.com
+- **Website:** strategythree.com
+- **Gatekeeper:** Male (name not collected)
+- **Founder/Strategist:** Leah Knoll (L-E-A-H K-N-O-L-L)
+- **Context:** Switched to Lightcurve in last few weeks/months. Not interested in returning to Comcast. Likely left due to cost and/or customer service issues.
+- **Competitive Intel:** Lightcurve win — understand pain points that caused switch
+- **Next Step:** Long-term nurture — if Lightcurve disappoints, may reconsider
+- **Opportunity:** Strategy/consulting firm — if they grow or have service issues, potential re-engagement
+
+**Tacoma Glass Gallery on Proctor — Jeannine Sigafoos**
+- **Stage:** 1st Stage (Initial Contact) 🆕
+- **Status:** New prospect — details confirmed
+- **Business Type:** Art Gallery / Glass Studio
+- **Location:** 2621 N Proctor Street, Tacoma, WA 98407 (Proctor District)
+- **Email:** tgsglass@gmail.com
+- **Gatekeeper:** Dirk (part-time, works a few hours/days per week)
+- **Owner:** Jeannine Sigafoos (J-E-A-N-N-I-N-E) — Owner
+- **Services:** Art Glass Gallery, Glass Pumpkin Patch, Glass Fusing Workshops, Group Events, Art Space
+- **Context:** Proctor location is retail gallery. Dirk didn't know current internet situation. Add to newsletter/email list.
+- **Next Step:** Follow up email to assess internet needs, add to newsletter
+- **Opportunity:** Art gallery with workshops/events — potential for business internet + voice needs
+
+**Proctor Family Dentistry — Greg Dent**
+- **Stage:** 1st Stage (Initial Contact) 🆕
+- **Status:** New prospect — no card, need email
+- **Business Type:** Dental Office
+- **Location:** 2614 North Adams Street, Tacoma, WA 98407 (Proctor District)
+- **Phone:** 253-759-6800
+- **Email:** *Need to research/call for email*
+- **Gatekeeper:** Andy (A-N-D-I)
+- **Owner/Chief Dentist:** Greg Dent
+- **Office Manager:** Jennifer
+- **Context:** Dental practice in Proctor District. No business card collected.
+- **Next Step:** Research email or call to request, add to newsletter list
+- **Opportunity:** Medical/dental practice — reliable internet crucial for patient records, scheduling, digital imaging
 
 ---
 
