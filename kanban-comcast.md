@@ -42,7 +42,7 @@
 | **Proctor Family Dentistry** | **Greg Dent** | **1 - Initial Contact** | 🟡 New | Dental office, Andy gatekeeper, need email | 2026-03-10 |
 | **Crave Cookies** | **Dalton Ohlson** | **1 - Initial Contact** | 🟡 Relationship Building | Got personal number today — multi-business owner, real estate ventures | 2026-03-11 |
 | **Endeavor Eye Center** | **Dr. Kevin / Dr. Connie** | **1 - Initial Contact** | 🟡 New | Met gatekeeper Cher, good rapport, need to reach doctors | 2026-03-12 |
-| **Fleet Feet Tacoma** | **Jeremiah Garza** | **1 - Initial Contact** | 🟡 New | Card collected — retail location in Proctor District | 2026-03-12 |
+| **Fleet Feet (Multi-Location)** | **Wade & Julie Pannell** | **1 - Initial Contact** | 🔥 Hot Lead | 10 locations, existing Comcast — bill analysis needed | 2026-03-12 |
 
 ### Prospect Details
 
@@ -215,19 +215,28 @@
 - **Next Step:** Return to meet Dr. Kevin and Dr. Connie when they're in
 - **Opportunity:** Medical practice with reliable telecom needs (patient records, scheduling, digital imaging) — established rapport with gatekeeper increases access likelihood
 
-**Fleet Feet Tacoma — Jeremiah Garza**
+**Fleet Feet (Multi-Location Account) — Wade & Julie Pannell**
 - **Stage:** 1st Stage (Initial Contact) 🆕
-- **Status:** Card collected — need to establish contact
-- **Business Type:** Retail / Running Specialty Store
-- **Location:** 3812 N 26th St, Tacoma, WA 98407 (Proctor District)
+- **Status:** 🔥 HOT LEAD — Multi-location opportunity identified
+- **Business Type:** Retail / Running Specialty Store Chain
+- **Locations:** 10 locations throughout Washington State
+- **Decision Makers:** Wade Pannell & Julie Pannell (owners)
+- **Gatekeeper:** Jeremiah Garza — Retail Experience Manager (Tacoma location)
+- **Tacoma Location:** 3812 N 26th St, Tacoma, WA 98407 (Proctor District)
 - **Phone:** 253-272-8890
 - **Email:** jeremiah@fleetfeettacoma.com
 - **Website:** fleetfeet.com/s/pugetsound
-- **Contact:** Jeremiah Garza — Retail Experience Manager
-- **Note on card:** "Hide and Jolie Pannell" (handwritten — possible referral/lead names)
-- **Context:** Card collected at Endeavor Eye Center visit. Retail location in Proctor District.
-- **Next Step:** Email or call Jeremiah to introduce Comcast Business services
-- **Opportunity:** Retail store with POS systems, inventory management, customer Wi-Fi — potential for business internet + voice
+- **Current Service:** Most/all services through Comcast (existing customer)
+- **Context:** Met Jeremiah at Tacoma location. He confirmed Wade & Julie own 10 locations statewide. This is a significant multi-location account with expansion potential.
+- **Next Step:** 
+  1. Conduct bill analysis for existing Comcast services
+  2. Reach out to Wade & Julie Pannell (owners) — get their contact info through Jeremiah or research
+  3. Propose account review across all 10 locations for optimization/upsell opportunities
+- **Opportunity:** Multi-location retail chain — potential for:
+  - Account optimization across 10 locations
+  - Bundled services (internet, voice, video, mobile)
+  - Significant revenue opportunity if upgraded to enterprise-level solutions
+  - Expansion services as they open new locations
 
 ---
 
