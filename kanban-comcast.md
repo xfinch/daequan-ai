@@ -74,8 +74,8 @@
 - **Opportunity:** Existing Comcast customer with service history — potential for service upgrade/retention
 
 **Proctor Art Gallery — Pamela Phelps**
-- **Stage:** 2nd Stage (Needs Analysis) 🔥
-- **Status:** Hot Lead — immediate follow-up required
+- **Stage:** 2nd Stage (Needs Analysis) 🟡
+- **Status:** Email sent — awaiting response
 - **Business Type:** Art Gallery
 - **Location:** 3811 North 26th Street, Tacoma, WA 98407 (Proctor District)
 - **Phone:** 253-759-4238
@@ -83,8 +83,8 @@
 - **Current Service:** Comcast (paying $100+/month)
 - **Pain Points:** High bill, previous rep promised lower rate but never followed through (~1 month ago)
 - **Context:** Proper, conservative, well-put-together lady; wants better deal/promotion
-- **Commitment:** Review building and respond within 24-48 hours
-- **Next Step:** Email follow-up confirming review in progress, schedule call with options
+- **Last Action:** Email sent 2026-03-12 from xavier_finch@comcast.com — notified issue was found, awaiting her response
+- **Next Step:** Follow up if no response within 24-48 hours
 - **Opportunity:** Existing customer retention/save — upgrade or bundle for better value
 
 **Compass Rose — Tanya Brooks**
