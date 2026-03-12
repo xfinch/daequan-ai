@@ -40,7 +40,19 @@
 
 | Prospect | Stage | Source | Next Action |
 |----------|-------|--------|-------------|
-| *[Add prospects here]* | — | — | — |
+| **AK Branding** | Lead Captured | Referral | Schedule meeting by 2026-03-19 |
+
+**AK Branding — April Kaufman (CEO)**
+- **Company:** AK Branding
+- **Contact:** April Kaufman
+- **Title:** CEO
+- **Email:** April.Kaufman@AKBranding.com
+- **Phone 1:** 206-395-2701
+- **Phone 2:** 425-890-7271
+- **Need:** CRM structuring, lead management planning, CRM configuration
+- **Timeline:** Wants to meet by next week (target: 2026-03-19)
+- **Status:** 🔥 Hot lead — follow up this week
+- **Next Action:** Reach out to schedule initial consultation meeting
 
 ### 🚀 ACTIVE / IN PROGRESS
 
