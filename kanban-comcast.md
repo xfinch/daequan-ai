@@ -49,6 +49,7 @@
 | **Connections Fine Jewelry** | **Tad Kraus** | **1 - Initial Contact** | 🟡 Card Collected | Jewelry store, buy/sell/trade — follow up | 2026-03-12 |
 | **Smart PNW** | **James Roddy** | **2 - Needs Analysis** | 🔥 Hot Lead | 1-2 BVE + 7 mobile lines, quote needed | 2026-03-12 |
 | **Ice Cream Social** | **Iris All** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Max, need to reach Iris (decision maker) | 2026-03-12 |
+| **Pizzeria Fondi** | **Christopher Olsen** | **1 - Initial Contact** | 🟡 Card Collected | Pizzaiolo, Proctor District — follow up | 2026-03-12 |
 
 ### Prospect Details
 
@@ -336,6 +337,20 @@
 - **Context:** Met Max (shift lead/gatekeeper). This is their main location on Hilltop. Decision maker is Iris All, but wasn't present. Max indicated main location is the one on Hilltop. Need to return to catch Iris or get her contact info.
 - **Next Step:** Return to meet Iris All (decision maker) or get her email/phone from Max
 - **Opportunity:** Food service location — potential for business internet, phone, and customer Wi-Fi
+
+**Pizzeria Fondi — Christopher Olsen**
+- **Stage:** 1st Stage (Initial Contact) 🟡
+- **Status:** Card collected — need to establish contact
+- **Business Type:** Pizzeria / Italian Restaurant
+- **Location:** 2515 N. Proctor St, Tacoma, WA 98406 (Proctor District)
+- **Phone:** 253-851-6666
+- **Email:** chris@fondi.com
+- **Website:** www.fondi.com
+- **Contact:** Christopher Olsen — Pizzaiolo (pizza maker)
+- **Visit Date:** 2026-03-12
+- **Context:** Card collected during field visit. Pizzeria in Proctor District. Christopher is the Pizzaiolo (pizza maker) — may not be the owner/decision maker, but good initial contact.
+- **Next Step:** Research who the owner/manager is, then reach out to introduce Comcast Business services
+- **Opportunity:** Restaurant location — potential for business internet, phone, customer Wi-Fi, and potentially TV services for ambiance
 
 ---
 
