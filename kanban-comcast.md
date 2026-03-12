@@ -47,6 +47,7 @@
 | **Manny's Place** | **Brett** | **0 - Door Knock** | 🟡 Gatekeeper Contact | Met April, Brett stepped out — return later | 2026-03-12 |
 | **Peaks and Pints** | **Ron Swarner** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Trish, got Ron's email — follow up | 2026-03-12 |
 | **Connections Fine Jewelry** | **Tad Kraus** | **1 - Initial Contact** | 🟡 Card Collected | Jewelry store, buy/sell/trade — follow up | 2026-03-12 |
+| **Smart PNW** | **James Roddy** | **1 - Initial Contact** | 🟡 Card Collected | Owner, property management/RE — follow up | 2026-03-12 |
 
 ### Prospect Details
 
@@ -297,6 +298,20 @@
   2. Send honest comparison to Tad
   3. Long-term nurture — monitor for dissatisfaction with Lightcurve
 - **Opportunity:** Competitive win — create content for Lightcurve customers in Proctor District area; Tad may reconsider if service issues arise
+
+**Smart PNW — James Roddy**
+- **Stage:** 1st Stage (Initial Contact) 🟡
+- **Status:** Card collected — need to establish contact
+- **Business Type:** Property Management / Real Estate Services (need to verify)
+- **Contact:** James Roddy — Owner
+- **Mobile:** 253-448-0456
+- **Office:** 425-440-5279
+- **Email:** james@smartpnw.com
+- **Website:** www.smartpnw.com
+- **Visit Date:** 2026-03-12
+- **Context:** Card collected during field visit. Smart PNW appears to be property management or real estate related business based on name and "PNW" branding.
+- **Next Step:** Research company, then email/call James Roddy to introduce Comcast Business services
+- **Opportunity:** Property management/real estate company — potential for business internet, phone, and possibly multiple properties needing connectivity
 
 ---
 
