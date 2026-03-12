@@ -48,6 +48,7 @@
 | **Peaks and Pints** | **Ron Swarner** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Trish, got Ron's email — follow up | 2026-03-12 |
 | **Connections Fine Jewelry** | **Tad Kraus** | **1 - Initial Contact** | 🟡 Card Collected | Jewelry store, buy/sell/trade — follow up | 2026-03-12 |
 | **Smart PNW** | **James Roddy** | **2 - Needs Analysis** | 🔥 Hot Lead | 1-2 BVE + 7 mobile lines, quote needed | 2026-03-12 |
+| **Ice Cream Social** | **Iris All** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Max, need to reach Iris (decision maker) | 2026-03-12 |
 
 ### Prospect Details
 
@@ -321,6 +322,20 @@
   2. Propose 253 area code number
   3. Schedule follow-up to review proposal
 - **Opportunity:** Solid deal in progress — existing relationship, specific needs, ready to move
+
+**Ice Cream Social — Iris All**
+- **Stage:** 1st Stage (Initial Contact) 🟡
+- **Status:** Gatekeeper contact — need to reach decision maker
+- **Business Type:** Ice Cream Shop / Dessert Restaurant
+- **Location:** 2521 North Proctor Street, Tacoma, WA 98407 (Proctor District)
+- **Phone:** 253-327-1803
+- **Website:** icecreamsocialtacoma.com
+- **Decision Maker:** Iris All (for this location)
+- **Gatekeeper:** Max (shift lead)
+- **Visit Date:** 2026-03-12
+- **Context:** Met Max (shift lead/gatekeeper). This is their main location on Hilltop. Decision maker is Iris All, but wasn't present. Max indicated main location is the one on Hilltop. Need to return to catch Iris or get her contact info.
+- **Next Step:** Return to meet Iris All (decision maker) or get her email/phone from Max
+- **Opportunity:** Food service location — potential for business internet, phone, and customer Wi-Fi
 
 ---
 
