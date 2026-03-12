@@ -40,6 +40,7 @@
 | **Strategy Three** | **Leah Noel Knoll** | **N/A** | 🔴 Lost to Competitor | Switched to Lightcurve (from Comcast), not interested in returning | 2026-03-10 |
 | **Tacoma Glass Gallery** | **Janine Sigafoose** | **1 - Initial Contact** | 🟡 New | Proctor location (2nd), Dirk gatekeeper, card pending | 2026-03-10 |
 | **Proctor Family Dentistry** | **Greg Dent** | **1 - Initial Contact** | 🟡 New | Dental office, Andy gatekeeper, need email | 2026-03-10 |
+| **Crave Cookies** | **Dalton Ohlson** | **1 - Initial Contact** | 🟡 Relationship Building | Got personal number today — multi-business owner, real estate ventures | 2026-03-11 |
 
 ### Prospect Details
 
@@ -184,6 +185,23 @@
 - **Next Step:** Research email or call to request, add to newsletter list
 - **Opportunity:** Medical/dental practice — reliable internet crucial for patient records, scheduling, digital imaging
 
+**Crave Cookies — Dalton Ohlson**
+- **Stage:** 1st Stage (Initial Contact) 🆕
+- **Status:** Relationship building — got personal number today
+- **Business Type:** Cookie shop (retail food)
+- **Location:** 17526 Meridian Avenue East, Suite B202, Puyallup, WA 98375
+- **Business Phone:** 253-260-7417
+- **Personal Phone:** 253-457-6486
+- **Owner:** Dalton Ohlson (O-H-L-S-O-N)
+- **Co-owners:** Ham and Brad
+- **Context:** Relationship built over several months — Xavier visits regularly to pick up cookies and chat. Dalton is a multi-business entrepreneur with ventures in:
+  - Real estate investment
+  - Hard money lending / asset procurement
+  - Probate cases
+  - Cold calling operations
+- **Next Step:** Assess current telecom needs, schedule formal needs analysis
+- **Opportunity:** Multi-business owner with growth mindset — potential for business internet + voice + multiple locations as he scales
+
 ---
 
 ## 📥 BACKLOG / TODO
@@ -289,7 +307,7 @@
 
 ---
 
-**Last Updated:** 2026-03-10
+**Last Updated:** 2026-03-11
 **Maintained By:** Daequan
 
 *This board tracks all Comcast sales operations. Need Xavier's input on priorities and system access.*
