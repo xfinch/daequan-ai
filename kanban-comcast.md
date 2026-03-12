@@ -45,6 +45,7 @@
 | **Fleet Feet (Multi-Location)** | **Wade & Julie Pannell** | **1 - Initial Contact** | 🔥 Hot Lead | 10 locations, existing Comcast — bill analysis needed | 2026-03-12 |
 | **Chalet Bowl** | **—** | **0 - Door Knock** | ⚪ Closed/No Contact | Stopped by, closed — return later | 2026-03-12 |
 | **Manny's Place** | **Brett** | **0 - Door Knock** | 🟡 Gatekeeper Contact | Met April, Brett stepped out — return later | 2026-03-12 |
+| **Peaks and Pints** | **Ron Swarner** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Trish, got Ron's email — follow up | 2026-03-12 |
 
 ### Prospect Details
 
@@ -262,6 +263,21 @@
 - **Context:** Stopped by, met April (gatekeeper). Brett was out running an errand but expected back later. Need to return or collect contact info.
 - **Next Step:** Return later when Brett is in, or get contact info from April
 - **Opportunity:** Restaurant/bar location in Proctor District — potential for business internet, phone, TV, Wi-Fi
+
+**Peaks and Pints**
+- **Stage:** 1st Stage (Initial Contact) 🟡
+- **Status:** Gatekeeper contact — got decision maker info
+- **Business Type:** Craft Beer Bar / Restaurant / Bottle Shop
+- **Location:** 3816 N 26th St, Ste B, Tacoma, WA 98407 (Proctor District)
+- **Phone:** 253-328-5621
+- **Website:** peaksandpints.com
+- **Decision Maker:** Ron Swarner
+- **Email:** ron.swarner@peaksandpints.com
+- **Gatekeeper:** Trish
+- **Visit Date:** 2026-03-12
+- **Context:** Stopped in, spoke with Trish (gatekeeper). She connected Xavier with Ron Swarner's contact info. Established initial contact through gatekeeper.
+- **Next Step:** Email or call Ron Swarner to introduce Comcast Business services
+- **Opportunity:** Craft beer bar/restaurant with bottle shop — likely needs reliable internet for POS, inventory management, customer Wi-Fi; potential for TV services for sports/entertainment
 
 ---
 
