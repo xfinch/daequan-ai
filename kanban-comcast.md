@@ -44,6 +44,7 @@
 | **Endeavor Eye Center** | **Dr. Kevin / Dr. Connie** | **1 - Initial Contact** | 🟡 New | Met gatekeeper Cher, good rapport, need to reach doctors | 2026-03-12 |
 | **Fleet Feet (Multi-Location)** | **Wade & Julie Pannell** | **1 - Initial Contact** | 🔥 Hot Lead | 10 locations, existing Comcast — bill analysis needed | 2026-03-12 |
 | **Chalet Bowl** | **—** | **0 - Door Knock** | ⚪ Closed/No Contact | Stopped by, closed — return later | 2026-03-12 |
+| **Manny's Place** | **Brett** | **0 - Door Knock** | 🟡 Gatekeeper Contact | Met April, Brett stepped out — return later | 2026-03-12 |
 
 ### Prospect Details
 
@@ -248,6 +249,19 @@
 - **Context:** Stopped by during field visit. Location was closed. Logging for accurate door-knock tracking (all visits counted, not just contacts).
 - **Next Step:** Return at later time when open
 - **Opportunity:** Entertainment venue — potential for business internet, Wi-Fi for customers, TV services
+
+**Manny's Place**
+- **Stage:** 0 - Door Knock 🟡
+- **Status:** Gatekeeper contact — decision maker not in
+- **Business Type:** Restaurant / Bar (need to confirm)
+- **Location:** 3814 North 26th Street, Tacoma, WA 98407 (Proctor District)
+- **Decision Maker:** Brett (stepped out for errand, will return later)
+- **Gatekeeper:** April
+- **Visit Date:** 2026-03-12
+- **Contact Info:** None collected yet (need phone/email)
+- **Context:** Stopped by, met April (gatekeeper). Brett was out running an errand but expected back later. Need to return or collect contact info.
+- **Next Step:** Return later when Brett is in, or get contact info from April
+- **Opportunity:** Restaurant/bar location in Proctor District — potential for business internet, phone, TV, Wi-Fi
 
 ---
 
