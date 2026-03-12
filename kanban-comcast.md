@@ -46,6 +46,7 @@
 | **Chalet Bowl** | **—** | **0 - Door Knock** | ⚪ Closed/No Contact | Stopped by, closed — return later | 2026-03-12 |
 | **Manny's Place** | **Brett** | **0 - Door Knock** | 🟡 Gatekeeper Contact | Met April, Brett stepped out — return later | 2026-03-12 |
 | **Peaks and Pints** | **Ron Swarner** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Trish, got Ron's email — follow up | 2026-03-12 |
+| **Connections Fine Jewelry** | **Tad Kraus** | **1 - Initial Contact** | 🟡 Card Collected | Jewelry store, buy/sell/trade — follow up | 2026-03-12 |
 
 ### Prospect Details
 
@@ -278,6 +279,19 @@
 - **Context:** Stopped in, spoke with Trish (gatekeeper). She connected Xavier with Ron Swarner's contact info. Established initial contact through gatekeeper.
 - **Next Step:** Email or call Ron Swarner to introduce Comcast Business services
 - **Opportunity:** Craft beer bar/restaurant with bottle shop — likely needs reliable internet for POS, inventory management, customer Wi-Fi; potential for TV services for sports/entertainment
+
+**Connections Fine Jewelry — Tad Kraus**
+- **Stage:** 1st Stage (Initial Contact) 🟡
+- **Status:** Card collected — need to establish contact
+- **Business Type:** Jewelry Store (Buy · Sell · Trade)
+- **Location:** 3822 N 26th St, Tacoma, WA 98407 (Proctor District)
+- **Phone:** 253-752-0940
+- **Website:** www.connectionsfinejewelry.com
+- **Contact:** Tad Kraus
+- **Visit Date:** 2026-03-12
+- **Context:** Card collected during field visit. Jewelry store in Proctor District with buy/sell/trade services.
+- **Next Step:** Email or call Tad Kraus to introduce Comcast Business services
+- **Opportunity:** Retail jewelry store — potential for business internet, security systems, phone service; high-value transactions may require reliable connectivity for payment processing and security
 
 ---
 
