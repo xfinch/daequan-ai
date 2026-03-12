@@ -41,6 +41,7 @@
 | **Tacoma Glass Gallery** | **Janine Sigafoose** | **1 - Initial Contact** | 🟡 New | Proctor location (2nd), Dirk gatekeeper, card pending | 2026-03-10 |
 | **Proctor Family Dentistry** | **Greg Dent** | **1 - Initial Contact** | 🟡 New | Dental office, Andy gatekeeper, need email | 2026-03-10 |
 | **Crave Cookies** | **Dalton Ohlson** | **1 - Initial Contact** | 🟡 Relationship Building | Got personal number today — multi-business owner, real estate ventures | 2026-03-11 |
+| **Endeavor Eye Center** | **Dr. Kevin / Dr. Connie** | **1 - Initial Contact** | 🟡 New | Met gatekeeper Cher, good rapport, need to reach doctors | 2026-03-12 |
 
 ### Prospect Details
 
@@ -201,6 +202,17 @@
   - Cold calling operations
 - **Next Step:** Assess current telecom needs, schedule formal needs analysis
 - **Opportunity:** Multi-business owner with growth mindset — potential for business internet + voice + multiple locations as he scales
+
+**Endeavor Eye Center — Dr. Kevin & Dr. Connie**
+- **Stage:** 1st Stage (Initial Contact) 🆕
+- **Status:** Gatekeeper relationship established — need to reach doctors
+- **Business Type:** Eye Care / Optometry
+- **Location:** (Need to confirm address)
+- **Gatekeeper:** Cher
+- **Decision Makers:** Dr. Kevin and Dr. Connie (not in today)
+- **Context:** Strong rapport established with Cher. She tried on Xavier's Ray-Ban glasses; LED protector popped off during cleaning, creating a running joke between them. Xavier offered to buy her coffee if she finds the LED cover. Good vibes, receptive gatekeeper.
+- **Next Step:** Return to meet Dr. Kevin and Dr. Connie when they're in
+- **Opportunity:** Medical practice with reliable telecom needs (patient records, scheduling, digital imaging) — established rapport with gatekeeper increases access likelihood
 
 ---
 
