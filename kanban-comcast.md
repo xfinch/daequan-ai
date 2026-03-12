@@ -42,6 +42,7 @@
 | **Proctor Family Dentistry** | **Greg Dent** | **1 - Initial Contact** | 🟡 New | Dental office, Andy gatekeeper, need email | 2026-03-10 |
 | **Crave Cookies** | **Dalton Ohlson** | **1 - Initial Contact** | 🟡 Relationship Building | Got personal number today — multi-business owner, real estate ventures | 2026-03-11 |
 | **Endeavor Eye Center** | **Dr. Kevin / Dr. Connie** | **1 - Initial Contact** | 🟡 New | Met gatekeeper Cher, good rapport, need to reach doctors | 2026-03-12 |
+| **Fleet Feet Tacoma** | **Jeremiah Garza** | **1 - Initial Contact** | 🟡 New | Card collected — retail location in Proctor District | 2026-03-12 |
 
 ### Prospect Details
 
@@ -213,6 +214,20 @@
 - **Context:** Strong rapport established with Cher. She tried on Xavier's Ray-Ban glasses; LED protector popped off during cleaning, creating a running joke between them. Xavier offered to buy her coffee if she finds the LED cover. Good vibes, receptive gatekeeper.
 - **Next Step:** Return to meet Dr. Kevin and Dr. Connie when they're in
 - **Opportunity:** Medical practice with reliable telecom needs (patient records, scheduling, digital imaging) — established rapport with gatekeeper increases access likelihood
+
+**Fleet Feet Tacoma — Jeremiah Garza**
+- **Stage:** 1st Stage (Initial Contact) 🆕
+- **Status:** Card collected — need to establish contact
+- **Business Type:** Retail / Running Specialty Store
+- **Location:** 3812 N 26th St, Tacoma, WA 98407 (Proctor District)
+- **Phone:** 253-272-8890
+- **Email:** jeremiah@fleetfeettacoma.com
+- **Website:** fleetfeet.com/s/pugetsound
+- **Contact:** Jeremiah Garza — Retail Experience Manager
+- **Note on card:** "Hide and Jolie Pannell" (handwritten — possible referral/lead names)
+- **Context:** Card collected at Endeavor Eye Center visit. Retail location in Proctor District.
+- **Next Step:** Email or call Jeremiah to introduce Comcast Business services
+- **Opportunity:** Retail store with POS systems, inventory management, customer Wi-Fi — potential for business internet + voice
 
 ---
 
