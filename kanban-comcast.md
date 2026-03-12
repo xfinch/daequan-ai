@@ -281,17 +281,22 @@
 - **Opportunity:** Craft beer bar/restaurant with bottle shop — likely needs reliable internet for POS, inventory management, customer Wi-Fi; potential for TV services for sports/entertainment
 
 **Connections Fine Jewelry — Tad Kraus**
-- **Stage:** 1st Stage (Initial Contact) 🟡
-- **Status:** Card collected — need to establish contact
+- **Stage:** N/A — Competition 🔴
+- **Status:** With Lightcurve — competitive intel opportunity
 - **Business Type:** Jewelry Store (Buy · Sell · Trade)
 - **Location:** 3822 N 26th St, Tacoma, WA 98407 (Proctor District)
 - **Phone:** 253-752-0940
 - **Website:** www.connectionsfinejewelry.com
-- **Contact:** Tad Kraus
+- **Contact:** Tad Kraus (owner)
+- **Current Provider:** Lightcurve
 - **Visit Date:** 2026-03-12
-- **Context:** Card collected during field visit. Jewelry store in Proctor District with buy/sell/trade services.
-- **Next Step:** Email or call Tad Kraus to introduce Comcast Business services
-- **Opportunity:** Retail jewelry store — potential for business internet, security systems, phone service; high-value transactions may require reliable connectivity for payment processing and security
+- **Context:** Spoke with Tad. Currently with Lightcurve. He needs competitive comparison content showing real differences between Comcast and Lightcurve (honest, factual). Long-term nurture — if Lightcurve disappoints, potential switch.
+- **Tags:** competition-lightcurve, competitor-intel, proctor-district
+- **Next Step:** 
+  1. Create Lightcurve vs Comcast competitive comparison piece
+  2. Send honest comparison to Tad
+  3. Long-term nurture — monitor for dissatisfaction with Lightcurve
+- **Opportunity:** Competitive win — create content for Lightcurve customers in Proctor District area; Tad may reconsider if service issues arise
 
 ---
 
