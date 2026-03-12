@@ -43,6 +43,7 @@
 | **Crave Cookies** | **Dalton Ohlson** | **1 - Initial Contact** | 🟡 Relationship Building | Got personal number today — multi-business owner, real estate ventures | 2026-03-11 |
 | **Endeavor Eye Center** | **Dr. Kevin / Dr. Connie** | **1 - Initial Contact** | 🟡 New | Met gatekeeper Cher, good rapport, need to reach doctors | 2026-03-12 |
 | **Fleet Feet (Multi-Location)** | **Wade & Julie Pannell** | **1 - Initial Contact** | 🔥 Hot Lead | 10 locations, existing Comcast — bill analysis needed | 2026-03-12 |
+| **Chalet Bowl** | **—** | **0 - Door Knock** | ⚪ Closed/No Contact | Stopped by, closed — return later | 2026-03-12 |
 
 ### Prospect Details
 
@@ -237,6 +238,16 @@
   - Bundled services (internet, voice, video, mobile)
   - Significant revenue opportunity if upgraded to enterprise-level solutions
   - Expansion services as they open new locations
+
+**Chalet Bowl**
+- **Stage:** 0 - Door Knock ⚪
+- **Status:** Stopped by, closed — no contact made
+- **Business Type:** Bowling alley / Entertainment
+- **Location:** 3806 North 26th Street, Tacoma, WA 98407 (Proctor District)
+- **Visit Date:** 2026-03-12
+- **Context:** Stopped by during field visit. Location was closed. Logging for accurate door-knock tracking (all visits counted, not just contacts).
+- **Next Step:** Return at later time when open
+- **Opportunity:** Entertainment venue — potential for business internet, Wi-Fi for customers, TV services
 
 ---
 
