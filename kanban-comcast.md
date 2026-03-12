@@ -49,7 +49,7 @@
 | **Connections Fine Jewelry** | **Tad Kraus** | **1 - Initial Contact** | 🟡 Card Collected | Jewelry store, buy/sell/trade — follow up | 2026-03-12 |
 | **Smart PNW** | **James Roddy** | **2 - Needs Analysis** | 🔥 Hot Lead | 1-2 BVE + 7 mobile lines, quote needed | 2026-03-12 |
 | **Ice Cream Social** | **Iris All** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Max, need to reach Iris (decision maker) | 2026-03-12 |
-| **Pizzeria Fondi** | **Christopher Olsen** | **1 - Initial Contact** | 🟡 Card Collected | Pizzaiolo, Proctor District — follow up | 2026-03-12 |
+| **Pizzeria Fondi (Multi-Location)** | **Chris Olsen** | **2 - Needs Analysis** | 🔥 Hot Lead | 2-3 locations, wants fiber + mobile quotes, newsletter feature | 2026-03-12 |
 
 ### Prospect Details
 
@@ -338,19 +338,45 @@
 - **Next Step:** Return to meet Iris All (decision maker) or get her email/phone from Max
 - **Opportunity:** Food service location — potential for business internet, phone, and customer Wi-Fi
 
-**Pizzeria Fondi — Christopher Olsen**
-- **Stage:** 1st Stage (Initial Contact) 🟡
-- **Status:** Card collected — need to establish contact
-- **Business Type:** Pizzeria / Italian Restaurant
-- **Location:** 2515 N. Proctor St, Tacoma, WA 98406 (Proctor District)
-- **Phone:** 253-851-6666
+**Pizzeria Fondi (Multi-Location) — Chris Olsen**
+- **Stage:** 2nd Stage (Needs Analysis) 🔥
+- **Status:** 🔥 HOT LEAD + NEWSLETTER FEATURE — Multi-location owner, wants quotes
+- **Business Type:** Pizzeria / Italian Restaurant Chain
+- **Locations:** 2-3 locations (Proctor District, Gig Harbor, + 1 other)
+- **Proctor Location:** 2515 N. Proctor St, Tacoma, WA 98406
+- **Business Phone:** 253-851-6666
 - **Email:** chris@fondi.com
+- **Personal Mobile:** 253-306-6552
 - **Website:** www.fondi.com
-- **Contact:** Christopher Olsen — Pizzaiolo (pizza maker)
+- **Contact:** Chris Olsen — Co-Owner / Visioncaster
+- **Current Provider:** Comcast (existing customer)
 - **Visit Date:** 2026-03-12
-- **Context:** Card collected during field visit. Pizzeria in Proctor District. Christopher is the Pizzaiolo (pizza maker) — may not be the owner/decision maker, but good initial contact.
-- **Next Step:** Research who the owner/manager is, then reach out to introduce Comcast Business services
-- **Opportunity:** Restaurant location — potential for business internet, phone, customer Wi-Fi, and potentially TV services for ambiance
+- **Profile:**
+  - Leader in Proctor District Association
+  - Community champion — feeds kids via school partnerships ($10 gourmet pizzas for after-school programs)
+  - 21-year aged sourdough pizza
+  - Runs business "like a corporation" — hires specialists, remains visioncaster
+  - Tech-forward individual — wants latest/greatest technology
+  - Provides free Wi-Fi broadcast to neighborhood (community-minded)
+- **Needs Identified:**
+  - Quote for Fiber services
+  - Quote for Comcast Business Mobile
+  - Wants to be featured in newsletter
+- **Network/Partners:**
+  - Works with IT companies for installations
+  - Connected to other business owners/decision makers
+  - Strong referral partner potential
+- **Next Step:**
+  1. Prepare fiber + mobile quotes for all locations
+  2. Schedule newsletter feature interview
+  3. Propose referral partnership
+  4. Leverage his Proctor District Association leadership for introductions
+- **Opportunity:**
+  - Multi-location account (2-3 restaurants)
+  - Existing Comcast customer — upsell opportunity
+  - Newsletter feature (marketing value)
+  - Referral partner through Proctor District Association
+  - Community leader — reputation boost by association
 
 ---
 
