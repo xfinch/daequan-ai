@@ -103,6 +103,56 @@ function checkMissingFields(data) {
 }
 
 /**
+ * Upload business card image to GHL as contact attachment
+ */
+async function attachImageToGHLContact(ghlContactId, imagePath) {
+  const GHL_API_KEY = process.env.GHL_COMCAST_TOKEN || process.env.GHL_TTL_TOKEN;
+  const GHL_LOCATION_ID = process.env.GHL_COMCAST_LOCATION_ID || process.env.GHL_LOCATION_ID;
+  
+  if (!GHL_API_KEY || !ghlContactId) {
+    console.warn('⚠️  GHL not configured or no contact ID - skipping image attachment');
+    return null;
+  }
+
+  try {
+    const imageBuffer = fs.readFileSync(imagePath);
+    const fileName = path.basename(imagePath);
+    
+    // Create form data for file upload
+    const FormData = require('form-data');
+    const form = new FormData();
+    form.append('fileAttachment', imageBuffer, {
+      filename: fileName,
+      contentType: 'image/jpeg'
+    });
+    form.append('contactId', ghlContactId);
+
+    const response = await fetch('https://services.leadconnectorhq.com/conversations/messages', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${GHL_API_KEY}`,
+        'Version': '2021-04-15',
+        ...form.getHeaders()
+      },
+      body: form
+    });
+
+    if (!response.ok) {
+      const error = await response.text();
+      console.error('❌ GHL image attachment failed:', error);
+      return null;
+    }
+
+    const data = await response.json();
+    console.log('✅ Business card image attached to GHL contact');
+    return data;
+  } catch (err) {
+    console.error('❌ GHL image attachment error:', err.message);
+    return null;
+  }
+}
+
+/**
  * Create a visit via API
  */
 async function createVisit(data, missingFields = []) {
@@ -176,12 +226,18 @@ async function processBusinessCard(imagePath, context = '') {
   console.log('💾 Creating visit...');
   const visit = await createVisit(data, missingFields);
   
-  // Step 4: Create reminder for missing info
+  // Step 4: Attach business card image to GHL contact
+  if (visit.ghlContactId && imagePath) {
+    console.log('📎 Attaching business card image to GHL contact...');
+    await attachImageToGHLContact(visit.ghlContactId, imagePath);
+  }
+  
+  // Step 5: Create reminder for missing info
   if (missingFields.length > 0) {
     await createMissingInfoTask(visit._id, missingFields);
   }
   
-  // Step 5: Return summary
+  // Step 6: Return summary
   return {
     success: true,
     visitId: visit._id,
@@ -216,4 +272,4 @@ if (require.main === module) {
     });
 }
 
-module.exports = { processBusinessCard, analyzeBusinessCard };
+module.exports = { processBusinessCard, analyzeBusinessCard, attachImageToGHLContact };
