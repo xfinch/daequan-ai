@@ -6,8 +6,12 @@ set -e
 
 # Priority Configuration
 P0_KEYWORDS=("URGENT" "CRITICAL" "DOWN" "BROKEN" "EMERGENCY" "ASAP" "IMMEDIATE" "CRISIS")
-P1_DOMAINS=()  # Will be populated from GHL contacts
-P2_DOMAINS=("thetraffic.link" "gmail.com" "outlook.com")  # Internal/project
+P1_KEYWORDS=("Re:" "RE:")  # Client replies are high priority
+P1_DOMAINS=("gmail.com" "outlook.com" "yahoo.com" "icloud.com")  # Common client domains
+P2_DOMAINS=("thetraffic.link")  # Internal/project
+
+# Known client emails from GHL (last sync)
+KNOWN_CLIENTS=("kristitrealestate@gmail.com" "clearbooksbytrina@gmail.com" "chris@fondi.com" "james@smartpnw.com")
 
 # Check functions
 function check_p0_emergency() {
@@ -37,22 +41,32 @@ function check_p1_clients() {
     echo "🟡 CHECKING P1 CLIENT EMAILS..."
     local found=0
     
-    # Check unread emails from last hour
-    local recent=$(himalaya envelope list --page-size 20 2>/dev/null | grep "^[0-9]" | head -10)
+    # Check recent emails (last 50)
+    local recent=$(himalaya envelope list --page-size 50 2>/dev/null | grep "^[0-9]" || true)
     
-    # Simple heuristic: emails with question marks or "?" in subject
-    local questions=$(echo "$recent" | grep -E '\?|question|help|issue|problem|concern' -i || true)
-    if [ -n "$questions" ]; then
-        echo "📧 P1 CLIENT QUESTIONS DETECTED:"
-        echo "$questions"
+    # CRITICAL: Check for replies from known clients
+    for client_email in "${KNOWN_CLIENTS[@]}"; do
+        local client_replies=$(echo "$recent" | grep -i "$client_email" || true)
+        if [ -n "$client_replies" ]; then
+            echo "🚨 P1 CLIENT REPLY FROM $client_email:"
+            echo "$client_replies"
+            found=1
+        fi
+    done
+    
+    # Check for any "Re:" emails (potential client replies)
+    local replies=$(echo "$recent" | grep -i "Re:" || true)
+    if [ -n "$replies" ]; then
+        echo "📧 P1 REPLIES DETECTED:"
+        echo "$replies"
         found=1
     fi
     
-    # Check for direct replies (Re: in subject)
-    local replies=$(himalaya envelope list subject:"Re:" --page-size 5 2>/dev/null | grep "^[0-9]" || true)
-    if [ -n "$replies" ]; then
-        echo "📧 P1 REPLIES TO MONITOR:"
-        echo "$replies"
+    # Check emails with question marks (client questions)
+    local questions=$(echo "$recent" | grep -E '\?' || true)
+    if [ -n "$questions" ]; then
+        echo "📧 P1 CLIENT QUESTIONS:"
+        echo "$questions"
         found=1
     fi
     
