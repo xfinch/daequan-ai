@@ -1,0 +1,282 @@
+{
+  "created": [
+    {
+      "prospect": {
+        "businessName": "Knapp's Restaurant",
+        "contactName": "Billy Brewer",
+        "stage": "3 - Second Review",
+        "status": "🟡 Active",
+        "phone": null,
+        "email": null,
+        "address": "Proctor District",
+        "notes": "Triple Play package (Gigabit + Voice 5 lines + Video). Sales Engineer review completed."
+      },
+      "contactId": "447JsLCpKCcbF4JaRFZL"
+    },
+    {
+      "prospect": {
+        "businessName": "KO Construction",
+        "contactName": "Keith Osmonson",
+        "stage": "4 - Proposal Sent",
+        "status": "🟡 Active",
+        "phone": null,
+        "email": null,
+        "address": null,
+        "notes": "Bill reviewed and contacted. Address qualification pending."
+      },
+      "contactId": "OyS5xJ0c53A95SrRQHRN"
+    },
+    {
+      "prospect": {
+        "businessName": "Compass Rose",
+        "contactName": "Tanya Brooks",
+        "stage": "1 - Initial Contact",
+        "status": "🟡 New",
+        "phone": "253-773-0077",
+        "email": null,
+        "address": "3815 North 26th Street, Tacoma, WA 98407",
+        "notes": "13-year Proctor District staple. Need email for follow-up."
+      },
+      "contactId": "Sto2QU9Qy7ZCJZwZtcN5"
+    },
+    {
+      "prospect": {
+        "businessName": "Proctor Shoe Repair",
+        "contactName": "Henry",
+        "stage": "1 - Initial Contact",
+        "status": "🟡 Existing Customer",
+        "phone": "253-883-9136",
+        "email": null,
+        "address": "3817 1/2 North 26th Street, Tacoma, WA 98407",
+        "notes": "Existing Comcast Internet + TV. Need email for newsletter."
+      },
+      "contactId": "FdFedH7yAqMYsQ8o4Zr2"
+    },
+    {
+      "prospect": {
+        "businessName": "Lapis",
+        "contactName": "Emily",
+        "stage": "1 - Initial Contact",
+        "status": "🟡 New",
+        "phone": "253-507-4969",
+        "email": "hello@lapistacoma.com",
+        "address": "3823 N 26th Street, Tacoma, WA 98407",
+        "notes": "Jewelry store. Met Peyton (gatekeeper)."
+      },
+      "contactId": "SkcwbiWB5lmSg7Vi4IK2"
+    },
+    {
+      "prospect": {
+        "businessName": "New Era Cleaners",
+        "contactName": "Yesi",
+        "stage": "1 - Initial Contact",
+        "status": "🟡 New",
+        "phone": "253-759-3501",
+        "email": "fuzzywuzzy@q.com",
+        "address": "2621 N Proctor Street, Tacoma, WA 98407",
+        "notes": "Dual business: Cleaners + Fuzzy Wuzzy Rug Cleaning. Gatekeeper: Natasha."
+      },
+      "contactId": "PnY4YYP8ma1uX974MUvR"
+    },
+    {
+      "prospect": {
+        "businessName": "Tacoma Glass Gallery",
+        "contactName": "Jeannine Sigafoos",
+        "stage": "1 - Initial Contact",
+        "status": "🟡 New",
+        "phone": null,
+        "email": "tgsglass@gmail.com",
+        "address": "2621 N Proctor Street, Tacoma, WA 98407",
+        "notes": "Proctor location retail gallery. Gatekeeper: Dirk."
+      },
+      "contactId": "7P0siqBVkYbvVK726WOo"
+    },
+    {
+      "prospect": {
+        "businessName": "Proctor Family Dentistry",
+        "contactName": "Greg Dent",
+        "stage": "1 - Initial Contact",
+        "status": "🟡 New",
+        "phone": "253-759-6800",
+        "email": null,
+        "address": "2614 North Adams Street, Tacoma, WA 98407",
+        "notes": "Dental office. Gatekeeper: Andy. Office Manager: Jennifer."
+      },
+      "contactId": "83fFOKANSU0y4OKaLzsK"
+    },
+    {
+      "prospect": {
+        "businessName": "Crave Cookies",
+        "contactName": "Dalton Ohlson",
+        "stage": "1 - Initial Contact",
+        "status": "🟡 Relationship Building",
+        "phone": "253-260-7417",
+        "email": null,
+        "address": "17526 Meridian Avenue East, Suite B202, Puyallup, WA 98375",
+        "notes": "Personal: 253-457-6486. Multi-business owner. Co-owners: Ham and Brad."
+      },
+      "contactId": "MrcPYZuhhYV7LKzLc9vj"
+    },
+    {
+      "prospect": {
+        "businessName": "Endeavor Eye Center",
+        "contactName": "Dr. Kevin / Dr. Connie",
+        "stage": "1 - Initial Contact",
+        "status": "🟡 New",
+        "phone": null,
+        "email": null,
+        "address": null,
+        "notes": "Gatekeeper: Cher. Good rapport established. Need to reach doctors."
+      },
+      "contactId": "3U1EOc3pYjhqMMaT9dnU"
+    },
+    {
+      "prospect": {
+        "businessName": "Fleet Feet",
+        "contactName": "Wade & Julie Pannell",
+        "stage": "1 - Initial Contact",
+        "status": "🔥 Hot Lead",
+        "phone": "253-272-8890",
+        "email": "jeremiah@fleetfeettacoma.com",
+        "address": "3812 N 26th St, Tacoma, WA 98407",
+        "notes": "10 locations! Gatekeeper: Jeremiah Garza. Existing Comcast — bill analysis needed."
+      },
+      "contactId": "29kHo9qPKpBdf5UlOwrw"
+    },
+    {
+      "prospect": {
+        "businessName": "Chalet Bowl",
+        "contactName": null,
+        "stage": "0 - Door Knock",
+        "status": "⚪ Closed/No Contact",
+        "phone": null,
+        "email": null,
+        "address": "3806 North 26th Street, Tacoma, WA 98407",
+        "notes": "Stopped by, closed. Return later."
+      },
+      "contactId": "FW4j4kdJoPAE8ciZBHR1"
+    },
+    {
+      "prospect": {
+        "businessName": "Manny's Place",
+        "contactName": "Brett",
+        "stage": "0 - Door Knock",
+        "status": "🟡 Gatekeeper Contact",
+        "phone": null,
+        "email": null,
+        "address": "3814 North 26th Street, Tacoma, WA 98407",
+        "notes": "Gatekeeper: April. Brett stepped out. Return later."
+      },
+      "contactId": "IcvhT51LamAArkdSv481"
+    },
+    {
+      "prospect": {
+        "businessName": "Peaks and Pints",
+        "contactName": "Ron Swarner",
+        "stage": "1 - Initial Contact",
+        "status": "🟡 Gatekeeper Contact",
+        "phone": "253-328-5621",
+        "email": "ron.swarner@peaksandpints.com",
+        "address": "3816 N 26th St, Ste B, Tacoma, WA 98407",
+        "notes": "Craft beer bar. Gatekeeper: Trish."
+      },
+      "contactId": "cWjqg3M8rNCsRXwFg6V1"
+    },
+    {
+      "prospect": {
+        "businessName": "Connections Fine Jewelry",
+        "contactName": "Tad Kraus",
+        "stage": "1 - Initial Contact",
+        "status": "🟡 Card Collected",
+        "phone": "253-752-0940",
+        "email": null,
+        "address": "3822 N 26th St, Tacoma, WA 98407",
+        "notes": "With Lightcurve. Wants competitive comparison content."
+      },
+      "contactId": "J063L2VgFaMJgD90VWD0"
+    },
+    {
+      "prospect": {
+        "businessName": "Smart PNW",
+        "contactName": "James Roddy",
+        "stage": "2 - Needs Analysis",
+        "status": "🔥 Hot Lead",
+        "phone": "253-448-0456",
+        "email": "james@smartpnw.com",
+        "address": null,
+        "notes": "1-2 BVE + 7 mobile lines. Quote needed. Old Ignite friend."
+      },
+      "contactId": "N9CLfbjct7vKAYcp0hFZ"
+    },
+    {
+      "prospect": {
+        "businessName": "Ice Cream Social",
+        "contactName": "Iris All",
+        "stage": "1 - Initial Contact",
+        "status": "🟡 Gatekeeper Contact",
+        "phone": "253-327-1803",
+        "email": null,
+        "address": "2521 North Proctor Street, Tacoma, WA 98407",
+        "notes": "Gatekeeper: Max. Decision maker: Iris All."
+      },
+      "contactId": "uqeU2sofrH1yJ3lA6gvE"
+    },
+    {
+      "prospect": {
+        "businessName": "Pizzeria Fondi",
+        "contactName": "Chris Olsen",
+        "stage": "2 - Needs Analysis",
+        "status": "🔥 Hot Lead",
+        "phone": "253-851-6666",
+        "email": "chris@fondi.com",
+        "address": "2515 N. Proctor St, Tacoma, WA 98406",
+        "notes": "2-3 locations. Wants fiber + mobile quotes. Proctor District leader."
+      },
+      "contactId": "KLVNBwI6OWwW8G0RAObg"
+    }
+  ],
+  "existing": [
+    {
+      "prospect": {
+        "businessName": "Chirp & Co",
+        "contactName": "Liz Bright",
+        "stage": "1 - Initial Contact",
+        "status": "🟡 Follow-up Later",
+        "phone": "253-759-2884",
+        "email": "chirpandco@hotmail.com",
+        "address": "3803 North 26th Street, Tacoma, WA 98407",
+        "notes": "Existing Comcast (live stream). Past issues during fiber install. Follow up after construction settles."
+      },
+      "contactId": "u0BfBE1pweTxB0ncSXno"
+    },
+    {
+      "prospect": {
+        "businessName": "Proctor Art Gallery",
+        "contactName": "Pamela Phelps",
+        "stage": "2 - Needs Analysis",
+        "status": "🔥 Hot Lead",
+        "phone": "253-759-4238",
+        "email": "pamelaphelps@proctorart.com",
+        "address": "3811 North 26th Street, Tacoma, WA 98407",
+        "notes": "Paying $100+/mo, wants better deal. Previous rep never followed through. Email sent 3/12."
+      },
+      "contactId": "ajQ51e0fgZsx735tn7Vi"
+    }
+  ],
+  "failed": [],
+  "skipped": [
+    {
+      "prospect": {
+        "businessName": "Strategy Three",
+        "contactName": "Leah Noel Knoll",
+        "stage": null,
+        "status": "🔴 Lost to Competitor",
+        "phone": "253-267-7704",
+        "email": "leah@strategythree.com",
+        "address": "2607 N Proctor Street, Tacoma, WA 98407",
+        "notes": "Switched FROM Comcast TO Lightcurve. Not interested in returning."
+      },
+      "reason": "No stage (lost prospect)"
+    }
+  ]
+}
