@@ -73,6 +73,22 @@
 - **GHL Sub-account:** Comcast - Xavier, Location ID: `nPubo6INanVq94ovAQNW`
 - **GHL Domain:** White-labeled at app.thetraffic.link
 
+**3-Layer Data Architecture (2026-03-17):**
+```
+GHL (GoHighLevel) ←→ SQLite (Mac mini) ←→ MongoDB (Railway)
+     250 contacts      comcast.db            visits collection
+     Source of truth   Local cache           Web/API source
+```
+
+**Sync Scripts:**
+| Layer | Script | Path |
+|-------|--------|------|
+| GHL ↔ SQLite | `ghl_sync.py` | `comcast-crm/` |
+| GHL → MongoDB | `sync-ghl-to-mongodb.js` | `comcast-crm/` |
+| SQLite Schema | `schema.sql` | `comcast-crm/` |
+
+**Railway:** `MONGO_URL` only — no Supabase (deprecated/unused).
+
 **Recent Fixes (2026-02-27):**
 - Fixed Leaflet dynamic import with SSR-disabled component
 - Added marker icon assets to public folder
