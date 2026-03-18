@@ -11,7 +11,7 @@ Track potential partners for The Traffic Link — people who can send consulting
 
 | Partner | Business | Connection | Network | Status | Date Added |
 |---------|----------|------------|---------|--------|------------|
-| **NEXL Card Contact** | *Unknown* | **Food truck owners** | Local food scene | 🎯 New Lead | 2026-03-18 |
+| **Trent Jurgenson** | **South Sound Commissary / Food Lot** | **Food truck owners** | Sumner/Pierce County food scene | 🎯 New Lead | 2026-03-18 |
 
 ### 🏢 Business Service Providers
 *Accountants, lawyers, IT providers who serve small businesses*
@@ -29,24 +29,43 @@ Track potential partners for The Traffic Link — people who can send consulting
 
 ## Lead Details
 
-### NEXL Card — Food Truck Connector
+### Trent Jurgenson — South Sound Commissary / Food Lot ⭐ STRATEGIC PARTNER
 
 **Date Discovered:** March 18, 2026  
-**Source:** Business card exchange (NEXL)  
-**Connection Type:** Links to food truck owners  
+**Source:** Business card exchange (NEXL event)  
+**Connection Type:** Direct access to food truck owners  
+
+**Contact Information:**
+- **Name:** Trent Jurgenson
+- **Title:** Owner
+- **Business:** South Sound Commissary / Food Lot at Sumner
+- **Phone:** 253-281-4606
+- **Email:** Trent@SouthSoundCommissary.com
+- **Website:** www.SouthSoundCommissary.com
+- **Address:** 6023 Porter Rd E, Sumner, WA 98390
 
 **Network Value:**
-- Food truck owners = mobile small businesses
-- Pain points: Scheduling, logistics, permits, marketing, cash flow
-- TTL services: Process optimization, marketing strategy, operational consulting
-- Referral potential: Food truck owners know other food truck owners
+- **Commissary Kitchen** = Hub for food truck operators (they rent prep space)
+- Direct access to 10+ food truck owners who use his facility
+- Sees their operational struggles firsthand (scheduling, logistics, marketing)
+- **Food Lot at Sumner** = Event space that brings food trucks together
+- **Pain points he witnesses:** Cash flow, permit compliance, customer acquisition, supply chain
+- **TTL services:** Process optimization, marketing strategy, operational systems, financial planning
+- **Referral potential:** HIGH — food truck owners trust his recommendations
+
+**Why This Is Hot:**
+- Food trucks are mobile small businesses with similar pain points to other SMBs
+- Trent sees them daily — knows who is struggling vs. thriving
+- Warm intros (he vouches for you) vs. cold outreach
+- Potential for group workshops/consulting (multiple trucks at once)
 
 **Next Steps:**
-- [ ] Identify name/contact info from NEXL card
-- [ ] Reach out within 48 hours while fresh
-- [ ] Understand their relationship to food truck network
-- [ ] Explore mutual value (what can TTL do for them?)
-- [ ] Qualify: How many food truck owners do they know?
+- [x] Identify name/contact info from NEXL card
+- [ ] **Reach out by Friday (within 48 hours)** — event is fresh
+- [ ] Propose coffee meeting at Sumner location
+- [ ] Understand: How many food trucks use his commissary? What are their common struggles?
+- [ ] Offer value: Can TTL help Trent's business first? (market his commissary/food lot)
+- [ ] Ask for warm intros to 2-3 food truck owners who need help
 
 ---
 
