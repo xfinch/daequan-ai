@@ -50,6 +50,7 @@
 | **Smart PNW** | **James Roddy** | **2 - Needs Analysis** | 🔥 Hot Lead | 1-2 BVE + 7 mobile lines, quote needed | 2026-03-12 |
 | **Ice Cream Social** | **Iris All** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Max, need to reach Iris (decision maker) | 2026-03-12 |
 | **Pizzeria Fondi (Multi-Location)** | **Chris Olsen** | **2 - Needs Analysis** | 🔥 Hot Lead | 2-3 locations, wants fiber + mobile quotes, newsletter feature | 2026-03-12 |
+| **Chris Brown (Attorney)** | **Chris Brown** | **1 - Initial Contact** | 🟡 Referral | James Roddy referral — fiber for home office, needs manager approval | 2026-03-17 |
 
 ### Prospect Details
 
@@ -84,7 +85,7 @@
 
 **Proctor Art Gallery — Pamela Phelps**
 - **Stage:** 2nd Stage (Needs Analysis) 🟡
-- **Status:** Email sent — awaiting response
+- **Status:** Billing corrected, credits in progress — NOW A PROSPECT (overpaying on BVE, can lower bill)
 - **Business Type:** Art Gallery
 - **Location:** 3811 North 26th Street, Tacoma, WA 98407 (Proctor District)
 - **Phone:** 253-759-4238
@@ -92,9 +93,9 @@
 - **Current Service:** Comcast (paying $100+/month)
 - **Pain Points:** High bill, previous rep promised lower rate but never followed through (~1 month ago)
 - **Context:** Proper, conservative, well-put-together lady; wants better deal/promotion
-- **Last Action:** Email sent 2026-03-12 from xavier_finch@comcast.com — notified issue was found, awaiting her response
-- **Next Step:** Follow up if no response within 24-48 hours
-- **Opportunity:** Existing customer retention/save — upgrade or bundle for better value
+- **Last Action (2026-03-17):** Stopped by — she wasn't in, met gatekeeper at desk. Billing successfully corrected, working on credits.
+- **Next Step:** Follow up by tomorrow (GHL task created)
+- **Opportunity:** Existing customer retention/save — discovered she's overpaying for BVE, can adjust for lower bill
 
 **Compass Rose — Tanya Brooks**
 - **Stage:** 1st Stage (Initial Contact) 🆕
@@ -302,8 +303,8 @@
 - **Opportunity:** Competitive win — create content for Lightcurve customers in Proctor District area; Tad may reconsider if service issues arise
 
 **Smart PNW — James Roddy**
-- **Stage:** 2nd Stage (Needs Analysis) 🔥
-- **Status:** 🔥 HOT LEAD — specific needs identified, quote in progress
+- **Stage:** 3 - Second Review 🔥
+- **Status:** 🔥 HOT LEAD — COMMITTED TO MOVE FORWARD IN APRIL
 - **Business Type:** Property Management / Real Estate Services
 - **Contact:** James Roddy — Owner
 - **Mobile:** 253-448-0456
@@ -311,18 +312,21 @@
 - **Email:** james@smartpnw.com
 - **Website:** www.smartpnw.com
 - **Relationship:** Old friend — networked together at Ignite years ago
-- **Visit Date:** 2026-03-12
-- **Needs Identified:**
-  - 1-2 BVE (Business Voice Edge) seats
-  - 7 mobile lines (4 iPads, 3 cell phones)
-  - Hunt group features (call routing, no missed calls)
-  - Phone number change: 425 → 253 area code
-- **Context:** Caught up with James (old Ignite networking friend). He's a "real hospitable guy" — strong relationship foundation. Clear need for mobility solution with BVE.
+- **Visit Date:** 2026-03-17 (Update)
+- **Service Confirmed:**
+  - 7 mobile lines (3 iPads + 4 cellphones)
+  - BVE quote provided
+  - **Total quoted: ~$235/month**
+  - Transition start: April 2026
+- **Fiber Interest:** Wants fiber if can match current ~$440/month internet (minus $130 discounts)
+- **Referral Partner Status:** ✅ QUALIFIED — Signed up James as referral partner, explained he can get free internet via bill credits
+- **Referral Provided:** Chris Brown (attorney, home office in Tumwater) — see below
+- **Context:** James committed to moving forward. Explained referral partner program — he can get free internet by referring people.
 - **Next Step:** 
-  1. Prepare quote for 1-2 BVE seats + 7 mobile lines
-  2. Propose 253 area code number
-  3. Schedule follow-up to review proposal
-- **Opportunity:** Solid deal in progress — existing relationship, specific needs, ready to move
+  1. Manager approval for Chris Brown fiber (residential/business hybrid)
+  2. Finalize James's service transition for April
+  3. Follow up on fiber pricing for his location
+- **Opportunity:** Solid deal closed + new referral partner activated + qualified referral (Chris Brown)
 
 **Ice Cream Social — Iris All**
 - **Stage:** 1st Stage (Initial Contact) 🟡
@@ -377,6 +381,22 @@
   - Newsletter feature (marketing value)
   - Referral partner through Proctor District Association
   - Community leader — reputation boost by association
+
+**Chris Brown (Attorney) — REFERRAL FROM JAMES RODDY**
+- **Stage:** 1st Stage (Initial Contact) 🟡
+- **Status:** 🟡 Referral — needs manager approval for residential fiber
+- **Business Type:** Attorney / Legal Services (home office)
+- **Contact:** Chris Brown
+- **Address:** 708 South 7th Avenue SW, Tumwater, WA 98512
+- **Referral Source:** James Roddy (Smart PNW) — James's referral partner
+- **Service Needed:** Fiber internet for home office
+- **Special Requirements:** Manager approval required (residential/business hybrid location)
+- **Context:** James referred Chris as part of his referral partner activation. Chris needs reliable fiber for his home-based legal practice.
+- **Next Step:** 
+  1. Manager approval for fiber at residential address
+  2. Contact Chris with approval status and pricing
+  3. Schedule installation if approved
+- **Opportunity:** New prospect from activated referral partner (James Roddy). Success here validates the referral program and encourages more referrals from James.
 
 ---
 
