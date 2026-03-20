@@ -161,7 +161,7 @@ export default function ClearBooksNW() {
             <h2>Ready to Get Your Books Clear?</h2>
             <p>Schedule a free consultation. We'll review your current situation and show you where you can improve.</p>
             <div class="form-container">
-                <form id="leadForm" action="https://hooks.zapier.com/hooks/catch/YOUR_GHL_WEBHOOK_URL" method="POST">
+                <form id="leadForm" action="mailto:xavier@thetraffic.link?subject=ClearBooks%20NW%20Consultation%20Request" method="POST" enctype="text/plain">
                     <div class="form-group"><label for="name">Full Name</label><input type="text" id="name" name="name" required placeholder="Your name"></div>
                     <div class="form-group"><label for="company">Company Name</label><input type="text" id="company" name="company" required placeholder="Your company"></div>
                     <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email" required placeholder="you@company.com"></div>
