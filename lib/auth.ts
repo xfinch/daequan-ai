@@ -93,7 +93,6 @@ export const {
     signIn: '/login',
     signOut: '/',
   },
-  trustHost: true,
 });
 
 export const { GET, POST } = handlers;
