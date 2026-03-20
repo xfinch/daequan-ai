@@ -106,9 +106,12 @@ export function getKanbanData(type: string): KanbanData | null {
   
   // Try multiple paths (for local dev and production)
   const paths = [
-    path.join(process.cwd(), filename),           // Same directory
-    path.join(process.cwd(), '..', filename),     // Parent directory
-    path.join(process.cwd(), '..', '..', filename), // Grandparent (monorepo)
+    path.join(process.cwd(), filename),              // Same directory
+    path.join(process.cwd(), '..', filename),        // Parent directory
+    path.join(process.cwd(), '..', '..', filename),  // Grandparent (monorepo)
+    path.join('/app', filename),                     // Railway default root
+    path.join('/workspace', filename),               // Alternative Railway path
+    path.join(process.env.HOME || '', 'workspace', filename), // Home workspace
   ];
   
   for (const filepath of paths) {
