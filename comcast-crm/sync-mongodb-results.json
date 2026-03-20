@@ -1,0 +1,1008 @@
+{
+  "added": [
+    {
+      "businessName": "Pizzeria Fondi",
+      "id": "69b9aa2598a3243c93317c29"
+    },
+    {
+      "businessName": "Ice Cream Social",
+      "id": "69b9aa2598a3243c93317c2a"
+    },
+    {
+      "businessName": "Smart PNW",
+      "id": "69b9aa2598a3243c93317c2b"
+    },
+    {
+      "businessName": "Connections Fine Jewelry",
+      "id": "69b9aa2698a3243c93317c2c"
+    },
+    {
+      "businessName": "Peaks and Pints",
+      "id": "69b9aa2698a3243c93317c2d"
+    },
+    {
+      "businessName": "Manny's Place",
+      "id": "69b9aa2698a3243c93317c2e"
+    },
+    {
+      "businessName": "Chalet Bowl",
+      "id": "69b9aa2698a3243c93317c2f"
+    },
+    {
+      "businessName": "Fleet Feet",
+      "id": "69b9aa2798a3243c93317c30"
+    },
+    {
+      "businessName": "Endeavor Eye Center",
+      "id": "69b9aa2798a3243c93317c31"
+    },
+    {
+      "businessName": "Crave Cookies",
+      "id": "69b9aa2798a3243c93317c32"
+    },
+    {
+      "businessName": "Proctor Family Dentistry",
+      "id": "69b9aa2898a3243c93317c33"
+    },
+    {
+      "businessName": "Tacoma Glass Gallery",
+      "id": "69b9aa2898a3243c93317c34"
+    },
+    {
+      "businessName": "New Era Cleaners",
+      "id": "69b9aa2898a3243c93317c35"
+    },
+    {
+      "businessName": "Lapis",
+      "id": "69b9aa2898a3243c93317c36"
+    },
+    {
+      "businessName": "Proctor Shoe Repair",
+      "id": "69b9aa2998a3243c93317c37"
+    },
+    {
+      "businessName": "Compass Rose",
+      "id": "69b9aa2998a3243c93317c38"
+    },
+    {
+      "businessName": "KO Construction",
+      "id": "69b9aa2998a3243c93317c39"
+    },
+    {
+      "businessName": "Knapp's Restaurant",
+      "id": "69b9aa2998a3243c93317c3a"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3b"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3c"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3d"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c3e"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c3f"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c40"
+    }
+  ],
+  "updated": [
+    {
+      "businessName": "Unknown",
+      "id": "699902ad6833ab106532c155"
+    },
+    {
+      "businessName": "Pizzeria Fondi",
+      "id": "69b9aa2598a3243c93317c29"
+    },
+    {
+      "businessName": "Ice Cream Social",
+      "id": "69b9aa2598a3243c93317c2a"
+    },
+    {
+      "businessName": "Smart PNW",
+      "id": "69b9aa2598a3243c93317c2b"
+    },
+    {
+      "businessName": "Connections Fine Jewelry",
+      "id": "69b9aa2698a3243c93317c2c"
+    },
+    {
+      "businessName": "Peaks and Pints",
+      "id": "69b9aa2698a3243c93317c2d"
+    },
+    {
+      "businessName": "Manny's Place",
+      "id": "69b9aa2698a3243c93317c2e"
+    },
+    {
+      "businessName": "Chalet Bowl",
+      "id": "69b9aa2698a3243c93317c2f"
+    },
+    {
+      "businessName": "Fleet Feet",
+      "id": "69b9aa2798a3243c93317c30"
+    },
+    {
+      "businessName": "Endeavor Eye Center",
+      "id": "69b9aa2798a3243c93317c31"
+    },
+    {
+      "businessName": "Crave Cookies",
+      "id": "69b9aa2798a3243c93317c32"
+    },
+    {
+      "businessName": "Proctor Family Dentistry",
+      "id": "69b9aa2898a3243c93317c33"
+    },
+    {
+      "businessName": "Tacoma Glass Gallery",
+      "id": "69b9aa2898a3243c93317c34"
+    },
+    {
+      "businessName": "New Era Cleaners",
+      "id": "69b9aa2898a3243c93317c35"
+    },
+    {
+      "businessName": "Lapis",
+      "id": "69b9aa2898a3243c93317c36"
+    },
+    {
+      "businessName": "Proctor Shoe Repair",
+      "id": "69b9aa2998a3243c93317c37"
+    },
+    {
+      "businessName": "Compass Rose",
+      "id": "69b9aa2998a3243c93317c38"
+    },
+    {
+      "businessName": "KO Construction",
+      "id": "69b9aa2998a3243c93317c39"
+    },
+    {
+      "businessName": "Knapp's Restaurant",
+      "id": "69b9aa2998a3243c93317c3a"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3b"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3c"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3d"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "699902ad6833ab106532c155"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c3e"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c3f"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c40"
+    },
+    {
+      "businessName": "Pizzeria Fondi",
+      "id": "69b9aa2598a3243c93317c29"
+    },
+    {
+      "businessName": "Ice Cream Social",
+      "id": "69b9aa2598a3243c93317c2a"
+    },
+    {
+      "businessName": "Smart PNW",
+      "id": "69b9aa2598a3243c93317c2b"
+    },
+    {
+      "businessName": "Connections Fine Jewelry",
+      "id": "69b9aa2698a3243c93317c2c"
+    },
+    {
+      "businessName": "Peaks and Pints",
+      "id": "69b9aa2698a3243c93317c2d"
+    },
+    {
+      "businessName": "Manny's Place",
+      "id": "69b9aa2698a3243c93317c2e"
+    },
+    {
+      "businessName": "Chalet Bowl",
+      "id": "69b9aa2698a3243c93317c2f"
+    },
+    {
+      "businessName": "Fleet Feet",
+      "id": "69b9aa2798a3243c93317c30"
+    },
+    {
+      "businessName": "Endeavor Eye Center",
+      "id": "69b9aa2798a3243c93317c31"
+    },
+    {
+      "businessName": "Crave Cookies",
+      "id": "69b9aa2798a3243c93317c32"
+    },
+    {
+      "businessName": "Proctor Family Dentistry",
+      "id": "69b9aa2898a3243c93317c33"
+    },
+    {
+      "businessName": "Tacoma Glass Gallery",
+      "id": "69b9aa2898a3243c93317c34"
+    },
+    {
+      "businessName": "New Era Cleaners",
+      "id": "69b9aa2898a3243c93317c35"
+    },
+    {
+      "businessName": "Lapis",
+      "id": "69b9aa2898a3243c93317c36"
+    },
+    {
+      "businessName": "Proctor Shoe Repair",
+      "id": "69b9aa2998a3243c93317c37"
+    },
+    {
+      "businessName": "Compass Rose",
+      "id": "69b9aa2998a3243c93317c38"
+    },
+    {
+      "businessName": "KO Construction",
+      "id": "69b9aa2998a3243c93317c39"
+    },
+    {
+      "businessName": "Knapp's Restaurant",
+      "id": "69b9aa2998a3243c93317c3a"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3b"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3c"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3d"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "699902ad6833ab106532c155"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c3e"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c3f"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c40"
+    },
+    {
+      "businessName": "Pizzeria Fondi",
+      "id": "69b9aa2598a3243c93317c29"
+    },
+    {
+      "businessName": "Ice Cream Social",
+      "id": "69b9aa2598a3243c93317c2a"
+    },
+    {
+      "businessName": "Smart PNW",
+      "id": "69b9aa2598a3243c93317c2b"
+    },
+    {
+      "businessName": "Connections Fine Jewelry",
+      "id": "69b9aa2698a3243c93317c2c"
+    },
+    {
+      "businessName": "Peaks and Pints",
+      "id": "69b9aa2698a3243c93317c2d"
+    },
+    {
+      "businessName": "Manny's Place",
+      "id": "69b9aa2698a3243c93317c2e"
+    },
+    {
+      "businessName": "Chalet Bowl",
+      "id": "69b9aa2698a3243c93317c2f"
+    },
+    {
+      "businessName": "Fleet Feet",
+      "id": "69b9aa2798a3243c93317c30"
+    },
+    {
+      "businessName": "Endeavor Eye Center",
+      "id": "69b9aa2798a3243c93317c31"
+    },
+    {
+      "businessName": "Crave Cookies",
+      "id": "69b9aa2798a3243c93317c32"
+    },
+    {
+      "businessName": "Proctor Family Dentistry",
+      "id": "69b9aa2898a3243c93317c33"
+    },
+    {
+      "businessName": "Tacoma Glass Gallery",
+      "id": "69b9aa2898a3243c93317c34"
+    },
+    {
+      "businessName": "New Era Cleaners",
+      "id": "69b9aa2898a3243c93317c35"
+    },
+    {
+      "businessName": "Lapis",
+      "id": "69b9aa2898a3243c93317c36"
+    },
+    {
+      "businessName": "Proctor Shoe Repair",
+      "id": "69b9aa2998a3243c93317c37"
+    },
+    {
+      "businessName": "Compass Rose",
+      "id": "69b9aa2998a3243c93317c38"
+    },
+    {
+      "businessName": "KO Construction",
+      "id": "69b9aa2998a3243c93317c39"
+    },
+    {
+      "businessName": "Knapp's Restaurant",
+      "id": "69b9aa2998a3243c93317c3a"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3b"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3c"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3d"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "699902ad6833ab106532c155"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c3e"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c3f"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c40"
+    },
+    {
+      "businessName": "Pizzeria Fondi",
+      "id": "69b9aa2598a3243c93317c29"
+    },
+    {
+      "businessName": "Ice Cream Social",
+      "id": "69b9aa2598a3243c93317c2a"
+    },
+    {
+      "businessName": "Smart PNW",
+      "id": "69b9aa2598a3243c93317c2b"
+    },
+    {
+      "businessName": "Connections Fine Jewelry",
+      "id": "69b9aa2698a3243c93317c2c"
+    },
+    {
+      "businessName": "Peaks and Pints",
+      "id": "69b9aa2698a3243c93317c2d"
+    },
+    {
+      "businessName": "Manny's Place",
+      "id": "69b9aa2698a3243c93317c2e"
+    },
+    {
+      "businessName": "Chalet Bowl",
+      "id": "69b9aa2698a3243c93317c2f"
+    },
+    {
+      "businessName": "Fleet Feet",
+      "id": "69b9aa2798a3243c93317c30"
+    },
+    {
+      "businessName": "Endeavor Eye Center",
+      "id": "69b9aa2798a3243c93317c31"
+    },
+    {
+      "businessName": "Crave Cookies",
+      "id": "69b9aa2798a3243c93317c32"
+    },
+    {
+      "businessName": "Proctor Family Dentistry",
+      "id": "69b9aa2898a3243c93317c33"
+    },
+    {
+      "businessName": "Tacoma Glass Gallery",
+      "id": "69b9aa2898a3243c93317c34"
+    },
+    {
+      "businessName": "New Era Cleaners",
+      "id": "69b9aa2898a3243c93317c35"
+    },
+    {
+      "businessName": "Lapis",
+      "id": "69b9aa2898a3243c93317c36"
+    },
+    {
+      "businessName": "Proctor Shoe Repair",
+      "id": "69b9aa2998a3243c93317c37"
+    },
+    {
+      "businessName": "Compass Rose",
+      "id": "69b9aa2998a3243c93317c38"
+    },
+    {
+      "businessName": "KO Construction",
+      "id": "69b9aa2998a3243c93317c39"
+    },
+    {
+      "businessName": "Knapp's Restaurant",
+      "id": "69b9aa2998a3243c93317c3a"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3b"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3c"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3d"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "699902ad6833ab106532c155"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c3e"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c3f"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c40"
+    },
+    {
+      "businessName": "Pizzeria Fondi",
+      "id": "69b9aa2598a3243c93317c29"
+    },
+    {
+      "businessName": "Ice Cream Social",
+      "id": "69b9aa2598a3243c93317c2a"
+    },
+    {
+      "businessName": "Smart PNW",
+      "id": "69b9aa2598a3243c93317c2b"
+    },
+    {
+      "businessName": "Connections Fine Jewelry",
+      "id": "69b9aa2698a3243c93317c2c"
+    },
+    {
+      "businessName": "Peaks and Pints",
+      "id": "69b9aa2698a3243c93317c2d"
+    },
+    {
+      "businessName": "Manny's Place",
+      "id": "69b9aa2698a3243c93317c2e"
+    },
+    {
+      "businessName": "Chalet Bowl",
+      "id": "69b9aa2698a3243c93317c2f"
+    },
+    {
+      "businessName": "Fleet Feet",
+      "id": "69b9aa2798a3243c93317c30"
+    },
+    {
+      "businessName": "Endeavor Eye Center",
+      "id": "69b9aa2798a3243c93317c31"
+    },
+    {
+      "businessName": "Crave Cookies",
+      "id": "69b9aa2798a3243c93317c32"
+    },
+    {
+      "businessName": "Proctor Family Dentistry",
+      "id": "69b9aa2898a3243c93317c33"
+    },
+    {
+      "businessName": "Tacoma Glass Gallery",
+      "id": "69b9aa2898a3243c93317c34"
+    },
+    {
+      "businessName": "New Era Cleaners",
+      "id": "69b9aa2898a3243c93317c35"
+    },
+    {
+      "businessName": "Lapis",
+      "id": "69b9aa2898a3243c93317c36"
+    },
+    {
+      "businessName": "Proctor Shoe Repair",
+      "id": "69b9aa2998a3243c93317c37"
+    },
+    {
+      "businessName": "Compass Rose",
+      "id": "69b9aa2998a3243c93317c38"
+    },
+    {
+      "businessName": "KO Construction",
+      "id": "69b9aa2998a3243c93317c39"
+    },
+    {
+      "businessName": "Knapp's Restaurant",
+      "id": "69b9aa2998a3243c93317c3a"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3b"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3c"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3d"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "699902ad6833ab106532c155"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c3e"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c3f"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c40"
+    },
+    {
+      "businessName": "Pizzeria Fondi",
+      "id": "69b9aa2598a3243c93317c29"
+    },
+    {
+      "businessName": "Ice Cream Social",
+      "id": "69b9aa2598a3243c93317c2a"
+    },
+    {
+      "businessName": "Smart PNW",
+      "id": "69b9aa2598a3243c93317c2b"
+    },
+    {
+      "businessName": "Connections Fine Jewelry",
+      "id": "69b9aa2698a3243c93317c2c"
+    },
+    {
+      "businessName": "Peaks and Pints",
+      "id": "69b9aa2698a3243c93317c2d"
+    },
+    {
+      "businessName": "Manny's Place",
+      "id": "69b9aa2698a3243c93317c2e"
+    },
+    {
+      "businessName": "Chalet Bowl",
+      "id": "69b9aa2698a3243c93317c2f"
+    },
+    {
+      "businessName": "Fleet Feet",
+      "id": "69b9aa2798a3243c93317c30"
+    },
+    {
+      "businessName": "Endeavor Eye Center",
+      "id": "69b9aa2798a3243c93317c31"
+    },
+    {
+      "businessName": "Crave Cookies",
+      "id": "69b9aa2798a3243c93317c32"
+    },
+    {
+      "businessName": "Proctor Family Dentistry",
+      "id": "69b9aa2898a3243c93317c33"
+    },
+    {
+      "businessName": "Tacoma Glass Gallery",
+      "id": "69b9aa2898a3243c93317c34"
+    },
+    {
+      "businessName": "New Era Cleaners",
+      "id": "69b9aa2898a3243c93317c35"
+    },
+    {
+      "businessName": "Lapis",
+      "id": "69b9aa2898a3243c93317c36"
+    },
+    {
+      "businessName": "Proctor Shoe Repair",
+      "id": "69b9aa2998a3243c93317c37"
+    },
+    {
+      "businessName": "Compass Rose",
+      "id": "69b9aa2998a3243c93317c38"
+    },
+    {
+      "businessName": "KO Construction",
+      "id": "69b9aa2998a3243c93317c39"
+    },
+    {
+      "businessName": "Knapp's Restaurant",
+      "id": "69b9aa2998a3243c93317c3a"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3b"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3c"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3d"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "699902ad6833ab106532c155"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c3e"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c3f"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c40"
+    },
+    {
+      "businessName": "Pizzeria Fondi",
+      "id": "69b9aa2598a3243c93317c29"
+    },
+    {
+      "businessName": "Ice Cream Social",
+      "id": "69b9aa2598a3243c93317c2a"
+    },
+    {
+      "businessName": "Smart PNW",
+      "id": "69b9aa2598a3243c93317c2b"
+    },
+    {
+      "businessName": "Connections Fine Jewelry",
+      "id": "69b9aa2698a3243c93317c2c"
+    },
+    {
+      "businessName": "Peaks and Pints",
+      "id": "69b9aa2698a3243c93317c2d"
+    },
+    {
+      "businessName": "Manny's Place",
+      "id": "69b9aa2698a3243c93317c2e"
+    },
+    {
+      "businessName": "Chalet Bowl",
+      "id": "69b9aa2698a3243c93317c2f"
+    },
+    {
+      "businessName": "Fleet Feet",
+      "id": "69b9aa2798a3243c93317c30"
+    },
+    {
+      "businessName": "Endeavor Eye Center",
+      "id": "69b9aa2798a3243c93317c31"
+    },
+    {
+      "businessName": "Crave Cookies",
+      "id": "69b9aa2798a3243c93317c32"
+    },
+    {
+      "businessName": "Proctor Family Dentistry",
+      "id": "69b9aa2898a3243c93317c33"
+    },
+    {
+      "businessName": "Tacoma Glass Gallery",
+      "id": "69b9aa2898a3243c93317c34"
+    },
+    {
+      "businessName": "New Era Cleaners",
+      "id": "69b9aa2898a3243c93317c35"
+    },
+    {
+      "businessName": "Lapis",
+      "id": "69b9aa2898a3243c93317c36"
+    },
+    {
+      "businessName": "Proctor Shoe Repair",
+      "id": "69b9aa2998a3243c93317c37"
+    },
+    {
+      "businessName": "Compass Rose",
+      "id": "69b9aa2998a3243c93317c38"
+    },
+    {
+      "businessName": "KO Construction",
+      "id": "69b9aa2998a3243c93317c39"
+    },
+    {
+      "businessName": "Knapp's Restaurant",
+      "id": "69b9aa2998a3243c93317c3a"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3b"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3c"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3d"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "699902ad6833ab106532c155"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c3e"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c3f"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c40"
+    },
+    {
+      "businessName": "Pizzeria Fondi",
+      "id": "69b9aa2598a3243c93317c29"
+    },
+    {
+      "businessName": "Ice Cream Social",
+      "id": "69b9aa2598a3243c93317c2a"
+    },
+    {
+      "businessName": "Smart PNW",
+      "id": "69b9aa2598a3243c93317c2b"
+    },
+    {
+      "businessName": "Connections Fine Jewelry",
+      "id": "69b9aa2698a3243c93317c2c"
+    },
+    {
+      "businessName": "Peaks and Pints",
+      "id": "69b9aa2698a3243c93317c2d"
+    },
+    {
+      "businessName": "Manny's Place",
+      "id": "69b9aa2698a3243c93317c2e"
+    },
+    {
+      "businessName": "Chalet Bowl",
+      "id": "69b9aa2698a3243c93317c2f"
+    },
+    {
+      "businessName": "Fleet Feet",
+      "id": "69b9aa2798a3243c93317c30"
+    },
+    {
+      "businessName": "Endeavor Eye Center",
+      "id": "69b9aa2798a3243c93317c31"
+    },
+    {
+      "businessName": "Crave Cookies",
+      "id": "69b9aa2798a3243c93317c32"
+    },
+    {
+      "businessName": "Proctor Family Dentistry",
+      "id": "69b9aa2898a3243c93317c33"
+    },
+    {
+      "businessName": "Tacoma Glass Gallery",
+      "id": "69b9aa2898a3243c93317c34"
+    },
+    {
+      "businessName": "New Era Cleaners",
+      "id": "69b9aa2898a3243c93317c35"
+    },
+    {
+      "businessName": "Lapis",
+      "id": "69b9aa2898a3243c93317c36"
+    },
+    {
+      "businessName": "Proctor Shoe Repair",
+      "id": "69b9aa2998a3243c93317c37"
+    },
+    {
+      "businessName": "Compass Rose",
+      "id": "69b9aa2998a3243c93317c38"
+    },
+    {
+      "businessName": "KO Construction",
+      "id": "69b9aa2998a3243c93317c39"
+    },
+    {
+      "businessName": "Knapp's Restaurant",
+      "id": "69b9aa2998a3243c93317c3a"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3b"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3c"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3d"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "699902ad6833ab106532c155"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c3e"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c3f"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c40"
+    },
+    {
+      "businessName": "Pizzeria Fondi",
+      "id": "69b9aa2598a3243c93317c29"
+    },
+    {
+      "businessName": "Ice Cream Social",
+      "id": "69b9aa2598a3243c93317c2a"
+    },
+    {
+      "businessName": "Smart PNW",
+      "id": "69b9aa2598a3243c93317c2b"
+    },
+    {
+      "businessName": "Connections Fine Jewelry",
+      "id": "69b9aa2698a3243c93317c2c"
+    },
+    {
+      "businessName": "Peaks and Pints",
+      "id": "69b9aa2698a3243c93317c2d"
+    },
+    {
+      "businessName": "Manny's Place",
+      "id": "69b9aa2698a3243c93317c2e"
+    },
+    {
+      "businessName": "Chalet Bowl",
+      "id": "69b9aa2698a3243c93317c2f"
+    },
+    {
+      "businessName": "Fleet Feet",
+      "id": "69b9aa2798a3243c93317c30"
+    },
+    {
+      "businessName": "Endeavor Eye Center",
+      "id": "69b9aa2798a3243c93317c31"
+    },
+    {
+      "businessName": "Crave Cookies",
+      "id": "69b9aa2798a3243c93317c32"
+    },
+    {
+      "businessName": "Proctor Family Dentistry",
+      "id": "69b9aa2898a3243c93317c33"
+    },
+    {
+      "businessName": "Tacoma Glass Gallery",
+      "id": "69b9aa2898a3243c93317c34"
+    },
+    {
+      "businessName": "New Era Cleaners",
+      "id": "69b9aa2898a3243c93317c35"
+    },
+    {
+      "businessName": "Lapis",
+      "id": "69b9aa2898a3243c93317c36"
+    },
+    {
+      "businessName": "Proctor Shoe Repair",
+      "id": "69b9aa2998a3243c93317c37"
+    },
+    {
+      "businessName": "Compass Rose",
+      "id": "69b9aa2998a3243c93317c38"
+    },
+    {
+      "businessName": "KO Construction",
+      "id": "69b9aa2998a3243c93317c39"
+    },
+    {
+      "businessName": "Knapp's Restaurant",
+      "id": "69b9aa2998a3243c93317c3a"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3b"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3c"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2a98a3243c93317c3d"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "699902ad6833ab106532c155"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c3e"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c3f"
+    },
+    {
+      "businessName": "Unknown",
+      "id": "69b9aa2b98a3243c93317c40"
+    }
+  ],
+  "skipped": [],
+  "failed": []
+}

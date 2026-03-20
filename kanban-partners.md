@@ -19,9 +19,8 @@ Track potential partners from initial contact through signed affiliate agreement
 
 | Partner | Business | Contact | Source | Notes | Date Added |
 |---------|----------|---------|--------|-------|------------|
+| **Tracy Kelly** | **Cornerstone CPA** | **Tracy@mycornerstonecpa.com** | **Direct (Card)** | **⭐ NON-PAID PARTNER (Referral). CPA in South Hill. MEETING: Monday March 23, 10:00 AM via Teams — mutual referral collaboration.** | **2026-03-19** |
 | Anya Evans | Proctor Mercantile | info@proctormercantile.com | Shawn (MQF) | Property owner, potential partner LATER. Currently a prospect for services. Controls multiple Proctor businesses. | 2026-02-26 |
-| **Vance Richardson** | **Logic Staffing** | **vrichardson@logicstaffing.com** | **Direct** | **⭐ NON-PAID PARTNER (Referral). Former Comcast BAE. Connects IT pros who need Comcast contacts. Makes intros as part of his network. Trevor (old Comcast contact) left - opening exists.** | **2026-02-26** |
-| **Tara L. Groody** | **GreenHaven Interactive** | **tara@greenhaveninteractive.com** | **Direct** | **⭐ NON-PAID PARTNER (Referral). Client Success Manager. Connects people as part of her business. MEETING: Tuesday 11:30 AM at 512 Pacific Hwy, Lakewood. Company may also be client prospect.** | **2026-02-26** |
 
 ### 2. 📧 Outreach Sent
 *Initial contact made, awaiting response*
@@ -34,6 +33,8 @@ Track potential partners from initial contact through signed affiliate agreement
 
 | Partner | Business | Contact | Interest Level | Blockers | Notes |
 |---------|----------|---------|----------------|----------|-------|
+| **Tara L. Groody** | **GreenHaven Interactive** | **tara@greenhaveninteractive.com** | **High** | **None** | **MET: Last Monday — spoke, in active communication. Client Success Manager, connects people professionally. Company also potential prospect.** |
+| **Tracy Kelly** | **Cornerstone CPA** | **Tracy@mycornerstonecpa.com** | **High** | **None** | **MEETING: Monday March 23, 10:00 AM via Teams. Mutual referral collaboration. Partner positioning, Comcast secondary.** |
 
 ### 4. 🤝 Proposal/Contract
 *Formal proposal or affiliate agreement sent*
@@ -52,6 +53,7 @@ Track potential partners from initial contact through signed affiliate agreement
 
 | Partner | Business | Reason | Notes |
 |---------|----------|--------|-------|
+| **Vance Richardson** | **Logic Staffing** | **No-show** | **Meeting scheduled Monday 2nd — did not attend. Former Comcast BAE with IT network, but unreliable follow-through.** |
 
 ---
 
@@ -92,12 +94,13 @@ Track who referred whom — this becomes your partner pipeline.
 
 | Metric | Count |
 |--------|-------|
-| Non-Paid Partner Prospects | 3 (Vance, Tara, Jamar) |
+| Non-Paid Partner Prospects | 2 (Tracy, Jamar) |
 | Paid Partner Prospects | 0 |
 | Prospects with Partner Potential | 1 (Anya Evans) |
-| Active Non-Paid Partners | 0 |
+| Active Non-Paid Partners | 1 (Tara — already spoke, in communication) |
 | Signed Paid Partners | 0 |
-| Meetings Scheduled | 2 |
+| Not a Fit | 1 (Vance — no-show) |
+| Meetings Scheduled | 1 (Tracy — Monday March 23, 10 AM Teams) |
 
 ---
 
@@ -121,7 +124,7 @@ Signed Comcast affiliates with formal agreement, earn commissions (up to $10K/ye
 
 ---
 
-## Partner Profile: Tara L. Groody
+## Partner Profile: Tara L. Groody — ✅ ACTIVE PARTNER
 
 **Business:** GreenHaven Interactive  
 **Contact:** Tara L. Groody (Client Success Manager)  
@@ -129,26 +132,26 @@ Signed Comcast affiliates with formal agreement, earn commissions (up to $10K/ye
 **Phone:** 253-579-1133  
 **Email:** tara@greenhaveninteractive.com  
 
-**Current Status:** 🎯 **Active Partner Prospect** (In Prospecting)  
+**Current Status:** ✅ **Active Non-Paid Partner** (In Communication)  
 **Partner Type:** Non-Paid Partner (Referral Source)  
 **Company Also Prospect:** ✅ Yes (GreenHaven Interactive could be a client)
 
-**Meetings Scheduled:**
+**Meeting Completed:**
+- **Date:** Last Monday (March 17, 2026)
+- **Location:** 512 Pacific Highway, Lakewood
+- **Outcome:** Spoke, established relationship, in active communication
 
-| Partner | Date | Time | Location |
-|---------|------|------|----------|
-| Vance Richardson | Monday the 2nd | 2:00 PM | Coffee shop at Point Ruston (next to WildFin) |
-| Tara Groody | Tuesday | 11:30 AM | 512 Pacific Highway, Lakewood |
+**Status:**
+Warm relationship established. Client Success Manager who connects people professionally — now part of your active network. GreenHaven Interactive also being evaluated as potential client prospect.
 
 **Next Steps:**
-- [ ] Attend Tuesday 11:30 AM meeting
-- [ ] Assess partner potential (who can she refer?)
-- [ ] Assess company need (services for GreenHaven)
-- [ ] Follow up post-meeting
+- [x] Meeting completed — spoke last Monday
+- [ ] Nurture relationship for ongoing referrals
+- [ ] Evaluate GreenHaven Interactive service needs separately
 
 ---
 
-## Partner Profile: Vance Richardson ⭐ FIRST PARTNER
+## Partner Profile: Vance Richardson — ❌ NO-SHOW
 
 **Business:** Logic Staffing  
 **Contact:** Vance Richardson (Workforce Solutions Advisor)  
@@ -156,33 +159,16 @@ Signed Comcast affiliates with formal agreement, earn commissions (up to $10K/ye
 **Phone:** 253-863-1296 (Office) / 253-256-9794 (Direct)  
 **Email:** vrichardson@logicstaffing.com  
 
-**Current Status:** 🎯 **Active Partner Prospect** (In Prospecting)  
-**Partner Type:** Non-Paid Partner (Referral Source)  
+**Current Status:** ❌ **Not a Fit** (No-show)  
+**Partner Type:** N/A — Did not follow through  
 
-**Why He's Strategic:**
-- **Former Comcast Business Account Executive** — knows the business, knows the value
-- **IT Professional Network** — in contact with IT pros daily who need Comcast
-- **Gap in Market** — previous Comcast contact (Trevor) left, opening exists
-- **Warm Referrals** — can send you qualified leads actively looking for service
+**What Happened:**
+Meeting scheduled for Monday the 2nd at 2:00 PM at Point Ruston. **Did not attend.**
 
-**The Opportunity:**
-Trevor (previous Comcast rep for this network) left the company. Vance's IT contacts need a new Comcast contact. **You're the natural fit.**
+**Assessment:**
+Former Comcast BAE with IT network seemed promising, but unreliable follow-through on scheduled commitments. Despite strategic potential, basic professionalism barrier.
 
-**Separate from Logic Staffing Company:**
-- Logic Staffing (the company) could be a customer → separate prospect
-- Vance is NOT the decision maker for Logic Staffing
-- Vance IS a referral partner for his IT network
-
-**Meeting Scheduled:**
-- **Date:** Monday the 2nd
-- **Time:** 2:00 PM
-- **Location:** Coffee shop at Point Ruston (next to WildFin)
-
-**Next Steps:**
-- [x] Meeting scheduled — Monday 2 PM at Point Ruston
-- [ ] Position yourself as the "new Trevor" for his IT network
-- [ ] Ask for 2-3 warm intro calls with IT pros who need Comcast
-- [ ] Keep Logic Staffing company as separate sales prospect (find actual decision maker)
+**Decision:** Archived — not pursuing further unless he initiates.
 
 ---
 
@@ -257,4 +243,43 @@ Businesses needing new power = businesses needing new internet. Jamar sees the i
 
 ---
 
-*Last Updated: 2026-03-05*
+---
+
+## Partner Profile: Tracy Kelly — Cornerstone CPA
+
+**Business:** Cornerstone CPA  
+**Contact:** Tracy Kelly (Managing Director)  
+**Phone:** 253-236-1899  
+**Email:** Tracy@mycornerstonecpa.com  
+**Website:** mycornerstonecpa.com  
+**Location:** South Hill, WA  
+**Source:** Business card collected 2026-03-19
+
+**Current Status:** 💬 **In Conversation** (Meeting Scheduled)  
+**Partner Type:** Non-Paid Partner (Referral Source) — **MUTUAL REFERRAL**
+
+**Meeting Scheduled:**
+- **Date:** Monday, March 23, 2026
+- **Time:** 10:00 AM
+- **Platform:** Microsoft Teams
+- **Purpose:** Collaboration discussion — how to feed each other business
+- **Positioning:** Partner first, Comcast for her firm secondary
+
+**Why She's Strategic:**
+- **CPA with Client Visibility** — Sees business financials, knows which clients are growing
+- **Managing Director** — Leadership position = decision-making authority for referrals
+- **South Hill Presence** — Geographic coverage you don't have yet
+- **Mutual Value Exchange** — You can send her business (your clients need CPAs), she sends you growing businesses needing connectivity
+
+**The Opportunity:**
+Bidirectional referral partnership. Your clients need accounting services → Tracy. Her clients scale operations → need Comcast. Both win.
+
+**Meeting Prep:**
+- [x] Meeting scheduled — Monday March 23, 10 AM Teams
+- [ ] Prepare referral pitch (what clients you can send her way)
+- [ ] Discuss what her growing clients typically need
+- [ ] Keep Comcast for her firm as secondary topic (not primary focus)
+
+---
+
+*Last Updated: 2026-03-19*

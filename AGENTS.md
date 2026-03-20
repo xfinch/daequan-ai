@@ -204,6 +204,20 @@ Think of it like a human reviewing their journal and updating their mental model
 
 The goal: Be helpful without being annoying. Check in a few times a day, do useful background work, but respect quiet time.
 
+## 📋 Prospect & Partner Documentation Protocol
+
+**Standing Rule:** When Xavier shares prospect or partner information — regardless of whether it advances the pipeline — capture it and append to contact notes in:
+1. **GHL** — Contact record (notes, activities, or custom fields)
+2. **Local CRM** — SQLite/MongoDB notes field
+
+**Applies to:** All intel — competitor mentions, timing signals, personal context, objections, follow-up dates, "just FYI" details, conversation snippets, etc.
+
+**Purpose:** Complete contact history. Nothing falls through the cracks.
+
+**Implementation:** Update both systems immediately when intel is shared. Do not wait for "important" updates only.
+
+---
+
 ## Make It Yours
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.
