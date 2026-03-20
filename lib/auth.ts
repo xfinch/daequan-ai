@@ -3,33 +3,37 @@ import Google from 'next-auth/providers/google';
 import { MongoDBAdapter } from '@auth/mongodb-adapter';
 import mongoose from 'mongoose';
 
-const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID!;
-const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET!;
+// Validate env vars at startup
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 
-// Lazy MongoDB client for adapter
-let mongoClientPromise: Promise<any> | null = null;
+if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET) {
+  console.error('Missing required auth environment variables');
+}
 
-async function getMongoClient() {
-  if (mongoClientPromise) {
-    return mongoClientPromise;
+// Create MongoDB client promise for adapter
+let mongoClientPromise: Promise<any>;
+
+function getMongoClient() {
+  if (!mongoClientPromise) {
+    mongoClientPromise = (async () => {
+      const uri = process.env.MONGODB_URI || process.env.MONGO_URL || process.env.MONGO_PUBLIC_URL || process.env.DATABASE_URL;
+      if (!uri) {
+        throw new Error('No MongoDB URI configured');
+      }
+      
+      if (mongoose.connection.readyState === 0) {
+        await mongoose.connect(uri);
+      }
+      return mongoose.connection.getClient();
+    })();
   }
-  
-  mongoClientPromise = (async () => {
-    const uri = process.env.MONGODB_URI || process.env.MONGO_URL || process.env.MONGO_PUBLIC_URL || process.env.DATABASE_URL;
-    if (!uri) throw new Error('No MongoDB URI configured');
-    
-    if (mongoose.connection.readyState === 0) {
-      await mongoose.connect(uri);
-    }
-    return mongoose.connection.getClient();
-  })();
-  
   return mongoClientPromise;
 }
 
 // Admin emails
-const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || '').split(',').map(e => e.trim().toLowerCase());
-const SUPERADMIN_EMAILS = (process.env.SUPERADMIN_EMAILS || '').split(',').map(e => e.trim().toLowerCase());
+const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || '').split(',').map(e => e.trim().toLowerCase()).filter(Boolean);
+const SUPERADMIN_EMAILS = (process.env.SUPERADMIN_EMAILS || '').split(',').map(e => e.trim().toLowerCase()).filter(Boolean);
 
 export const {
   handlers,
@@ -37,11 +41,18 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
-  adapter: MongoDBAdapter(getMongoClient as any),
+  adapter: MongoDBAdapter(getMongoClient()),
   providers: [
     Google({
-      clientId: GOOGLE_CLIENT_ID,
-      clientSecret: GOOGLE_CLIENT_SECRET,
+      clientId: GOOGLE_CLIENT_ID || '',
+      clientSecret: GOOGLE_CLIENT_SECRET || '',
+      authorization: {
+        params: {
+          prompt: 'consent',
+          access_type: 'offline',
+          response_type: 'code',
+        },
+      },
     }),
   ],
   callbacks: {
@@ -52,7 +63,7 @@ export const {
       }
       return session;
     },
-    async signIn({ user, account, profile }) {
+    async signIn({ user }) {
       const email = user.email?.toLowerCase();
       if (!email) return false;
       
@@ -82,6 +93,7 @@ export const {
     signIn: '/login',
     signOut: '/',
   },
+  trustHost: true,
 });
 
 export const { GET, POST } = handlers;
