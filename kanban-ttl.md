@@ -69,10 +69,21 @@
 - **Status:** ✅ DEAL CLOSED — Client loved the demo, purchased domain during Zoom call
 - **Deliverable:** Lead Qualifier Tool (build-your-home-demo.html)
 - **Next Steps:** 
-  1. Deploy tool to tivnanhomeguide.com
+  1. ✅ ~~Deploy tool to tivnanhomeguide.com~~ (in progress - separate repo created)
   2. Update branding: Tivnan Home Group (remove Traffic Link refs)
   3. Configure DNS/custom domain setup
-  4. Set up lead delivery to her preferred endpoint (email/GHL)
+  4. **NEW: GHL Calendar Integration with Round-Robin**
+     - Connect to Kristi's Google Calendar for her team
+     - Round-robin assignment between her best agents
+  5. **NEW: Lead Source Tracking**
+     - Google Ads integration with UTM params
+     - QR codes for in-person cold leads
+     - Source attribution in GHL
+  6. **NEW: Enhanced Form Fields**
+     - Checkbox: "Working with Tivnan agent already?"
+     - If YES → dropdown to select agent
+     - Agent list: (need Kristi to provide)
+  7. Set up lead delivery to GHL
 
 ### ✅ DELIVERED / COMPLETED
 
