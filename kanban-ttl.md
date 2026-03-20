@@ -59,7 +59,20 @@
 | Client | Project | Status | Last Contact | Next Action |
 |--------|---------|--------|--------------|-------------|
 | Trina Fallardo | Cold Email Campaign | 🟡 WARMING UP | 2026-02-16 | Monitor domain warmup, launch ~1 week |
-| Kristy Tivnan | Real Estate Lead Filtering | 🟢 DEMO SENT | 2026-03-10 | Await feedback on demo, schedule review call if interested |
+| Kristy Tivnan | Real Estate Lead Filtering | 🟢 CLOSED — DOMAIN PURCHASED | 2026-03-20 | Deploy to tivnanhomeguide.com, customize branding |
+
+**Kristi Tivnan — Tivnan Home Group**
+- **Contact:** Kristi Tivnan
+- **Email:** kristitrealestate@gmail.com
+- **Company:** Tivnan Home Group
+- **Domain Purchased:** tivnanhomeguide.com (2026-03-20)
+- **Status:** ✅ DEAL CLOSED — Client loved the demo, purchased domain during Zoom call
+- **Deliverable:** Lead Qualifier Tool (build-your-home-demo.html)
+- **Next Steps:** 
+  1. Deploy tool to tivnanhomeguide.com
+  2. Update branding: Tivnan Home Group (remove Traffic Link refs)
+  3. Configure DNS/custom domain setup
+  4. Set up lead delivery to her preferred endpoint (email/GHL)
 
 ### ✅ DELIVERED / COMPLETED
 
