@@ -41,7 +41,8 @@ tmp/
 *.swp
 *.swo
 
-# Separate projects
-daequan-map-app/
+# Separate projects - ignore all except public assets
+daequan-map-app/*
+!daequan-map-app/public/
 .next/
 ai.daequan.environment.plist
