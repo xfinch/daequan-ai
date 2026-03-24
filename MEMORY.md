@@ -37,6 +37,22 @@
 **Active Client:**
 - Trina Fallardo — cold email campaign (warming up, launch ~1 week)
 
+### Xavier's Primary Interface — CRITICAL CONTEXT (2026-03-23)
+**Device:** Meta Ray-Ban display glasses
+**Primary Channel:** WhatsApp → Daequan
+**Use Case:** Field sales — constantly on the road, talking to clients, needs hands-free access
+
+**Why This Matters:**
+- WhatsApp is NOT just another channel — it's Xavier's operational lifeline while mobile
+- The glasses + WhatsApp combo enables real-time client support without pulling out a phone
+- Any WhatsApp disruption directly impacts his ability to serve clients in the field
+
+**Current Status:**
+- ⚠️ WhatsApp session persistence bug (#9096) — requires QR re-scan after restart
+- ✅ Telegram backup channel configured (2026-03-23)
+- ✅ Cron job monitoring for fix (daily at 9 AM PT)
+- 🔧 Workaround: Keep OpenClaw session alive, don't restart gateway
+
 ### Plaud Webhook Integration — ACTIVE (2026-02-22)
 **Role:** Voice memo transcription routing to 3 buckets (PERSONAL, TTL, COMCAST)
 
