@@ -8,26 +8,27 @@
     "start": "next start"
   },
   "dependencies": {
+    "@gsap/react": "^2",
+    "clsx": "^2",
+    "gsap": "^3.12",
+    "lenis": "^1.1",
+    "lucide-react": "^0.400",
     "next": "14.x",
     "react": "^18",
     "react-dom": "^18",
-    "gsap": "^3.12",
-    "@gsap/react": "^2",
-    "lenis": "^1.1",
     "split-type": "^0.3",
-    "lucide-react": "^0.400",
-    "clsx": "^2",
     "tailwind-merge": "^2"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10",
-    "postcss": "^8",
-    "tailwindcss": "^3.4",
     "eslint": "^8",
-    "eslint-config-next": "14.x"
+    "eslint-config-next": "14.x",
+    "postcss": "^8",
+    "serve": "^14.2.6",
+    "tailwindcss": "^3.4",
+    "typescript": "^5"
   }
 }
