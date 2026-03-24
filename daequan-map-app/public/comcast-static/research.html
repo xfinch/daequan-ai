@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comcast Research | Territory Prospecting</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+        
+        .nav {
+            background: #12121a;
+            padding: 16px 30px;
+            border-bottom: 1px solid #27272a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav h1 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #6366f1;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        .nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: #e2e8f0;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        
+        .header {
+            margin-bottom: 30px;
+        }
+        
+        .header h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        
+        /* Data Source Cards */
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .source-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 24px;
+        }
+        
+        .source-card h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .source-card h3 .icon {
+            width: 32px;
+            height: 32px;
+            background: #6366f1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        
+        .source-card p {
+            color: #94a3b8;
+            font-size: 13px;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        
+        .fetch-btn {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .fetch-btn:hover {
+            background: #4f46e5;
+        }
+        
+        .fetch-btn:disabled {
+            background: #475569;
+            cursor: not-allowed;
+        }
+        
+        /* Filters */
+        .filters {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .filters h3 {
+            font-size: 14px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #94a3b8;
+        }
+        
+        .filter-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        
+        .filter-group label {
+            font-size: 12px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .filter-group select,
+        .filter-group input {
+            background: #0f172a;
+            border: 1px solid #475569;
+            color: #e2e8f0;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            min-width: 150px;
+        }
+        
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+        
+        /* Results Table */
+        .results-section {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .results-header {
+            background: #12121a;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+        }
+        
+        .results-header h3 {
+            font-size: 16px;
+        }
+        
+        .results-header .count {
+            background: #6366f1;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .table-container {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background: #0f172a;
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #94a3b8;
+            position: sticky;
+            top: 0;
+        }
+        
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #334155;
+            font-size: 14px;
+        }
+        
+        tr:hover td {
+            background: #252f47;
+        }
+        
+        tr.selected td {
+            background: #1e1b4b;
+        }
+        
+        .checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #475569;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .checkbox:hover {
+            border-color: #6366f1;
+        }
+        
+        .checkbox.checked {
+            background: #6366f1;
+            border-color: #6366f1;
+        }
+        
+        .priority-badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .priority-high {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+        
+        .priority-medium {
+            background: #fefce8;
+            color: #ca8a04;
+        }
+        
+        .priority-low {
+            background: #f0fdf4;
+            color: #16a34a;
+        }
+        
+        /* Action Bar */
+        .action-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #12121a;
+            border-top: 1px solid #334155;
+            padding: 16px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+        
+        .selection-info {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+        
+        .selection-info span {
+            color: #e2e8f0;
+            font-weight: 600;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .btn {
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+        
+        .btn-secondary {
+            background: #334155;
+            color: #e2e8f0;
+        }
+        
+        .btn-secondary:hover {
+            background: #475569;
+        }
+        
+        /* Loading State */
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            gap: 16px;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #334155;
+            border-top-color: #6366f1;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px;
+            color: #94a3b8;
+        }
+        
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        
+        /* Status indicators */
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        
+        .status-new { background: #22c55e; }
+        .status-renewal { background: #3b82f6; }
+        .status-transfer { background: #f59e0b; }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <h1>🎯 Comcast Territory Research</h1>
+        <div class="nav-links">
+            <a href="/">← Daequan AI</a>
+            <a href="/admin/boards">Dashboard</a>
+            <a href="/comcast">📡 Comcast</a>
+            <a href="/comcast/research" class="active">└ Research</a>
+            <a href="/comcast/visit-planning">└ Visit Planning</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="header">
+            <h2>Prospecting Data Sources</h2>
+            <p>Pull new business leads from Washington State databases. Select records to push to your territory map.</p>
+        </div>
+        
+        <!-- Data Sources -->
+        <div class="sources-grid">
+            <div class="source-card">
+                <h3><span class="icon">🍺</span> WA Liquor Control Board</h3>
+                <p>New liquor licenses (bars, restaurants, breweries, distilleries) in your territory. These businesses need internet for POS systems, customer WiFi, and operations.</p>
+                <button class="fetch-btn" onclick="fetchLCBData()">Fetch New Licenses</button>
+            </div>
+            
+            <div class="source-card">
+                <h3><span class="icon">🏢</span> WA Secretary of State</h3>
+                <p>New business entity registrations (LLCs, Corporations) filed in your zip codes. Fresh businesses need internet, phone, and possibly TV service.</p>
+                <button class="fetch-btn" onclick="fetchSOSData()">Fetch New Businesses</button>
+            </div>
+        </div>
+        
+        <!-- Filters -->
+        <div class="filters">
+            <h3>Filter Results</h3>
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label>City/Area</label>
+                    <select id="cityFilter">
+                        <option value="all">All Territories</option>
+                        <option value="tacoma">Tacoma</option>
+                        <option value="buckley">Buckley</option>
+                        <option value="bonney-lake">Bonney Lake</option>
+                        <option value="carbonado">Carbonado</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Zip Code</label>
+                    <select id="zipFilter">
+                        <option value="all">All Zips</option>
+                        <option value="98402">98402 (Tacoma)</option>
+                        <option value="98403">98403 (Tacoma)</option>
+                        <option value="98404">98404 (Tacoma)</option>
+                        <option value="98405">98405 (Tacoma)</option>
+                        <option value="98406">98406 (Tacoma)</option>
+                        <option value="98407">98407 (Tacoma)</option>
+                        <option value="98408">98408 (Tacoma)</option>
+                        <option value="98409">98409 (Tacoma)</option>
+                        <option value="98321">98321 (Buckley)</option>
+                        <option value="98391">98391 (Bonney Lake)</option>
+                        <option value="98323">98323 (Carbonado)</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>License Type (LCB)</label>
+                    <select id="licenseFilter">
+                        <option value="all">All Types</option>
+                        <option value="470">Public House (Bar/Restaurant)</option>
+                        <option value="326">Microbrewery</option>
+                        <option value="351">Craft Distillery</option>
+                        <option value="320">Beer Distributor</option>
+                        <option value="336">Wine Importer</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Date Range</label>
+                    <select id="dateFilter">
+                        <option value="7">Last 7 days</option>
+                        <option value="30" selected>Last 30 days</option>
+                        <option value="60">Last 60 days</option>
+                        <option value="90">Last 90 days</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Results -->
+        <div class="results-section">
+            <div class="results-header">
+                <h3>📋 Research Results</h3>
+                <span class="count" id="resultCount">0 records</span>
+            </div>
+            <div class="table-container" id="resultsContainer">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📊</div>
+                    <p>Click "Fetch" above to load prospecting data from Washington State databases.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Action Bar -->
+    <div class="action-bar">
+        <div class="selection-info">
+            <span id="selectedCount">0</span> records selected
+        </div>
+        <div class="action-buttons">
+            <button class="btn btn-secondary" onclick="clearSelection()">Clear</button>
+            <button class="btn btn-primary" onclick="pushToMap()">Push Selected to Map →</button>
+        </div>
+    </div>
+    
+    <script>
+        // Sample data store - in production this would come from API calls
+        let researchData = [];
+        let selectedIds = new Set();
+        
+        // Target zip codes for territory
+        const TERRITORY_ZIPS = ['98402','98403','98404','98405','98406','98407','98408','98409','98418','98421','98422','98424','98444','98445','98446','98447','98465','98466','98321','98391','98323'];
+        
+        // City mapping
+        const ZIP_TO_CITY = {
+            '98402': 'Tacoma', '98403': 'Tacoma', '98404': 'Tacoma', '98405': 'Tacoma',
+            '98406': 'Tacoma', '98407': 'Tacoma', '98408': 'Tacoma', '98409': 'Tacoma',
+            '98418': 'Tacoma', '98421': 'Tacoma', '98422': 'Tacoma', '98424': 'Tacoma',
+            '98444': 'Tacoma', '98445': 'Tacoma', '98446': 'Tacoma', '98447': 'Tacoma',
+            '98465': 'Tacoma', '98466': 'Tacoma',
+            '98321': 'Buckley',
+            '98391': 'Bonney Lake',
+            '98323': 'Carbonado'
+        };
+        
+        // Generate sample LCB data
+        function generateSampleLCBData() {
+            const licenseTypes = [
+                { code: '470', name: 'Public House', priority: 'high' },
+                { code: '326', name: 'Microbrewery', priority: 'high' },
+                { code: '351', name: 'Craft Distillery', priority: 'high' },
+                { code: '320', name: 'Beer Distributor', priority: 'medium' },
+                { code: '336', name: 'Wine Importer', priority: 'medium' }
+            ];
+            
+            const businesses = [
+                { name: 'The Copper Door', address: '714 Pacific Ave, Tacoma, WA 98402', zip: '98402' },
+                { name: '7 Seas Brewing', address: '2101 Jefferson Ave, Tacoma, WA 98402', zip: '98402' },
+                { name: 'Dystopian State Brewing', address: '611 S Baker St, Tacoma, WA 98405', zip: '98405' },
+                { name: 'Pacific Northwest Distillery', address: '2502 Holgate St, Tacoma, WA 98402', zip: '98402' },
+                { name: 'Black Kettle Bar & Grill', address: '2910 N Proctor St, Tacoma, WA 98407', zip: '98407' },
+                { name: 'Brewery 26', address: '1409 51st Ave NE, Tacoma, WA 98422', zip: '98422' },
+                { name: 'Buckley Pizza & Pub', address: '291 Main St, Buckley, WA 98321', zip: '98321' },
+                { name: 'Lucky lsland Brewery', address: '1500 Main St, Bonney Lake, WA 98391', zip: '98391' },
+                { name: 'Carbonado Saloon', address: '108 Pershing Ave, Carbonado, WA 98323', zip: '98323' },
+                { name: 'Tacoma Wine Merchants', address: '3015 6th Ave, Tacoma, WA 98406', zip: '98406' }
+            ];
+            
+            return businesses.map((biz, i) => {
+                const license = licenseTypes[Math.floor(Math.random() * licenseTypes.length)];
+                const date = new Date();
+                date.setDate(date.getDate() - Math.floor(Math.random() * 30));
+                
+                return {
+                    id: `lcb-${i}`,
+                    source: 'LCB',
+                    businessName: biz.name,
+                    address: biz.address,
+                    city: ZIP_TO_CITY[biz.zip],
+                    zip: biz.zip,
+                    licenseType: license.code,
+                    licenseTypeName: license.name,
+                    priority: license.priority,
+                    status: 'new',
+                    filedDate: date.toISOString().split('T')[0],
+                    phone: null,
+                    contactName: null,
+                    lat: null,
+                    lng: null
+                };
+            });
+        }
+        
+        // Generate sample SOS data
+        function generateSampleSOSData() {
+            const entityTypes = ['LLC', 'Profit Corporation', 'Limited Partnership'];
+            const naicsCodes = ['722511', '312120', '424810', '445310', '722410'];
+            
+            const businesses = [
+                { name: 'Tacoma Taproom LLC', address: '1501 Pacific Ave, Tacoma, WA 98402', zip: '98402', naics: '722511' },
+                { name: 'Proctor District Coffee Co', address: '2602 N Proctor St, Tacoma, WA 98407', zip: '98407', naics: '722511' },
+                { name: 'Buckley Automotive Group Inc', address: '410 River Rd, Buckley, WA 98321', zip: '98321', naics: '441110' },
+                { name: 'Bonney Lake Fitness LLC', address: '18415 State Route 410, Bonney Lake, WA 98391', zip: '98391', naics: '713940' },
+                { name: '6th Ave Tattoo Parlor LLC', address: '2610 6th Ave, Tacoma, WA 98406', zip: '98406', naics: '812199' },
+                { name: 'Hilltop Market LLC', address: '1102 S Cushman Ave, Tacoma, WA 98405', zip: '98405', naics: '445110' },
+                { name: 'Tacoma Tech Solutions Inc', address: '1201 Pacific Ave, Tacoma, WA 98402', zip: '98402', naics: '541511' },
+                { name: 'Lakewood Dental Group PLLC', address: '5400 100th St SW, Tacoma, WA 98499', zip: '98499', naics: '621210' },
+                { name: 'Summit Salon Bonney Lake LLC', address: '21225 State Route 410, Bonney Lake, WA 98391', zip: '98391', naics: '812112' },
+                { name: 'Carbonado General Store LLC', address: '109 Pershing Ave, Carbonado, WA 98323', zip: '98323', naics: '445120' }
+            ];
+            
+            return businesses.map((biz, i) => {
+                const entityType = entityTypes[Math.floor(Math.random() * entityTypes.length)];
+                const date = new Date();
+                date.setDate(date.getDate() - Math.floor(Math.random() * 30));
+                
+                return {
+                    id: `sos-${i}`,
+                    source: 'SOS',
+                    businessName: biz.name,
+                    address: biz.address,
+                    city: ZIP_TO_CITY[biz.zip] || 'Tacoma',
+                    zip: biz.zip,
+                    entityType: entityType,
+                    naicsCode: biz.naics,
+                    priority: 'medium',
+                    status: 'new',
+                    filedDate: date.toISOString().split('T')[0],
+                    phone: null,
+                    contactName: null,
+                    lat: null,
+                    lng: null
+                };
+            });
+        }
+        
+        // Fetch LCB data
+        function fetchLCBData() {
+            const container = document.getElementById('resultsContainer');
+            container.innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Fetching LCB license data...</p>
+                </div>
+            `;
+            
+            // Simulate API delay
+            setTimeout(() => {
+                const data = generateSampleLCBData();
+                researchData = [...researchData.filter(d => d.source !== 'LCB'), ...data];
+                renderTable();
+            }, 1500);
+        }
+        
+        // Fetch SOS data
+        function fetchSOSData() {
+            const container = document.getElementById('resultsContainer');
+            container.innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Fetching SOS business registrations...</p>
+                </div>
+            `;
+            
+            // Simulate API delay
+            setTimeout(() => {
+                const data = generateSampleSOSData();
+                researchData = [...researchData.filter(d => d.source !== 'SOS'), ...data];
+                renderTable();
+            }, 1500);
+        }
+        
+        // Render table
+        function renderTable() {
+            const container = document.getElementById('resultsContainer');
+            const cityFilter = document.getElementById('cityFilter').value;
+            const zipFilter = document.getElementById('zipFilter').value;
+            const licenseFilter = document.getElementById('licenseFilter').value;
+            
+            let filtered = researchData;
+            
+            // Apply filters
+            if (cityFilter !== 'all') {
+                const cityMap = {
+                    'tacoma': 'Tacoma',
+                    'buckley': 'Buckley',
+                    'bonney-lake': 'Bonney Lake',
+                    'carbonado': 'Carbonado'
+                };
+                filtered = filtered.filter(d => d.city === cityMap[cityFilter]);
+            }
+            
+            if (zipFilter !== 'all') {
+                filtered = filtered.filter(d => d.zip === zipFilter);
+            }
+            
+            if (licenseFilter !== 'all') {
+                filtered = filtered.filter(d => d.licenseType === licenseFilter);
+            }
+            
+            // Update count
+            document.getElementById('resultCount').textContent = `${filtered.length} records`;
+            
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🔍</div>
+                        <p>No records match your filters.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 40px;">
+                                <div class="checkbox ${selectedIds.size === filtered.length ? 'checked' : ''}" onclick="toggleSelectAll()">✓</div>
+                            </th>
+                            <th>Business Name</th>
+                            <th>Source</th>
+                            <th>Type</th>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>Filed Date</th>
+                            <th>Priority</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            filtered.forEach(record => {
+                const isSelected = selectedIds.has(record.id);
+                const priorityClass = `priority-${record.priority}`;
+                const typeDisplay = record.licenseTypeName || record.entityType || 'Business';
+                
+                html += `
+                    <tr class="${isSelected ? 'selected' : ''}" data-id="${record.id}">
+                        <td>
+                            <div class="checkbox ${isSelected ? 'checked' : ''}" onclick="toggleSelect('${record.id}')">${isSelected ? '✓' : ''}</div>
+                        </td>
+                        <td><strong>${record.businessName}</strong></td>
+                        <td>${record.source}</td>
+                        <td>${typeDisplay}</td>
+                        <td>${record.address}</td>
+                        <td>${record.city}</td>
+                        <td>${record.filedDate}</td>
+                        <td><span class="priority-badge ${priorityClass}">${record.priority}</span></td>
+                    </tr>
+                `;
+            });
+            
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+        
+        // Toggle selection
+        function toggleSelect(id) {
+            if (selectedIds.has(id)) {
+                selectedIds.delete(id);
+            } else {
+                selectedIds.add(id);
+            }
+            updateSelectionCount();
+            renderTable();
+        }
+        
+        // Toggle select all
+        function toggleSelectAll() {
+            const visibleIds = researchData.map(d => d.id);
+            const allSelected = visibleIds.every(id => selectedIds.has(id));
+            
+            if (allSelected) {
+                visibleIds.forEach(id => selectedIds.delete(id));
+            } else {
+                visibleIds.forEach(id => selectedIds.add(id));
+            }
+            
+            updateSelectionCount();
+            renderTable();
+        }
+        
+        // Update selection count
+        function updateSelectionCount() {
+            document.getElementById('selectedCount').textContent = selectedIds.size;
+        }
+        
+        // Clear selection
+        function clearSelection() {
+            selectedIds.clear();
+            updateSelectionCount();
+            renderTable();
+        }
+        
+        // Push to map
+        function pushToMap() {
+            if (selectedIds.size === 0) {
+                alert('Please select at least one record to push to the map.');
+                return;
+            }
+            
+            const selected = researchData.filter(d => selectedIds.has(d.id));
+            
+            // Store in localStorage for the map to pick up
+            localStorage.setItem('comcast_prospects', JSON.stringify(selected));
+            
+            // Open map in new tab
+            window.open('/comcast?mode=prospects', '_blank');
+        }
+        
+        // Filter change handlers
+        document.getElementById('cityFilter').addEventListener('change', renderTable);
+        document.getElementById('zipFilter').addEventListener('change', renderTable);
+        document.getElementById('licenseFilter').addEventListener('change', renderTable);
+        document.getElementById('dateFilter').addEventListener('change', () => {
+            // Would trigger refetch with new date range
+            console.log('Date range changed');
+        });
+        
+        // Initial render
+        renderTable();
+    </script>
+</body>
+</html>

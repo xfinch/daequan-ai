@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Fluid Typography Scale */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.375rem);
+  --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem);
+  --text-2xl: clamp(1.5rem, 1.25rem + 1.25vw, 2.25rem);
+  --text-3xl: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+  --text-4xl: clamp(2.5rem, 1.75rem + 3.75vw, 5rem);
+  --text-5xl: clamp(3rem, 2rem + 5vw, 7rem);
+  
+  /* Spacing */
+  --section-py: clamp(4rem, 10vw, 8rem);
+  --container-max: 1280px;
+  
+  /* Animation */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-expo: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-white text-navy-900;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  ::selection {
+    @apply bg-brand-600 text-white;
+  }
+  
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-600;
+  }
+}
+
+@layer components {
+  /* Container */
+  .container-custom {
+    @apply mx-auto px-4 sm:px-6 lg:px-8 xl:px-12;
+    max-width: var(--container-max);
+  }
+  
+  /* Section Padding */
+  .section-padding {
+    padding-top: var(--section-py);
+    padding-bottom: var(--section-py);
+  }
+  
+  /* Primary Button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4;
+    @apply bg-brand-500 text-white font-semibold rounded-lg;
+    @apply transition-all duration-300;
+    @apply hover:bg-brand-600 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-500/25;
+    @apply active:translate-y-0 active:shadow-md;
+  }
+  
+  /* Secondary Button */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4;
+    @apply bg-white text-navy-900 font-semibold rounded-lg border-2 border-navy-200;
+    @apply transition-all duration-300;
+    @apply hover:border-brand-500 hover:text-brand-600 hover:-translate-y-0.5;
+    @apply active:translate-y-0;
+  }
+  
+  /* Ghost Button */
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-4 py-2;
+    @apply text-navy-600 font-medium;
+    @apply transition-colors duration-300;
+    @apply hover:text-brand-600;
+  }
+  
+  /* Animated Link */
+  .link-animated {
+    @apply relative;
+  }
+  
+  .link-animated::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-current;
+    transition: width 0.3s var(--ease-out-expo);
+  }
+  
+  .link-animated:hover::after {
+    @apply w-full;
+  }
+  
+  /* Card Hover Effect */
+  .card-hover {
+    @apply transition-all duration-500;
+    @apply hover:-translate-y-2 hover:shadow-2xl;
+  }
+  
+  /* Image Zoom Container */
+  .img-zoom {
+    @apply overflow-hidden;
+  }
+  
+  .img-zoom img {
+    @apply transition-transform duration-700 ease-out;
+    @apply hover:scale-105;
+  }
+  
+  /* Gradient Text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+  }
+  
+  /* Gradient Backgrounds */
+  .bg-gradient-brand {
+    background: linear-gradient(135deg, #0c4a6e 0%, #075985 50%, #0369a1 100%);
+  }
+  
+  .bg-gradient-dark {
+    background: linear-gradient(180deg, #102a43 0%, #061523 100%);
+  }
+  
+  /* Glass Effect */
+  .glass {
+    @apply bg-white/80 backdrop-blur-xl;
+    @apply border border-white/20;
+  }
+  
+  /* Pain Point Card */
+  .pain-card {
+    @apply relative p-6 rounded-xl;
+    @apply bg-red-50/80 border border-red-100;
+    @apply transition-all duration-300;
+    @apply hover:bg-red-50 hover:shadow-lg hover:shadow-red-500/10;
+  }
+  
+  .pain-card::before {
+    content: '';
+    @apply absolute left-0 top-6 bottom-6 w-1 rounded-r-full bg-red-400;
+  }
+  
+  /* Solution Card */
+  .solution-card {
+    @apply relative p-8 rounded-2xl;
+    @apply bg-gradient-to-br from-emerald-50 to-teal-50;
+    @apply border border-emerald-100;
+  }
+  
+  /* Feature Card */
+  .feature-card {
+    @apply p-8 rounded-2xl bg-white;
+    @apply border border-navy-100;
+    @apply transition-all duration-500;
+    @apply hover:-translate-y-2 hover:shadow-xl hover:shadow-navy-900/5;
+    @apply hover:border-brand-200;
+  }
+  
+  /* Service Card */
+  .service-card {
+    @apply p-6 rounded-xl bg-white;
+    @apply border border-navy-100;
+    @apply transition-all duration-300;
+    @apply hover:border-brand-300 hover:shadow-lg;
+  }
+  
+  /* Section Label */
+  .section-label {
+    @apply inline-block text-xs font-semibold tracking-widest uppercase;
+    @apply text-brand-600 mb-4;
+  }
+  
+  /* Stat Number */
+  .stat-number {
+    @apply font-display text-4xl sm:text-5xl font-bold;
+    @apply text-gradient;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Variables for Design System */
+:root {
+  /* Typography Scale (Fluid) */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.375rem);
+  --text-xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);
+  --text-2xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+  --text-3xl: clamp(2.5rem, 1.75rem + 3.75vw, 4.5rem);
+  --text-4xl: clamp(3rem, 2rem + 5vw, 6rem);
+  
+  /* Colors */
+  --color-primary: #0a0a0a;
+  --color-secondary: #666666;
+  --color-accent: #0066ff;
+  --color-muted: #f5f5f5;
+  --color-background: #ffffff;
+  
+  /* Spacing */
+  --section-padding: clamp(4rem, 8vw, 8rem);
+  --container-max: 1440px;
+  
+  /* Animation */
+  --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+}
+
+/* Base Styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-white text-neutral-900;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Selection */
+  ::selection {
+    @apply bg-neutral-900 text-white;
+  }
+  
+  /* Focus Visible */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-neutral-900;
+  }
+}
+
+/* Typography Utilities */
+@layer utilities {
+  .font-body {
+    font-family: var(--font-body), system-ui, sans-serif;
+  }
+  
+  .font-display {
+    font-family: var(--font-display), system-ui, sans-serif;
+  }
+  
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Gradient Text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  
+  /* Outlined Text */
+  .text-outline {
+    -webkit-text-stroke: 2px currentColor;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  /* Container */
+  .container-custom {
+    @apply mx-auto px-4 sm:px-6 lg:px-8 xl:px-12;
+    max-width: var(--container-max);
+  }
+  
+  /* Section Padding */
+  .section-padding {
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+  }
+}
+
+/* Component Patterns */
+@layer components {
+  /* Award-Winning Button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-4;
+    @apply bg-neutral-900 text-white font-medium;
+    @apply transition-all duration-300;
+    @apply hover:-translate-y-0.5 hover:shadow-lg;
+    @apply active:translate-y-0;
+  }
+  
+  /* Link Underline Animation */
+  .link-animated {
+    @apply relative;
+  }
+  
+  .link-animated::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-px bg-current;
+    transition: width 0.3s var(--ease-out);
+  }
+  
+  .link-animated:hover::after {
+    @apply w-full;
+  }
+  
+  /* Card Hover Lift */
+  .card-hover {
+    @apply transition-all duration-500;
+    @apply hover:-translate-y-2 hover:shadow-xl;
+  }
+  
+  /* Image Zoom Container */
+  .img-zoom {
+    @apply overflow-hidden;
+  }
+  
+  .img-zoom img {
+    @apply transition-transform duration-700;
+    @apply hover:scale-105;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xavier's Comcast Territory Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        #map { height: calc(100vh - 48px); width: 100%; margin-top: 48px; }
+        
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 48px;
+            background: #12121a;
+            border-bottom: 1px solid #27272a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 10000;
+        }
+        
+        .top-nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            margin-right: 20px;
+        }
+        
+        .top-nav a:hover {
+            color: #e2e8f0;
+        }
+        
+        .top-nav .nav-left {
+            display: flex;
+            align-items: center;
+        }
+        
+        .top-nav .nav-right {
+            display: flex;
+            align-items: center;
+        }
+        
+        .sidebar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 340px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            padding: 20px;
+            z-index: 1000;
+            max-height: 90vh;
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+        }
+
+        /* Mobile responsive sidebar */
+        @media (max-width: 768px) {
+            .sidebar {
+                top: auto;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                max-height: 60vh;
+                border-radius: 16px 16px 0 0;
+                transform: translateY(calc(100% - 60px));
+                padding: 0;
+                z-index: 2001; /* Above legend (1000) */
+            }
+
+            .sidebar.expanded {
+                transform: translateY(0);
+            }
+
+            .sidebar-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 15px 20px;
+                border-bottom: 1px solid #eee;
+                cursor: pointer;
+            }
+
+            .sidebar-header h1 {
+                margin: 0;
+                font-size: 16px;
+            }
+
+            .sidebar-handle {
+                width: 40px;
+                height: 4px;
+                background: #ddd;
+                border-radius: 2px;
+                margin: 0 auto 10px;
+            }
+
+            .sidebar-content {
+                padding: 15px 20px 30px;
+                max-height: calc(60vh - 60px);
+                overflow-y: auto;
+            }
+
+            .sidebar-toggle {
+                background: none;
+                border: none;
+                font-size: 20px;
+                color: #666;
+                cursor: pointer;
+                padding: 5px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .sidebar-header {
+                display: none;
+            }
+        }
+        
+        .sidebar h1 {
+            font-size: 18px;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+        
+        .sidebar .subtitle {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .back-link {
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+        
+        .back-link a {
+            color: #0057b8;
+            text-decoration: none;
+        }
+        
+        .refresh-btn {
+            background: #f5f5f5;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .refresh-btn:hover {
+            background: #e0e0e0;
+        }
+        
+        .refresh-btn.spinning .icon {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-box {
+            background: #f5f5f5;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-box .number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0057b8;
+        }
+        
+        .stat-box .label {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+        }
+        
+        .territory-list {
+            margin-bottom: 20px;
+        }
+        
+        .territory-list h3 {
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .zip-chip {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #0057b8;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin: 3px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .zip-chip:hover {
+            background: #0057b8;
+            color: white;
+        }
+        
+        .zip-chip .count {
+            background: white;
+            color: #0057b8;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 10px;
+            margin-left: 4px;
+        }
+        
+        .legend {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            font-size: 12px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        /* Mobile legend */
+        @media (max-width: 768px) {
+            .legend {
+                bottom: 80px;
+                left: 10px;
+                padding: 10px;
+                font-size: 10px;
+                max-width: 140px;
+            }
+
+            .legend-item {
+                margin-bottom: 4px;
+            }
+
+            .legend-color {
+                width: 12px;
+                height: 12px;
+                margin-right: 6px;
+            }
+
+            .legend h3 {
+                font-size: 11px;
+                margin-bottom: 8px;
+            }
+        }
+        
+        .pin-popup {
+            min-width: 280px;
+        }
+        
+        .pin-popup h4 {
+            margin-bottom: 10px;
+            color: #1a1a1a;
+            font-size: 16px;
+        }
+        
+        .pin-popup .info-row {
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        
+        .pin-popup .label {
+            color: #666;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+        
+        .pin-popup .value {
+            color: #333;
+        }
+        
+        .pin-popup .notes {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            margin: 10px 0;
+        }
+        
+        .ghl-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #0057b8;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .ghl-btn:hover {
+            background: #004494;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .status-interested { background: #e8f5e9; color: #2e7d32; }
+        .status-followup { background: #fff3e0; color: #ef6c00; }
+        .status-not-interested { background: #ffebee; color: #c62828; }
+        .status-called { background: #e3f2fd; color: #1565c0; }
+        .status-customer { background: #f3e5f5; color: #7b1fa2; }
+        .status-needs-update { background: #fff8e1; color: #f57c00; margin-left: 5px; }
+        
+        .help-text {
+            font-size: 11px;
+            color: #888;
+            margin-top: 15px;
+            line-height: 1.4;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .error-banner {
+            background: #ffebee;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        
+        .error-banner.show {
+            display: block;
+        }
+
+        /* Add Visit Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        .modal-overlay.show {
+            display: flex;
+        }
+        .modal {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 400px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .modal h2 {
+            margin: 0 0 20px 0;
+            font-size: 18px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .modal-buttons button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: #0057b8;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #004494;
+        }
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #666;
+        }
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        .click-hint {
+            background: #e3f2fd;
+            color: #0057b8;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+        .add-btn {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        .add-btn:hover {
+            background: #45a049;
+        }
+        
+        /* Plaud Notes Section */
+        .plaud-notes-section {
+            margin-top: 12px;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 10px;
+        }
+        .plaud-notes-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .plaud-notes-list {
+            max-height: 100px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #ccc #f5f5f5;
+        }
+        .plaud-notes-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        .plaud-notes-list::-webkit-scrollbar-track {
+            background: #f5f5f5;
+            border-radius: 3px;
+        }
+        .plaud-notes-list::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 3px;
+        }
+        .plaud-note-link {
+            display: block;
+            padding: 8px 10px;
+            margin-bottom: 6px;
+            background: #e3f2fd;
+            border-left: 3px solid #2196f3;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #1565c0;
+            text-decoration: none;
+            transition: background 0.2s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .plaud-note-link:hover {
+            background: #bbdefb;
+        }
+        .plaud-note-date {
+            font-size: 10px;
+            color: #666;
+            margin-top: 2px;
+        }
+        .plaud-notes-empty {
+            font-size: 12px;
+            color: #999;
+            font-style: italic;
+            padding: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="/" style="font-weight: 600; color: #6366f1;">🎯 Daequan AI</a>
+            <a href="/admin/boards">Dashboard</a>
+            <span style="color: #334155;">|</span>
+            <a href="/comcast" style="font-weight: 600;">📡 Comcast</a>
+            <a href="/comcast/research">└ Research</a>
+            <a href="/comcast/visit-planning">└ Visit Planning</a>
+        </div>
+        <div class="nav-right" id="authNav">
+            <a href="/login">Sign in</a>
+        </div>
+    </nav>
+    
+    <div id="map"></div>
+    
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header" onclick="toggleSidebar()">
+            <div class="sidebar-handle"></div>
+            <h1>🏢 Comcast Territory</h1>
+            <button class="sidebar-toggle" id="sidebarToggle">▲</button>
+        </div>
+        
+        <div class="sidebar-content">
+            <div class="back-link">
+                <a href="/">← Back to Daequan AI</a>
+            </div>
+            
+            <div class="error-banner" id="errorBanner">
+                ⚠️ API connection failed. Make sure the server is running.
+            </div>
+            
+            <div class="subtitle">Xavier Finch • Olympia/Tacoma Region</div>
+            
+            <button class="add-btn" onclick="enableAddMode()">
+                <span>📍 Add Business Visit</span>
+            </button>
+            
+            <div class="click-hint" id="clickHint" style="display: none;">
+                📍 Click anywhere on the map to place a pin
+                <button onclick="cancelAddMode()" style="margin-left: 10px; font-size: 11px;">Cancel</button>
+            </div>
+            
+            <button class="refresh-btn" onclick="refreshData()">
+                <span class="icon">🔄</span>
+                <span>Refresh Data</span>
+            </button>
+            
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="number" id="visitCount">-</div>
+                    <div class="label">Visits</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">14</div>
+                    <div class="label">Zip Codes</div>
+                </div>
+            </div>
+            
+            <div class="territory-list">
+                <h3>Territories</h3>
+                <div id="zipList"></div>
+            </div>
+            
+            <div style="background: #fff3e0; border-left: 4px solid #ff9800; padding: 12px 15px; margin: 15px 0; border-radius: 0 8px 8px 0;">
+                <h4 style="font-size: 12px; color: #e65100; margin-bottom: 8px; text-transform: uppercase;">🎙️ Voice Notes</h4>
+                <p style="font-size: 12px; color: #666; margin-bottom: 10px;">Unmatched notes waiting for assignment</p>
+                <a href="review.html" style="display: inline-flex; align-items: center; gap: 6px; background: #ff9800; color: white; padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600;">
+                    <span>Review Queue</span>
+                    <span id="reviewBadge" style="background: white; color: #ff9800; padding: 2px 8px; border-radius: 10px; font-size: 11px; min-width: 20px; text-align: center;">-</span>
+                </a>
+            </div>
+            
+            <div class="help-text">
+                💡 <strong>How to use:</strong><br>
+                • Tap 📍 button, then tap map to add<br>
+                • Tap pins to view details<br>
+                • Swipe up this panel for more<br>
+                • Data refreshes automatically
+            </div>
+        </div>
+    </div>
+    
+    <div class="legend">
+        <div class="legend-item">
+            <div class="legend-color" style="background: #4caf50;"></div>
+            <span>Interested</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #ff9800;"></div>
+            <span>Follow-up</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #f44336;"></div>
+            <span>Not Interested</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #2196f3;"></div>
+            <span>Called Only</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #9c27b0;"></div>
+            <span>Customer</span>
+        </div>
+    </div>
+
+    <script>
+        // API endpoints
+        const API_BASE = 'https://daequanai.com';
+        const PLAUD_API = 'https://xaviers-mac-mini.tailc89dd8.ts.net/plaud-webhook';
+        
+        // Status colors
+        const statusColors = {
+            'interested': '#4caf50',
+            'followup': '#ff9800',
+            'not-interested': '#f44336',
+            'called': '#2196f3',
+            'customer': '#9c27b0'
+        };
+        
+        // Territories
+        const territories = [
+            { zip: '98070', city: 'Vashon', lat: 47.4474, lng: -122.4598 },
+            { zip: '98321', city: 'Buckley', lat: 47.1611, lng: -122.0296 },
+            { zip: '98323', city: 'Carbonado', lat: 47.0812, lng: -122.0519 },
+            { zip: '98385', city: 'South Prairie', lat: 47.1372, lng: -122.0953 },
+            { zip: '98391', city: 'Lake Tapps', lat: 47.1983, lng: -122.1731 },
+            { zip: '98396', city: 'Wilkeson', lat: 47.1069, lng: -122.0456 },
+            { zip: '98403', city: 'Tacoma', lat: 47.2626, lng: -122.4483 },
+            { zip: '98404', city: 'Tacoma', lat: 47.2151, lng: -122.4123 },
+            { zip: '98406', city: 'Tacoma', lat: 47.2646, lng: -122.5149 },
+            { zip: '98407', city: 'Ruston', lat: 47.2994, lng: -122.5155 },
+            { zip: '98413', city: 'Tacoma', lat: 47.2529, lng: -122.4443 },
+            { zip: '98416', city: 'Tacoma', lat: 47.2618, lng: -122.4807 },
+            { zip: '98443', city: 'Tacoma', lat: 47.2025, lng: -122.3649 },
+            { zip: '98447', city: 'Tacoma (Midland)', lat: 47.1650, lng: -122.4150 }
+        ];
+        
+        let map;
+        let markers = [];
+        let visitsByZip = {};
+        
+        // Initialize map
+        function initMap() {
+            map = L.map('map').setView([47.25, -122.4], 10);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+            
+            // Add territory markers (no boundaries for now)
+            territories.forEach(t => {
+                const label = L.divIcon({
+                    className: 'zip-label-container',
+                    html: `<div style="background: rgba(0,87,184,0.9); color: white; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: bold; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">${t.zip}</div>`,
+                    iconSize: [60, 30],
+                    iconAnchor: [30, 15]
+                });
+                
+                L.marker([t.lat, t.lng], { icon: label }).addTo(map);
+                
+                // Circle to show approximate area
+                L.circle([t.lat, t.lng], {
+                    color: '#0057b8',
+                    fillColor: '#0057b8',
+                    fillOpacity: 0.05,
+                    radius: 2000,
+                    weight: 1
+                }).addTo(map);
+            });
+        }
+        
+        // Load visits from API
+        async function loadVisits() {
+            try {
+                const response = await fetch(`${API_BASE}/api/visits`);
+                if (!response.ok) throw new Error('API Error');
+                
+                const data = await response.json();
+                displayVisits(data.visits);
+                updateStats(data.visits);
+                
+                document.getElementById('errorBanner').classList.remove('show');
+            } catch (error) {
+                console.error('Failed to load visits:', error);
+                document.getElementById('errorBanner').classList.add('show');
+            }
+        }
+        
+        // Display visits on map
+        function displayVisits(visits) {
+            // Clear existing markers
+            markers.forEach(m => map.removeLayer(m));
+            markers = [];
+            
+            // Reset zip counts
+            visitsByZip = {};
+            territories.forEach(t => visitsByZip[t.zip] = 0);
+            
+            visits.forEach(visit => {
+                if (!visit.lat || !visit.lng) return;
+                
+                // Count by zip
+                if (visitsByZip[visit.zip] !== undefined) {
+                    visitsByZip[visit.zip]++;
+                }
+                
+                const color = statusColors[visit.status] || '#666';
+                
+                const marker = L.marker([visit.lat, visit.lng], {
+                    icon: L.divIcon({
+                        className: 'custom-pin',
+                        html: `<div style="
+                            width: 20px;
+                            height: 20px;
+                            background: ${color};
+                            border: 2px solid white;
+                            border-radius: 50%;
+                            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+                        "></div>`,
+                        iconSize: [20, 20],
+                        iconAnchor: [10, 10]
+                    })
+                }).addTo(map);
+                
+                const statusClass = `status-${visit.status}`;
+                const statusLabel = visit.status ? visit.status.replace('-', ' ') : 'unknown';
+                const needsUpdate = visit.needsUpdate || (visit.missingFields && visit.missingFields.length > 0);
+                
+                // Create popup with placeholder for Plaud notes
+                const popupContent = `
+                    <div class="pin-popup" id="popup-${visit._id || visit.id}">
+                        <h4>${escapeHtml(visit.businessName)}</h4>
+                        
+                        <span class="status-badge ${statusClass}">${statusLabel}</span>
+                        ${needsUpdate ? `<span class="status-badge status-needs-update">⚠️ Needs Update</span>` : ''}
+                        
+                        ${visit.account_id_8498 ? `
+                        <div class="info-row" style="margin-top: 10px; background: #e3f2fd; padding: 8px; border-radius: 6px;">
+                            <div class="label" style="color: #1976d2;">📋 Account ID</div>
+                            <div class="value" style="font-weight: 600; color: #1976d2; font-family: monospace;">
+                                <span style="color: #999;">8498</span>${escapeHtml(visit.account_id_8498.substring(4))}
+                            </div>
+                        </div>` : ''}
+                        
+                        ${visit.ghlUrl ? `
+                        <a href="${visit.ghlUrl}" target="_blank" class="ghl-btn" style="display: block; text-align: center; margin: 12px 0; text-decoration: none; background: #dc3545; color: white; padding: 10px; border-radius: 6px; font-weight: 600;">
+                            ✏️ Edit Notes in GHL
+                        </a>` : ''}
+                        
+                        ${visit.contactName ? `
+                        <div class="info-row">
+                            <div class="label">Contact</div>
+                            <div class="value">${escapeHtml(visit.contactName)}</div>
+                        </div>` : ''}
+                        
+                        ${visit.phone ? `
+                        <div class="info-row">
+                            <div class="label">Phone</div>
+                            <div class="value">${escapeHtml(visit.phone)}</div>
+                        </div>` : ''}
+                        
+                        <div class="info-row">
+                            <div class="label">Address</div>
+                            <div class="value">${escapeHtml(visit.address || '')}, ${escapeHtml(visit.zip)}</div>
+                        </div>
+                        
+                        ${visit.lat && visit.lng ? `
+                        <div style="margin: 12px 0;">
+                            <button onclick="window.location.href='${getDirectionsUrl(visit.lat, visit.lng)}'" 
+                               style="display: block; width: 100%; border: none; text-align: center; background: ${isIOS() ? '#007aff' : '#4285f4'}; color: white; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer;">
+                                ${isIOS() ? '🍎 Get Directions' : '🗺️ Get Directions'}
+                            </button>
+                        </div>` : ''}
+                        
+                        <div class="info-row">
+                            <div class="label">Visited</div>
+                            <div class="value">${formatDate(visit.createdAt)}</div>
+                        </div>
+                        
+                        ${visit.notes ? `
+                        <div class="notes">${escapeHtml(visit.notes)}</div>` : ''}
+                        
+                        ${visit.missingFields && visit.missingFields.length > 0 ? `
+                        <div class="missing-fields" style="background: #fff3e0; border: 1px solid #ffcc02; border-radius: 6px; padding: 10px; margin: 10px 0; font-size: 12px;">
+                            <strong>⚠️ Missing:</strong> ${visit.missingFields.join(', ')}
+                        </div>` : ''}
+                        
+                        ${visit.photo ? `
+                        <div style="margin-top: 10px;">
+                            <img src="${visit.photo}" style="max-width: 100%; border-radius: 8px;">
+                        </div>` : ''}
+                        
+                        <!-- Plaud Notes Section -->
+                        <div class="plaud-notes-section" id="plaud-notes-${visit._id || visit.id}">
+                            <div class="plaud-notes-title">🎙️ Voice Notes</div>
+                            <div class="plaud-notes-list">
+                                <div class="plaud-notes-empty">Loading...</div>
+                            </div>
+                        </div>
+                        
+                        ${!visit.ghlUrl ? '<p style="font-size: 11px; color: #666; margin-top: 10px; text-align: center;">Not synced to GHL yet</p>' : ''}
+                    </div>
+                `;
+                
+                marker.bindPopup(popupContent);
+                
+                // Load Plaud notes when popup opens
+                marker.on('popupopen', () => {
+                    loadPlaudNotesForBusiness(visit.businessName, visit._id || visit.id, visit.ghlUrl);
+                });
+                markers.push(marker);
+            });
+            
+            updateZipList();
+        }
+        
+        // Update sidebar stats
+        function updateStats(visits) {
+            document.getElementById('visitCount').textContent = visits.length;
+        }
+        
+        // Update zip code list with counts and directions
+        function updateZipList() {
+            const container = document.getElementById('zipList');
+            container.innerHTML = '';
+            
+            territories.forEach(t => {
+                const count = visitsByZip[t.zip] || 0;
+                
+                // Create wrapper div
+                const wrapper = document.createElement('div');
+                wrapper.style.cssText = 'margin-bottom: 8px;';
+                
+                // Zip code chip
+                const chip = document.createElement('span');
+                chip.className = 'zip-chip';
+                chip.style.cssText = 'display: inline-block; cursor: pointer;';
+                chip.innerHTML = `${t.zip} <span style="color: #666; font-size: 11px;">${t.city}</span>${count > 0 ? `<span class="count">${count}</span>` : ''}`;
+                chip.onclick = () => map.setView([t.lat, t.lng], 14);
+                wrapper.appendChild(chip);
+                
+                // Directions button
+                const isApple = isIOS();
+                const dirBtn = document.createElement('button');
+                dirBtn.style.cssText = `
+                    display: block;
+                    width: 100%;
+                    margin-top: 4px;
+                    padding: 8px 10px;
+                    background: ${isApple ? '#007aff' : '#4285f4'};
+                    color: white;
+                    border: none;
+                    border-radius: 6px;
+                    font-size: 12px;
+                    font-weight: 600;
+                    text-align: center;
+                    cursor: pointer;
+                `;
+                dirBtn.innerHTML = isApple ? '🍎 Get Directions' : '🗺️ Get Directions';
+                dirBtn.onclick = () => {
+                    const url = getDirectionsUrl(t.lat, t.lng);
+                    console.log('Opening directions:', url);
+                    window.location.href = url;
+                };
+                wrapper.appendChild(dirBtn);
+                
+                container.appendChild(wrapper);
+            });
+        }
+        
+        // Refresh data
+        async function refreshData() {
+            const btn = document.querySelector('.refresh-btn');
+            btn.classList.add('spinning');
+            await loadVisits();
+            btn.classList.remove('spinning');
+        }
+        
+        // Helper functions
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Detect if user is on iOS - handles WhatsApp, Safari, and other browsers
+        function isIOS() {
+            const ua = navigator.userAgent;
+            const platform = navigator.platform;
+            
+            // Check for iPhone, iPad, iPod in user agent
+            const isIPhone = /iPhone/.test(ua);
+            const isIPad = /iPad/.test(ua);
+            const isIPod = /iPod/.test(ua);
+            
+            // Check for iOS in platform
+            const isIOSPlatform = /iPhone|iPad|iPod/.test(platform);
+            
+            // Check for Mac with touch (iPad Pro)
+            const isMacWithTouch = platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+            
+            // Check for iOS-specific features
+            const isWebkit = /WebKit/.test(ua) && !/Chrome/.test(ua);
+            
+            return isIPhone || isIPad || isIPod || isIOSPlatform || isMacWithTouch;
+        }
+
+        // Get map directions URL based on device
+        function getDirectionsUrl(lat, lng) {
+            const isApple = isIOS();
+            console.log('Device detection - is iOS:', isApple, 'UserAgent:', navigator.userAgent.substring(0, 50));
+            
+            if (isApple) {
+                // Use maps:// protocol for native Apple Maps app
+                return `maps://?daddr=${lat},${lng}&dirflg=d`;
+            } else {
+                return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+            }
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        }
+
+        // Load Plaud notes for a business and display in popup
+        async function loadPlaudNotesForBusiness(businessName, visitId, ghlUrl) {
+            const containerId = `plaud-notes-${visitId}`;
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            const listContainer = container.querySelector('.plaud-notes-list');
+            
+            try {
+                // Fetch notes from Plaud webhook API
+                const response = await fetch(`${PLAUD_API}/notes/by-business?name=${encodeURIComponent(businessName)}&limit=3`);
+                
+                if (!response.ok) {
+                    listContainer.innerHTML = '<div class="plaud-notes-empty">No voice notes found</div>';
+                    return;
+                }
+                
+                const data = await response.json();
+                
+                if (!data.notes || data.notes.length === 0) {
+                    listContainer.innerHTML = '<div class="plaud-notes-empty">No voice notes yet</div>';
+                    return;
+                }
+                
+                // Build note previews (2-3 lines with ellipses)
+                const notesHtml = data.notes.map(note => {
+                    const date = new Date(note.timestamp).toLocaleDateString('en-US', { 
+                        month: 'short', 
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    
+                    // Get first 2-3 lines (roughly 100-120 chars)
+                    let preview = note.summary || note.transcription || 'Voice note';
+                    preview = preview.replace(/\n/g, ' ').trim();
+                    if (preview.length > 100) {
+                        preview = preview.substring(0, 100) + '...';
+                    }
+                    
+                    // Link to GHL contact for editing
+                    const linkUrl = ghlUrl || '#';
+                    
+                    return `
+                        <a href="${linkUrl}" target="_blank" class="plaud-note-link" 
+                           style="display: block; padding: 10px; margin-bottom: 8px; background: #e3f2fd; border-left: 3px solid #2196f3; border-radius: 4px; font-size: 12px; color: #1565c0; text-decoration: none; line-height: 1.4; max-height: 60px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;"
+                           title="${escapeHtml(note.summary || '')}">
+                            ${escapeHtml(preview)}
+                            <div style="font-size: 10px; color: #666; margin-top: 4px;">${date} • ${note.hash}</div>
+                        </a>
+                    `;
+                }).join('');
+                
+                listContainer.innerHTML = notesHtml;
+                
+            } catch (error) {
+                console.warn('Failed to load Plaud notes:', error);
+                listContainer.innerHTML = '<div class="plaud-notes-empty">Unable to load notes</div>';
+            }
+        }
+        
+        // Mobile sidebar toggle
+        let sidebarExpanded = false;
+        function toggleSidebar() {
+            if (window.innerWidth > 768) return; // Only on mobile
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.getElementById('sidebarToggle');
+            sidebarExpanded = !sidebarExpanded;
+            sidebar.classList.toggle('expanded', sidebarExpanded);
+            toggle.textContent = sidebarExpanded ? '▼' : '▲';
+        }
+
+        // Auto-collapse sidebar on mobile when map is clicked
+        function collapseSidebar() {
+            if (window.innerWidth <= 768 && sidebarExpanded) {
+                toggleSidebar();
+            }
+        }
+
+        // Add Visit Modal Functions
+        let addMode = false;
+        let tempMarker = null;
+
+        function enableAddMode() {
+            addMode = true;
+            document.getElementById('clickHint').style.display = 'block';
+            map.getContainer().style.cursor = 'crosshair';
+        }
+
+        function cancelAddMode() {
+            addMode = false;
+            document.getElementById('clickHint').style.display = 'none';
+            map.getContainer().style.cursor = '';
+            if (tempMarker) {
+                map.removeLayer(tempMarker);
+                tempMarker = null;
+            }
+        }
+
+        function showAddModal(lat, lng) {
+            document.getElementById('modalLat').value = lat;
+            document.getElementById('modalLng').value = lng;
+            document.getElementById('addModal').classList.add('show');
+        }
+
+        function closeAddModal() {
+            document.getElementById('addModal').classList.remove('show');
+            cancelAddMode();
+        }
+
+        async function submitVisit() {
+            const data = {
+                businessName: document.getElementById('bizName').value,
+                contactName: document.getElementById('contactName').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                address: document.getElementById('address').value,
+                city: document.getElementById('city').value,
+                zip: document.getElementById('zip').value,
+                account_id_8498: '8498' + document.getElementById('accountIdSuffix').value,
+                lat: parseFloat(document.getElementById('modalLat').value),
+                lng: parseFloat(document.getElementById('modalLng').value),
+                status: document.getElementById('status').value,
+                notes: document.getElementById('notes').value
+            };
+
+            if (!data.businessName || !data.zip) {
+                alert('Business name and ZIP code are required');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/api/visits`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    closeAddModal();
+                    await loadVisits();
+                    alert('Visit added successfully!');
+                } else {
+                    alert('Failed to add visit. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error adding visit:', error);
+                alert('Error adding visit. Please check your connection.');
+            }
+        }
+
+        // Map click handler for adding pins
+        function onMapClick(e) {
+            // Collapse sidebar on mobile when map is tapped
+            collapseSidebar();
+
+            if (!addMode) return;
+
+            const { lat, lng } = e.latlng;
+
+            // Remove existing temp marker
+            if (tempMarker) {
+                map.removeLayer(tempMarker);
+            }
+
+            // Add temp marker
+            tempMarker = L.marker([lat, lng], {
+                icon: L.divIcon({
+                    className: 'custom-pin',
+                    html: '<div style="width: 20px; height: 20px; background: #666; border: 2px solid white; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"></div>',
+                    iconSize: [20, 20],
+                    iconAnchor: [10, 10]
+                })
+            }).addTo(map);
+
+            showAddModal(lat, lng);
+        }
+
+        // Load review queue count
+        async function loadReviewCount() {
+            try {
+                const response = await fetch(`${PLAUD_API}/reviews/stats`);
+                const data = await response.json();
+                const badge = document.getElementById('reviewBadge');
+                if (badge) {
+                    badge.textContent = data.stats.pending || 0;
+                    // Hide badge if 0
+                    badge.style.display = data.stats.pending > 0 ? 'inline-block' : 'none';
+                }
+            } catch (error) {
+                console.warn('Failed to load review count:', error);
+            }
+        }
+        
+        // Display planned visits (from visit planning page) as grey pins
+        function displayPlannedVisits() {
+            const stored = localStorage.getItem('comcast_visit_plan');
+            if (!stored) return;
+            
+            const visitPlan = JSON.parse(stored);
+            if (!visitPlan.assignments) return;
+            
+            const dayColors = {
+                mon: '#6366f1',
+                tue: '#22c55e',
+                wed: '#f59e0b',
+                thu: '#ec4899',
+                fri: '#8b5cf6'
+            };
+            
+            // Add legend for planned visits
+            const legend = document.querySelector('.legend');
+            if (legend && !document.getElementById('planned-legend')) {
+                const plannedItem = document.createElement('div');
+                plannedItem.className = 'legend-item';
+                plannedItem.id = 'planned-legend';
+                plannedItem.innerHTML = `
+                    <div class="legend-color" style="background: #9ca3af; border: 2px solid #6366f1;"></div>
+                    <span>Planned (not visited)</span>
+                `;
+                legend.insertBefore(plannedItem, legend.firstChild);
+            }
+            
+            // Display each planned visit as grey pin
+            Object.keys(visitPlan.assignments).forEach(day => {
+                const dayColor = dayColors[day];
+                const dayAssignments = visitPlan.assignments[day];
+                
+                dayAssignments.forEach((id, index) => {
+                    const p = visitPlan.prospects.find(prospect => prospect.id === id);
+                    if (!p || !p.lat || !p.lng) return;
+                    
+                    // Create grey marker with day-colored border for planned visits
+                    const marker = L.marker([p.lat, p.lng], {
+                        icon: L.divIcon({
+                            className: 'custom-pin planned-pin',
+                            html: `<div style="
+                                width: 20px;
+                                height: 20px;
+                                background: #9ca3af;
+                                border: 3px solid ${dayColor};
+                                border-radius: 50%;
+                                box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+                            "></div>`,
+                            iconSize: [20, 20],
+                            iconAnchor: [10, 10]
+                        })
+                    }).addTo(map);
+                    
+                    marker.bindPopup(`
+                        <div class="pin-popup">
+                            <h4>${escapeHtml(p.businessName)}</h4>
+                            <span class="status-badge" style="background: #f3f4f6; color: #6b7280;">PLANNED</span>
+                            <div class="info-row" style="margin-top: 10px;">
+                                <div class="label">Scheduled</div>
+                                <div class="value">${day.charAt(0).toUpperCase() + day.slice(1)} - Stop #${index + 1}</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="label">Address</div>
+                                <div class="value">${escapeHtml(p.address || '')}, ${escapeHtml(p.city)}, ${escapeHtml(p.zip)}</div>
+                            </div>
+                            ${p.lat && p.lng ? `
+                            <div style="margin: 12px 0;">
+                                <button onclick="window.location.href='${getDirectionsUrl(p.lat, p.lng)}'" 
+                                   style="display: block; width: 100%; border: none; text-align: center; background: ${isIOS() ? '#007aff' : '#4285f4'}; color: white; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer;">
+                                    ${isIOS() ? '🍎 Get Directions' : '🗺️ Get Directions'}
+                                </button>
+                            </div>` : ''}
+                            <div style="margin-top: 10px; padding: 10px; background: #f3f4f6; border-radius: 6px; font-size: 12px; color: #6b7280;">
+                                💡 Visit this business and update status after your visit.
+                            </div>
+                        </div>
+                    `);
+                    
+                    markers.push(marker);
+                });
+            });
+            
+            // Show notification
+            const totalPlanned = Object.values(visitPlan.assignments).reduce((sum, day) => sum + day.length, 0);
+            if (totalPlanned > 0) {
+                console.log(`Loaded ${totalPlanned} planned visits from visit plan`);
+            }
+        }
+        
+        // Initialize
+        initMap();
+        loadVisits();
+        loadReviewCount();
+        
+        // Load planned visits after a short delay to ensure map is ready
+        setTimeout(displayPlannedVisits, 500);
+
+        // Add click handler
+        map.on('click', onMapClick);
+
+        // Auto-refresh every 60 seconds
+        setInterval(loadVisits, 60000);
+        setInterval(loadReviewCount, 60000);
+    </script>
+
+    <!-- Add Visit Modal -->
+    <div class="modal-overlay" id="addModal">
+        <div class="modal">
+            <h2>📍 Add Business Visit</h2>
+            <input type="hidden" id="modalLat">
+            <input type="hidden" id="modalLng">
+
+            <div class="form-group">
+                <label>Business Name *</label>
+                <input type="text" id="bizName" placeholder="e.g., Joe's Plumbing">
+            </div>
+
+            <div class="form-group">
+                <label>Contact Name</label>
+                <input type="text" id="contactName" placeholder="e.g., John Smith">
+            </div>
+
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="tel" id="phone" placeholder="253-555-0123">
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="contact@business.com">
+            </div>
+
+            <div class="form-group">
+                <label>Address</label>
+                <input type="text" id="address" placeholder="123 Main St">
+            </div>
+
+            <div class="form-group">
+                <label>City</label>
+                <input type="text" id="city" placeholder="Tacoma" value="Tacoma">
+            </div>
+
+            <div class="form-group">
+                <label>ZIP Code *</label>
+                <input type="text" id="zip" placeholder="98404">
+            </div>
+
+            <div class="form-group">
+                <label>📋 Account ID</label>
+                <div style="display: flex; gap: 0; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+                    <div style="background: #f5f5f5; color: #999; padding: 10px 12px; font-size: 14px; font-weight: 500; border-right: 1px solid #ddd; user-select: none;">8498</div>
+                    <input type="text" id="accountIdSuffix" placeholder="12345" style="flex: 1; border: none; padding: 10px 12px; font-size: 14px; outline: none;">
+                </div>
+                <input type="hidden" id="accountId8498">
+            </div>
+
+            <div class="form-group">
+                <label>Status</label>
+                <select id="status">
+                    <option value="interested">Interested</option>
+                    <option value="followup">Follow-up</option>
+                    <option value="not-interested">Not Interested</option>
+                    <option value="called">Called Only</option>
+                    <option value="customer">Customer</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Notes</label>
+                <textarea id="notes" placeholder="Any additional notes..."></textarea>
+            </div>
+
+            <div class="modal-buttons">
+                <button class="btn-secondary" onclick="closeAddModal()">Cancel</button>
+                <button class="btn-primary" onclick="submitVisit()">Save Visit</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Auth Check -->
+    <script>
+        // Check auth status and update nav
+        fetch('/api/user')
+            .then(r => r.json())
+            .then(data => {
+                const nav = document.getElementById('authNav');
+                if (data.authenticated) {
+                    nav.innerHTML = `
+                        <span style="color: #94a3b8; margin-right: 15px;">${data.user.displayName}</span>
+                        <a href="/admin/skills">Admin</a>
+                        <a href="/auth/logout" style="color: #ef4444;">Log out</a>
+                    `;
+                }
+            })
+            .catch(() => {
+                // Not authenticated, keep default
+            });
+    </script>
+</body>
+</html>
