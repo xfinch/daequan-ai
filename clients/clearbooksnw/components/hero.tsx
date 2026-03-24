@@ -67,6 +67,16 @@ export function Hero() {
       ref={heroRef}
       className="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-brand"
     >
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.2)_0%,transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.15)_0%,transparent_50%)]" />
+      </div>
+
+      {/* Floating Elements */}
+      <div className="absolute top-1/4 left-10 w-20 h-20 rounded-full bg-brand-400/20 blur-xl animate-float" />
+      <div className="absolute bottom-1/3 right-20 w-32 h-32 rounded-full bg-cyan-400/20 blur-2xl animate-float" style={{ animationDelay: "2s" }} />
+
       {/* Content */}
       <div className="container-custom relative z-10 pt-32 pb-20">
         <div className="max-w-4xl mx-auto text-center">
