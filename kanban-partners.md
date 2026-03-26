@@ -1,10 +1,39 @@
-# Partners Pipeline — Comcast Affiliate Program
+# Comcast Pipeline — Partners & Prospects
 
-Track potential partners from initial contact through signed affiliate agreement.
+Track both direct sales prospects and referral partners.
 
 **Partner vs. Prospect:**
 - **Prospect** = Direct sales target (business that might buy Comcast services)
 - **Partner** = Referral source (someone who sends you prospects)
+
+---
+
+## 🎯 DIRECT PROSPECTS
+
+Sales targets for Comcast Business services.
+
+### Active Prospects
+
+| Business | Contact | Address | ZIP | Status | Products | MRR | Notes | Date Added |
+|----------|---------|---------|-----|--------|----------|-----|-------|------------|
+| **ACI-Home** | **Martin Kaelli** (Controller) | 3208 28th St Ct E | 98443 | 🟡 Analysis | Internet + Phone | $250 | Resident Owned Parks. Cold call blitz. | 2026-03-25 |
+| **East and West** | **Tom** | 2414 N Proctor St | 98407 | 🟢 Existing Customer | Bill Analysis | — | Asian restaurant. Tom wasn't in. Open to bill analysis. Phone/email in café system. | 2026-03-25 |
+| **Valo Wine** | **Nathan** (not in) | — | — | 🔴 New | — | — | Nathan wasn't in. Spoke to temporary shop attendant. | 2026-03-25 |
+| **Brown Family Vineyards** | **Gutierrez** (Affiliated) / **Mike** (Gatekeeper) | — | — | 🔴 New | — | — | Gatekeeper Mike. Gutierrez affiliated with the vineyard. | 2026-03-25 |
+
+### Prospect Stages
+- 🔴 **New** — Just discovered, no contact yet
+- 🟡 **Analysis** — Evaluating options, in consideration
+- 🟢 **Existing Customer** — Already has Comcast (upsell/cross-sell/bill analysis)
+- 🔵 **Proposal** — Quote sent, negotiating
+- ✅ **Closed Won** — Signed contract
+- ❌ **Closed Lost** — Chose competitor or declined
+
+---
+
+# Partners Pipeline — Comcast Affiliate Program
+
+Track potential partners from initial contact through signed affiliate agreement.
 
 **Partner Types:**
 - **Paid Partner** = Signed Comcast affiliate agreement, earns commissions (max $10K/year)
@@ -282,4 +311,37 @@ Bidirectional referral partnership. Your clients need accounting services → Tr
 
 ---
 
-*Last Updated: 2026-03-19*
+---
+
+## Partner Profile: Martin Kaelli — ACI-Home (Resident Owned Parks)
+
+**Business:** ACI-Home (Resident Owned Parks)  
+**Contact:** Martin Kaelli (Senior Accountant / Controller)  
+**Phone:** 916-947-6997  
+**Email:** accounting@aci-home.com  
+**Address:** 3208 28th St Ct E, Tacoma, WA 98443  
+
+**Current Status:** 🎯 **Prospect** — Analysis Stage  
+**Partner Type:** N/A — Direct Sales Target  
+**Products:** Internet + Phone  
+**MRR:** ~$250  
+
+**Source:** Cold Calling Blitz (March 2026)  
+
+**Why He's Strategic:**
+- **Controller Role** — Financial decision-maker for property management company
+- **Resident Owned Parks** — Potential multi-location opportunity (manufactured home communities)
+- **Active Need** — Currently evaluating Internet + Phone services
+- **Tacoma Territory** — 98443 ZIP in your coverage area
+
+**Pipeline Stage:** Analysis (evaluating options)  
+
+**Next Steps:**
+- [ ] Follow up on analysis stage — timeline for decision?
+- [ ] Qualify full scope (how many properties/locations?)
+- [ ] Schedule site visit at 3208 28th St Ct E
+- [ ] Proposal for Internet + Phone bundle
+
+---
+
+*Last Updated: 2026-03-25*
