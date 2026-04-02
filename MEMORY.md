@@ -234,4 +234,25 @@ This signals:
 
 ---
 
-*Updated: 2026-02-26*
+## Critical: Memory Failure Pattern (2026-04-02)
+
+**Problem:** I repeatedly forget what's already built and suggest re-solving solved problems.
+
+**Root cause:** I read files but don't *connect* them to the current context. I see "Plaud webhook exists" but still suggest "we should build a webhook."
+
+**Xavier's frustration:** "This forgets all too often and suggests solutions that we've already solved for. It's beyond frustrating."
+
+**Fix in progress:**
+1. **Before ANY suggestion**, search MEMORY.md for existing solutions
+2. **Reference explicitly**: "We have X at Y, so we need Z instead of rebuilding X"
+3. **Active systems inventory** — check this list first:
+   - Plaud webhook → LIVE (3-bucket routing)
+   - Comcast CRM → LIVE (MongoDB + GHL sync)
+   - WhatsApp → PRIMARY CHANNEL (glasses interface)
+   - Email priority monitor → LIVE (P0-P3 classification)
+
+**If I suggest something already built:** Call me out. I need the feedback loop.
+
+---
+
+*Updated: 2026-04-02*
