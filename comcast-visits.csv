@@ -1,0 +1,54 @@
+"Business Name","Contact Name",Phone,Email,Address,City,State,ZIP,Status,"Visit Date",Notes
+"Raab Construction","Jeff Midley (Owner), Liz (Gatekeeper)",206-408-7460,,"9917 SW 178th St Suite 101",Vashon,WA,98070,interested,"2026-03-31 21:15:08","Construction company. Owner Jeff Midley. Gatekeeper Liz - spunky, friendly, prefers animals (cats/dogs) over people. Likes organization and paperwork."
+"Kathy's Corner","Kathy Wheaton (Owner)",206-463-9416,,"18025 Vashon Highway SW",Vashon,WA,98070,customer,"2026-03-31 20:58:54","Inherited customer from previous rep. Island's biggest nursery and landscaping business. Owner ~73-74 years old. Upgrading from HFC to EoF (Ethernet over Fiber). Pre-contract phase - sales engineer Susan validating service availability. Migration to fiber connection in progress."
+"Standard Goods","JR (Gatekeeper), Geoff & Kristina (Owners)",,,"17624 Vashon Highway SW",Vashon,WA,98070,interested,"2026-03-31 20:54:59","Gatekeeper JR, owners Geoff and Kristina. Phone number not obtained during visit. Need to follow up for contact info and assess business needs."
+"Vashon Strong","Tana (Gatekeeper)",206-999-3802,,"17630 Vashon Highway SW",Vashon,WA,98070,interested,"2026-03-31 20:48:01","Personal fitness and strength training gym. Gatekeeper Tana was training someone during visit. Need to follow up for decision maker contact and assess business internet needs."
+"Vashon Island Bakery","Isabelle (Gatekeeper), Elijah (Maker), Andy","+1 (206) 463-1441",,"17050 Vashon Highway SW",Vashon,WA,98070,interested,"2026-03-31 17:37:50","Intermittent speed issues reported. Isabelle could not connect to Wi-Fi with her phone. Opportunity to fix connectivity issues. Need to follow up and get email address."
+"Red Hot",Elliot,,,"2914 N 6th St",Tacoma,WA,98406,followup,"2026-03-28 02:49:20","2026-03-27: Spoke with Elliot - slammed busy, came off rude but was just busy/didn't apologize. Following up with manager tomorrow morning about Mariners TV channel special. Existing customer - info in café system."
+"Brown Family Vineyards","Gutierrez (affiliated) / Mike (gatekeeper)",,,,,WA,98407,new,"2026-03-25 21:37:55","Gatekeeper: Mike. Gutierrez affiliated with the vineyard. Need to gather more info."
+"Easton West",Tom,,,"2414 N Proctor St",Tacoma,WA,98407,existing_customer,"2026-03-25 21:13:32","Asian food restaurant. Gatekeeper: Rachel. Decision maker: Tom (was not in). Currently has Comcast. Declined new service but open to bill analysis. Phone/email in café system."
+"ACI-Home (Resident Owned Parks)","Martin Kaelli",+19169476997,accounting@aci-home.com,"3208 28th St Ct E",Tacoma,WA,98443,analysis,"2026-03-25 19:44:04","Senior Accountant/Controller. Internet + Phone services needed. MRR ~$250. Cold calling blitz prospect."
+"Knapps Restaurant","Billy Brewer",,,"Proctor District",Tacoma,WA,98407,interested,"2026-03-16 22:43:24","Triple Play package. Stage 3 - Second Review completed."
+"KO Construction","Keith Osmonson",,,,Tacoma,WA,98404,interested,"2026-03-16 22:43:24","High-intent upsell. Stage 4 - Proposal Sent."
+"Compass Rose","Tanya Brooks",253-773-0077,,"3815 North 26th Street",Tacoma,WA,98407,interested,"2026-03-16 22:43:24","13-year Proctor District staple. Need email for follow-up."
+"Proctor Shoe Repair",Henry,253-883-9136,,"3817 1/2 North 26th Street",Tacoma,WA,98407,interested,"2026-03-16 22:43:24","Existing Comcast customer. Need email for newsletter."
+"Crave Cookies","Dalton Ohlson",253-260-7417,,"17526 Meridian Avenue East, Suite B202",Puyallup,WA,98375,interested,"2026-03-16 22:43:24","Personal: 253-457-6486. Multi-business owner."
+"Endeavor Eye Center","Dr. Kevin / Dr. Connie",,,,Tacoma,WA,98407,interested,"2026-03-16 22:43:24","Gatekeeper: Cher. Need to reach doctors."
+"Proctor Family Dentistry","Greg Dent",253-759-6800,,"2614 North Adams Street",Tacoma,WA,98407,interested,"2026-03-16 22:43:24","Gatekeeper: Andy. Office Manager: Jennifer."
+"test contact","test contact",+12535559999,test@example.com,"",Tacoma,WA,"",interested,"2026-03-16 22:42:32","Synced from GHL. Tags: "
+"New Era Cleaners",yesi,+12537593501,fuzzywuzzy@q.com,"2621 N Proctor Street, Tacoma, WA 98407",Tacoma,WA,98407,interested,"2026-03-16 22:42:31","Synced from GHL. Tags: comcast-prospect, pipeline-sync"
+Lapis,emily,+12535074969,hello@lapistacoma.com,"3823 N 26th Street, Tacoma, WA 98407",Tacoma,WA,98407,interested,"2026-03-16 22:42:31","Synced from GHL. Tags: comcast-prospect, pipeline-sync"
+"pamela phelps","pamela phelps",+12537594238,pamelaphelps@proctorart.com,"3811 North 26th Street",Tacoma,WA,98407,interested,"2026-03-16 22:42:31","Synced from GHL. Tags: hot-lead, existing-comcast, retention, proctor-district, art-gallery"
+"liz bright","liz bright",+12537592884,chirpandco@hotmail.com,"3803 North 26th Street",Tacoma,WA,98407,followup,"2026-03-16 22:42:31","Synced from GHL. Tags: prospect, follow-up-later, proctor-district, existing-comcast, wild-bird-store"
+"Pizzeria Fondi","chris olsen",+12538516666,chris@fondi.com,"2515 N. Proctor St, Tacoma, WA 98406",Tacoma,WA,98406,interested,"2026-03-16 22:42:30","Synced from GHL. Tags: comcast-prospect, pipeline-sync"
+"Smart PNW","james roddy",+12534480456,james@smartpnw.com,"",Puyallup,WA,"",interested,"2026-03-16 22:42:30","Synced from GHL. Tags: comcast-prospect, pipeline-sync"
+"Peaks and Pints","ron swarner",+12533285621,ron.swarner@peaksandpints.com,"3816 N 26th St, Ste B, Tacoma, WA 98407",Tacoma,WA,98407,interested,"2026-03-16 22:42:30","Synced from GHL. Tags: comcast-prospect, pipeline-sync"
+"Fleet Feet","wade & julie pannell",+12532728890,jeremiah@fleetfeettacoma.com,"3812 N 26th St, Tacoma, WA 98407",Tacoma,WA,98407,interested,"2026-03-16 22:42:30","Synced from GHL. Tags: comcast-prospect, pipeline-sync"
+"Tacoma Glass Gallery","jeannine sigafoos","",tgsglass@gmail.com,"2621 N Proctor Street, Tacoma, WA 98407",Tacoma,WA,98407,interested,"2026-03-16 22:42:30","Synced from GHL. Tags: comcast-prospect, pipeline-sync"
+"Tacoma Public Utilities","Jamar Sample",318-840-7676,,,Tacoma,WA,98403,partner,"2026-03-05 22:15:47","Engineer at TPU. Strategic referral partner - has visibility into new power connections = new businesses needing internet. Will refer business and bring Xavier on site visits. Non-paid partner. Email to be collected later."
+"The Legacy Apartments",,253-383-8741,,"115 North Yakima Avenue",Tacoma,WA,98403,followup,"2026-03-05 20:19:52","Appointment scheduled for 11:30 AM, arrived at 12:00 PM (running late). Door locked, could not get in. Need to call and follow up to reschedule. Alternate phone from sign: 253-627-8888. Website: legacyrent.com - Multi-family housing with 1/2/3 bedroom units."
+"KO Construction","Keith Osmonson",206-304-7816,keith@ko-construct.com,"10404 36th Street East",Edgewood,WA,98371,interested,"2026-03-05 18:27:56","Residential Comcast customer running business from home. Experiencing latency and dropped connections at peak times due to best effort residential service. High intent upsell opportunity - wants dedicated business internet. License: #KOCONC772D7"
+"The Snug Pub","Andrea & Scott Evans",,thesnugpub@yahoo.com,"2717 North Proctor Street",Tacoma,WA,98407,interested,"2026-03-04 22:50:29","New restaurant in Proctor district (next door to Knapp's Restaurant). Met Scott today - specifically wants FIBER for media needs. Needs: 1+ phone line, multiple TVs, internet-capable devices. Husband Scott mentioned they want fiber due to amount of media they plan to put in. Business just started. | FOLLOW-UP: Task created in GHL for March 6th - Fiber quote follow-up."
+"Franco the Tailor","Franco & Giovanni","(253) 627-2306","","15 Tacoma Avenue North",Tacoma,WA,98403,interested,"2026-02-25 23:43:31","Met both owners - Franco and Giovanni (relatives).
+Small Italian tailor shop, family owned since 1961.
+Recently closed by Cheyenne (previous rep) - they knew her by name.
+Introduced myself as Xavier, new point of contact replacing Cheyenne.
+Very nice people, good rapport established.
+Follow-up in 2 weeks to introduce Comcast Business Mobile.
+Position as benefit that small business owners have over consumers."
+"The Powder Room Champagne Bar & Restaurant","Cam Settle",253-720-1493,thepowderroomtacoma@gmail.com,"12 N Tacoma Ave",Tacoma,WA,98403,followup,"2026-02-25 23:41:36","Visited Wed ~3:10 PM. Owner Cam Settle (female) out of town.
+Gatekeeper: Kelly Ray.
+Cam returns next week. Follow-up scheduled for next week or week after.
+Business: Champagne bar and restaurant.
+Website: thepowderroomchampagnebar.com"
+"Morrell's Cleaners","Aaron Morrell","(253) 572-7121","","608 N. 1st St",Tacoma,WA,98403,followup,"2026-02-25 23:09:43","Visited ~3 PM. Owner Aaron Morrell not present.
+Gatekeeper: Rigo (spelled R-I-G-O).
+Best time to return: Morning (verified with knockout system).
+Follow-up scheduled for morning when Aaron is present.
+Second location: 3712 9th St SW, Puyallup, WA 98373, (253) 845-2503
+Website: laundryday.com"
+"Triple Knock","J (Manager), Katy (Gatekeeper)",253-503-0982,,"2713 6th Ave",Tacoma,WA,98406,interested,"2026-02-25 02:44:06","Gatekeeper: Katy. Manager: J (initial only, need full name). Hours: Daily 12PM-2AM, Sat 4PM-2AM. Need email address. Established business on 6th Ave."
+"Valhalla Coffee Co","Anjie Hoskinson",253-381-6856,cafe@valhallacoffee.com,"3918 6th Ave",Tacoma,WA,98406,followup,"2026-02-25 01:02:01","Coffee shop visit. Anjie Hoskinson - part owner (card shows General Manager but she is now part owner). Personal cell: 253-381-6856. Follow up scheduled for 2 days (Feb 26). GHL sync pending - need new credentials."
+"Boat Sales NW","Kern Dillard",253-993-0205,Kern@BoatSalesNW.com,"821 Dock Street",Tacoma,WA,98402,interested,"2026-02-24 23:09:49","Prospect stated no Comcast nearby, but property has 25 tenants with Comcast service. Opportunity to educate on existing serviceability. Yacht broker/USCG Master Captain."
+"Test Business For GHL","Test Contact",253-555-0200,"","789 Test Ave",Tacoma,WA,98404,interested,"2026-02-19 23:33:05","Testing GHL sync"
+"Test Plumbing","John Doe",253-555-0199,"","456 Main St",Tacoma,WA,98404,interested,"2026-02-19 21:19:38","Test from API"
