@@ -51,6 +51,7 @@
 | **Ice Cream Social** | **Iris All** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Max, need to reach Iris (decision maker) | 2026-03-12 |
 | **Pizzeria Fondi (Multi-Location)** | **Chris Olsen** | **2 - Needs Analysis** | 🔥 Hot Lead | 2-3 locations, wants fiber + mobile quotes, newsletter feature | 2026-03-12 |
 | **Morrell's Cleaners** | **Mariah Morrell** | **2 - Needs Analysis** | 🔥 Hot Lead | Met Mariah (decision-maker, 28yo) and Aaron. 2 locations, want fiber. | 2026-04-08 |
+| **Shake Shake Shake** | **Sarah** | **1 - Initial Contact** | 🟡 AT&T | Recently switched to AT&T — win-back if early in contract. | 2026-04-08 |
 | **Indo Asian Street Eatery** | **Andrew** | **1 - Initial Contact** | 🟡 Warm | Wants bill review meeting. Owner in AZ. Follow up next week. | 2026-04-08 |
 | **Coco Nail Lounge** | **Long** | **1 - Initial Contact** | ⚪ Cold | Lam (gatekeeper) — shared middle school. Long busy. | 2026-04-08 |
 | **Rankos Pharmacy** | **Greg** | **1 - Initial Contact** | 🟡 Lightcurve | Former Rexall owner, has internet+phone with Lightcurve. | 2026-04-08 |
@@ -386,6 +387,19 @@
   - Newsletter feature (marketing value)
   - Referral partner through Proctor District Association
   - Community leader — reputation boost by association
+
+**Shake Shake Shake — Sarah**
+- **Stage:** 1st Stage (Initial Contact) 🟡
+- **Status:** 🟡 Win-back opportunity — recently switched
+- **Business Type:** Restaurant (Shake Shake Shake)
+- **Location:** 124 N. Tacoma Ave, Tacoma, WA 98403
+- **Phone:** 253-507-4060
+- **Decision Maker:** Sarah
+- **Current Provider:** AT&T (recently switched)
+- **Contract Status:** Unknown how early in contract
+- **Context:** Met Sarah (decision-maker). Recently transferred/changed to AT&T. Possible win-back depending on contract timing and early termination fees.
+- **Next Step:** Research contract status — if early enough, present win-back offer
+- **Opportunity:** Win-back from AT&T — timing dependent
 
 **Indo Asian Street Eatery — Andrew**
 - **Stage:** 1st Stage (Initial Contact) 🟡
