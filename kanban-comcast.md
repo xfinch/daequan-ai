@@ -51,6 +51,7 @@
 | **Ice Cream Social** | **Iris All** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Max, need to reach Iris (decision maker) | 2026-03-12 |
 | **Pizzeria Fondi (Multi-Location)** | **Chris Olsen** | **2 - Needs Analysis** | 🔥 Hot Lead | 2-3 locations, wants fiber + mobile quotes, newsletter feature | 2026-03-12 |
 | **Morrell's Cleaners** | **Mariah Morrell** | **2 - Needs Analysis** | 🔥 Hot Lead | Met Mariah (decision-maker, 28yo) and Aaron. 2 locations, want fiber. | 2026-04-08 |
+| **Rankos Pharmacy** | **Greg** | **1 - Initial Contact** | 🟡 Lightcurve | Former Rexall owner, has internet+phone with Lightcurve. | 2026-04-08 |
 | **3D Dimensional PT** | **Paul Drumheller** | **1 - Initial Contact** | 🔥 Hot Lead | With Spectrum, wants triple play if price right. Appt next Tuesday. | 2026-04-08 |
 | **Chris Brown (Attorney)** | **Chris Brown** | **1 - Initial Contact** | 🟡 Referral | James Roddy referral — fiber for home office, needs manager approval | 2026-03-17 |
 
@@ -383,6 +384,22 @@
   - Newsletter feature (marketing value)
   - Referral partner through Proctor District Association
   - Community leader — reputation boost by association
+
+**Rankos Pharmacy — Greg**
+- **Stage:** 1st Stage (Initial Contact) 🟡
+- **Status:** 🟡 Lightcurve customer — nurture opportunity
+- **Business Type:** Pharmacy (established 1929, three generations)
+- **Location:** 101 N. Tacoma Avenue, Tacoma, WA 98403 (next to Stadium High School)
+- **Phone:** 253.383.2411
+- **Fax:** 572.4329
+- **Email:** info@rankospharmacy.com
+- **Website:** rankospharmacy.com
+- **Owner:** Greg (former Rexall Drugs owner)
+- **Gatekeeper:** Alicia
+- **Current Provider:** Lightcurve (internet + phone)
+- **Context:** Met Alicia (gatekeeper). Greg is one of the last owners of local Rexall Drugs pharmacy. Established business since 1929. Has front register, internet and phone with Lightcurve. Not a strong lead but conversation logged.
+- **Next Step:** Long-term nurture — monitor for dissatisfaction with Lightcurve
+- **Opportunity:** Established local business with pharmacy needs — potential switch if Lightcurve disappoints
 
 **3D Dimensional Physical Therapy — Paul Drumheller**
 - **Stage:** 1st Stage (Initial Contact) 🔥
