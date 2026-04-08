@@ -51,7 +51,7 @@
 | **Ice Cream Social** | **Iris All** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Max, need to reach Iris (decision maker) | 2026-03-12 |
 | **Pizzeria Fondi (Multi-Location)** | **Chris Olsen** | **2 - Needs Analysis** | 🔥 Hot Lead | 2-3 locations, wants fiber + mobile quotes, newsletter feature | 2026-03-12 |
 | **Morrell's Cleaners** | **Mariah Morrell** | **2 - Needs Analysis** | 🔥 Hot Lead | Met Mariah (decision-maker, 28yo) and Aaron. 2 locations, want fiber. | 2026-04-08 |
-| **Asian Street Eatery** | **Andrew** | **1 - Initial Contact** | 🟡 Warm | Wants bill review meeting. Owner in AZ. Follow up next week. | 2026-04-08 |
+| **Indo Asian Street Eatery** | **Andrew** | **1 - Initial Contact** | 🟡 Warm | Wants bill review meeting. Owner in AZ. Follow up next week. | 2026-04-08 |
 | **Coco Nail Lounge** | **Long** | **1 - Initial Contact** | ⚪ Cold | Lam (gatekeeper) — shared middle school. Long busy. | 2026-04-08 |
 | **Rankos Pharmacy** | **Greg** | **1 - Initial Contact** | 🟡 Lightcurve | Former Rexall owner, has internet+phone with Lightcurve. | 2026-04-08 |
 | **3D Dimensional PT** | **Paul Drumheller** | **1 - Initial Contact** | 🔥 Hot Lead | With Spectrum, wants triple play if price right. Appt next Tuesday. | 2026-04-08 |
@@ -387,10 +387,10 @@
   - Referral partner through Proctor District Association
   - Community leader — reputation boost by association
 
-**Asian Street Eatery — Andrew**
+**Indo Asian Street Eatery — Andrew**
 - **Stage:** 1st Stage (Initial Contact) 🟡
 - **Status:** 🟡 Warm lead — bill review requested
-- **Business Type:** Restaurant (Asian Street Eatery)
+- **Business Type:** Restaurant (Indo Asian Street Eatery)
 - **Location:** 1108 N. Tacoma Ave, Tacoma, WA 98403
 - **Phone:** 253-503-3527
 - **Decision Maker:** Andrew
