@@ -50,7 +50,7 @@
 | **Smart PNW** | **James Roddy** | **2 - Needs Analysis** | 🔥 Hot Lead | 1-2 BVE + 7 mobile lines, quote needed | 2026-03-12 |
 | **Ice Cream Social** | **Iris All** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Max, need to reach Iris (decision maker) | 2026-03-12 |
 | **Pizzeria Fondi (Multi-Location)** | **Chris Olsen** | **2 - Needs Analysis** | 🔥 Hot Lead | 2-3 locations, wants fiber + mobile quotes, newsletter feature | 2026-03-12 |
-| **Morrell's Cleaners** | **Maria Morrell** | **2 - Needs Analysis** | 🔥 Hot Lead | Met Maria (decision-maker, 28yo) and Aaron. 2 locations, want fiber. | 2026-04-08 |
+| **Morrell's Cleaners** | **Mariah Morrell** | **2 - Needs Analysis** | 🔥 Hot Lead | Met Mariah (decision-maker, 28yo) and Aaron. 2 locations, want fiber. | 2026-04-08 |
 | **Chris Brown (Attorney)** | **Chris Brown** | **1 - Initial Contact** | 🟡 Referral | James Roddy referral — fiber for home office, needs manager approval | 2026-03-17 |
 
 ### Prospect Details
@@ -383,21 +383,21 @@
   - Referral partner through Proctor District Association
   - Community leader — reputation boost by association
 
-**Morrell's Cleaners — Maria Morrell**
+**Morrell's Cleaners — Mariah Morrell**
 - **Stage:** 2nd Stage (Needs Analysis) 🔥
 - **Status:** 🔥 HOT LEAD — Met decision-maker, 2 locations, fiber interest
 - **Business Type:** Dry Cleaners (2 locations)
 - **Tacoma Location:** 608 N. 1st St, Tacoma, WA 98403
 - **Puyallup Location:** 3712 9th St SW, Puyallup, WA 98373
 - **Phone:** (253) 572-7121
-- **Decision Maker:** Maria Morrell (28 years old, being groomed to take over with her brother)
+- **Decision Maker:** Mariah Morrell (28 years old, being groomed to take over with her brother)
 - **Also Met:** Aaron Morrell (dad, super nice family)
 - **Current Service:** Comcast (existing customer)
 - **Interest:** Fiber connection for both locations
 - **Context:** Maria has worked there since she was 12. Family business with succession plan in place. Both locations need fiber exploration.
 - **Next Step:**
   1. Check fiber availability at both addresses
-  2. Schedule needs analysis meeting with Maria
+  2. Schedule needs analysis meeting with Mariah
   3. Prepare quote for fiber services
 - **Opportunity:** Existing Comcast customer with expansion needs — 2-location deal potential
 
