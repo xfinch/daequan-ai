@@ -51,7 +51,7 @@
 | **Ice Cream Social** | **Iris All** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Max, need to reach Iris (decision maker) | 2026-03-12 |
 | **Pizzeria Fondi (Multi-Location)** | **Chris Olsen** | **2 - Needs Analysis** | 🔥 Hot Lead | 2-3 locations, wants fiber + mobile quotes, newsletter feature | 2026-03-12 |
 | **Morrell's Cleaners** | **Mariah Morrell** | **2 - Needs Analysis** | 🔥 Hot Lead | Met Mariah (decision-maker, 28yo) and Aaron. 2 locations, want fiber. | 2026-04-08 |
-| **Hawthorne and Honey** | **Sarah Butts** | **1 - Initial Contact** | 🟡 New | Rochelle (gatekeeper). Next door to Knapp's. | 2026-04-08 |
+| **Hawthorne and Honey** | **Sarah Butters** | **1 - Initial Contact** | 🟡 New | Rochelle (gatekeeper). Next door to Knapp's. | 2026-04-08 |
 | **Teaching Toys & Books** | **Melissa** | **1 - Initial Contact** | 🟡 New | Vita (gatekeeper). Toy store — "Best in the Galaxy!" | 2026-04-08 |
 | **Narrows Brewing** | **Marie** | **1 - Initial Contact** | 🟡 New | Stephan (gatekeeper/bartender). Marie handles internet. | 2026-04-08 |
 | **La Boba** | **Tuan** | **1 - Initial Contact** | 🟡 New | Moises/Preston (gatekeepers). Tuan owns nail salon upstairs. | 2026-04-08 |
@@ -399,13 +399,13 @@
   - Referral partner through Proctor District Association
   - Community leader — reputation boost by association
 
-**Hawthorne and Honey — Sarah Butts**
+**Hawthorne and Honey — Sarah Butters**
 - **Stage:** 1st Stage (Initial Contact) 🟡
 - **Status:** 🟡 New contact — gatekeeper reached
 - **Business Type:** Retail (likely home goods/gift shop)
 - **Location:** 2703 N. Proctor St, Tacoma, WA 98407
 - **Phone:** 253-590-1113
-- **Owner:** Sarah Butts
+- **Owner:** Sarah Butters
 - **Gatekeeper:** Rochelle
 - **Location Note:** Right next door to Knapp's Restaurant
 - **Context:** Met Rochelle (gatekeeper). Sarah Butts is the owner. Close proximity to Knapp's (existing prospect) — potential for neighborhood bundling or referrals.
