@@ -51,6 +51,7 @@
 | **Ice Cream Social** | **Iris All** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Max, need to reach Iris (decision maker) | 2026-03-12 |
 | **Pizzeria Fondi (Multi-Location)** | **Chris Olsen** | **2 - Needs Analysis** | 🔥 Hot Lead | 2-3 locations, wants fiber + mobile quotes, newsletter feature | 2026-03-12 |
 | **Morrell's Cleaners** | **Mariah Morrell** | **2 - Needs Analysis** | 🔥 Hot Lead | Met Mariah (decision-maker, 28yo) and Aaron. 2 locations, want fiber. | 2026-04-08 |
+| **Chalet Bowl** | **Billy** | **1 - Initial Contact** | 🟡 New | Dave (gatekeeper), Billy (owner) not in. Bowling alley. | 2026-04-08 |
 | **Shake Shake Shake** | **Sarah** | **1 - Initial Contact** | 🟡 AT&T | Recently switched to AT&T — win-back if early in contract. | 2026-04-08 |
 | **Indo Asian Street Eatery** | **Andrew** | **1 - Initial Contact** | 🟡 Warm | Wants bill review meeting. Owner in AZ. Follow up next week. | 2026-04-08 |
 | **Coco Nail Lounge** | **Long** | **1 - Initial Contact** | ⚪ Cold | Lam (gatekeeper) — shared middle school. Long busy. | 2026-04-08 |
@@ -252,14 +253,19 @@
   - Significant revenue opportunity if upgraded to enterprise-level solutions
   - Expansion services as they open new locations
 
-**Chalet Bowl**
-- **Stage:** 0 - Door Knock ⚪
-- **Status:** Stopped by, closed — no contact made
+**Chalet Bowl — Billy**
+- **Stage:** 1st Stage (Initial Contact) 🟡
+- **Status:** 🟡 New contact — gatekeeper reached
 - **Business Type:** Bowling alley / Entertainment
 - **Location:** 3806 North 26th Street, Tacoma, WA 98407 (Proctor District)
-- **Visit Date:** 2026-03-12
-- **Context:** Stopped by during field visit. Location was closed. Logging for accurate door-knock tracking (all visits counted, not just contacts).
-- **Next Step:** Return at later time when open
+- **Phone:** 253-752-5200
+- **Owner:** Billy
+- **Gatekeeper:** Dave
+- **Visit History:** 
+  - First visit (2026-03-12): Closed, no contact
+  - Second visit (2026-04-08): Open, met Dave
+- **Context:** Second visit successful — caught them open. Dave is gatekeeper, Billy (owner) wasn't in today.
+- **Next Step:** Return to meet Billy (owner)
 - **Opportunity:** Entertainment venue — potential for business internet, Wi-Fi for customers, TV services
 
 **Manny's Place**
