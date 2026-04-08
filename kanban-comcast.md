@@ -51,6 +51,7 @@
 | **Ice Cream Social** | **Iris All** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Max, need to reach Iris (decision maker) | 2026-03-12 |
 | **Pizzeria Fondi (Multi-Location)** | **Chris Olsen** | **2 - Needs Analysis** | 🔥 Hot Lead | 2-3 locations, wants fiber + mobile quotes, newsletter feature | 2026-03-12 |
 | **Morrell's Cleaners** | **Mariah Morrell** | **2 - Needs Analysis** | 🔥 Hot Lead | Met Mariah (decision-maker, 28yo) and Aaron. 2 locations, want fiber. | 2026-04-08 |
+| **Coco Nail Lounge** | **Long** | **1 - Initial Contact** | ⚪ Cold | Lam (gatekeeper) — shared middle school. Long busy. | 2026-04-08 |
 | **Rankos Pharmacy** | **Greg** | **1 - Initial Contact** | 🟡 Lightcurve | Former Rexall owner, has internet+phone with Lightcurve. | 2026-04-08 |
 | **3D Dimensional PT** | **Paul Drumheller** | **1 - Initial Contact** | 🔥 Hot Lead | With Spectrum, wants triple play if price right. Appt next Tuesday. | 2026-04-08 |
 | **Chris Brown (Attorney)** | **Chris Brown** | **1 - Initial Contact** | 🟡 Referral | James Roddy referral — fiber for home office, needs manager approval | 2026-03-17 |
@@ -384,6 +385,19 @@
   - Newsletter feature (marketing value)
   - Referral partner through Proctor District Association
   - Community leader — reputation boost by association
+
+**Coco Nail Lounge — Long**
+- **Stage:** 1st Stage (Initial Contact) ⚪
+- **Status:** ⚪ Cold lead — initial contact made
+- **Business Type:** Nail Salon
+- **Location:** 7 N Tacoma Ave, Tacoma, WA 98403
+- **Phone:** (253) 302-5654
+- **Hours:** M-F 9am-7pm, Sat 9am-6pm, Sun 10am-6pm
+- **Owner:** Long
+- **Gatekeeper:** Lam
+- **Context:** Met Lam (gatekeeper) — shared middle school connection decades apart. Long (owner) was with a client. Not a strong lead but conversation logged.
+- **Next Step:** Follow up with Long when he's available
+- **Opportunity:** Nail salon — potential for business internet + Wi-Fi for customers
 
 **Rankos Pharmacy — Greg**
 - **Stage:** 1st Stage (Initial Contact) 🟡
