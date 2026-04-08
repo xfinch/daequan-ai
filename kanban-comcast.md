@@ -51,6 +51,7 @@
 | **Ice Cream Social** | **Iris All** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Max, need to reach Iris (decision maker) | 2026-03-12 |
 | **Pizzeria Fondi (Multi-Location)** | **Chris Olsen** | **2 - Needs Analysis** | 🔥 Hot Lead | 2-3 locations, wants fiber + mobile quotes, newsletter feature | 2026-03-12 |
 | **Morrell's Cleaners** | **Mariah Morrell** | **2 - Needs Analysis** | 🔥 Hot Lead | Met Mariah (decision-maker, 28yo) and Aaron. 2 locations, want fiber. | 2026-04-08 |
+| **New Construction (3820 N 26th)** | **Justin** | **0 - Door Knock** | ⚪ Future | Fiber in building. Property manager TBD. Log for follow-up. | 2026-04-08 |
 | **Chalet Bowl** | **Billy** | **1 - Initial Contact** | 🟡 New | Dave (gatekeeper), Billy (owner) not in. Bowling alley. | 2026-04-08 |
 | **Shake Shake Shake** | **Sarah** | **1 - Initial Contact** | 🟡 AT&T | Recently switched to AT&T — win-back if early in contract. | 2026-04-08 |
 | **Indo Asian Street Eatery** | **Andrew** | **1 - Initial Contact** | 🟡 Warm | Wants bill review meeting. Owner in AZ. Follow up next week. | 2026-04-08 |
@@ -393,6 +394,20 @@
   - Newsletter feature (marketing value)
   - Referral partner through Proctor District Association
   - Community leader — reputation boost by association
+
+**New Construction Site (3820 N 26th St) — Justin**
+- **Stage:** 0 - Door Knock ⚪
+- **Status:** ⚪ Future opportunity — construction in progress
+- **Business Type:** New construction (tenant TBD)
+- **Location:** 3820 N. 26th St, Tacoma, WA 98407
+- **Contact:** Justin (superintendent for general contractor)
+- **Gatekeeper:** Justin
+- **Fiber Status:** ✅ Fiber will be in the building already
+- **Property Manager:** Unknown at this time
+- **Tenants:** Not yet identified
+- **Context:** Met Justin (superintendent). Building will have fiber infrastructure. No tenants or property manager identified yet. No phone/email collected.
+- **Next Step:** Monitor building progress, return when tenants are known
+- **Opportunity:** Future tenant acquisition — building pre-wired for fiber is an advantage
 
 **Shake Shake Shake — Sarah**
 - **Stage:** 1st Stage (Initial Contact) 🟡
