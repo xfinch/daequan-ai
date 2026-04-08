@@ -51,6 +51,7 @@
 | **Ice Cream Social** | **Iris All** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Max, need to reach Iris (decision maker) | 2026-03-12 |
 | **Pizzeria Fondi (Multi-Location)** | **Chris Olsen** | **2 - Needs Analysis** | 🔥 Hot Lead | 2-3 locations, wants fiber + mobile quotes, newsletter feature | 2026-03-12 |
 | **Morrell's Cleaners** | **Mariah Morrell** | **2 - Needs Analysis** | 🔥 Hot Lead | Met Mariah (decision-maker, 28yo) and Aaron. 2 locations, want fiber. | 2026-04-08 |
+| **3D Dimensional PT** | **Paul Drumheller** | **1 - Initial Contact** | 🔥 Hot Lead | With Spectrum, wants triple play if price right. Appt next Tuesday. | 2026-04-08 |
 | **Chris Brown (Attorney)** | **Chris Brown** | **1 - Initial Contact** | 🟡 Referral | James Roddy referral — fiber for home office, needs manager approval | 2026-03-17 |
 
 ### Prospect Details
@@ -383,6 +384,26 @@
   - Referral partner through Proctor District Association
   - Community leader — reputation boost by association
 
+**3D Dimensional Physical Therapy — Paul Drumheller**
+- **Stage:** 1st Stage (Initial Contact) 🔥
+- **Status:** 🔥 HOT LEAD — Spectrum switch-back opportunity
+- **Business Type:** Physical Therapy & Sports Conditioning
+- **Location:** 1 Tacoma Avenue North #103, Tacoma, WA 98403
+- **Phone:** (253) 274-1884
+- **Fax:** 253-274-1885
+- **Website:** www.3dimensionalpt.com
+- **Owner:** Paul Drumheller (MPT, OCS, SCS, CSCS, TPI Certified)
+- **Current Provider:** Spectrum (switched over a year ago)
+- **Pain Points:** Not happy with Spectrum TV service
+- **Interest:** Internet + TV + Voice (triple play) from Comcast — if price is right
+- **Appointment:** Scheduled for next Tuesday afternoon — **NEED TO CONFIRM**
+- **Context:** Paul is open to coming back to Comcast. Price-sensitive but dissatisfied with current provider. Credentials indicate established, professional practice.
+- **Next Step:**
+  1. Confirm Tuesday appointment
+  2. Prepare competitive triple play quote
+  3. Emphasize TV service quality vs Spectrum
+- **Opportunity:** Win-back from competitor — strong intent if pricing competitive
+
 **Morrell's Cleaners — Mariah Morrell**
 - **Stage:** 2nd Stage (Needs Analysis) 🔥
 - **Status:** 🔥 HOT LEAD — Met decision-maker, 2 locations, fiber interest
@@ -394,7 +415,7 @@
 - **Also Met:** Aaron Morrell (dad, super nice family)
 - **Current Service:** Comcast (existing customer)
 - **Interest:** Fiber connection for both locations
-- **Context:** Maria has worked there since she was 12. Family business with succession plan in place. Both locations need fiber exploration.
+- **Context:** Mariah has worked there since she was 12. Family business with succession plan in place. Both locations need fiber exploration.
 - **Next Step:**
   1. Check fiber availability at both addresses
   2. Schedule needs analysis meeting with Mariah
