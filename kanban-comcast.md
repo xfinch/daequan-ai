@@ -411,7 +411,7 @@
 - **Owner:** Eric (21 years old)
 - **Family:** Mom Luisa (from Peru) — great connection with Xavier
 - **Setup:** 80 sq ft office, sells in-store + online (eBay, etc.)
-- **Student:** Tacoma CC — Marketing & Finance
+- **Student:** University of Washington Tacoma — Marketing & Finance
 - **Context:** Impressed with Eric's entrepreneurial drive. Advised him to get low-cost internet to provide Wi-Fi for market vendors and broadcast his business to Wi-Fi users. He agreed to call for internet setup.
 - **Next Step:** Follow up with Eric to set up internet service
 - **Opportunity:** Young entrepreneur with growth mindset — potential for business internet + Wi-Fi marketing play
