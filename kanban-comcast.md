@@ -51,6 +51,7 @@
 | **Ice Cream Social** | **Iris All** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Max, need to reach Iris (decision maker) | 2026-03-12 |
 | **Pizzeria Fondi (Multi-Location)** | **Chris Olsen** | **2 - Needs Analysis** | 🔥 Hot Lead | 2-3 locations, wants fiber + mobile quotes, newsletter feature | 2026-03-12 |
 | **Morrell's Cleaners** | **Mariah Morrell** | **2 - Needs Analysis** | 🔥 Hot Lead | Met Mariah (decision-maker, 28yo) and Aaron. 2 locations, want fiber. | 2026-04-08 |
+| **Connect the Brick** | **Eric** | **1 - Initial Contact** | 🔥 Hot | 21yo LEGO entrepreneur. Advised on Wi-Fi for market. | 2026-04-08 |
 | **Hawthorne and Honey** | **Sarah Butters** | **1 - Initial Contact** | 🟡 New | Rochelle (gatekeeper). Next door to Knapp's. | 2026-04-08 |
 | **Teaching Toys & Books** | **Melissa** | **1 - Initial Contact** | 🟡 New | Vita (gatekeeper). Toy store — "Best in the Galaxy!" | 2026-04-08 |
 | **Narrows Brewing** | **Marie** | **1 - Initial Contact** | 🟡 New | Stephan (gatekeeper/bartender). Marie handles internet. | 2026-04-08 |
@@ -399,6 +400,22 @@
   - Referral partner through Proctor District Association
   - Community leader — reputation boost by association
 
+**Connect the Brick — Eric**
+- **Stage:** 1st Stage (Initial Contact) 🔥
+- **Status:** 🔥 HOT LEAD — Young entrepreneur, ready to buy
+- **Business Type:** LEGO Store / Retail ("World's smallest LEGO® store?")
+- **Location:** 3901 N. 27th St, Tacoma, WA 98407
+- **Phone:** 253.349.9292
+- **Email:** eric@connectthebrick.com
+- **Website:** connectthebrick.com
+- **Owner:** Eric (21 years old)
+- **Family:** Mom Luisa (from Peru) — great connection with Xavier
+- **Setup:** 80 sq ft office, sells in-store + online (eBay, etc.)
+- **Student:** Tacoma CC — Marketing & Finance
+- **Context:** Impressed with Eric's entrepreneurial drive. Advised him to get low-cost internet to provide Wi-Fi for market vendors and broadcast his business to Wi-Fi users. He agreed to call for internet setup.
+- **Next Step:** Follow up with Eric to set up internet service
+- **Opportunity:** Young entrepreneur with growth mindset — potential for business internet + Wi-Fi marketing play
+
 **Hawthorne and Honey — Sarah Butters**
 - **Stage:** 1st Stage (Initial Contact) 🟡
 - **Status:** 🟡 New contact — gatekeeper reached
@@ -408,8 +425,8 @@
 - **Owner:** Sarah Butters
 - **Gatekeeper:** Rochelle
 - **Location Note:** Right next door to Knapp's Restaurant
-- **Context:** Met Rochelle (gatekeeper). Sarah Butts is the owner. Close proximity to Knapp's (existing prospect) — potential for neighborhood bundling or referrals.
-- **Next Step:** Contact Sarah Butts to discuss business services
+- **Context:** Met Rochelle (gatekeeper). Sarah Butters is the owner. Close proximity to Knapp's (existing prospect) — potential for neighborhood bundling or referrals.
+- **Next Step:** Contact Sarah Butters to discuss business services
 - **Opportunity:** Retail shop in Proctor District — potential for business internet, Wi-Fi for customers
 
 **Teaching Toys and Books — Melissa**
