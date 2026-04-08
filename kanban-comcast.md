@@ -51,6 +51,7 @@
 | **Ice Cream Social** | **Iris All** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Max, need to reach Iris (decision maker) | 2026-03-12 |
 | **Pizzeria Fondi (Multi-Location)** | **Chris Olsen** | **2 - Needs Analysis** | 🔥 Hot Lead | 2-3 locations, wants fiber + mobile quotes, newsletter feature | 2026-03-12 |
 | **Morrell's Cleaners** | **Mariah Morrell** | **2 - Needs Analysis** | 🔥 Hot Lead | Met Mariah (decision-maker, 28yo) and Aaron. 2 locations, want fiber. | 2026-04-08 |
+| **La Boba** | **Tuan** | **1 - Initial Contact** | 🟡 New | Moises/Preston (gatekeepers). Tuan owns nail salon upstairs. | 2026-04-08 |
 | **New Construction (3820 N 26th)** | **Justin** | **0 - Door Knock** | ⚪ Future | Fiber in building. Property manager TBD. Log for follow-up. | 2026-04-08 |
 | **Chalet Bowl** | **Billy** | **1 - Initial Contact** | 🟡 New | Dave (gatekeeper), Billy (owner) not in. Bowling alley. | 2026-04-08 |
 | **Shake Shake Shake** | **Sarah** | **1 - Initial Contact** | 🟡 AT&T | Recently switched to AT&T — win-back if early in contract. | 2026-04-08 |
@@ -394,6 +395,19 @@
   - Newsletter feature (marketing value)
   - Referral partner through Proctor District Association
   - Community leader — reputation boost by association
+
+**La Boba — Tuan**
+- **Stage:** 1st Stage (Initial Contact) 🟡
+- **Status:** 🟡 New contact — gatekeepers reached
+- **Business Type:** Bubble Tea / Cafe
+- **Location:** 2614 North Proctor St, Tacoma, WA 98407
+- **Phone:** 253-223-6871
+- **Decision Maker:** Tuan
+- **Gatekeepers:** Moises and Preston
+- **Additional Intel:** Tuan also owns the nail salon upstairs (multi-business owner)
+- **Context:** Met Moises and Preston (gatekeepers). Tuan (owner) was not in today. Multi-business owner — potential for bundled services across both businesses.
+- **Next Step:** Return to meet Tuan (decision-maker)
+- **Opportunity:** Multi-business owner (boba shop + nail salon) — potential for bundled internet/phone across both locations
 
 **New Construction Site (3820 N 26th St) — Justin**
 - **Stage:** 0 - Door Knock ⚪
