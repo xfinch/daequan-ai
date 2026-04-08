@@ -51,6 +51,7 @@
 | **Ice Cream Social** | **Iris All** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Max, need to reach Iris (decision maker) | 2026-03-12 |
 | **Pizzeria Fondi (Multi-Location)** | **Chris Olsen** | **2 - Needs Analysis** | 🔥 Hot Lead | 2-3 locations, wants fiber + mobile quotes, newsletter feature | 2026-03-12 |
 | **Morrell's Cleaners** | **Mariah Morrell** | **2 - Needs Analysis** | 🔥 Hot Lead | Met Mariah (decision-maker, 28yo) and Aaron. 2 locations, want fiber. | 2026-04-08 |
+| **Daryl's Brewing** | **Marie** | **1 - Initial Contact** | 🟡 New | Stephan (gatekeeper/bartender). Marie handles internet. | 2026-04-08 |
 | **La Boba** | **Tuan** | **1 - Initial Contact** | 🟡 New | Moises/Preston (gatekeepers). Tuan owns nail salon upstairs. | 2026-04-08 |
 | **New Construction (3820 N 26th)** | **Justin** | **0 - Door Knock** | ⚪ Future | Fiber in building. Property manager TBD. Log for follow-up. | 2026-04-08 |
 | **Chalet Bowl** | **Billy** | **1 - Initial Contact** | 🟡 New | Dave (gatekeeper), Billy (owner) not in. Bowling alley. | 2026-04-08 |
@@ -395,6 +396,18 @@
   - Newsletter feature (marketing value)
   - Referral partner through Proctor District Association
   - Community leader — reputation boost by association
+
+**Daryl's Brewing on Proctor — Marie**
+- **Stage:** 1st Stage (Initial Contact) 🟡
+- **Status:** 🟡 New contact — gatekeeper reached
+- **Business Type:** Brewery / Restaurant
+- **Location:** 2620 N. Proctor St, Tacoma, WA 98407
+- **Phone:** 253-327-1500
+- **Main Contact:** Marie (handles all internet stuff)
+- **Gatekeeper:** Stephan (bartender)
+- **Context:** Met Stephan (gatekeeper/bartender). Marie is the main contact for all internet-related decisions.
+- **Next Step:** Contact Marie to discuss current internet services and needs
+- **Opportunity:** Brewery/restaurant — potential for business internet, Wi-Fi for customers, TV for sports/entertainment
 
 **La Boba — Tuan**
 - **Stage:** 1st Stage (Initial Contact) 🟡
