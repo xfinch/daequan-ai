@@ -566,8 +566,8 @@
 - **Fax:** 253-274-1885
 - **Website:** www.3dimensionalpt.com
 - **Owner:** Paul Drumheller (MPT, OCS, SCS, CSCS, TPI Certified)
-- **Current Provider:** Spectrum (switched over a year ago)
-- **Pain Points:** Not happy with Spectrum TV service
+- **Current Provider:** Lightcurve (switched over a year ago)
+- **Pain Points:** Not happy with Lightcurve TV service
 - **Interest:** Internet + TV + Voice (triple play) from Comcast — if price is right
 - **Appointment:** Scheduled for next Tuesday afternoon — **NEED TO CONFIRM**
 - **Context:** Paul is open to coming back to Comcast. Price-sensitive but dissatisfied with current provider. Credentials indicate established, professional practice.
