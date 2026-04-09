@@ -51,6 +51,7 @@
 | **Ice Cream Social** | **Iris All** | **1 - Initial Contact** | 🟡 Gatekeeper Contact | Met Max, need to reach Iris (decision maker) | 2026-03-12 |
 | **Pizzeria Fondi (Multi-Location)** | **Chris Olsen** | **2 - Needs Analysis** | 🔥 Hot Lead | 2-3 locations, wants fiber + mobile quotes, newsletter feature | 2026-03-12 |
 | **Morrell's Cleaners** | **Mariah Morrell** | **2 - Needs Analysis** | 🔥 Hot Lead | Met Mariah (decision-maker, 28yo) and Aaron. 2 locations, want fiber. | 2026-04-08 |
+| **Purpose Boutique** | **Kristy Johnson** | **1 - Initial Contact** | 🔥🔥 MAJOR | 7 locations! Anna V (GM) at Tacoma Men's. Multi-location deal. | 2026-04-08 |
 | **Connect the Brick** | **Eric** | **1 - Initial Contact** | 🔥 Hot | 21yo LEGO entrepreneur. Advised on Wi-Fi for market. | 2026-04-08 |
 | **Hawthorne and Honey** | **Sarah Butters** | **1 - Initial Contact** | 🟡 New | Rochelle (gatekeeper). Next door to Knapp's. | 2026-04-08 |
 | **Teaching Toys & Books** | **Melissa** | **1 - Initial Contact** | 🟡 New | Vita (gatekeeper). Toy store — "Best in the Galaxy!" | 2026-04-08 |
@@ -399,6 +400,24 @@
   - Newsletter feature (marketing value)
   - Referral partner through Proctor District Association
   - Community leader — reputation boost by association
+
+**Purpose Boutique — Kristy Johnson (Kristy 🐝 Johnson)**
+- **Stage:** 1st Stage (Initial Contact) 🔥🔥 MAJOR ACCOUNT
+- **Status:** 🔥🔥 HOT LEAD — 7-location multi-location opportunity
+- **Business Type:** Boutique / Retail (Tacoma Men's Purpose Boutique)
+- **This Location:** 5111 Grand Loop Suite A1, Tacoma, WA 98407
+- **Phone:** (253) 292-0508
+- **Email:** tacoma.men@purposeboutique.com
+- **Website:** purposeboutique.com
+- **Owner:** Kristy Johnson (Kristy 🐝 Johnson)
+- **General Manager (Tacoma):** Anna V. (Victor) — Stylist
+- **Locations:** 7 total — Tacoma, Bellevue, Issaquah, Redmond area (all Northwest)
+- **Context:** Met Anna V. (GM/Stylist) at Tacoma Men's location. Kristy Johnson is the owner of all 7 locations. This is a significant multi-location retail account.
+- **Next Step:** 
+  1. Research all 7 locations
+  2. Reach out to Kristy Johnson (owner) for account review
+  3. Propose bundled services across all locations
+- **Opportunity:** MAJOR multi-location account — 7 boutiques across the Northwest. Potential for significant revenue with bundled internet/phone services.
 
 **Connect the Brick — Eric**
 - **Stage:** 1st Stage (Initial Contact) 🔥
