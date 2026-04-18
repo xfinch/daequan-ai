@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectDB, Visit } from '@/lib/db';
 import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
 
 // This endpoint syncs all visits from local SQLite to MongoDB
 export async function POST(request: NextRequest) {
@@ -12,14 +11,16 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    // Open SQLite database
-    const db = await open({
-      filename: '/Users/xfinch/.openclaw/workspace/comcast-crm/comcast.db',
-      driver: sqlite3.Database
-    });
-
-    // Fetch all visits from SQLite
-    const visits = await db.all(`
+    // Open SQLite database using sqlite3 directly
+    const dbPath = '/Users/xfinch/.openclaw/workspace/comcast-crm/comcast.db';
+    
+    // Fetch all visits from SQLite using promise wrapper
+    const visits: any[] = await new Promise((resolve, reject) => {
+      const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READONLY, (err) => {
+        if (err) reject(err);
+      });
+      
+      db.all(`
       SELECT 
         id,
         ghl_contact_id,
@@ -37,10 +38,13 @@ export async function POST(request: NextRequest) {
         visit_date,
         notes
       FROM business_visits
-      ORDER BY visit_date DESC
-    `);
-
-    await db.close();
+      ORDER BY visit_date DESC`, (err, rows) => {
+        if (err) reject(err);
+        else resolve(rows || []);
+      });
+      
+      db.close();
+    });
 
     // Connect to MongoDB
     await connectDB();
