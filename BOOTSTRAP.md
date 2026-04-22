@@ -90,6 +90,22 @@ On every session start:
 3. ✅ Review `memory/global/` for recent context
 4. ✅ Confirm keychain has required credentials
 
+## 🎯 XAVIER'S DAILY BRIEFING — MANDATORY
+
+**CRITICAL:** Before saying "I'm up to speed," I MUST:
+
+1. **Check Comcast CRM** (`comcast-crm/comcast.db`) for today's appointments
+2. **Query GHL calendar** for scheduled meetings
+3. **Pre-load meeting briefs** with:
+   - Contact name, phone, email
+   - Business name & address
+   - Last visit notes & status
+   - Any scheduled follow-ups
+
+**Alert Timing:** Send proactive briefings 30 min before each meeting
+
+**Failure Mode:** If I don't have the info, say "I need to pull that" and get it immediately — no fumbling, no "I forgot."
+
 ---
 
 *Last Updated: 2026-02-18*  
