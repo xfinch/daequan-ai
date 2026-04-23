@@ -126,7 +126,7 @@ Track who referred whom — this becomes your partner pipeline.
 | Non-Paid Partner Prospects | 2 (Tracy, Jamar) |
 | Paid Partner Prospects | 0 |
 | Prospects with Partner Potential | 1 (Anya Evans) |
-| Active Non-Paid Partners | 1 (Tara — already spoke, in communication) |
+| Active Non-Paid Partners | 2 (Tara, Manny) |
 | Signed Paid Partners | 0 |
 | Not a Fit | 1 (Vance — no-show) |
 | Meetings Scheduled | 1 (Tracy — Monday March 23, 10 AM Teams) |
@@ -143,6 +143,7 @@ People who make introductions because connecting people is part of their busines
 | Vance Richardson | Logic Staffing | Former Comcast BAE, knows IT pros who need service | 🎯 Prospecting |
 | Tara Groody | GreenHaven Interactive | Client Success Manager, connects people professionally | 🎯 Prospecting |
 | **Jamar Sample** | **Tacoma Public Utilities** | **Engineer with visibility into new power needs → new businesses | ✅ **Active Partner** |
+| **Manny Maldonado** | **WaFd Bank** | **Division Sales Manager/VP — banking relationships, business development referrals | ✅ **Active Partner** |
 
 ### Paid Partners (Affiliates)
 Signed Comcast affiliates with formal agreement, earn commissions (up to $10K/year).
@@ -238,6 +239,36 @@ Former Comcast BAE with IT network seemed promising, but unreliable follow-throu
 6. **Formalize partnership** (affiliate agreement if appropriate)
 
 **Key Insight:** Most partners start as happy customers. Anya is a prospect today, potential partner tomorrow.
+
+---
+
+## Partner Profile: Manny Maldonado ⭐ BANKING PARTNER
+
+**Business:** WaFd Bank  
+**Contact:** Manny Maldonado (Division Sales Manager, Vice President)  
+**Address:** 4221 Bridgeport Way W, University Place, WA 98466  
+**Phone:** 253-589-8329  
+**Email:** manny.maldonado@wafd.com  
+
+**Current Status:** ✅ **Active Non-Paid Partner** (Met 2026-04-23)  
+**Partner Type:** Non-Paid Partner (Referral Source)  
+
+**Why He's Strategic:**
+- **Banking Relationships** — VP/Division Sales Manager with visibility into business accounts and growth
+- **Business Development Focus** — Actively building referral networks
+- **University Place Presence** — Geographic expansion into 98466 territory
+- **Warm Introduction Pipeline** — Banking clients often need connectivity as they scale
+
+**Meeting Note:**
+- **Date:** April 23, 2026
+- **Duration:** 1 hour
+- **Topic:** Business development and bank relationship building
+- **Outcome:** Partnership established for mutual referrals
+
+**Next Steps:**
+- [ ] Stay in regular contact (quarterly check-ins)
+- [ ] Share Comcast referral materials
+- [ ] Reciprocate with business introductions when possible
 
 ---
 
@@ -344,4 +375,4 @@ Bidirectional referral partnership. Your clients need accounting services → Tr
 
 ---
 
-*Last Updated: 2026-03-25*
+*Last Updated: 2026-04-23*
