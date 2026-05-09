@@ -9,11 +9,24 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-// Configuration
-const GHL_TOKEN = process.env.GHL_COMCAST_TOKEN || process.env.GHL_TTL_TOKEN;
-const GHL_LOCATION_ID = process.env.GHL_COMCAST_LOCATION_ID || 'nPubo6INanVq94ovAQNW';
-const GOOGLE_VISION_KEY = process.env.GOOGLE_VISION_API_KEY;
-const OPENAI_KEY = process.env.OPENAI_API_KEY;
+// Configuration - read from launchctl environment
+const GHL_TOKEN = getEnv('GHL_COMCAST_TOKEN') || getEnv('GHL_TTL_TOKEN');
+const GHL_LOCATION_ID = getEnv('GHL_COMCAST_LOCATION_ID') || 'nPubo6INanVq94ovAQNW';
+const GOOGLE_VISION_KEY = getEnv('GOOGLE_VISION_API_KEY');
+const OPENAI_KEY = getEnv('OPENAI_API_KEY');
+
+/**
+ * Get environment variable from launchctl (macOS) or process.env
+ */
+function getEnv(name) {
+  try {
+    const { execSync } = require('child_process');
+    const value = execSync(`launchctl getenv ${name}`, { encoding: 'utf8' }).trim();
+    return value || process.env[name];
+  } catch {
+    return process.env[name];
+  }
+}
 
 // Required fields for complete entry
 const REQUIRED_FIELDS = ['name', 'phone', 'email', 'address'];
