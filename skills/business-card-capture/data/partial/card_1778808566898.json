@@ -1,0 +1,23 @@
+{
+  "id": "card_1778808566898",
+  "timestamp": "2026-05-15T01:29:26.898Z",
+  "data": {
+    "name": "Accounting Solutions",
+    "business": "F: 253-251-0688",
+    "title": null,
+    "phone": "(253) 278-0709",
+    "email": "lori@empoweraccountingsolutions.net",
+    "address": {
+      "street": "405 W Stewart Ave",
+      "city": null,
+      "state": null,
+      "zip": "98371"
+    },
+    "website": "empoweraccountingsolutions.net"
+  },
+  "missing": [
+    "address.city",
+    "address.state"
+  ],
+  "status": "pending"
+}

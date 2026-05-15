@@ -144,6 +144,8 @@ People who make introductions because connecting people is part of their busines
 | Tara Groody | GreenHaven Interactive | Client Success Manager, connects people professionally | 🎯 Prospecting |
 | **Jamar Sample** | **Tacoma Public Utilities** | **Engineer with visibility into new power needs → new businesses | ✅ **Active Partner** |
 | **Manny Maldonado** | **WaFd Bank** | **Division Sales Manager/VP — banking relationships, business development referrals | ✅ **Active Partner** |
+| **John Park** | **US Bank** | **Small Business Specialist — banking relationships, active connector, has immediate referral (AT&T switcher) | ✅ **Active Partner** |
+| **Lori Johnson** | **Empower Accounting Solutions** | **CPA — sees clients starting businesses, making big moves, perfect referral timing | 🎯 **Prospecting** |
 
 ### Paid Partners (Affiliates)
 Signed Comcast affiliates with formal agreement, earn commissions (up to $10K/year).
@@ -375,4 +377,112 @@ Bidirectional referral partnership. Your clients need accounting services → Tr
 
 ---
 
-*Last Updated: 2026-04-23*
+## Partner Profile: John Park ⭐ BANKING PARTNER (NEW)
+
+**Business:** US Bank — Federal Way Office  
+**Contact:** John Park (Small Business Specialist, NMLS 1523538)  
+**Address:** 1436 S 312th St, Federal Way, WA 98003  
+**Phone:** (206) 578-2718  
+**Email:** john.park1@usbank.com  
+**Website:** usbank.com  
+
+**Current Status:** ✅ **Active Non-Paid Partner** (Met 2026-05-14)  
+**Partner Type:** Non-Paid Partner (Referral Source)  
+**Source:** East Pierce County Business Expo
+
+**Why He's Strategic:**
+- **Small Business Specialist** — Works with business owners daily, sees their growth and needs
+- **Active Connector** — Wants to introduce you to new businesses, "business consultant at heart"
+- **Immediate Referral** — Has a lady looking to switch from AT&T to Comcast mobile (ready now)
+- **East Coast Network** — Temple University grad (Philadelphia), different network than yours
+- **Orting Community Ties** — Former KeyBank branch manager in Orting, well-connected in that market
+- **Banking Relationships** — US Bank business clients = potential Comcast prospects
+
+**The Opportunity:**
+John is a natural connector who makes introductions as part of his business development approach. He's actively looking for ways to help his clients and connections — and now he has "an outlet for his mobile customers." This is a warm referral pipeline.
+
+**Meeting Note:**
+- **Date:** May 14, 2026
+- **Event:** East Pierce County Business Expo
+- **Connection:** Common ground (East Coast/Temple University), networking established
+- **Outcome:** Partnership established, immediate referral in hand
+
+**Active Referral:**
+- **Prospect:** Lady looking to switch from AT&T
+- **Need:** Mobile services
+- **Status:** Ready for introduction
+
+**US Bank Offers (What John Can Provide Your Clients):**
+- **Gold Business Checking:** $900 bonus (deposit $10K + qualifying activities)
+- **Platinum Business Checking:** $1,500 bonus (deposit $25K + qualifying activities)
+- **Business Term Loan:** Rates as low as 7.49% (major purchases, upgrades, technology)
+- **Business Line of Credit:** Prime + 3.49% (working capital, inventory, marketing)
+- **Card Payment Processing:** $400 statement credit (activate within 60 days, settle $5K)
+- **Business Credit Cards:** $600+ intro bonus (cash back, points, or low APR options)
+- **Additional:** Bill pay, payroll, enhanced payment promotions
+
+**Cross-Referral Opportunity:**
+Your clients need banking → John. His clients need connectivity → You. Mutual value exchange.
+
+**Assets:**
+- Business card: `skills/business-card-capture/john_park_card.jpg`
+- Rate sheet: `skills/business-card-capture/john_park_rate_sheet.jpg`
+
+**Next Steps:**
+- [ ] Follow up on AT&T switcher referral immediately
+- [ ] Stay in regular contact (monthly check-ins)
+- [ ] Share Comcast referral materials and commission structure
+- [ ] Explore Orting market opportunities together
+- [ ] Reciprocate with business introductions when possible
+- [ ] Reference his offers when your clients need banking services
+
+---
+
+---
+
+## Partner Profile: Lori Johnson, CPA ⭐ ACCOUNTING PARTNER (NEW)
+
+**Business:** Empower Accounting Solutions  
+**Contact:** Lori Johnson, CPA  
+**Address:** 405 W Stewart Ave, Suite C, Puyallup, WA 98371  
+**Phone:** (253) 278-0709  
+**Fax:** 253-251-0688  
+**Email:** lori@empoweraccountingsolutions.net  
+**Website:** empoweraccountingsolutions.net  
+
+**Current Status:** 🎯 **Prospecting** (Brief contact at Expo)  
+**Partner Type:** Non-Paid Partner (Referral Source)  
+**Source:** East Pierce County Business Expo (2026-05-14)
+
+**Why She's Strategic:**
+- **CPA = First Mover Advantage** — Sees clients BEFORE they start businesses (when they need accounting setup)
+- **Perfect Timing** — New businesses need internet/phone at formation stage
+- **Puyallup Market** — 98371 territory expansion
+- **Big Moves = Big Needs** — Clients making major business decisions come to her first
+- **Accountant Network** — Other CPAs, bookkeepers, financial advisors in her circle
+
+**The Opportunity:**
+Accountants are the first professionals new business owners call. Lori sees people at the exact moment they're forming entities, securing funding, and planning infrastructure. That's when they need Comcast Business services. She's a pre-launch referral source.
+
+**Meeting Note:**
+- **Date:** May 14, 2026
+- **Event:** East Pierce County Business Expo
+- **Context:** Brief interaction — she was with magician Jeff Evans
+- **Interruption:** John Park pulled me away before full conversation
+- **Outcome:** Card exchanged, partner potential identified
+
+**Connection Details:**
+- Met alongside: Jeff Evans (magician)
+- Location: Puyallup (new geographic territory)
+- Professional credential: CPA
+
+**Next Steps:**
+- [ ] Follow up with email/phone within 48 hours
+- [ ] Schedule coffee meeting to explore partnership
+- [ ] Discuss her client onboarding process — when do they need connectivity?
+- [ ] Position: "I help businesses get connected when they're starting up"
+- [ ] Offer reciprocal referrals (your clients need CPAs)
+
+---
+
+*Last Updated: 2026-05-14*

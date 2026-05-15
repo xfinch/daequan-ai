@@ -1,0 +1,26 @@
+{
+  "id": "card_1778808350612",
+  "timestamp": "2026-05-15T01:25:50.613Z",
+  "data": {
+    "name": null,
+    "business": null,
+    "title": null,
+    "phone": "(253) 259-6973",
+    "email": "beckytravel@icloud.com",
+    "address": {
+      "street": null,
+      "city": null,
+      "state": null,
+      "zip": null
+    },
+    "website": "icloud.com"
+  },
+  "missing": [
+    "name",
+    "address.street",
+    "address.city",
+    "address.state",
+    "address.zip"
+  ],
+  "status": "pending"
+}

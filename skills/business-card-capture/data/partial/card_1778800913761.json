@@ -1,0 +1,28 @@
+{
+  "id": "card_1778800913761",
+  "timestamp": "2026-05-14T23:21:53.761Z",
+  "data": {
+    "name": null,
+    "business": "SIGN AND CELEBRATE STUDIOS",
+    "title": null,
+    "phone": null,
+    "email": null,
+    "address": {
+      "street": null,
+      "city": null,
+      "state": null,
+      "zip": null
+    },
+    "website": null
+  },
+  "missing": [
+    "name",
+    "phone",
+    "email",
+    "address.street",
+    "address.city",
+    "address.state",
+    "address.zip"
+  ],
+  "status": "pending"
+}

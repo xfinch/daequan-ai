@@ -1,0 +1,25 @@
+{
+  "id": "card_1778804784387",
+  "timestamp": "2026-05-15T00:26:24.387Z",
+  "data": {
+    "name": "Randy Skeen",
+    "business": null,
+    "title": "Owner",
+    "phone": "(253) 691-0770",
+    "email": "septic@gmail.com",
+    "address": {
+      "street": null,
+      "city": null,
+      "state": null,
+      "zip": null
+    },
+    "website": "gmail.com"
+  },
+  "missing": [
+    "address.street",
+    "address.city",
+    "address.state",
+    "address.zip"
+  ],
+  "status": "pending"
+}
