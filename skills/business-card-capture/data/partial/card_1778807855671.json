@@ -1,0 +1,28 @@
+{
+  "id": "card_1778807855671",
+  "timestamp": "2026-05-15T01:17:35.672Z",
+  "data": {
+    "name": null,
+    "business": "LIMITED-TIME",
+    "title": null,
+    "phone": null,
+    "email": null,
+    "address": {
+      "street": null,
+      "city": null,
+      "state": null,
+      "zip": null
+    },
+    "website": null
+  },
+  "missing": [
+    "name",
+    "phone",
+    "email",
+    "address.street",
+    "address.city",
+    "address.state",
+    "address.zip"
+  ],
+  "status": "pending"
+}

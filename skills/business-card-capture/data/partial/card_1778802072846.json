@@ -1,0 +1,27 @@
+{
+  "id": "card_1778802072846",
+  "timestamp": "2026-05-14T23:41:12.846Z",
+  "data": {
+    "name": "Federal Way",
+    "business": "FEDERAL WAY",
+    "title": null,
+    "phone": null,
+    "email": null,
+    "address": {
+      "street": null,
+      "city": null,
+      "state": null,
+      "zip": null
+    },
+    "website": "federalwaypm.org"
+  },
+  "missing": [
+    "phone",
+    "email",
+    "address.street",
+    "address.city",
+    "address.state",
+    "address.zip"
+  ],
+  "status": "pending"
+}

@@ -1,0 +1,25 @@
+{
+  "id": "card_1778807430122",
+  "timestamp": "2026-05-15T01:10:30.122Z",
+  "data": {
+    "name": "James Turner",
+    "business": null,
+    "title": "Owner",
+    "phone": "(253) 606-2635",
+    "email": "bbqsaucebyjt@gmail.com",
+    "address": {
+      "street": null,
+      "city": null,
+      "state": null,
+      "zip": null
+    },
+    "website": "gmail.com"
+  },
+  "missing": [
+    "address.street",
+    "address.city",
+    "address.state",
+    "address.zip"
+  ],
+  "status": "pending"
+}

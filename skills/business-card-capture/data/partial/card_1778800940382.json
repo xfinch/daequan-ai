@@ -1,0 +1,22 @@
+{
+  "id": "card_1778800940382",
+  "timestamp": "2026-05-14T23:22:20.382Z",
+  "data": {
+    "name": null,
+    "business": "MICRO WEDDINGS",
+    "title": "CHERISE KLOSNER - CEO",
+    "phone": "(253) 237-2362",
+    "email": "signandcelebrate@gmail.com",
+    "address": {
+      "street": "1001 Pacific Ave #220,",
+      "city": "Tacoma",
+      "state": "WA",
+      "zip": "98402"
+    },
+    "website": "gmail.com"
+  },
+  "missing": [
+    "name"
+  ],
+  "status": "pending"
+}

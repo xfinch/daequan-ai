@@ -1,0 +1,24 @@
+{
+  "id": "card_1778807675180",
+  "timestamp": "2026-05-15T01:14:35.180Z",
+  "data": {
+    "name": null,
+    "business": "JOHN PARK",
+    "title": "Small Business Specialist",
+    "phone": "(206) 578-2718",
+    "email": "john.park1@usbank.com",
+    "address": {
+      "street": "1436 S 312th St",
+      "city": null,
+      "state": null,
+      "zip": "98003"
+    },
+    "website": "usbank.com"
+  },
+  "missing": [
+    "name",
+    "address.city",
+    "address.state"
+  ],
+  "status": "pending"
+}
