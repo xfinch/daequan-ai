@@ -11,7 +11,8 @@ P1_DOMAINS=("gmail.com" "outlook.com" "yahoo.com" "icloud.com")  # Common client
 P2_DOMAINS=("thetraffic.link")  # Internal/project
 
 # Known client emails from GHL (last sync)
-KNOWN_CLIENTS=("kristitrealestate@gmail.com" "clearbooksbytrina@gmail.com" "chris@fondi.com" "james@smartpnw.com")
+# Format: "email|Display Name" - searches for either
+KNOWN_CLIENTS=("kristitrealestate@gmail.com|Kristi Tivnan" "clearbooksbytrina@gmail.com|Trina Fallardo" "chris@fondi.com|Chris Fondi" "james@smartpnw.com|James SmartPNW")
 
 # Check functions
 function check_p0_emergency() {
@@ -45,10 +46,15 @@ function check_p1_clients() {
     local recent=$(himalaya envelope list --page-size 50 2>/dev/null | grep "^[0-9]" || true)
     
     # CRITICAL: Check for replies from known clients
-    for client_email in "${KNOWN_CLIENTS[@]}"; do
-        local client_replies=$(echo "$recent" | grep -i "$client_email" || true)
+    for client in "${KNOWN_CLIENTS[@]}"; do
+        # Split email|name format
+        local client_email="${client%%|*}"
+        local client_name="${client##*|}"
+        
+        # Search for either email or display name
+        local client_replies=$(echo "$recent" | grep -i -E "$client_email|$client_name" || true)
         if [ -n "$client_replies" ]; then
-            echo "🚨 P1 CLIENT REPLY FROM $client_email:"
+            echo "🚨 P1 CLIENT REPLY FROM $client_name ($client_email):"
             echo "$client_replies"
             found=1
         fi

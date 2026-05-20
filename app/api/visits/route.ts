@@ -1,57 +1,91 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { connectDB, Visit } from '@/lib/db';
+import Database from 'better-sqlite3';
+import path from 'path';
 
-export async function GET() {
+const dbPath = path.join(process.cwd(), '..', 'comcast-crm', 'daily-visits.db');
+
+// GET /api/visits?date=2026-05-19
+export async function GET(request: NextRequest) {
   try {
-    await connectDB();
-    const visits = await Visit.find().sort({ createdAt: -1 }).lean();
+    const { searchParams } = new URL(request.url);
+    const date = searchParams.get('date');
     
-    // Add GHL URL to each visit
-    const visitsWithGhl = visits.map((v: any) => ({
-      ...v,
-      _id: v._id.toString(),
-      ghlUrl: v.ghlContactId 
-        ? `https://app.thetraffic.link/v2/location/mhvGjZGZPcsK3vgjEDwI/contacts/detail/${v.ghlContactId}`
-        : null,
-    }));
+    const db = new Database(dbPath);
     
-    return NextResponse.json({ visits: visitsWithGhl });
-  } catch (err) {
-    console.error('Error fetching visits:', err);
+    let query = 'SELECT * FROM daily_visits';
+    let params: any[] = [];
+    
+    if (date) {
+      query += ' WHERE visit_date = ?';
+      params.push(date);
+    }
+    
+    query += ' ORDER BY created_at DESC';
+    
+    const visits = db.prepare(query).all(...params);
+    db.close();
+    
+    return NextResponse.json({ visits });
+  } catch (error) {
+    console.error('Error fetching visits:', error);
     return NextResponse.json({ error: 'Failed to fetch visits' }, { status: 500 });
   }
 }
 
+// POST /api/visits
 export async function POST(request: NextRequest) {
   try {
-    await connectDB();
     const body = await request.json();
+    const {
+      visit_date,
+      business_name,
+      address,
+      city,
+      state,
+      zip_code,
+      contact_name,
+      contact_title,
+      phone,
+      email,
+      status,
+      notes,
+      follow_up_needed,
+      products_discussed
+    } = body;
+
+    const db = new Database(dbPath);
     
-    const visit = new Visit({
-      businessName: body.businessName,
-      contactName: body.contactName,
-      phone: body.phone,
-      email: body.email,
-      address: body.address,
-      city: body.city || 'Tacoma',
-      state: body.state || 'WA',
-      zip: body.zip,
-      lat: body.lat,
-      lng: body.lng,
-      status: body.status || 'interested',
-      notes: body.notes,
-      missingFields: body.missingFields || [],
-      needsUpdate: body.needsUpdate || false,
-    });
+    const result = db.prepare(`
+      INSERT INTO daily_visits (
+        visit_date, business_name, address, city, state, zip_code,
+        contact_name, contact_title, phone, email, status, notes,
+        follow_up_needed, products_discussed
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      visit_date || new Date().toISOString().split('T')[0],
+      business_name,
+      address,
+      city || 'Tacoma',
+      state || 'WA',
+      zip_code,
+      contact_name,
+      contact_title,
+      phone,
+      email,
+      status || 'New',
+      notes,
+      follow_up_needed ? 1 : 0,
+      products_discussed
+    );
     
-    await visit.save();
+    db.close();
     
     return NextResponse.json({ 
       success: true, 
-      visit: { ...visit.toObject(), _id: visit._id.toString() }
-    }, { status: 201 });
-  } catch (err) {
-    console.error('Error creating visit:', err);
+      id: result.lastInsertRowid 
+    });
+  } catch (error) {
+    console.error('Error creating visit:', error);
     return NextResponse.json({ error: 'Failed to create visit' }, { status: 500 });
   }
 }
