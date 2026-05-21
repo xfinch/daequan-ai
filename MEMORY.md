@@ -255,4 +255,33 @@ This signals:
 
 ---
 
+## Critical: Contact Lookup Failures (2026-05-20)
+
+**Problem:** I fail to find contacts that exist in GHL/SQLite, then claim they don't exist — even when Xavier finds them manually seconds later.
+
+**Today's failures:**
+1. **David Coe (Puyallup Food Bank)** — Searched GHL, said not found. Didn't check SQLite or ask for context.
+2. **Vashon Times 21 / Jewels** — Searched SQLite for "Vashon 21 cannabis", didn't find. Had to web search. Contact was there with different naming.
+3. **Kristi Tivnan (TTL GHL)** — Searched TTL GHL, returned no results. Xavier found it manually immediately after.
+
+**Pattern:**
+- GHL search API returns partial/no results
+- I accept "no results" as truth instead of questioning it
+- Don't try alternate searches (first name only, company name, email domain)
+- Don't check multiple data sources (GHL + SQLite + email)
+
+**Root cause:**
+- Over-reliance on single API query
+- Not persistent enough — give up after one failed search
+- Don't leverage Xavier's hints ("check again", "it's there")
+
+**Fix:**
+1. **One search is never enough** — try variations (full name, first name, company, email domain)
+2. **Check multiple sources** — GHL + SQLite + email + kanban files
+3. **When Xavier says "check again"** — actually re-query with different parameters, don't just repeat the same failed search
+4. **Accept "no results" as suspicious** — especially when Xavier is asking for a specific contact he knows exists
+5. **When Xavier tells you exactly where to look** — LOOK THERE FIRST, don't default to your own search pattern. If he says "in the TTL GHL sub-account," that's where you search. If he says "check SQLite," check SQLite. Trust his direction over your assumptions.
+
+---
+
 *Updated: 2026-04-02*
