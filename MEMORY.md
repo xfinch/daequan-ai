@@ -284,4 +284,27 @@ This signals:
 
 ---
 
-*Updated: 2026-04-02*
+## Critical: Telegram Image Access (2026-05-29)
+
+**Problem:** Telegram images were not being saved to disk, preventing OCR/image analysis.
+
+**Symptom:** I could read WhatsApp images but not Telegram images. File references (`telegram:file/...`) were provided but actual files weren't persisted.
+
+**Root Cause:** Telegram plugin not configured to download media files to workspace.
+
+**Fix:** Gateway restart with updated Telegram plugin configuration enabling media persistence.
+
+**Location:** Images now saved to `/Users/xfinch/.openclaw/media/inbound/{uuid}.jpg`
+
+**Verification:** Successfully read fiber pricing document at 2026-05-29 12:30 PDT.
+
+**Impact:** 
+- Business card capture now works via Telegram
+- All image analysis capabilities functional
+- Can process documents, cards, photos sent via Telegram
+
+**File:** `TELEGRAM_MEDIA_FIX.md` contains full documentation
+
+---
+
+*Updated: 2026-05-29*
