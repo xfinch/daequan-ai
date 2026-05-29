@@ -11,6 +11,19 @@ interface CsvFile {
   path: string;
 }
 
+interface TodayLead {
+  business_name: string;
+  contact_name: string;
+  phone: string;
+  email: string;
+  address: string;
+  city: string;
+  zip_code: string;
+  visit_status: string;
+  visit_date: string;
+  notes: string;
+}
+
 // Simple SVG icons
 const FileTextIcon = () => (
   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -37,6 +50,12 @@ const DownloadIcon = () => (
   </svg>
 );
 
+const RefreshIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+  </svg>
+);
+
 const ExternalLinkIcon = () => (
   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -49,10 +68,16 @@ const Spinner = () => (
 
 export default function ExportsPage() {
   const [files, setFiles] = useState<CsvFile[]>([]);
+  const [todayLeads, setTodayLeads] = useState<TodayLead[]>([]);
+  const [todayCount, setTodayCount] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+  const [todayDate, setTodayDate] = useState('');
 
   useEffect(() => {
     fetchCsvFiles();
+    fetchTodayLeads();
+    setTodayDate(new Date().toISOString().split('T')[0]);
   }, []);
 
   const fetchCsvFiles = async () => {
@@ -77,6 +102,56 @@ export default function ExportsPage() {
     setLoading(false);
   };
 
+  const fetchTodayLeads = async () => {
+    try {
+      const res = await fetch('/api/visits/today');
+      if (res.ok) {
+        const data = await res.json();
+        setTodayLeads(data.leads);
+        setTodayCount(data.count);
+      }
+    } catch (e) {
+      console.error('Failed to fetch today\'s leads', e);
+    }
+  };
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    await fetchTodayLeads();
+    setRefreshing(false);
+  };
+
+  const downloadTodayCsv = () => {
+    if (todayLeads.length === 0) return;
+    
+    const headers = ['Business Name', 'Contact Name', 'Phone', 'Email', 'Address', 'City', 'ZIP', 'Status', 'Visit Date', 'Notes'];
+    const csvContent = [
+      headers.join(','),
+      ...todayLeads.map(lead => [
+        lead.business_name,
+        lead.contact_name || '',
+        lead.phone || '',
+        lead.email || '',
+        lead.address || '',
+        lead.city || '',
+        lead.zip_code || '',
+        lead.visit_status || '',
+        lead.visit_date || '',
+        lead.notes || ''
+      ].map(field => `"${field.replace(/"/g, '""')}"`).join(','))
+    ].join('\n');
+    
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `comcast-leads-${todayDate}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  };
+
   const handleDownload = (path: string, filename: string) => {
     const link = document.createElement('a');
     link.href = path;
@@ -91,11 +166,9 @@ export default function ExportsPage() {
       const res = await fetch(path);
       const text = await res.text();
       
-      // Parse CSV and format for Comcast systems
       const lines = text.trim().split('\n');
       const headers = lines[0].split(',');
       
-      // Find key indices
       const businessIdx = headers.findIndex(h => h.toLowerCase().includes('business'));
       const contactIdx = headers.findIndex(h => h.toLowerCase().includes('contact'));
       const phoneIdx = headers.findIndex(h => h.toLowerCase().includes('phone'));
@@ -104,7 +177,6 @@ export default function ExportsPage() {
       const statusIdx = headers.findIndex(h => h.toLowerCase().includes('status'));
       const notesIdx = headers.findIndex(h => h.toLowerCase().includes('notes'));
       
-      // Format for clipboard - tab-separated for easy paste into spreadsheets
       const formattedData = lines.slice(1).map(line => {
         const cols = line.split(',');
         return [
@@ -140,64 +212,138 @@ export default function ExportsPage() {
             </p>
           </div>
 
-          {loading ? (
-            <div className="flex items-center justify-center h-64">
-              <Spinner />
-            </div>
-          ) : files.length === 0 ? (
-            <div className="text-center py-16 text-muted-foreground">
-              <div className="w-12 h-12 mx-auto mb-4 opacity-50">
-                <FileTextIcon />
-              </div>
-              <p>No export files found</p>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {files.map((file) => (
-                <div
-                  key={file.name}
-                  className="bg-card border border-border rounded-xl p-6 hover:border-accent/50 transition-colors"
+          {/* Today's Leads Section */}
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-semibold">Today&apos;s Leads ({todayCount})</h2>
+              <div className="flex gap-2">
+                <button
+                  onClick={handleRefresh}
+                  disabled={refreshing}
+                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-border hover:bg-accent/10 transition-colors disabled:opacity-50"
                 >
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 bg-accent/10 rounded-lg text-accent">
-                        <FileTextIcon />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-lg">{file.name}</h3>
-                        <div className="flex flex-wrap items-center gap-4 mt-2 text-sm text-muted-foreground">
-                          <span className="flex items-center gap-1">
-                            <CalendarIcon />
-                            {file.date}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <MapPinIcon />
-                            {file.location}
-                          </span>
-                          <span>{file.recordCount} records</span>
+                  {refreshing ? <Spinner /> : <RefreshIcon />}
+                  Refresh
+                </button>
+                {todayCount > 0 && (
+                  <button
+                    onClick={downloadTodayCsv}
+                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-accent text-accent-foreground hover:bg-accent/90 transition-colors"
+                  >
+                    <DownloadIcon />
+                    Download Today&apos;s CSV
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {todayCount === 0 ? (
+              <div className="p-6 bg-muted/50 rounded-xl text-center">
+                <p className="text-muted-foreground">No contacts found for today.</p>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Click refresh to check for new leads, or download all contacts below.
+                </p>
+              </div>
+            ) : (
+              <div className="bg-card border border-border rounded-xl overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead className="bg-muted/50">
+                      <tr>
+                        <th className="px-4 py-3 text-left text-sm font-medium">Business</th>
+                        <th className="px-4 py-3 text-left text-sm font-medium">Contact</th>
+                        <th className="px-4 py-3 text-left text-sm font-medium">Phone</th>
+                        <th className="px-4 py-3 text-left text-sm font-medium">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border">
+                      {todayLeads.map((lead, idx) => (
+                        <tr key={idx} className="hover:bg-muted/30">
+                          <td className="px-4 py-3 text-sm">{lead.business_name}</td>
+                          <td className="px-4 py-3 text-sm">{lead.contact_name || '-'}</td>
+                          <td className="px-4 py-3 text-sm">{lead.phone || '-'}</td>
+                          <td className="px-4 py-3 text-sm">
+                            <span className={`inline-flex px-2 py-1 text-xs rounded-full ${
+                              lead.visit_status === 'interested' ? 'bg-green-500/20 text-green-400' :
+                              lead.visit_status === 'follow-up' ? 'bg-yellow-500/20 text-yellow-400' :
+                              lead.visit_status === 'not-interested' ? 'bg-red-500/20 text-red-400' :
+                              'bg-gray-500/20 text-gray-400'
+                            }`}>
+                              {lead.visit_status}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* All Contacts Section */}
+          <div className="mb-8">
+            <h2 className="text-xl font-semibold mb-4">All Contacts</h2>
+            
+            {loading ? (
+              <div className="flex items-center justify-center h-64">
+                <Spinner />
+              </div>
+            ) : files.length === 0 ? (
+              <div className="text-center py-16 text-muted-foreground">
+                <div className="w-12 h-12 mx-auto mb-4 opacity-50">
+                  <FileTextIcon />
+                </div>
+                <p>No export files found</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {files.map((file) => (
+                  <div
+                    key={file.name}
+                    className="bg-card border border-border rounded-xl p-6 hover:border-accent/50 transition-colors"
+                  >
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                      <div className="flex items-start gap-4">
+                        <div className="p-3 bg-accent/10 rounded-lg text-accent">
+                          <FileTextIcon />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-lg">{file.name}</h3>
+                          <div className="flex flex-wrap items-center gap-4 mt-2 text-sm text-muted-foreground">
+                            <span className="flex items-center gap-1">
+                              <CalendarIcon />
+                              {file.date}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <MapPinIcon />
+                              {file.location}
+                            </span>
+                            <span>{file.recordCount} records</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() => handleCopyForComcast(file.path)}
-                        className="px-4 py-2 text-sm font-medium rounded-lg border border-border hover:bg-accent/10 transition-colors"
-                      >
-                        Copy for Comcast
-                      </button>
-                      <button
-                        onClick={() => handleDownload(file.path, file.name)}
-                        className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-accent text-accent-foreground hover:bg-accent/90 transition-colors"
-                      >
-                        <DownloadIcon />
-                        Download CSV
-                      </button>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => handleCopyForComcast(file.path)}
+                          className="px-4 py-2 text-sm font-medium rounded-lg border border-border hover:bg-accent/10 transition-colors"
+                        >
+                          Copy for Comcast
+                        </button>
+                        <button
+                          onClick={() => handleDownload(file.path, file.name)}
+                          className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-accent text-accent-foreground hover:bg-accent/90 transition-colors"
+                        >
+                          <DownloadIcon />
+                          Download CSV
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
+                ))}
+              </div>
+            )}
+          </div>
 
           {/* Quick Actions */}
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -240,10 +386,11 @@ export default function ExportsPage() {
           <div className="mt-12 p-6 bg-muted/50 rounded-xl">
             <h4 className="font-semibold mb-3">How to use these exports</h4>
             <ol className="space-y-2 text-sm text-muted-foreground list-decimal list-inside">
-              <li>Download the CSV or click "Copy for Comcast" to copy formatted data</li>
+              <li>Check &quot;Today&apos;s Leads&quot; for new contacts added today</li>
+              <li>Click refresh to check for new leads in real-time</li>
+              <li>Download today&apos;s CSV or all contacts for follow-up</li>
               <li>Open Comcast Business Portal or your CRM system</li>
               <li>Paste the data or import the CSV file</li>
-              <li>Follow up on prospects by status (interested, follow-up, etc.)</li>
             </ol>
           </div>
         </div>
