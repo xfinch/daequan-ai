@@ -46,8 +46,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-space)", "system-ui", "sans-serif"],
+        sans: ["Helvetica Neue", "Helvetica", "Arial", "system-ui", "sans-serif"],
+        display: ["Helvetica Neue", "Helvetica", "Arial", "system-ui", "sans-serif"],
       },
       animation: {
         "fade-up": "fadeUp 0.8s ease-out forwards",
