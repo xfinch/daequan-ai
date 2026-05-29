@@ -80,13 +80,64 @@ export default function ExportsPage() {
     setTodayDate(new Date().toISOString().split('T')[0]);
   }, []);
 
+  // Parse CSV properly handling quoted fields with newlines
+  const parseCSV = (text: string): string[][] => {
+    const rows: string[][] = [];
+    let currentRow: string[] = [];
+    let currentField = '';
+    let insideQuotes = false;
+    
+    for (let i = 0; i < text.length; i++) {
+      const char = text[i];
+      const nextChar = text[i + 1];
+      
+      if (insideQuotes) {
+        if (char === '"') {
+          if (nextChar === '"') {
+            currentField += '"';
+            i++; // Skip next quote
+          } else {
+            insideQuotes = false;
+          }
+        } else {
+          currentField += char;
+        }
+      } else {
+        if (char === '"') {
+          insideQuotes = true;
+        } else if (char === ',') {
+          currentRow.push(currentField);
+          currentField = '';
+        } else if (char === '\n' || (char === '\r' && nextChar === '\n')) {
+          if (char === '\r') i++; // Skip \n in \r\n
+          currentRow.push(currentField);
+          if (currentRow.length > 1 || currentRow[0] !== '') {
+            rows.push(currentRow);
+          }
+          currentRow = [];
+          currentField = '';
+        } else {
+          currentField += char;
+        }
+      }
+    }
+    
+    // Handle last field/row
+    if (currentField !== '' || currentRow.length > 0) {
+      currentRow.push(currentField);
+      rows.push(currentRow);
+    }
+    
+    return rows;
+  };
+
   const fetchCsvFiles = async () => {
     try {
       const res = await fetch('/comcast-visits.csv');
       if (res.ok) {
         const text = await res.text();
-        const lines = text.trim().split('\n');
-        const recordCount = lines.length > 1 ? lines.length - 1 : 0;
+        const rows = parseCSV(text.trim());
+        const recordCount = rows.length > 1 ? rows.length - 1 : 0; // Subtract header row
         
         setFiles([{
           name: 'comcast-visits.csv',
