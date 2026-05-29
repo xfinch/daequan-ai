@@ -1,78 +1,49 @@
 import { NextRequest, NextResponse } from 'next/server';
-import sqlite3 from 'sqlite3';
-import path from 'path';
-
-const dbPath = path.join(process.cwd(), 'comcast-crm', 'comcast.db');
-
-// Helper to run queries with promises
-function runQuery(db: sqlite3.Database, sql: string, params: any[] = []): Promise<any> {
-  return new Promise((resolve, reject) => {
-    db.all(sql, params, (err, rows) => {
-      if (err) reject(err);
-      else resolve(rows);
-    });
-  });
-}
-
-function runInsert(db: sqlite3.Database, sql: string, params: any[]): Promise<{ lastID: number }> {
-  return new Promise((resolve, reject) => {
-    db.run(sql, params, function(err) {
-      if (err) reject(err);
-      else resolve({ lastID: this.lastID });
-    });
-  });
-}
+import { connectDB, Visit } from '@/lib/db';
 
 // GET /api/visits?date=2026-05-19
 export async function GET(request: NextRequest) {
-  const db = new sqlite3.Database(dbPath);
-  
   try {
+    await connectDB();
+    
     const { searchParams } = new URL(request.url);
     const date = searchParams.get('date');
     
-    let query = `
-      SELECT 
-        id as _id,
-        business_name as businessName,
-        contact_name as contactName,
-        phone,
-        email,
-        address,
-        city,
-        zip_code as zip,
-        visit_status as status,
-        notes,
-        lat,
-        lng,
-        visit_date as createdAt
-      FROM business_visits
-    `;
-    let params: any[] = [];
+    let query: any = {};
     
     if (date) {
-      query += ' WHERE date(visit_date) = date(?)';
-      params.push(date);
+      // Filter by date if provided
+      const startOfDay = new Date(date);
+      startOfDay.setHours(0, 0, 0, 0);
+      const endOfDay = new Date(date);
+      endOfDay.setHours(23, 59, 59, 999);
+      
+      query.createdAt = {
+        $gte: startOfDay,
+        $lte: endOfDay
+      };
     }
     
-    query += ' ORDER BY visit_date DESC';
+    const visits = await Visit.find(query).sort({ createdAt: -1 }).lean();
     
-    const visits = await runQuery(db, query, params);
+    // Transform _id to string for JSON serialization
+    const transformedVisits = visits.map(v => ({
+      ...v,
+      _id: v._id.toString(),
+    }));
     
-    return NextResponse.json({ visits });
+    return NextResponse.json({ visits: transformedVisits });
   } catch (error) {
     console.error('Error fetching visits:', error);
     return NextResponse.json({ error: 'Failed to fetch visits' }, { status: 500 });
-  } finally {
-    db.close();
   }
 }
 
 // POST /api/visits
 export async function POST(request: NextRequest) {
-  const db = new sqlite3.Database(dbPath);
-  
   try {
+    await connectDB();
+    
     const body = await request.json();
     const {
       businessName,
@@ -88,34 +59,27 @@ export async function POST(request: NextRequest) {
       lng
     } = body;
 
-    const result = await runInsert(db, `
-      INSERT INTO business_visits (
-        business_name, contact_name, phone, email, 
-        address, city, zip_code, visit_status, notes,
-        lat, lng, visit_date
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
-    `, [
+    const visit = await Visit.create({
       businessName,
       contactName,
       phone,
       email,
       address,
-      city || 'Tacoma',
+      city: city || 'Tacoma',
+      state: 'WA',
       zip,
-      status || 'interested',
+      status: status || 'interested',
       notes,
       lat,
       lng
-    ]);
+    });
     
     return NextResponse.json({ 
       success: true, 
-      id: result.lastID 
+      id: visit._id.toString()
     });
   } catch (error) {
     console.error('Error creating visit:', error);
     return NextResponse.json({ error: 'Failed to create visit' }, { status: 500 });
-  } finally {
-    db.close();
   }
 }
