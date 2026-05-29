@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import sqlite3 from 'sqlite3';
 import path from 'path';
 
-const dbPath = path.join(process.cwd(), '..', 'comcast-crm', 'daily-visits.db');
+const dbPath = path.join(process.cwd(), 'comcast-crm', 'comcast.db');
 
 // Helper to run queries with promises
 function runQuery(db: sqlite3.Database, sql: string, params: any[] = []): Promise<any> {
@@ -31,15 +31,31 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const date = searchParams.get('date');
     
-    let query = 'SELECT * FROM daily_visits';
+    let query = `
+      SELECT 
+        id as _id,
+        business_name as businessName,
+        contact_name as contactName,
+        phone,
+        email,
+        address,
+        city,
+        zip_code as zip,
+        visit_status as status,
+        notes,
+        lat,
+        lng,
+        visit_date as createdAt
+      FROM business_visits
+    `;
     let params: any[] = [];
     
     if (date) {
-      query += ' WHERE visit_date = ?';
+      query += ' WHERE date(visit_date) = date(?)';
       params.push(date);
     }
     
-    query += ' ORDER BY created_at DESC';
+    query += ' ORDER BY visit_date DESC';
     
     const visits = await runQuery(db, query, params);
     
@@ -59,43 +75,37 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const {
-      visit_date,
-      business_name,
-      address,
-      city,
-      state,
-      zip_code,
-      contact_name,
-      contact_title,
+      businessName,
+      contactName,
       phone,
       email,
+      address,
+      city,
+      zip,
       status,
       notes,
-      follow_up_needed,
-      products_discussed
+      lat,
+      lng
     } = body;
 
     const result = await runInsert(db, `
-      INSERT INTO daily_visits (
-        visit_date, business_name, address, city, state, zip_code,
-        contact_name, contact_title, phone, email, status, notes,
-        follow_up_needed, products_discussed
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO business_visits (
+        business_name, contact_name, phone, email, 
+        address, city, zip_code, visit_status, notes,
+        lat, lng, visit_date
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
     `, [
-      visit_date || new Date().toISOString().split('T')[0],
-      business_name,
-      address,
-      city || 'Tacoma',
-      state || 'WA',
-      zip_code,
-      contact_name,
-      contact_title,
+      businessName,
+      contactName,
       phone,
       email,
-      status || 'New',
+      address,
+      city || 'Tacoma',
+      zip,
+      status || 'interested',
       notes,
-      follow_up_needed ? 1 : 0,
-      products_discussed
+      lat,
+      lng
     ]);
     
     return NextResponse.json({ 
