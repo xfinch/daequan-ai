@@ -17,6 +17,11 @@
 *apikey*
 *api_key*
 
+# Credential directories and files
+credentials/
+google-credentials.json
+drive-upload.js
+
 # Local development
 node_modules/
 .DS_Store

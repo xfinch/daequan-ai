@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WhatsApp QR Code</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+        h1 {
+            color: #25d366;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        #qr-container {
+            margin: 20px 0;
+        }
+        .loading {
+            color: #999;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 WhatsApp Link</h1>
+        <p>Open WhatsApp on your phone → Settings → Linked Devices → Link a Device</p>
+        <div id="qr-container">
+            <p class="loading">Loading QR code...</p>
+        </div>
+        <p style="font-size: 12px; color: #999;">If QR doesn't appear, please let me know</p>
+    </div>
+    <script>
+        // Fetch QR code from OpenClaw
+        fetch('/api/v1/channels/whatsapp/qr')
+            .then(r => r.json())
+            .then(data => {
+                if (data.qr) {
+                    document.getElementById('qr-container').innerHTML = 
+                        '<img src="' + data.qr + '" style="max-width: 300px;"/>';
+                }
+            })
+            .catch(() => {
+                document.getElementById('qr-container').innerHTML = 
+                    '<p style="color: red;">Could not load QR code.<br>Please use the PNG file instead.</p>';
+            });
+    </script>
+</body>
+</html>
