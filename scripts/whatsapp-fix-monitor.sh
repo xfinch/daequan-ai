@@ -15,7 +15,7 @@ log() {
 }
 
 # Check if issue is closed
-ISSUE_STATE=$(curl -s "$ISSUE_URL" | grep -o '"state":"[^"]*"' | cut -d'"' -f4)
+ISSUE_STATE=$(curl -s "$ISSUE_URL" | grep -o '"state"[[:space:]]*:[[:space:]]*"[^"]*"' | grep -o '"[^"]*"$' | tr -d '"')
 
 if [ "$ISSUE_STATE" = "closed" ]; then
     # Issue is closed - check if we've already notified
