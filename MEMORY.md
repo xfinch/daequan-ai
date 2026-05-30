@@ -112,6 +112,17 @@ GHL (GoHighLevel) ←→ SQLite (Mac mini) ←→ MongoDB (Railway)
 - Mobile sidebar now collapsible (shows ~50px header by default on mobile)
 - Added "Show Map" floating button when sidebar expanded on mobile
 
+**Map Locations Not Displaying — FIXED (2026-05-30):**
+- **Issue:** Map was loading but no visit pins were showing
+- **Root Cause:** `sync-ghl-to-mongodb.js` sets `lat: null, lng: null` with comment "Will be geocoded separately" — but geocoding never happened
+- **Result:** 112 of 134 visits had no coordinates; map component filters these out
+- **Fix:** Created `scripts/geocode-sqlite.sh` to geocode addresses in SQLite using Nominatim API
+- **Scripts:**
+  - `scripts/geocode-sqlite.sh` — Geocodes SQLite addresses (runs at ~1 address/second due to rate limits)
+  - `scripts/sync-sqlite-to-mongodb.js` — Syncs geocoded coordinates to MongoDB
+  - `app/api/visits/geocode/route.ts` — API endpoint for future geocoding
+- **Note:** Some addresses fail geocoding (suite numbers, PO boxes, incomplete addresses). These will need manual entry or address cleanup.
+
 **Map Features:**
 - **Geolocation:** Shows user position, nearest ZIP, in/out of territory status
 - **Visit Pins:** Color-coded by status (interested, follow-up, not-interested, called, customer)
