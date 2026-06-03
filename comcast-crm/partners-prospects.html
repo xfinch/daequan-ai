@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partnership Prospects - Comcast CRM</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 5px;
+            font-size: 24px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: white;
+            padding: 15px 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0057b8;
+        }
+        .stat-label {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+        
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: #0057b8;
+            color: white;
+            border-color: #0057b8;
+        }
+        
+        .category-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .category-header {
+            background: linear-gradient(135deg, #0057b8 0%, #003d82 100%);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .category-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .category-count {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+        
+        .prospect-card {
+            border-bottom: 1px solid #eee;
+            padding: 15px 20px;
+            transition: background 0.2s;
+        }
+        .prospect-card:hover {
+            background: #f8f9fa;
+        }
+        .prospect-card:last-child {
+            border-bottom: none;
+        }
+        
+        .prospect-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        .business-name {
+            font-weight: 600;
+            font-size: 15px;
+            color: #1a1a1a;
+        }
+        .zip-badge {
+            background: #e3f2fd;
+            color: #0057b8;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #555;
+        }
+        .contact-item a {
+            color: #0057b8;
+            text-decoration: none;
+        }
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+        .icon {
+            width: 14px;
+            height: 14px;
+            opacity: 0.6;
+        }
+        
+        .contact-name {
+            font-size: 13px;
+            color: #0057b8;
+            margin-bottom: 5px;
+        }
+        
+        .notes {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed #eee;
+        }
+        
+        .source-tag {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #666;
+            margin-top: 8px;
+        }
+        
+        .action-btns {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .action-btn {
+            background: #f5f5f5;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            color: #555;
+            transition: all 0.2s;
+        }
+        .action-btn:hover {
+            background: #0057b8;
+            color: white;
+        }
+        
+        .priority-high { border-left: 4px solid #4caf50; }
+        .priority-medium { border-left: 4px solid #ff9800; }
+        .priority-low { border-left: 4px solid #9e9e9e; }
+        
+        @media (max-width: 600px) {
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .contact-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .prospect-header {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+        
+        .hidden { display: none; }
+        
+        .download-bar {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .download-btn {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .download-btn:hover {
+            background: #45a049;
+        }
+        .download-btn.secondary {
+            background: #757575;
+        }
+        .download-btn.secondary:hover {
+            background: #616161;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤝 Partnership Prospects</h1>
+        <p class="subtitle">Referral partners in your Comcast territory • Updated June 3, 2026</p>
+        
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="stat-number">76</div>
+                <div class="stat-label">Total Prospects</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">14</div>
+                <div class="stat-label">ZIP Codes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">12</div>
+                <div class="stat-label">With Phone #</div>
+            </div>
+        </div>
+        
+        <div class="download-bar">
+            <a href="comcast-partners-prospects.csv" class="download-btn" download>📥 Download CSV</a>
+            <a href="comcast-partners-prospect-list.json" class="download-btn secondary" download>📄 Download JSON</a>
+        </div>
+        
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterCategory('all')">All</button>
+            <button class="filter-btn" onclick="filterCategory('machines')">Copiers/Printers</button>
+            <button class="filter-btn" onclick="filterCategory('msp')">MSPs</button>
+            <button class="filter-btn" onclick="filterCategory('payment')">Payment Processors</button>
+            <button class="filter-btn" onclick="filterCategory('pos')">POS Systems</button>
+            <button class="filter-btn" onclick="filterCategory('property')">Property Managers</button>
+            <button class="filter-btn" onclick="filterCategory('movers')">Commercial Movers</button>
+            <button class="filter-btn" onclick="filterCategory('wraps')">Vehicle Wraps</button>
+            <button class="filter-btn" onclick="filterCategory('construction')">Construction</button>
+        </div>
+        
+        <!-- BUSINESS MACHINES -->
+        <div class="category-section" data-category="machines">
+            <div class="category-header">
+                <span class="category-title">🖨️ Business Machines (Printers, Copiers)</span>
+                <span class="category-count">11</span>
+            </div>
+            
+            <div class="prospect-card priority-high">
+                <div class="prospect-header">
+                    <span class="business-name">Copiers Northwest</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-name">Sales Team</div>
+                <div class="contact-row">
+                    <span class="contact-item">📞 <a href="tel:253-590-5008">(253) 590-5008</a></span>
+                    <span class="contact-item">🌐 <a href="https://copiersnw.com" target="_blank">copiersnw.com</a></span>
+                </div>
+                <div class="notes">Major local dealer for Xerox, Canon, Ricoh, Konica Minolta. They visit many offices daily - prime referral partner.</div>
+                <span class="source-tag">Web Search</span>
+                <div class="action-btns">
+                    <button class="action-btn" onclick="window.open('tel:253-590-5008')">📞 Call</button>
+                    <button class="action-btn" onclick="window.open('https://copiersnw.com', '_blank')">🌐 Website</button>
+                </div>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">Kelley Create</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">📞 <a href="tel:800-495-3175">(800) 495-3175</a></span>
+                    <span class="contact-item">🌐 <a href="https://kelleycreate.com/copiers-printers/tacoma-washington/" target="_blank">kelleycreate.com</a></span>
+                </div>
+                <div class="notes">Printer/copier sales and leasing</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">Service Business Equipment (Great Copiers)</span>
+                    <span class="zip-badge">Kent (serves area)</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">📍 20648 84th Ave S, Kent, WA</span>
+                </div>
+                <div class="notes">20+ years in business. Serves Tacoma/Puyallup area. May have sales reps covering your territory.</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Minuteman Press - Downtown Tacoma</span>
+                    <span class="zip-badge">98402</span>
+                </div>
+                <div class="notes">Printing and copying services</div>
+                <span class="source-tag">Yelp/Local Directory</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Doyle Printing</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="notes">Commercial printing</div>
+                <span class="source-tag">Yelp Top Rated</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Sir Speedy - Tacoma</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="notes">Printing and marketing services</div>
+                <span class="source-tag">Yelp Top Rated</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Reprographics NW - Tacoma</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="notes">Large format printing, copying</div>
+                <span class="source-tag">Yelp Top Rated</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Print NW</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="notes">Commercial printing</div>
+                <span class="source-tag">Yelp Top Rated</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Print Solutions, Inc</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="notes">Printing services</div>
+                <span class="source-tag">Yelp Top Rated</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Parkland Quickprint</span>
+                    <span class="zip-badge">98444</span>
+                </div>
+                <div class="notes">Quick printing services</div>
+                <span class="source-tag">Yelp Top Rated</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Copiers Seattle</span>
+                    <span class="zip-badge">External</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">📞 <a href="tel:253-590-5008">(253) 590-5008</a></span>
+                    <span class="contact-item">🌐 <a href="https://copiersseattle.com" target="_blank">copiersseattle.com</a></span>
+                </div>
+                <div class="notes">Serves Vashon Island and Tacoma area</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+        </div>
+        
+        <!-- MSPs -->
+        <div class="category-section" data-category="msp">
+            <div class="category-header">
+                <span class="category-title">💻 Managed Service Providers (IT)</span>
+                <span class="category-count">15</span>
+            </div>
+            
+            <div class="prospect-card priority-high">
+                <div class="prospect-header">
+                    <span class="business-name">Attentus Technologies</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-name">Sales Team / Wolf, Sean</div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.attentus.tech" target="_blank">attentus.tech</a></span>
+                </div>
+                <div class="notes">18+ years experience. Strong testimonials from manufacturing, healthcare, legal. Wolf and Sean mentioned as top techs. 96.6% CSAT rating.</div>
+                <span class="source-tag">Web Search - Top rated MSP</span>
+                <div class="action-btns">
+                    <button class="action-btn" onclick="window.open('https://www.attentus.tech', '_blank')">🌐 Website</button>
+                </div>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">Rainier IT</span>
+                    <span class="zip-badge">98360 (serves Buckley)</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://rainier-it.com" target="_blank">rainier-it.com</a></span>
+                </div>
+                <div class="notes">Serves Orting, Puyallup, Sumner, Bonney Lake, Buckley & Pierce County</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">Puyallup.Computer</span>
+                    <span class="zip-badge">98371</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://puyallup.computer" target="_blank">puyallup.computer</a></span>
+                </div>
+                <div class="notes">Managed IT for Puyallup businesses, 24/7 monitoring</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">Avaunt Technologies</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.avaunt.com" target="_blank">avaunt.com</a></span>
+                </div>
+                <div class="notes">Managed IT in Tacoma, Seattle, Olympia, Kent, Federal Way, Gig Harbor, Puyallup</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">Business Computer Technicians</span>
+                    <span class="zip-badge">98371</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://businesscomputertechnicians.com" target="_blank">businesscomputertechnicians.com</a></span>
+                </div>
+                <div class="notes">Managed IT for Puyallup area, medical, dental, real estate, construction</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Spyderweb Communications</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.spyderweb.us" target="_blank">spyderweb.us</a></span>
+                </div>
+                <div class="notes">Managed IT services, user account management, security</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">CMIT Solutions - Tacoma</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://cmitsolutions.com/tacoma-wa-1213/" target="_blank">cmitsolutions.com</a></span>
+                </div>
+                <div class="notes">Nationwide franchise, local ownership. Business IT support.</div>
+                <span class="source-tag">Web Search - Franchise MSP</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Tech Solutions</span>
+                    <span class="zip-badge">98371</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.techsolutions.business" target="_blank">techsolutions.business</a></span>
+                </div>
+                <div class="notes">Managed IT services, 24/7 monitoring, vCIO strategy</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">TeamLogic IT - Renton/Puyallup</span>
+                    <span class="zip-badge">98057 (serves Puyallup)</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.teamlogicitrenton.com" target="_blank">teamlogicitrenton.com</a></span>
+                </div>
+                <div class="notes">National franchise, serves Puyallup area</div>
+                <span class="source-tag">Web Search - Franchise</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Netsurit</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://netsurit.com/en-us/managed-it-services-tacoma/" target="_blank">netsurit.com</a></span>
+                </div>
+                <div class="notes">Tacoma managed IT services</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Truit</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://truit.io" target="_blank">truit.io</a></span>
+                </div>
+                <div class="notes">Managed IT services, 20+ years experience</div>
+                <span class="source-tag">Web Search - 20+ years experience</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Datatelco</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://datatelco.com" target="_blank">datatelco.com</a></span>
+                </div>
+                <div class="notes">Managed IT provider, 24/7 support</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">PC Technologies</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://pctechnologies.net" target="_blank">pctechnologies.net</a></span>
+                </div>
+                <div class="notes">IT support company</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">TCWGlobal</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.tcwglobal.com" target="_blank">tcwglobal.com</a></span>
+                </div>
+                <div class="notes">Workforce MSP solutions, vendor coordination</div>
+                <span class="source-tag">Web Search - Workforce MSP</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">AMS Technology</span>
+                    <span class="zip-badge">98371</span>
+                </div>
+                <div class="notes">IT support and managed services in Puyallup</div>
+                <span class="source-tag">Local Directory</span>
+            </div>
+        </div>
+        
+        <!-- PAYMENT PROCESSORS -->
+        <div class="category-section" data-category="payment">
+            <div class="category-header">
+                <span class="category-title">💳 Payment Processors</span>
+                <span class="category-count">6</span>
+            </div>
+            
+            <div class="prospect-card priority-high">
+                <div class="prospect-header">
+                    <span class="business-name">Electronic Merchant Systems (EMS)</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.emscorporate.com/merchant-services/tacoma-wa" target="_blank">emscorporate.com</a></span>
+                </div>
+                <div class="notes">Local Tacoma presence. Countertop terminals, mobile devices, POS solutions.</div>
+                <span class="source-tag">Web Search - Major processor</span>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">Kurv Pay</span>
+                    <span class="zip-badge">National</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://kurvpay.com" target="_blank">kurvpay.com</a></span>
+                </div>
+                <div class="notes">Payment solutions, 30,000+ businesses. Free terminal options.</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">Riverside Payments</span>
+                    <span class="zip-badge">Regional</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.riversidepayments.com" target="_blank">riversidepayments.com</a></span>
+                </div>
+                <div class="notes">Merchant service provider, POS systems, payment processing</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">MAC Marketing</span>
+                    <span class="zip-badge">Washington State</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://macmarketing.us/merchant-services-washington" target="_blank">macmarketing.us</a></span>
+                </div>
+                <div class="notes">Merchant services in Washington, credit card processing</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Wheatland Bank - Merchant Services</span>
+                    <span class="zip-badge">Washington State</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.wheatland.bank/business/services/merchant-payment-processing" target="_blank">wheatland.bank</a></span>
+                </div>
+                <div class="notes">Business merchant services, credit card processing</div>
+                <span class="source-tag">Web Search - Bank processor</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Elavon</span>
+                    <span class="zip-badge">National</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.elavon.com" target="_blank">elavon.com</a></span>
+                </div>
+                <div class="notes">Major merchant services provider</div>
+                <span class="source-tag">Web Search - Major processor</span>
+            </div>
+        </div>
+        
+        <!-- POS SYSTEMS -->
+        <div class="category-section" data-category="pos">
+            <div class="category-header">
+                <span class="category-title">🖥️ POS Systems (Restaurant, Retail, Cannabis)</span>
+                <span class="category-count">9</span>
+            </div>
+            
+            <div class="prospect-card priority-high">
+                <div class="prospect-header">
+                    <span class="business-name">Toast POS</span>
+                    <span class="zip-badge">Tacoma Territory</span>
+                </div>
+                <div class="contact-name">Territory Account Executive - Retail (hiring)</div>
+                <div class="contact-row">
+                    <span class="contact-item">📞 <a href="tel:617-297-1005">(617) 297-1005</a></span>
+                    <span class="contact-item">🌐 <a href="https://pos.toasttab.com" target="_blank">toasttab.com</a></span>
+                </div>
+                <div class="notes">Hiring Territory Account Executive for Tacoma retail. Expanding beyond restaurants into convenience stores, grocery, bottle shops.</div>
+                <span class="source-tag">Web Search - Major POS provider</span>
+                <div class="action-btns">
+                    <button class="action-btn" onclick="window.open('tel:617-297-1005')">📞 Call</button>
+                    <button class="action-btn" onclick="window.open('https://pos.toasttab.com', '_blank')">🌐 Website</button>
+                </div>
+            </div>
+            
+            <div class="prospect-card priority-high">
+                <div class="prospect-header">
+                    <span class="business-name">National Business Systems (NBS)</span>
+                    <span class="zip-badge">Seattle/Tacoma</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">📞 <a href="tel:253-839-9636">253-839-9636</a></span>
+                    <span class="contact-item">🌐 <a href="https://www.nbsystems.com" target="_blank">nbsystems.com</a></span>
+                </div>
+                <div class="notes">Heartland Restaurant POS dealer for Seattle/Tacoma. Local sales rep.</div>
+                <span class="source-tag">Web Search - Local dealer</span>
+                <div class="action-btns">
+                    <button class="action-btn" onclick="window.open('tel:253-839-9636')">📞 Call</button>
+                </div>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">NBS Heartland POS</span>
+                    <span class="zip-badge">Seattle/Tacoma</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">📞 <a href="tel:253-839-9636">253-839-9636</a></span>
+                    <span class="contact-item">🌐 <a href="https://nbsheartlandpos.com" target="_blank">nbsheartlandpos.com</a></span>
+                </div>
+                <div class="notes">Local Heartland POS dealer for Seattle Tacoma area</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">Dutchie</span>
+                    <span class="zip-badge">National (Cannabis)</span>
+                </div>
+                <div class="contact-name">Sales Team</div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://business.dutchie.com/pos" target="_blank">dutchie.com</a></span>
+                </div>
+                <div class="notes">Cannabis POS and e-commerce. Integrates with Flowhub. Serves all legal states including Washington.</div>
+                <span class="source-tag">Web Search - Cannabis POS</span>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">Flowhub</span>
+                    <span class="zip-badge">National (Cannabis)</span>
+                </div>
+                <div class="contact-name">Sales Team</div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.flowhub.com" target="_blank">flowhub.com</a></span>
+                </div>
+                <div class="notes">Cannabis dispensary POS. Integrates with Dutchie. Washington state supported.</div>
+                <span class="source-tag">Web Search - Cannabis POS</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Cova Software</span>
+                    <span class="zip-badge">National (Cannabis)</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.covasoftware.com" target="_blank">covasoftware.com</a></span>
+                </div>
+                <div class="notes">Cannabis POS system, serves Washington state</div>
+                <span class="source-tag">Web Search - Cannabis POS</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">BLAZE</span>
+                    <span class="zip-badge">National (Cannabis)</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.blaze.me" target="_blank">blaze.me</a></span>
+                </div>
+                <div class="notes">Cannabis POS for dispensaries</div>
+                <span class="source-tag">Web Search - Cannabis POS</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">IndicaOnline</span>
+                    <span class="zip-badge">National (Cannabis)</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.indicaonline.com" target="_blank">indicaonline.com</a></span>
+                </div>
+                <div class="notes">Cannabis POS, HIPAA compliant, Washington state supported</div>
+                <span class="source-tag">Web Search - Cannabis POS</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Treez</span>
+                    <span class="zip-badge">National (Cannabis)</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.treez.io" target="_blank">treez.io</a></span>
+                </div>
+                <div class="notes">Enterprise cannabis retail software</div>
+                <span class="source-tag">Web Search - Cannabis POS</span>
+            </div>
+        </div>
+        
+        <!-- PROPERTY MANAGERS -->
+        <div class="category-section" data-category="property">
+            <div class="category-header">
+                <span class="category-title">🏢 Commercial Property Managers</span>
+                <span class="category-count">11</span>
+            </div>
+            
+            <div class="prospect-card priority-high">
+                <div class="prospect-header">
+                    <span class="business-name">Kidder Mathews</span>
+                    <span class="zip-badge">98402</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://kidder.com/office-locations/tacoma/" target="_blank">kidder.com</a></span>
+                </div>
+                <div class="notes">Largest independent commercial real estate firm in Western US. Full service: brokerage, appraisal, property management, construction management.</div>
+                <span class="source-tag">Web Search - Major commercial firm</span>
+            </div>
+            
+            <div class="prospect-card priority-high">
+                <div class="prospect-header">
+                    <span class="business-name">UNICO Properties LLC</span>
+                    <span class="zip-badge">98402</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">📞 <a href="tel:253-272-7000">(253) 272-7000</a></span>
+                    <span class="contact-item">📍 1201 Pacific Ave Ste 150, Tacoma, WA</span>
+                </div>
+                <div class="notes">Commercial property management</div>
+                <span class="source-tag">Tacoma Chamber Directory</span>
+                <div class="action-btns">
+                    <button class="action-btn" onclick="window.open('tel:253-272-7000')">📞 Call</button>
+                </div>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">Wolf Bay Asset Management</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.wolfbayam.com/commercial-property-management-tacoma" target="_blank">wolfbayam.com</a></span>
+                </div>
+                <div class="notes">Commercial property management Tacoma. Hands-on approach, knows downtown core and industrial port sectors.</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">Keyrenter Property Management Tacoma</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">📞 <a href="tel:253-449-3000">(253) 449-3000</a></span>
+                    <span class="contact-item">🌐 <a href="https://www.keyrentertacoma.com" target="_blank">keyrentertacoma.com</a></span>
+                </div>
+                <div class="notes">Commercial and residential property management services</div>
+                <span class="source-tag">Web Search - Franchise</span>
+                <div class="action-btns">
+                    <button class="action-btn" onclick="window.open('tel:253-449-3000')">📞 Call</button>
+                </div>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">BCI Properties</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://bci-properties.com" target="_blank">bci-properties.com</a></span>
+                </div>
+                <div class="notes">Tacoma property management. Single-family, multifamily, commercial properties.</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Neil Walter Company</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.neilwalter.com" target="_blank">neilwalter.com</a></span>
+                </div>
+                <div class="notes">Property management services</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Clockwise Property Management</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="notes">Residential and commercial property management</div>
+                <span class="source-tag">Expertise.com listing</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Haven Property Management</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="notes">Property management</div>
+                <span class="source-tag">Yelp Top Rated</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">The Joseph Group - Northeast Team</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="notes">Property management</div>
+                <span class="source-tag">Yelp Top Rated</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Ziprent</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-name">Arvand Sabetian (CEO)</div>
+                <div class="notes">Property management, 23,600+ repairs coordinated. Founded 2019.</div>
+                <span class="source-tag">Expertise.com</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Prologis</span>
+                    <span class="zip-badge">98108</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">📞 <a href="tel:206-414-7600">(206) 414-7600</a></span>
+                    <span class="contact-item">📍 5900 Airport Way S Ste 300, Seattle, WA</span>
+                </div>
+                <div class="notes">Industrial property management (may have Tacoma properties)</div>
+                <span class="source-tag">Tacoma Chamber Directory</span>
+            </div>
+        </div>
+        
+        <!-- COMMERCIAL MOVERS -->
+        <div class="category-section" data-category="movers">
+            <div class="category-header">
+                <span class="category-title">🚚 Commercial Movers</span>
+                <span class="category-count">9</span>
+            </div>
+            
+            <div class="prospect-card priority-high">
+                <div class="prospect-header">
+                    <span class="business-name">Lile Moving & Storage</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">📞 <a href="tel:888-507-6304">888-507-6304</a></span>
+                    <span class="contact-item">🌐 <a href="https://lile.com/office-movers-tacoma-washington/" target="_blank">lile.com</a></span>
+                </div>
+                <div class="notes">Tacoma office movers. 65+ years experience. Commercial moving consultants.</div>
+                <span class="source-tag">Web Search - 65+ years</span>
+                <div class="action-btns">
+                    <button class="action-btn" onclick="window.open('tel:888-507-6304')">📞 Call</button>
+                </div>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">Mountain Moving & Storage</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.mountainmoving.com/office-movers-in-tacoma/" target="_blank">mountainmoving.com</a></span>
+                </div>
+                <div class="notes">Office movers in Tacoma. Evening and weekend services. Electronics packing and shipping.</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">Puget Sound Moving</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.psmoving.com/movers/tacoma-wa" target="_blank">psmoving.com</a></span>
+                </div>
+                <div class="notes">Commercial office movers. Focus on logistics, minimal disruption.</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">First Due Movers</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.firstduemovers.com" target="_blank">firstduemovers.com</a></span>
+                </div>
+                <div class="notes">Commercial movers Tacoma. Licensed drivers, downtime minimization.</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">New Horizons Moving Company</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://newhorizonsmoving.com" target="_blank">newhorizonsmoving.com</a></span>
+                </div>
+                <div class="notes">Commercial moving services. Downtown office buildings, Fife Corridor warehouses.</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Coleman Allied</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.colemanallied.com/areas-served/tacoma-wa/" target="_blank">colemanallied.com</a></span>
+                </div>
+                <div class="notes">Agent of Allied Van Lines. Commercial relocation.</div>
+                <span class="source-tag">Web Search - Allied Van Lines</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">AMC Moving (American Moving Company)</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.americanmovingcompany.net" target="_blank">americanmovingcompany.net</a></span>
+                </div>
+                <div class="notes">Commercial moving. Office moves, warehouse relocations, retail store moves. Serves Downtown Tacoma, North End, South Tacoma, Hilltop, Stadium, Proctor, Ruston, Lakewood.</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">A Plus Moving Group</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://a-plus-moving.com" target="_blank">a-plus-moving.com</a></span>
+                </div>
+                <div class="notes">Corporate office relocation. Studio to corporate moves.</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Home2Home Moving LLC</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://movingh2h.com" target="_blank">movingh2h.com</a></span>
+                </div>
+                <div class="notes">Commercial movers. Office relocations, minimizing downtime.</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+        </div>
+        
+        <!-- VEHICLE WRAPPERS -->
+        <div class="category-section" data-category="wraps">
+            <div class="category-header">
+                <span class="category-title">🚗 Vehicle Wrappers / Fleet Graphics</span>
+                <span class="category-count">7</span>
+            </div>
+            
+            <div class="prospect-card priority-high">
+                <div class="prospect-header">
+                    <span class="business-name">USA Wrap Co</span>
+                    <span class="zip-badge">98335</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">📞 <a href="tel:253-525-8148">(253) 525-8148</a></span>
+                    <span class="contact-item">🌐 <a href="https://usawrapco.com" target="_blank">usawrapco.com</a></span>
+                </div>
+                <div class="notes">Washington's premier commercial vehicle wraps & fleet upfitting. Full truck wraps, van graphics, shelving, ladder racks, partitions. 3M certified, 5-star rated.</div>
+                <span class="source-tag">Web Search - Premier wrap shop</span>
+                <div class="action-btns">
+                    <button class="action-btn" onclick="window.open('tel:253-525-8148')">📞 Call</button>
+                </div>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">WrapJax</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://wrapjax.com" target="_blank">wrapjax.com</a></span>
+                </div>
+                <div class="notes">Custom vehicle wraps, fleet branding, window graphics. Tacoma location. Serves commercial and government clients. Multiple locations: Tacoma, Woodinville, Silverdale.</div>
+                <span class="source-tag">Web Search - Multiple locations</span>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">Tacoma Sign Company</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.tacomasigncompany.com/vehicle-wraps/" target="_blank">tacomasigncompany.com</a></span>
+                </div>
+                <div class="notes">Vehicle wraps, truck wraps, van wraps, trailer wraps, boat wraps, fleet wraps.</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Image360 - Tacoma Central</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://image360.com/tacoma-wa-central" target="_blank">image360.com</a></span>
+                </div>
+                <div class="notes">Truck wrap graphics, vehicle lettering, partial and full wraps.</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Signarama Tacoma</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://signarama.com/locations/wa-tacoma" target="_blank">signarama.com</a></span>
+                </div>
+                <div class="notes">Vehicle wraps and graphics, national franchise</div>
+                <span class="source-tag">Web Search - Franchise</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Tint World - Tacoma</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.tintworld.com/locations/wa/tacoma-167" target="_blank">tintworld.com</a></span>
+                </div>
+                <div class="notes">Vehicle wraps, car graphics, fleet graphics. National franchise.</div>
+                <span class="source-tag">Web Search - Franchise</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">FASTSIGNS Tacoma</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.fastsigns.com/tacoma-wa" target="_blank">fastsigns.com</a></span>
+                </div>
+                <div class="notes">Custom vehicle wraps, car graphics, mobile billboards.</div>
+                <span class="source-tag">Web Search - Franchise</span>
+            </div>
+        </div>
+        
+        <!-- CONSTRUCTION COMPANIES -->
+        <div class="category-section" data-category="construction">
+            <div class="category-header">
+                <span class="category-title">🏗️ Construction Companies (Large Crews)</span>
+                <span class="category-count">8</span>
+            </div>
+            
+            <div class="prospect-card priority-high">
+                <div class="prospect-header">
+                    <span class="business-name">Westmark Construction</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://westmarkconst.com" target="_blank">westmarkconst.com</a></span>
+                </div>
+                <div class="notes">Large commercial and public works construction. Western Washington and Pacific Northwest. New builds need connectivity!</div>
+                <span class="source-tag">Web Search - Major contractor</span>
+            </div>
+            
+            <div class="prospect-card priority-high">
+                <div class="prospect-header">
+                    <span class="business-name">Colvos Construction</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.colvosconstruction.com" target="_blank">colvosconstruction.com</a></span>
+                </div>
+                <div class="notes">Full-service commercial general contractor. Tacoma, Seattle, Bellevue, Olympia, Puget Sound. Private and public commercial.</div>
+                <span class="source-tag">Web Search - Full service</span>
+            </div>
+            
+            <div class="prospect-card priority-high">
+                <div class="prospect-header">
+                    <span class="business-name">Merit Construction</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.meritnw.com" target="_blank">meritnw.com</a></span>
+                </div>
+                <div class="notes">Award-winning full service commercial general contractor. Since 1957. Tacoma-based.</div>
+                <span class="source-tag">Web Search - Award winning</span>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">Korsmo Construction</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://korsmo.com" target="_blank">korsmo.com</a></span>
+                </div>
+                <div class="notes">Commercial construction. Tacoma-based, 60+ years. Quality structures and relationships.</div>
+                <span class="source-tag">Web Search - 60+ years</span>
+            </div>
+            
+            <div class="prospect-card priority-medium">
+                <div class="prospect-header">
+                    <span class="business-name">Garco Construction</span>
+                    <span class="zip-badge">Serves Tacoma</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.garco.com" target="_blank">garco.com</a></span>
+                </div>
+                <div class="notes">General contractor, design-build, GC-CM. Seattle, Tacoma, Puget Sound area.</div>
+                <span class="source-tag">Web Search - Large regional</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Sea Con LLC</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://seaconllc.com" target="_blank">seaconllc.com</a></span>
+                </div>
+                <div class="notes">Commercial contractor. Pre-engineered metal buildings, business relocations, general commercial.</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">ProBuild Construction</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.probuildwa.com" target="_blank">probuildwa.com</a></span>
+                </div>
+                <div class="notes">Premier commercial general contractor. Commercial renovations to industrial builds.</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+            
+            <div class="prospect-card priority-low">
+                <div class="prospect-header">
+                    <span class="business-name">Stringham Custom Homes</span>
+                    <span class="zip-badge">98406</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-item">🌐 <a href="https://www.stringhamhomes.com" target="_blank">stringhamhomes.com</a></span>
+                </div>
+                <div class="notes">Commercial construction Tacoma. Commercial contractors.</div>
+                <span class="source-tag">Web Search</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function filterCategory(category) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Show/hide sections
+            document.querySelectorAll('.category-section').forEach(section => {
+                if (category === 'all' || section.dataset.category === category) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
