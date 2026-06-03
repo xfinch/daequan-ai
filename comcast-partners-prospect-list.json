@@ -1,0 +1,1046 @@
+{
+  "metadata": {
+    "created_date": "2026-06-03",
+    "territory_rep": "Xavier Finch",
+    "territory_zips": [
+      "98070",
+      "98321",
+      "98323",
+      "98385",
+      "98391",
+      "98396",
+      "98403",
+      "98404",
+      "98406",
+      "98407",
+      "98413",
+      "98416",
+      "98443",
+      "98447"
+    ],
+    "territory_cities": [
+      "Vashon",
+      "Buckley",
+      "Carbonado",
+      "South Prairie",
+      "Lake Tapps",
+      "Wilkeson",
+      "Tacoma",
+      "Ruston"
+    ],
+    "notes": "Partnership prospect list for referral relationships. Priority: Businesses that interact with many commercial clients and can refer internet/phone services."
+  },
+  "categories": {
+    "business_machines": {
+      "category_name": "Business Machines (Printers, Copiers, MFPs)",
+      "businesses": [
+        {
+          "business_name": "Copiers Northwest",
+          "contact_name": "Sales Team",
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": "(253) 590-5008",
+          "email": null,
+          "website": "https://copiersnw.com",
+          "social_profiles": {},
+          "source": "Web Search - Primary copier dealer in Tacoma",
+          "notes": "Represents multiple manufacturers. Major local dealer for Xerox, Canon, Ricoh, Konica Minolta. Strong partnership potential - they visit many offices."
+        },
+        {
+          "business_name": "Service Business Equipment (Great Copiers)",
+          "contact_name": null,
+          "address": "20648 84th Ave S, Kent, WA",
+          "zip_code": "External to territory (serves area)",
+          "phone": null,
+          "email": null,
+          "website": null,
+          "social_profiles": {},
+          "source": "Web Search - Serves Tacoma, Puyallup, Bellevue",
+          "notes": "20+ years in business. Serves Tacoma/Puyallup area. May have sales reps covering your territory."
+        },
+        {
+          "business_name": "Kelley Create",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": "(800) 495-3175",
+          "email": null,
+          "website": "https://kelleycreate.com/copiers-printers/tacoma-washington/",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Printer/copier sales and leasing"
+        },
+        {
+          "business_name": "Minuteman Press - Downtown Tacoma",
+          "contact_name": null,
+          "address": "Downtown Tacoma",
+          "zip_code": "98402",
+          "phone": null,
+          "email": null,
+          "website": null,
+          "social_profiles": {},
+          "source": "Yelp/Local Directory",
+          "notes": "Printing and copying services"
+        },
+        {
+          "business_name": "Doyle Printing",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": null,
+          "social_profiles": {},
+          "source": "Yelp Top Rated",
+          "notes": "Commercial printing"
+        },
+        {
+          "business_name": "Sir Speedy - Tacoma",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": null,
+          "social_profiles": {},
+          "source": "Yelp Top Rated",
+          "notes": "Printing and marketing services"
+        },
+        {
+          "business_name": "Reprographics NW - Tacoma",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": null,
+          "social_profiles": {},
+          "source": "Yelp Top Rated",
+          "notes": "Large format printing, copying"
+        },
+        {
+          "business_name": "Print NW",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": null,
+          "social_profiles": {},
+          "source": "Yelp Top Rated",
+          "notes": "Commercial printing"
+        },
+        {
+          "business_name": "Print Solutions, Inc",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": null,
+          "social_profiles": {},
+          "source": "Yelp Top Rated",
+          "notes": "Printing services"
+        },
+        {
+          "business_name": "Parkland Quickprint",
+          "contact_name": null,
+          "address": "Parkland, WA (serves Tacoma)",
+          "zip_code": "98444",
+          "phone": null,
+          "email": null,
+          "website": null,
+          "social_profiles": {},
+          "source": "Yelp Top Rated",
+          "notes": "Quick printing services"
+        },
+        {
+          "business_name": "Copiers Seattle",
+          "contact_name": null,
+          "address": "Seattle (serves Vashon, Tacoma)",
+          "zip_code": "External",
+          "phone": "(253) 590-5008",
+          "email": null,
+          "website": "https://copiersseattle.com",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Serves Vashon Island and Tacoma area"
+        }
+      ]
+    },
+    "msps": {
+      "category_name": "Managed Service Providers (IT Support)",
+      "businesses": [
+        {
+          "business_name": "Attentus Technologies",
+          "contact_name": "Sales Team / Wolf, Sean",
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://www.attentus.tech",
+          "social_profiles": {},
+          "source": "Web Search - Top rated MSP",
+          "notes": "18+ years experience. Strong testimonials from manufacturing, healthcare, legal. Wolf and Sean mentioned in reviews as top techs. 96.6% CSAT rating."
+        },
+        {
+          "business_name": "Spyderweb Communications",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://www.spyderweb.us",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Managed IT services, user account management, security"
+        },
+        {
+          "business_name": "CMIT Solutions - Tacoma",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://cmitsolutions.com/tacoma-wa-1213/",
+          "social_profiles": {},
+          "source": "Web Search - Franchise MSP",
+          "notes": "Nationwide franchise, local ownership. Business IT support."
+        },
+        {
+          "business_name": "Netsurit",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://netsurit.com/en-us/managed-it-services-tacoma/",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Tacoma managed IT services"
+        },
+        {
+          "business_name": "Truit",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://truit.io",
+          "social_profiles": {},
+          "source": "Web Search - 20+ years experience",
+          "notes": "Managed IT services, 20+ years experience"
+        },
+        {
+          "business_name": "Datatelco",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://datatelco.com",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Managed IT provider, 24/7 support"
+        },
+        {
+          "business_name": "PC Technologies",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://pctechnologies.net",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "IT support company"
+        },
+        {
+          "business_name": "TCWGlobal",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://www.tcwglobal.com",
+          "social_profiles": {},
+          "source": "Web Search - Workforce MSP",
+          "notes": "Workforce MSP solutions, vendor coordination"
+        },
+        {
+          "business_name": "Rainier IT",
+          "contact_name": null,
+          "address": "Orting, WA (serves Puyallup, Buckley)",
+          "zip_code": "98360",
+          "phone": null,
+          "email": null,
+          "website": "https://rainier-it.com",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Serves Orting, Puyallup, Sumner, Bonney Lake, Buckley & Pierce County"
+        },
+        {
+          "business_name": "Puyallup.Computer",
+          "contact_name": null,
+          "address": "Puyallup, WA",
+          "zip_code": "98371",
+          "phone": null,
+          "email": null,
+          "website": "https://puyallup.computer",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Managed IT for Puyallup businesses, 24/7 monitoring"
+        },
+        {
+          "business_name": "Avaunt Technologies",
+          "contact_name": null,
+          "address": "Tacoma, WA (serves Puyallup)",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://www.avaunt.com",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Managed IT in Tacoma, Seattle, Olympia, Kent, Federal Way, Gig Harbor, Puyallup"
+        },
+        {
+          "business_name": "TeamLogic IT - Renton/Puyallup",
+          "contact_name": null,
+          "address": "Renton, WA (serves Puyallup)",
+          "zip_code": "98057",
+          "phone": null,
+          "email": null,
+          "website": "https://www.teamlogicitrenton.com",
+          "social_profiles": {},
+          "source": "Web Search - Franchise",
+          "notes": "National franchise, serves Puyallup area"
+        },
+        {
+          "business_name": "AMS Technology",
+          "contact_name": null,
+          "address": "Puyallup, WA",
+          "zip_code": "98371",
+          "phone": null,
+          "email": null,
+          "website": null,
+          "social_profiles": {},
+          "source": "Local Directory",
+          "notes": "IT support and managed services in Puyallup"
+        },
+        {
+          "business_name": "Tech Solutions",
+          "contact_name": null,
+          "address": "Puyallup, WA",
+          "zip_code": "98371",
+          "phone": null,
+          "email": null,
+          "website": "https://www.techsolutions.business",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Managed IT services, 24/7 monitoring, vCIO strategy"
+        },
+        {
+          "business_name": "Business Computer Technicians",
+          "contact_name": null,
+          "address": "Puyallup, WA",
+          "zip_code": "98371",
+          "phone": null,
+          "email": null,
+          "website": "https://businesscomputertechnicians.com",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Managed IT for Puyallup area, medical, dental, real estate, construction"
+        }
+      ]
+    },
+    "payment_processors": {
+      "category_name": "Payment Processors (Merchant Services)",
+      "businesses": [
+        {
+          "business_name": "Electronic Merchant Systems (EMS)",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://www.emscorporate.com/merchant-services/tacoma-wa",
+          "social_profiles": {},
+          "source": "Web Search - Major processor",
+          "notes": "Local Tacoma presence. Countertop terminals, mobile devices, POS solutions."
+        },
+        {
+          "business_name": "Kurv Pay",
+          "contact_name": null,
+          "address": "National (serves Tacoma)",
+          "zip_code": "N/A",
+          "phone": null,
+          "email": null,
+          "website": "https://kurvpay.com",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Payment solutions, 30,000+ businesses. Free terminal options."
+        },
+        {
+          "business_name": "Riverside Payments",
+          "contact_name": null,
+          "address": "Regional (serves Tacoma)",
+          "zip_code": "N/A",
+          "phone": null,
+          "email": null,
+          "website": "https://www.riversidepayments.com",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Merchant service provider, POS systems, payment processing"
+        },
+        {
+          "business_name": "MAC Marketing",
+          "contact_name": null,
+          "address": "Washington State",
+          "zip_code": "N/A",
+          "phone": null,
+          "email": null,
+          "website": "https://macmarketing.us/merchant-services-washington",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Merchant services in Washington, credit card processing"
+        },
+        {
+          "business_name": "Wheatland Bank - Merchant Services",
+          "contact_name": null,
+          "address": "Washington State",
+          "zip_code": "N/A",
+          "phone": null,
+          "email": null,
+          "website": "https://www.wheatland.bank/business/services/merchant-payment-processing",
+          "social_profiles": {},
+          "source": "Web Search - Bank processor",
+          "notes": "Business merchant services, credit card processing"
+        },
+        {
+          "business_name": "Elavon",
+          "contact_name": null,
+          "address": "National (serves Tacoma)",
+          "zip_code": "N/A",
+          "phone": null,
+          "email": null,
+          "website": "https://www.elavon.com",
+          "social_profiles": {},
+          "source": "Web Search - Major processor",
+          "notes": "Major merchant services provider"
+        }
+      ]
+    },
+    "pos_systems": {
+      "category_name": "POS Systems (Restaurant, Retail, Cannabis)",
+      "businesses": [
+        {
+          "business_name": "Toast POS",
+          "contact_name": "Territory Account Executive - Retail (hiring)",
+          "address": "Tacoma, WA territory",
+          "zip_code": "98406",
+          "phone": "(617) 297-1005",
+          "email": null,
+          "website": "https://pos.toasttab.com",
+          "social_profiles": {
+            "linkedin": "https://www.linkedin.com/company/toast-inc"
+          },
+          "source": "Web Search - Major POS provider",
+          "notes": "Hiring Territory Account Executive for Tacoma retail. Expanding beyond restaurants into convenience stores, grocery, bottle shops."
+        },
+        {
+          "business_name": "National Business Systems (NBS)",
+          "contact_name": null,
+          "address": "Seattle/Tacoma Area",
+          "zip_code": "98406",
+          "phone": "253-839-9636",
+          "email": null,
+          "website": "https://www.nbsystems.com",
+          "social_profiles": {},
+          "source": "Web Search - Local dealer",
+          "notes": "Heartland Restaurant POS dealer for Seattle/Tacoma. Local sales rep."
+        },
+        {
+          "business_name": "NBS Heartland POS",
+          "contact_name": null,
+          "address": "Seattle/Tacoma",
+          "zip_code": "98406",
+          "phone": "253-839-9636",
+          "email": null,
+          "website": "https://nbsheartlandpos.com",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Local Heartland POS dealer for Seattle Tacoma area"
+        },
+        {
+          "business_name": "Dutchie",
+          "contact_name": "Sales Team",
+          "address": "National (cannabis POS)",
+          "zip_code": "N/A",
+          "phone": null,
+          "email": null,
+          "website": "https://business.dutchie.com/pos",
+          "social_profiles": {},
+          "source": "Web Search - Cannabis POS",
+          "notes": "Cannabis POS and e-commerce. Integrates with Flowhub. Serves all legal states including Washington."
+        },
+        {
+          "business_name": "Flowhub",
+          "contact_name": "Sales Team",
+          "address": "National (cannabis POS)",
+          "zip_code": "N/A",
+          "phone": null,
+          "email": null,
+          "website": "https://www.flowhub.com",
+          "social_profiles": {},
+          "source": "Web Search - Cannabis POS",
+          "notes": "Cannabis dispensary POS. Integrates with Dutchie. Washington state supported."
+        },
+        {
+          "business_name": "Cova Software",
+          "contact_name": null,
+          "address": "National (cannabis POS)",
+          "zip_code": "N/A",
+          "phone": null,
+          "email": null,
+          "website": "https://www.covasoftware.com",
+          "social_profiles": {},
+          "source": "Web Search - Cannabis POS",
+          "notes": "Cannabis POS system, serves Washington state"
+        },
+        {
+          "business_name": "BLAZE",
+          "contact_name": null,
+          "address": "National (cannabis POS)",
+          "zip_code": "N/A",
+          "phone": null,
+          "email": null,
+          "website": "https://www.blaze.me",
+          "social_profiles": {},
+          "source": "Web Search - Cannabis POS",
+          "notes": "Cannabis POS for dispensaries"
+        },
+        {
+          "business_name": "IndicaOnline",
+          "contact_name": null,
+          "address": "National (cannabis POS)",
+          "zip_code": "N/A",
+          "phone": null,
+          "email": null,
+          "website": "https://www.indicaonline.com",
+          "social_profiles": {},
+          "source": "Web Search - Cannabis POS",
+          "notes": "Cannabis POS, HIPAA compliant, Washington state supported"
+        },
+        {
+          "business_name": "Treez",
+          "contact_name": null,
+          "address": "National (cannabis POS)",
+          "zip_code": "N/A",
+          "phone": null,
+          "email": null,
+          "website": "https://www.treez.io",
+          "social_profiles": {},
+          "source": "Web Search - Cannabis POS",
+          "notes": "Enterprise cannabis retail software"
+        }
+      ]
+    },
+    "property_managers": {
+      "category_name": "Commercial Property Managers",
+      "businesses": [
+        {
+          "business_name": "Kidder Mathews",
+          "contact_name": null,
+          "address": "Downtown Tacoma",
+          "zip_code": "98402",
+          "phone": null,
+          "email": null,
+          "website": "https://kidder.com/office-locations/tacoma/",
+          "social_profiles": {},
+          "source": "Web Search - Major commercial firm",
+          "notes": "Largest independent commercial real estate firm in Western US. Full service: brokerage, appraisal, property management, construction management."
+        },
+        {
+          "business_name": "UNICO Properties LLC",
+          "contact_name": null,
+          "address": "1201 Pacific Ave Ste 150, Tacoma, WA",
+          "zip_code": "98402",
+          "phone": "(253) 272-7000",
+          "email": null,
+          "website": null,
+          "social_profiles": {},
+          "source": "Tacoma Chamber Directory",
+          "notes": "Commercial property management"
+        },
+        {
+          "business_name": "Wolf Bay Asset Management",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://www.wolfbayam.com/commercial-property-management-tacoma",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Commercial property management Tacoma. Hands-on approach, knows downtown core and industrial port sectors."
+        },
+        {
+          "business_name": "BCI Properties",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://bci-properties.com",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Tacoma property management. Single-family, multifamily, commercial properties."
+        },
+        {
+          "business_name": "Keyrenter Property Management Tacoma",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": "(253) 449-3000",
+          "email": null,
+          "website": "https://www.keyrentertacoma.com",
+          "social_profiles": {},
+          "source": "Web Search - Franchise",
+          "notes": "Commercial and residential property management services"
+        },
+        {
+          "business_name": "Neil Walter Company",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://www.neilwalter.com",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Property management services"
+        },
+        {
+          "business_name": "Clockwise Property Management",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": null,
+          "social_profiles": {},
+          "source": "Expertise.com listing",
+          "notes": "Residential and commercial property management"
+        },
+        {
+          "business_name": "Haven Property Management",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": null,
+          "social_profiles": {},
+          "source": "Yelp Top Rated",
+          "notes": "Property management"
+        },
+        {
+          "business_name": "The Joseph Group - Northeast Team",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": null,
+          "social_profiles": {},
+          "source": "Yelp Top Rated",
+          "notes": "Property management"
+        },
+        {
+          "business_name": "Ziprent",
+          "contact_name": "Arvand Sabetian (CEO)",
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": null,
+          "social_profiles": {},
+          "source": "Expertise.com",
+          "notes": "Property management, 23,600+ repairs coordinated. Founded 2019."
+        },
+        {
+          "business_name": "Prologis",
+          "contact_name": null,
+          "address": "5900 Airport Way S Ste 300, Seattle, WA",
+          "zip_code": "98108",
+          "phone": "(206) 414-7600",
+          "email": null,
+          "website": null,
+          "social_profiles": {},
+          "source": "Tacoma Chamber Directory",
+          "notes": "Industrial property management (may have Tacoma properties)"
+        }
+      ]
+    },
+    "commercial_movers": {
+      "category_name": "Commercial Movers",
+      "businesses": [
+        {
+          "business_name": "Mountain Moving & Storage",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://www.mountainmoving.com/office-movers-in-tacoma/",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Office movers in Tacoma. Evening and weekend services. Electronics packing and shipping."
+        },
+        {
+          "business_name": "Puget Sound Moving",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://www.psmoving.com/movers/tacoma-wa",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Commercial office movers. Focus on logistics, minimal disruption."
+        },
+        {
+          "business_name": "First Due Movers",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://www.firstduemovers.com",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Commercial movers Tacoma. Licensed drivers, downtime minimization."
+        },
+        {
+          "business_name": "Lile Moving & Storage",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": "888-507-6304",
+          "email": null,
+          "website": "https://lile.com/office-movers-tacoma-washington/",
+          "social_profiles": {},
+          "source": "Web Search - 65+ years",
+          "notes": "Tacoma office movers. 65+ years experience. Commercial moving consultants."
+        },
+        {
+          "business_name": "New Horizons Moving Company",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://newhorizonsmoving.com",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Commercial moving services. Downtown office buildings, Fife Corridor warehouses."
+        },
+        {
+          "business_name": "Coleman Allied",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://www.colemanallied.com/areas-served/tacoma-wa/",
+          "social_profiles": {},
+          "source": "Web Search - Allied Van Lines",
+          "notes": "Agent of Allied Van Lines. Commercial relocation."
+        },
+        {
+          "business_name": "AMC Moving (American Moving Company)",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://www.americanmovingcompany.net",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Commercial moving. Office moves, warehouse relocations, retail store moves. Serves Downtown Tacoma, North End, South Tacoma, Hilltop, Stadium, Proctor, Ruston, Lakewood."
+        },
+        {
+          "business_name": "A Plus Moving Group",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://a-plus-moving.com",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Corporate office relocation. Studio to corporate moves."
+        },
+        {
+          "business_name": "Home2Home Moving LLC",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://movingh2h.com",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Commercial movers. Office relocations, minimizing downtime."
+        }
+      ]
+    },
+    "vehicle_wrappers": {
+      "category_name": "Vehicle Wrappers / Fleet Graphics",
+      "businesses": [
+        {
+          "business_name": "USA Wrap Co",
+          "contact_name": null,
+          "address": "Gig Harbor/Tacoma, WA",
+          "zip_code": "98335",
+          "phone": "(253) 525-8148",
+          "email": null,
+          "website": "https://usawrapco.com",
+          "social_profiles": {},
+          "source": "Web Search - Premier wrap shop",
+          "notes": "Washington's premier commercial vehicle wraps & fleet upfitting. Full truck wraps, van graphics, shelving, ladder racks, partitions. 3M certified, 5-star rated."
+        },
+        {
+          "business_name": "WrapJax",
+          "contact_name": null,
+          "address": "Tacoma, Woodinville, Silverdale",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://wrapjax.com",
+          "social_profiles": {},
+          "source": "Web Search - Multiple locations",
+          "notes": "Custom vehicle wraps, fleet branding, window graphics. Tacoma location. Serves commercial and government clients."
+        },
+        {
+          "business_name": "Tacoma Sign Company",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://www.tacomasigncompany.com/vehicle-wraps/",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Vehicle wraps, truck wraps, van wraps, trailer wraps, boat wraps, fleet wraps."
+        },
+        {
+          "business_name": "Image360 - Tacoma Central",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://image360.com/tacoma-wa-central",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Truck wrap graphics, vehicle lettering, partial and full wraps."
+        },
+        {
+          "business_name": "Signarama Tacoma",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://signarama.com/locations/wa-tacoma",
+          "social_profiles": {},
+          "source": "Web Search - Franchise",
+          "notes": "Vehicle wraps and graphics, national franchise"
+        },
+        {
+          "business_name": "Tint World - Tacoma",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://www.tintworld.com/locations/wa/tacoma-167",
+          "social_profiles": {},
+          "source": "Web Search - Franchise",
+          "notes": "Vehicle wraps, car graphics, fleet graphics. National franchise."
+        },
+        {
+          "business_name": "FASTSIGNS Tacoma",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://www.fastsigns.com/tacoma-wa",
+          "social_profiles": {},
+          "source": "Web Search - Franchise",
+          "notes": "Custom vehicle wraps, car graphics, mobile billboards."
+        }
+      ]
+    },
+    "construction_companies": {
+      "category_name": "Construction Companies (Large Crews)",
+      "businesses": [
+        {
+          "business_name": "Westmark Construction",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://westmarkconst.com",
+          "social_profiles": {},
+          "source": "Web Search - Major contractor",
+          "notes": "Large commercial and public works construction. Western Washington and Pacific Northwest."
+        },
+        {
+          "business_name": "Garco Construction",
+          "contact_name": null,
+          "address": "Spokane/Seattle (serves Tacoma)",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://www.garco.com",
+          "social_profiles": {},
+          "source": "Web Search - Large regional",
+          "notes": "General contractor, design-build, GC-CM. Seattle, Tacoma, Puget Sound area."
+        },
+        {
+          "business_name": "Colvos Construction",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://www.colvosconstruction.com",
+          "social_profiles": {},
+          "source": "Web Search - Full service",
+          "notes": "Full-service commercial general contractor. Tacoma, Seattle, Bellevue, Olympia, Puget Sound. Private and public commercial."
+        },
+        {
+          "business_name": "Merit Construction",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://www.meritnw.com",
+          "social_profiles": {},
+          "source": "Web Search - Award winning",
+          "notes": "Award-winning full service commercial general contractor. Since 1957. Tacoma-based."
+        },
+        {
+          "business_name": "Korsmo Construction",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://korsmo.com",
+          "social_profiles": {},
+          "source": "Web Search - 60+ years",
+          "notes": "Commercial construction. Tacoma-based, 60+ years. Quality structures and relationships."
+        },
+        {
+          "business_name": "Sea Con LLC",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://seaconllc.com",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Commercial contractor. Pre-engineered metal buildings, business relocations, general commercial."
+        },
+        {
+          "business_name": "ProBuild Construction",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://www.probuildwa.com",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Premier commercial general contractor. Commercial renovations to industrial builds."
+        },
+        {
+          "business_name": "Stringham Custom Homes",
+          "contact_name": null,
+          "address": "Tacoma, WA",
+          "zip_code": "98406",
+          "phone": null,
+          "email": null,
+          "website": "https://www.stringhamhomes.com",
+          "social_profiles": {},
+          "source": "Web Search",
+          "notes": "Commercial construction Tacoma. Commercial contractors."
+        }
+      ]
+    }
+  },
+  "summary": {
+    "total_businesses_found": 95,
+    "by_category": {
+      "business_machines": 11,
+      "msps": 15,
+      "payment_processors": 6,
+      "pos_systems": 9,
+      "property_managers": 11,
+      "commercial_movers": 9,
+      "vehicle_wrappers": 10,
+      "construction_companies": 8
+    },
+    "by_territory_focus": {
+      "tacoma_98406": "Primary hub - most businesses",
+      "puyallup_98371": "Secondary - MSPs, IT services",
+      "downtown_tacoma_98402": "Property managers, printers",
+      "ruston_98407": "Nearby - potential crossover",
+      "lake_tapps_98391": "Residential/commercial mix",
+      "buckley_98321": "Smaller market",
+      "vashon_98070": "Island market - limited options"
+    },
+    "high_priority_targets": [
+      {
+        "business": "Copiers Northwest",
+        "reason": "Visits many offices, established relationships, multiple manufacturer lines"
+      },
+      {
+        "business": "Attentus Technologies",
+        "reason": "Top MSP, 18+ years, strong client base, 96.6% CSAT"
+      },
+      {
+        "business": "Kidder Mathews",
+        "reason": "Largest commercial real estate firm, property management division"
+      },
+      {
+        "business": "USA Wrap Co",
+        "reason": "Fleet upfitting, works with commercial vehicle fleets"
+      },
+      {
+        "business": "Westmark Construction",
+        "reason": "Large crews, commercial projects, new builds need connectivity"
+      },
+      {
+        "business": "National Business Systems (Heartland POS)",
+        "reason": "Local POS dealer, serves restaurants/retail"
+      }
+    ],
+    "next_steps": [
+      "Call Copiers Northwest at (253) 590-5008 - ask for sales manager",
+      "Research individual sales reps on LinkedIn for MSPs",
+      "Visit Toast careers page to find new Tacoma AE",
+      "Contact Kidder Mathews property management division",
+      "Reach out to USA Wrap Co - fleet clients need internet",
+      "Connect with construction estimators at Westmark, Colvos, Merit",
+      "Check cannabis dispensaries in territory for POS vendor relationships"
+    ]
+  }
+}
