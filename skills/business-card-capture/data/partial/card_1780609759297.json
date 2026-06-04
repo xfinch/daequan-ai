@@ -1,0 +1,22 @@
+{
+  "id": "card_1780609759297",
+  "timestamp": "2026-06-04T21:49:19.297Z",
+  "data": {
+    "name": null,
+    "business": "KELLY G. RICHARDS",
+    "title": null,
+    "phone": "(206) 406-2678",
+    "email": "kelly@tacomawinemerchants.com",
+    "address": {
+      "street": "2112 N 30th St, Suite C",
+      "city": "Tacoma",
+      "state": "WA",
+      "zip": "98403"
+    },
+    "website": "tacomawinemerchants.com"
+  },
+  "missing": [
+    "name"
+  ],
+  "status": "pending"
+}
