@@ -26,9 +26,17 @@ export async function GET(request: NextRequest) {
     const dateIdx = headers.findIndex(h => h.toLowerCase().includes('date'));
     const notesIdx = headers.findIndex(h => h.toLowerCase().includes('notes'));
     
-    // Get today's date
+    // Get today's date in Pacific timezone (America/Los_Angeles)
     const today = new Date();
-    const todayStr = today.toISOString().split('T')[0];
+    const pacificDate = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Los_Angeles',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).format(today);
+    // Convert MM/DD/YYYY to YYYY-MM-DD
+    const [month, day, year] = pacificDate.split('/');
+    const todayStr = `${year}-${month}-${day}`;
     
     // Filter for today's leads
     const todayLeads = [];
