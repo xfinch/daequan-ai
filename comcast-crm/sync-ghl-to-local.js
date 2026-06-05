@@ -8,7 +8,19 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
 const DB_PATH = path.join(__dirname, 'comcast.db');
-const GHL_TOKEN = process.env.GHL_COMCAST_TOKEN;
+
+// Get token from environment or launchctl
+let GHL_TOKEN = process.env.GHL_COMCAST_TOKEN;
+if (!GHL_TOKEN || GHL_TOKEN === 'FROM_LAUNCHCTL') {
+  // Try to get from launchctl when running via LaunchAgent
+  try {
+    const { execSync } = require('child_process');
+    GHL_TOKEN = execSync('launchctl getenv GHL_COMCAST_TOKEN', { encoding: 'utf8' }).trim();
+  } catch (e) {
+    GHL_TOKEN = null;
+  }
+}
+
 const GHL_LOCATION_ID = 'nPubo6INanVq94ovAQNW';
 
 // Results tracking
@@ -26,9 +38,9 @@ async function fetchGHLContacts() {
   let page = 1;
   let hasMore = true;
 
-  while (hasMore && page <= 5) {
+  while (hasMore && page <= 10) {
     const response = await fetch(
-      `https://services.leadconnectorhq.com/contacts/?locationId=${GHL_LOCATION_ID}&limit=100`,
+      `https://services.leadconnectorhq.com/contacts/?locationId=${GHL_LOCATION_ID}&limit=100&page=${page}`,
       {
         headers: {
           'Authorization': `Bearer ${GHL_TOKEN}`,
@@ -42,10 +54,15 @@ async function fetchGHLContacts() {
     }
 
     const data = await response.json();
-    contacts.push(...(data.contacts || []));
+    const pageContacts = data.contacts || [];
     
-    hasMore = data.meta?.nextPageUrl ? true : false;
-    page++;
+    if (pageContacts.length === 0) {
+      hasMore = false;
+    } else {
+      contacts.push(...pageContacts);
+      hasMore = data.meta?.nextPageUrl ? true : false;
+      page++;
+    }
   }
 
   return contacts;
@@ -55,37 +72,71 @@ async function fetchGHLContacts() {
  * Fetch all opportunities from GHL
  */
 async function fetchGHLOpportunities() {
-  const response = await fetch(
-    `https://services.leadconnectorhq.com/opportunities/?locationId=${GHL_LOCATION_ID}&limit=100`,
-    {
-      headers: {
-        'Authorization': `Bearer ${GHL_TOKEN}`,
-        'Version': '2021-07-28'
+  try {
+    const response = await fetch(
+      `https://services.leadconnectorhq.com/opportunities/?locationId=${GHL_LOCATION_ID}&limit=100`,
+      {
+        headers: {
+          'Authorization': `Bearer ${GHL_TOKEN}`,
+          'Version': '2021-07-28'
+        }
       }
+    );
+
+    if (!response.ok) {
+      console.log(`   ⚠️  Opportunities endpoint returned ${response.status}, continuing without opportunity data`);
+      return [];
     }
-  );
 
-  if (!response.ok) {
-    throw new Error(`Failed to fetch opportunities: ${response.status}`);
+    const data = await response.json();
+    return data.opportunities || [];
+  } catch (err) {
+    console.log(`   ⚠️  Could not fetch opportunities: ${err.message}, continuing without opportunity data`);
+    return [];
   }
-
-  const data = await response.json();
-  return data.opportunities || [];
 }
 
 /**
- * Check if contact exists in local DB
+ * Check if contact exists in local DB by email or GHL contact ID
  */
-function checkExistingContact(db, email) {
+function checkExistingContact(db, email, ghlContactId) {
   return new Promise((resolve, reject) => {
-    db.get(
-      'SELECT id FROM business_visits WHERE email = ?',
-      [email],
-      (err, row) => {
-        if (err) reject(err);
-        resolve(row);
-      }
-    );
+    // First check by GHL contact ID (most reliable)
+    if (ghlContactId) {
+      db.get(
+        'SELECT id FROM business_visits WHERE ghl_contact_id = ?',
+        [ghlContactId],
+        (err, row) => {
+          if (err) {
+            reject(err);
+            return;
+          }
+          if (row) {
+            resolve(row);
+            return;
+          }
+          // If not found by GHL ID, check by email
+          db.get(
+            'SELECT id FROM business_visits WHERE email = ?',
+            [email],
+            (err2, row2) => {
+              if (err2) reject(err2);
+              resolve(row2);
+            }
+          );
+        }
+      );
+    } else {
+      // Just check by email if no GHL contact ID
+      db.get(
+        'SELECT id FROM business_visits WHERE email = ?',
+        [email],
+        (err, row) => {
+          if (err) reject(err);
+          resolve(row);
+        }
+      );
+    }
   });
 }
 
@@ -112,12 +163,17 @@ function insertContact(db, contact, opportunity) {
       if (contact.tags?.includes('follow-up-later')) status = 'followup';
     }
 
+    // Use GHL's dateAdded if available, otherwise use current timestamp
+    const visitDate = contact.dateAdded 
+      ? new Date(contact.dateAdded).toISOString().replace('T', ' ').split('.')[0]
+      : new Date().toISOString().replace('T', ' ').split('.')[0];
+
     const insert = `
       INSERT INTO business_visits (
         ghl_contact_id, ghl_location_id, business_name, contact_name,
         phone, email, address, city, state, zip_code,
-        website, visit_status, notes, source, synced_to_ghl
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        website, visit_status, notes, source, synced_to_ghl, visit_date
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
     db.run(insert, [
@@ -135,7 +191,8 @@ function insertContact(db, contact, opportunity) {
       status,
       `Synced from GHL. Tags: ${(contact.tags || []).join(', ')}`,
       'GHL Sync',
-      1
+      1,
+      visitDate
     ], function(err) {
       if (err) reject(err);
       resolve(this.lastID);
@@ -185,14 +242,14 @@ async function syncToLocalDB() {
       console.log(`[${i + 1}/${contacts.length}] ${businessName}`);
 
       try {
-        // Skip if no email
-        if (!contact.email) {
-          console.log('   ⏭️  Skipped: No email');
+        // Check if already exists (by GHL ID or email)
+        const existing = await checkExistingContact(db, contact.email, contact.id);
+        
+        // Skip if no email AND no GHL ID (can't identify unique contact)
+        if (!contact.email && !contact.id) {
+          console.log('   ⏭️  Skipped: No email and no GHL ID');
           continue;
         }
-
-        // Check if already exists
-        const existing = await checkExistingContact(db, contact.email);
         if (existing) {
           console.log('   ⚪ Already exists in local DB');
           results.existing.push({ businessName, id: existing.id });

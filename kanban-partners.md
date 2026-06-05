@@ -128,7 +128,7 @@ Track who referred whom — this becomes your partner pipeline.
 | Prospects with Partner Potential | 1 (Anya Evans) |
 | Active Non-Paid Partners | 2 (Tara, Manny) |
 | Signed Paid Partners | 0 |
-| Not a Fit | 1 (Vance — no-show) |
+| Not a Fit | 0 |
 | Meetings Scheduled | 1 (Tracy — Monday March 23, 10 AM Teams) |
 
 ---
@@ -183,7 +183,7 @@ Warm relationship established. Client Success Manager who connects people profes
 
 ---
 
-## Partner Profile: Vance Richardson — ❌ NO-SHOW
+## Partner Profile: Vance Richardson — ✅ ACTIVE PARTNER (REACTIVATED)
 
 **Business:** Logic Staffing  
 **Contact:** Vance Richardson (Workforce Solutions Advisor)  
@@ -191,16 +191,32 @@ Warm relationship established. Client Success Manager who connects people profes
 **Phone:** 253-863-1296 (Office) / 253-256-9794 (Direct)  
 **Email:** vrichardson@logicstaffing.com  
 
-**Current Status:** ❌ **Not a Fit** (No-show)  
-**Partner Type:** N/A — Did not follow through  
+**Current Status:** ✅ **Active Non-Paid Partner**  
+**Partner Type:** Non-Paid Partner (Referral Source)
 
-**What Happened:**
-Meeting scheduled for Monday the 2nd at 2:00 PM at Point Ruston. **Did not attend.**
+**Turnaround Story:**
+Initially scheduled meeting for Monday the 2nd — **did not attend** (marked as ❌ Not a Fit). **However**, Vance re-engaged and has since become an active partner.
 
-**Assessment:**
-Former Comcast BAE with IT network seemed promising, but unreliable follow-through on scheduled commitments. Despite strategic potential, basic professionalism barrier.
+**Progress Since Reactivation:**
+- ✅ **Referred 1 lead** — actively sending business
+- ✅ **Mariners game together** — relationship building
+- ✅ **Introduced to other partners** — integrated into your network
+- ✅ **Toast POS connection** — instrumental in getting you into Toast (the POS company)
+- ✅ **On a good track** — solid ongoing partnership
 
-**Decision:** Archived — not pursuing further unless he initiates.
+**Why He's Strategic:**
+- **Former Comcast BAE** — knows the product and IT network
+- **Logic Staffing** — Workforce Solutions Advisor with business client visibility
+- **Toast POS Pipeline** — Key to expanding into restaurant POS market
+- **Active Referrer** — Already delivered one lead, more expected
+
+**The Opportunity:**
+Vance went from written off to one of your most engaged partners. His Toast POS connection alone could open significant restaurant market share. The Mariners game and partner introductions show he's invested in the relationship.
+
+**Next Steps:**
+- [ ] Continue nurturing Toast POS introduction
+- [ ] Track referral quality and follow-through
+- [ ] Explore co-selling opportunities with his staffing clients
 
 ---
 
@@ -437,6 +453,112 @@ Your clients need banking → John. His clients need connectivity → You. Mutua
 - [ ] Reference his offers when your clients need banking services
 
 ---
+
+---
+
+## Partner Profile: Sergio Lopez ⭐ WAFD BANK BRANCH MANAGER (NEW)
+
+**Business:** WAFD Bank — University Place Branch  
+**Contact:** Sergio Lopez (Branch Manager)  
+**Phone:** 253-564-7353  
+**Email:** Sergio.lopez@wafd.com  
+**Address:** 4221 Bridgeport Way W, University Place, WA 98466  
+
+**Current Status:** 🎯 **Prospecting**  
+**Partner Type:** Non-Paid Partner (Referral Source)  
+**Source:** Direct contact
+
+**Why He's Strategic:**
+- **Branch Manager** — Controls banking relationships at the University Place location
+- **Reports to Manny** — Sergio works FOR Manny Maldonado (Division Sales Manager/VP), creating a direct line to leadership
+- **Geographic Coverage** — 98466 territory (University Place)
+- **Business Banking** — Sees local businesses daily, knows their financial health and growth plans
+- **Internal Champion** — Manny can direct/encourage Sergio to prioritize Comcast referrals
+
+**The Opportunity:**
+Sergio manages the day-to-day branch operations where Manny is based. With Manny as his boss, you have a top-down referral channel: Manny sets the priority, Sergio executes at the branch level. This is a managed referral relationship, not just a coordinated one.
+
+**Connection:** **Sergio reports to Manny Maldonado** — use Manny for direct intro and ongoing referral management
+
+**Next Steps:**
+- [ ] Reach out via phone (253-564-7353) or email
+- [ ] Mention Manny Maldonado connection as warm intro
+- [ ] Schedule meeting to discuss referral partnership
+- [ ] Explore coordinated approach with Manny
+- [ ] Position: "Help your business banking clients stay connected"
+
+---
+
+## Partner Profile: Jonathan Cho ⭐ US BANK M&A PARTNER (NEW)
+
+**Business:** US Bank  
+**Contact:** Jonathan Cho (M&A Specialist — $25M range)  
+**Phone:** 253-241-8555  
+**Email:** (To be collected)  
+
+**Current Status:** 🎯 **Prospecting** (Referred by Tara Groody)  
+**Partner Type:** Non-Paid Partner (Referral Source)  
+**Source:** Tara Groody referral (2026-06-04)
+
+**Why He's Strategic:**
+- **M&A Specialist** — Focuses on companies acquiring businesses around $25M range
+- **Deal Flow Visibility** — Sees companies BEFORE they scale (infrastructure needs)
+- **Acquisition = Connectivity Changes** — Merging companies need unified comms, new locations need install
+- **US Bank Network** — Complements John Park (small business) with mid-market deal flow
+- **Tara Groody Connection** — Warm referral from trusted partner
+
+**The Opportunity:**
+Companies in acquisition mode have complex connectivity needs: consolidating systems, adding locations, scaling infrastructure. Jonathan sees these deals forming — you can be the connectivity solution before they even know they need one.
+
+**Referral Source:** Tara Groody (GreenHaven Interactive) — warm introduction
+
+**Next Steps:**
+- [ ] Reach out via phone (253-241-8555)
+- [ ] Collect email address
+- [ ] Schedule coffee/intro meeting
+- [ ] Position: "Help your acquisition clients stay connected during transitions"
+- [ ] Explore co-referrals with Tara
+
+---
+
+## Partner Profile: Casey M. Adams ⭐ STRATEGIC REFERRAL PARTNER (NEW)
+
+**Business:** LevelUp Pros LLC  
+**Contact:** Casey M. Adams (Owner & Lead Consultant)  
+**Phone:** 253-365-4042  
+**Email:** casey@levelup-pros.com  
+**Website:** levelup-pros.com  
+
+**Current Status:** 🎯 **Prospecting** (Met at Bostwick Cafe)  
+**Partner Type:** Non-Paid Partner (Referral Source)  
+**Source:** Direct meeting (2026-06-04)
+
+**Why She's Strategic:**
+- **HR Agency/Consultancy** — Engages with companies at inflection points: growing staff, closing shop, or moving
+- **Perfect Timing** — Businesses changing size or location = connectivity changes needed
+- **Multi-Business Owner** — Also runs private investigator business + Nexus for Lawyers
+- **Lawyer Network** — Nexus for Lawyers is a networking/continuing education group for attorneys (high-value professional network)
+- **Pre-Move Intel** — Knows when companies are relocating BEFORE they need new service
+
+**The Opportunity:**
+Casey touches businesses at exactly the moments they need Comcast: scaling up (more lines), moving (new install), or closing (account changes). Plus her lawyer network through Nexus for Lawyers is a direct pipeline to professional services firms.
+
+**Meeting Note:**
+- **Date:** June 4, 2026
+- **Location:** Bostwick Cafe
+- **Purpose:** Discuss referral partnership
+- **Outcome:** Relationship established, partner potential confirmed
+
+**Her Businesses:**
+1. **LevelUp Pros LLC** — HR agency/consultancy (staffing, closures, relocations)
+2. **Private Investigator Business** — separate venture
+3. **Nexus for Lawyers** — networking & CLE group for attorneys
+
+**Next Steps:**
+- [ ] Follow up within 48 hours
+- [ ] Schedule deeper partnership discussion
+- [ ] Explore Nexus for Lawyers event sponsorship/attendance
+- [ ] Position: "Help her clients stay connected during transitions"
 
 ---
 
