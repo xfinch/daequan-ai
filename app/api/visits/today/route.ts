@@ -2,17 +2,68 @@ import { NextRequest, NextResponse } from 'next/server';
 import { readFile } from 'fs/promises';
 import path from 'path';
 
+// Parse CSV properly handling quoted fields with newlines and commas
+function parseCSV(text: string): string[][] {
+  const rows: string[][] = [];
+  let currentRow: string[] = [];
+  let currentField = '';
+  let insideQuotes = false;
+  
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    const nextChar = text[i + 1];
+    
+    if (insideQuotes) {
+      if (char === '"') {
+        if (nextChar === '"') {
+          currentField += '"';
+          i++; // Skip next quote
+        } else {
+          insideQuotes = false;
+        }
+      } else {
+        currentField += char;
+      }
+    } else {
+      if (char === '"') {
+        insideQuotes = true;
+      } else if (char === ',') {
+        currentRow.push(currentField);
+        currentField = '';
+      } else if (char === '\n' || (char === '\r' && nextChar === '\n')) {
+        if (char === '\r') i++; // Skip \n in \r\n
+        currentRow.push(currentField);
+        if (currentRow.length > 1 || currentRow[0] !== '') {
+          rows.push(currentRow);
+        }
+        currentRow = [];
+        currentField = '';
+      } else {
+        currentField += char;
+      }
+    }
+  }
+  
+  // Handle last field/row
+  if (currentField !== '' || currentRow.length > 0) {
+    currentRow.push(currentField);
+    rows.push(currentRow);
+  }
+  
+  return rows;
+}
+
 export async function GET(request: NextRequest) {
   try {
     const csvPath = path.join(process.cwd(), 'public', 'comcast-visits.csv');
     const csvContent = await readFile(csvPath, 'utf-8');
     
-    const lines = csvContent.trim().split('\n');
-    if (lines.length < 2) {
+    const rows = parseCSV(csvContent.trim());
+    if (rows.length < 2) {
       return NextResponse.json({ date: new Date().toISOString().split('T')[0], count: 0, leads: [] });
     }
     
-    const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, ''));
+    const headers = rows[0];
     
     // Find indices
     const businessIdx = headers.findIndex(h => h.toLowerCase().includes('business'));
@@ -40,11 +91,8 @@ export async function GET(request: NextRequest) {
     
     // Filter for today's leads
     const todayLeads = [];
-    for (let i = 1; i < lines.length; i++) {
-      const line = lines[i];
-      // Simple CSV parsing - split by comma but handle quoted fields
-      const cols = line.split(',').map(col => col.trim().replace(/^"|"$/g, '').replace(/""/g, '"'));
-      
+    for (let i = 1; i < rows.length; i++) {
+      const cols = rows[i];
       const visitDate = cols[dateIdx] || '';
       // Check if visit date starts with today's date
       if (visitDate.startsWith(todayStr)) {
