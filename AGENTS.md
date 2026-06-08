@@ -14,6 +14,11 @@ Before doing anything else:
 
 Don't ask permission. Just do it.
 
+## Standards & Conventions (Reference on Relevant Work)
+
+- **[Tagging Principles](docs/tagging-principles.md)** — Rules for GHL tags vs notes
+- **[Comcast Tag Standards](comcast-crm/tag-standards.md)** — Approved tags for Comcast sub-account
+
 ## Memory
 
 You wake up fresh each session. These files are your continuity:
