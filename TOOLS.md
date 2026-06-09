@@ -63,3 +63,20 @@ curl -X POST "https://services.leadconnectorhq.com/conversations/messages" \
 ```
 
 **Note:** Must use contactId (not email address directly). Lookup contact first via `/contacts?query=...`
+
+---
+
+## Standing Rules (Xavier's Preferences)
+
+### Email Campaigns
+
+**Folder Structure:** All email copy saved to `email-campaigns/{comcast,ttl,general}/{drafts,sent,archive}/`
+
+**Sending Rules:**
+- **"Send anything Comcast to me"** → Send from `xavier@thetraffic.link` to `comcast.xavier@gmail.com`
+- **All finalized email copy** → Must be saved to local folder before sending
+
+**Process:**
+1. Draft email → Save to `email-campaigns/{category}/drafts/`
+2. Finalize → Move to `email-campaigns/{category}/sent/`
+3. Send via Himalaya using xavier@thetraffic.link
