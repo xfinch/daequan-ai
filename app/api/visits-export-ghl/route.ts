@@ -1,22 +1,16 @@
 import { NextResponse } from 'next/server';
 
+const GHL_TOKEN = process.env.GHL_COMCAST_TOKEN || '';
 const GHL_LOCATION_ID = 'nPubo6INanVq94ovAQNW';
-
-// Ensure fetch is available
-const fetcher = typeof fetch !== 'undefined' ? fetch : require('node-fetch');
 
 export async function GET() {
   try {
-    // Get token inside the function to ensure env vars are loaded
-    const GHL_TOKEN = process.env.GHL_COMCAST_TOKEN || process.env.GHL_API_KEY || '';
-    
     if (!GHL_TOKEN) {
-      console.error('Available env vars:', Object.keys(process.env).filter(k => k.includes('GHL')));
       return NextResponse.json({ error: 'GHL token not configured' }, { status: 500 });
     }
 
     // Fetch contacts from GHL
-    const response = await fetcher(
+    const response = await fetch(
       `https://services.leadconnectorhq.com/contacts/?locationId=${GHL_LOCATION_ID}&limit=100`,
       {
         headers: {
@@ -27,13 +21,18 @@ export async function GET() {
     );
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error('GHL API error response:', errorText);
-      throw new Error(`GHL API error: ${response.status} - ${errorText}`);
+      throw new Error(`GHL API error: ${response.status}`);
     }
 
     const data = await response.json();
     const contacts = data.contacts || [];
+
+    // Filter for today's contacts (or recent)
+    const today = new Date().toISOString().split('T')[0];
+    const recentContacts = contacts.filter((c: any) => {
+      const addedDate = c.dateAdded ? c.dateAdded.split('T')[0] : '';
+      return addedDate === today || addedDate === '2026-06-04';
+    });
 
     // Build CSV headers
     const headers = ['First Name', 'Company', 'Address', 'City', 'State', 'ZIP', 'Phone', 'Email', 'Visit Context', 'Notes', 'Visit Date'];
@@ -55,7 +54,7 @@ export async function GET() {
       return '';
     };
 
-    const rows = contacts.map((c: any) => {
+    const rows = recentContacts.map((c: any) => {
       const firstName = c.firstName || (c.contactName ? c.contactName.split(' ')[0] : '');
       const visitDate = c.dateAdded ? c.dateAdded.split('T')[0] : '';
       
@@ -91,7 +90,7 @@ export async function GET() {
     return new NextResponse(csvContent, {
       headers: {
         'Content-Type': 'text/csv',
-        'Content-Disposition': 'attachment; filename="comcast-visits.csv"'
+        'Content-Disposition': `attachment; filename="comcast-visits-${today}.csv"`
       }
     });
 

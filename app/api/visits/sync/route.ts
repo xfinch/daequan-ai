@@ -36,7 +36,8 @@ export async function POST(request: NextRequest) {
         lng,
         visit_status,
         visit_date,
-        notes
+        notes,
+        visit_context
       FROM business_visits
       ORDER BY visit_date DESC`, (err, rows) => {
         if (err) reject(err);
@@ -71,11 +72,17 @@ export async function POST(request: NextRequest) {
 
         const existing = await Visit.findOne(query);
 
+        // Extract first name from contact_name
+        const firstName = visit.contact_name 
+          ? visit.contact_name.split(' ')[0] 
+          : '';
+
         const record = {
           sqliteId: visit.id,
           ghlContactId: visit.ghl_contact_id,
           businessName: visit.business_name,
           contactName: visit.contact_name,
+          firstName: firstName,
           phone: visit.phone,
           email: visit.email,
           address: visit.address,
@@ -86,6 +93,7 @@ export async function POST(request: NextRequest) {
           lng: visit.lng,
           status: visit.visit_status || 'interested',
           notes: visit.notes,
+          visitContext: visit.visit_context,
         };
 
         if (existing) {
