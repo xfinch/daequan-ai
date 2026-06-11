@@ -77,6 +77,7 @@ export const Decision = mongoose.models.Decision || mongoose.model('Decision', D
 const VisitSchema = new mongoose.Schema({
   businessName: { type: String, required: true },
   contactName: String,
+  firstName: String,
   phone: String,
   email: String,
   address: String,
@@ -87,6 +88,7 @@ const VisitSchema = new mongoose.Schema({
   lng: Number,
   status: { type: String, default: 'interested' },
   notes: String,
+  visitContext: String,
   ghlContactId: String,
   missingFields: [String],
   needsUpdate: { type: Boolean, default: false },

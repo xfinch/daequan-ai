@@ -141,39 +141,58 @@ function checkExistingContact(db, email, ghlContactId) {
 }
 
 /**
+ * Extract visit_context from GHL custom fields
+ */
+function getVisitContext(contact) {
+  if (!contact.customFields || !Array.isArray(contact.customFields)) {
+    return '';
+  }
+  const visitContextField = contact.customFields.find(
+    f => f.key === 'contact.visit_context' || f.id === 'JxkUDvOziE2UkuwY8Um3'
+  );
+  return visitContextField?.value || '';
+}
+
+/**
+ * Extract clean notes from GHL (without sync metadata)
+ */
+function getCleanNotes(contact) {
+  // If contact has notes in GHL, use those
+  if (contact.notes && contact.notes.length > 0) {
+    return contact.notes[0].body || '';
+  }
+  // Otherwise return empty - don't add "Synced from GHL" prefix
+  return '';
+}
+
+/**
  * Insert contact into local DB
  */
 function insertContact(db, contact, opportunity) {
   return new Promise((resolve, reject) => {
     // Map GHL stage to visit_status
-    const stageMap = {
-      'Door Knock': 'door-knock',
-      'Initial Contact': 'interested',
-      'Needs Analysis': 'interested',
-      'Second Review': 'interested',
-      'Proposal Sent': 'interested',
-      'Contract Signed': 'customer'
-    };
-
-    // Get stage name from opportunity if available
     let status = 'interested';
-    if (opportunity) {
-      // We'd need to fetch stage names, but for now use tags
-      if (contact.tags?.includes('hot-lead')) status = 'interested';
-      if (contact.tags?.includes('follow-up-later')) status = 'followup';
-    }
+    if (contact.tags?.includes('hot-lead')) status = 'interested';
+    if (contact.tags?.includes('follow-up-later')) status = 'followup';
+    if (contact.tags?.includes('customer')) status = 'customer';
 
     // Use GHL's dateAdded if available, otherwise use current timestamp
     const visitDate = contact.dateAdded 
       ? new Date(contact.dateAdded).toISOString().replace('T', ' ').split('.')[0]
       : new Date().toISOString().replace('T', ' ').split('.')[0];
 
+    // Get visit context from custom fields
+    const visitContext = getVisitContext(contact);
+    
+    // Get clean notes (without "Synced from GHL" prefix)
+    const cleanNotes = getCleanNotes(contact);
+
     const insert = `
       INSERT INTO business_visits (
         ghl_contact_id, ghl_location_id, business_name, contact_name,
         phone, email, address, city, state, zip_code,
-        website, visit_status, notes, source, synced_to_ghl, visit_date
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        website, visit_status, notes, visit_context, source, synced_to_ghl, visit_date
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
     db.run(insert, [
@@ -189,7 +208,8 @@ function insertContact(db, contact, opportunity) {
       contact.postalCode || '',
       contact.website || '',
       status,
-      `Synced from GHL. Tags: ${(contact.tags || []).join(', ')}`,
+      cleanNotes,
+      visitContext,
       'GHL Sync',
       1,
       visitDate
