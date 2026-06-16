@@ -7,7 +7,10 @@ Serves map data and accepts WhatsApp webhook updates
 import json
 import os
 import sys
-from flask import Flask, request, jsonify, send_from_directory
+import csv
+import io
+from datetime import datetime
+from flask import Flask, request, jsonify, send_from_directory, Response
 from flask_cors import CORS
 import sqlite3
 
@@ -175,6 +178,236 @@ def whatsapp_webhook():
 def serve_review():
     """Serve review queue HTML"""
     return send_from_directory('.', 'review.html')
+
+@app.route('/api/reports/contacts')
+def report_contacts():
+    """Generate CSV report of contacts filtered by email/phone availability"""
+    
+    # Get filter parameters
+    filter_type = request.args.get('filter', 'all')  # all, email_only, phone_only, both, missing_both
+    
+    conn = get_db()
+    cursor = conn.cursor()
+    
+    # Base query with new structured contact fields
+    base_query = """
+        SELECT 
+            id,
+            business_name,
+            contact_name,
+            phone,
+            email,
+            address,
+            city,
+            zip_code,
+            visit_status,
+            visit_date,
+            notes,
+            ghl_contact_id,
+            account_id_8498,
+            source,
+            created_at,
+            gatekeeper_first_name,
+            gatekeeper_last_name,
+            decision_maker_first_name,
+            decision_maker_last_name,
+            other_contacts
+        FROM business_visits
+        WHERE 1=1
+    """
+    
+    # Apply filters
+    params = []
+    if filter_type == 'email_only':
+        base_query += " AND (email IS NOT NULL AND email != '') AND (phone IS NULL OR phone = '')"
+    elif filter_type == 'phone_only':
+        base_query += " AND (phone IS NOT NULL AND phone != '') AND (email IS NULL OR email = '')"
+    elif filter_type == 'both':
+        base_query += " AND (email IS NOT NULL AND email != '') AND (phone IS NOT NULL AND phone != '')"
+    elif filter_type == 'missing_both':
+        base_query += " AND (email IS NULL OR email = '') AND (phone IS NULL OR phone = '')"
+    # 'all' = no filter
+    
+    base_query += " ORDER BY visit_date DESC"
+    
+    cursor.execute(base_query, params)
+    rows = cursor.fetchall()
+    
+    # Generate CSV
+    output = io.StringIO()
+    writer = csv.writer(output)
+    
+    # Write headers with new structured contact fields
+    writer.writerow([
+        'ID', 'Business Name', 'Contact Name (Original)', 
+        'Gatekeeper First Name', 'Gatekeeper Last Name',
+        'Decision Maker First Name', 'Decision Maker Last Name',
+        'Other Contacts (JSON)', 'Phone', 'Email',
+        'Address', 'City', 'ZIP', 'Status', 'Visit Date',
+        'Notes', 'GHL Contact ID', 'Account ID 8498', 'Source', 'Created At'
+    ])
+    
+    # Write data
+    for row in rows:
+        writer.writerow([
+            row['id'],
+            row['business_name'] or '',
+            row['contact_name'] or '',
+            row['gatekeeper_first_name'] or '',
+            row['gatekeeper_last_name'] or '',
+            row['decision_maker_first_name'] or '',
+            row['decision_maker_last_name'] or '',
+            row['other_contacts'] or '',
+            row['phone'] or '',
+            row['email'] or '',
+            row['address'] or '',
+            row['city'] or '',
+            row['zip_code'] or '',
+            row['visit_status'] or '',
+            row['visit_date'] or '',
+            row['notes'] or '',
+            row['ghl_contact_id'] or '',
+            row['account_id_8498'] or '',
+            row['source'] or '',
+            row['created_at'] or ''
+        ])
+    
+    # Prepare response
+    output.seek(0)
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    filename = f"comcast_contacts_{filter_type}_{timestamp}.csv"
+    
+    return Response(
+        output.getvalue(),
+        mimetype='text/csv',
+        headers={
+            'Content-Disposition': f'attachment; filename={filename}',
+            'Content-Type': 'text/csv; charset=utf-8'
+        }
+    )
+
+@app.route('/api/reports/stats')
+def report_stats():
+    """Get quick stats on contact data completeness"""
+    conn = get_db()
+    cursor = conn.cursor()
+    
+    cursor.execute("SELECT COUNT(*) as total FROM business_visits")
+    total = cursor.fetchone()['total']
+    
+    cursor.execute("""
+        SELECT 
+            SUM(CASE WHEN email IS NOT NULL AND email != '' THEN 1 ELSE 0 END) as with_email,
+            SUM(CASE WHEN phone IS NOT NULL AND phone != '' THEN 1 ELSE 0 END) as with_phone,
+            SUM(CASE WHEN (email IS NOT NULL AND email != '') AND (phone IS NOT NULL AND phone != '') THEN 1 ELSE 0 END) as with_both,
+            SUM(CASE WHEN (email IS NULL OR email = '') AND (phone IS NULL OR phone = '') THEN 1 ELSE 0 END) as with_neither
+        FROM business_visits
+    """)
+    row = cursor.fetchone()
+    
+    return jsonify({
+        "total_contacts": total,
+        "with_email_only": row['with_email'] - row['with_both'],
+        "with_phone_only": row['with_phone'] - row['with_both'],
+        "with_both": row['with_both'],
+        "with_neither": row['with_neither'],
+        "filters_available": ["all", "email_only", "phone_only", "both", "missing_both"]
+    })
+
+@app.route('/reports')
+def serve_reports_page():
+    """Serve reports web interface"""
+    return """<!DOCTYPE html>
+<html>
+<head>
+    <title>Comcast CRM Reports</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #333; border-bottom: 3px solid #0066cc; padding-bottom: 10px; }
+        .card { background: white; border-radius: 8px; padding: 24px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin: 20px 0; }
+        .stat-box { background: #f8f9fa; padding: 16px; border-radius: 6px; text-align: center; }
+        .stat-number { font-size: 32px; font-weight: bold; color: #0066cc; }
+        .stat-label { font-size: 14px; color: #666; margin-top: 4px; }
+        .btn { display: inline-block; padding: 12px 24px; margin: 8px; background: #0066cc; color: white; text-decoration: none; border-radius: 6px; font-weight: 500; }
+        .btn:hover { background: #0052a3; }
+        .btn-secondary { background: #6c757d; }
+        .btn-secondary:hover { background: #545b62; }
+        .btn-success { background: #28a745; }
+        .btn-success:hover { background: #218838; }
+        .btn-warning { background: #ffc107; color: #333; }
+        .btn-warning:hover { background: #e0a800; }
+        .btn-danger { background: #dc3545; }
+        .btn-danger:hover { background: #c82333; }
+        .filter-section { margin: 20px 0; }
+        .filter-section h3 { margin-bottom: 12px; color: #555; }
+    </style>
+</head>
+<body>
+    <h1>📊 Comcast CRM Reports</h1>
+    
+    <div class="card">
+        <h2>Contact Data Overview</h2>
+        <div class="stat-grid" id="stats">
+            <div class="stat-box">
+                <div class="stat-number" id="total">-</div>
+                <div class="stat-label">Total Contacts</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="both">-</div>
+                <div class="stat-label">Email + Phone</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="email-only">-</div>
+                <div class="stat-label">Email Only</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="phone-only">-</div>
+                <div class="stat-label">Phone Only</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="missing-both">-</div>
+                <div class="stat-label">Missing Both</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2>Download CSV Reports</h2>
+        <p>Export contacts with structured fields (Gatekeeper, Decision Maker, etc.)</p>
+        
+        <div class="filter-section">
+            <h3>By Contact Info</h3>
+            <a href="/api/reports/contacts?filter=both" class="btn btn-success">📧📞 Has Both</a>
+            <a href="/api/reports/contacts?filter=email_only" class="btn">📧 Email Only</a>
+            <a href="/api/reports/contacts?filter=phone_only" class="btn btn-secondary">📞 Phone Only</a>
+            <a href="/api/reports/contacts?filter=missing_both" class="btn btn-warning">⚠️ Missing Both</a>
+            <a href="/api/reports/contacts?filter=all" class="btn btn-danger">📋 All Contacts</a>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2>🔗 Quick Links</h2>
+        <a href="/comcast/review" class="btn btn-secondary">Review Queue</a>
+        <a href="/" class="btn btn-secondary">🗺️ Territory Map</a>
+    </div>
+    
+    <script>
+        // Load stats on page load
+        fetch('/api/reports/stats')
+            .then(r => r.json())
+            .then(data => {
+                document.getElementById('total').textContent = data.total_contacts;
+                document.getElementById('both').textContent = data.with_both;
+                document.getElementById('email-only').textContent = data.with_email_only;
+                document.getElementById('phone-only').textContent = data.with_phone_only;
+                document.getElementById('missing-both').textContent = data.with_neither;
+            })
+            .catch(err => console.error('Failed to load stats:', err));
+    </script>
+</body>
+</html>"""
 
 @app.route('/')
 def serve_map():

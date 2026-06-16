@@ -31,6 +31,13 @@ CREATE TABLE IF NOT EXISTS business_visits (
     business_card_photo TEXT,              -- local path to photo
     ghl_attachment_url TEXT,               -- GHL attachment URL if uploaded
     
+    -- Structured contact fields (new - for parsed gatekeeper/decision maker data)
+    gatekeeper_first_name TEXT,            -- Parsed from contact_name
+    gatekeeper_last_name TEXT,
+    decision_maker_first_name TEXT,
+    decision_maker_last_name TEXT,
+    other_contacts TEXT,                   -- JSON array of additional people
+    
     -- Metadata
     source TEXT DEFAULT 'whatsapp',        -- whatsapp, manual, import
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

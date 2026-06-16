@@ -35,12 +35,23 @@ _Read this file FIRST at the start of every session._
 | **GHL → SQLite Sync** | ❌ Broken | Exports page blind |
 | **WhatsApp** | ✅ Primary | Xavier's main interface |
 | **Business Card Capture** | ✅ Working | OCR + GHL integration |
+| **Contact Parser** | ✅ Working | Parses GK/DM from contact_name (2026-06-16) |
 
 ## Active Issues (Don't Forget)
 
 1. **Exports sync broken** — GHL contacts not appearing on exports page
 2. **Sub-agent running** — fix-exports-sync task delegated
 3. **Kristen Morkert follow-up** — Due Tuesday (reminder set)
+
+## Durable Executables (Working Systems)
+
+**Contact Parser (2026-06-16):**
+- Parses `contact_name` into structured fields: `gatekeeper_first_name`, `gatekeeper_last_name`, `decision_maker_first_name`, `decision_maker_last_name`
+- Handles roles: owner, gatekeeper, manager, etc.
+- Dr. prefix exception: "Dr. John Smith" → first_name: "Dr. John"
+- Location: `comcast-crm/contact_parser.py`
+- Integrated into: `ghl_sync.py` (all new visits), `migrate_contacts.py` (batch processing)
+- 162 historical contacts migrated successfully
 
 ## Quick Reference
 
