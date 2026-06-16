@@ -7,9 +7,14 @@ Handles bidirectional sync between local SQLite and GHL
 import sqlite3
 import json
 import os
+import sys
 import requests
 from datetime import datetime
 from typing import Optional, Dict, List
+
+# Add parent dir to path for contact_parser
+sys.path.insert(0, '/Users/xfinch/.openclaw/workspace/comcast-crm')
+from contact_parser import ContactParser
 
 # Config
 DB_PATH = "/Users/xfinch/.openclaw/workspace/comcast-crm/comcast.db"
@@ -20,6 +25,7 @@ class GHLComcastSync:
     def __init__(self):
         self.conn = sqlite3.connect(DB_PATH)
         self.conn.row_factory = sqlite3.Row
+        self.contact_parser = ContactParser()
         
     def add_visit(self, 
                   business_name: str,
@@ -35,16 +41,39 @@ class GHLComcastSync:
                   lng: float = None,
                   source: str = "whatsapp",
                   account_id_8498: str = "") -> int:
-        """Add a new business visit to local DB"""
+        """Add a new business visit to local DB with parsed contact fields"""
+        
+        # Parse contact_name into structured fields
+        parsed = self.contact_parser.parse(contact_name)
+        
+        # Build enhanced notes with role information
+        enhanced_notes = notes or ""
+        if parsed.role_notes:
+            if enhanced_notes:
+                enhanced_notes += f"\n\nContact roles: {parsed.role_notes}"
+            else:
+                enhanced_notes = f"Contact roles: {parsed.role_notes}"
+        
+        # Prepare other_contacts as JSON
+        other_contacts_json = json.dumps([o.to_dict() for o in parsed.others]) if parsed.others else None
         
         cursor = self.conn.cursor()
         cursor.execute("""
             INSERT INTO business_visits 
             (business_name, contact_name, phone, email, address, city, zip_code, 
-             notes, visit_status, lat, lng, source, account_id_8498)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+             notes, visit_status, lat, lng, source, account_id_8498,
+             gatekeeper_first_name, gatekeeper_last_name,
+             decision_maker_first_name, decision_maker_last_name,
+             other_contacts)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                    ?, ?, ?, ?, ?)
         """, (business_name, contact_name, phone, email, address, city, zip_code,
-              notes, status, lat, lng, source, account_id_8498))
+              enhanced_notes, status, lat, lng, source, account_id_8498,
+              parsed.gatekeeper.first_name if parsed.gatekeeper else None,
+              parsed.gatekeeper.last_name if parsed.gatekeeper else None,
+              parsed.decision_maker.first_name if parsed.decision_maker else None,
+              parsed.decision_maker.last_name if parsed.decision_maker else None,
+              other_contacts_json))
         
         self.conn.commit()
         visit_id = cursor.lastrowid
