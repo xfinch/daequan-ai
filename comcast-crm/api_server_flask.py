@@ -410,10 +410,26 @@ def serve_reports_page():
 </html>"""
 
 @app.route('/')
+def serve_root():
+    """Serve reports page at root (for Tailscale /reports-page proxy)"""
+    return serve_reports_page()
+
+@app.route('/map')
 def serve_map():
-    """Serve main map HTML"""
+    """Serve main map HTML at /map"""
     parent_dir = os.path.dirname(os.path.abspath(__file__))
     return send_from_directory(os.path.join(parent_dir, '..', 'comcast'), 'index.html')
+
+# API routes for stripped paths (Tailscale /api proxy strips to root)
+@app.route('/reports/stats')
+def report_stats_stripped():
+    """Get stats (for Tailscale /api proxy stripping)"""
+    return report_stats()
+
+@app.route('/reports/contacts')
+def report_contacts_stripped():
+    """Generate CSV report (for Tailscale /api proxy stripping)"""
+    return report_contacts()
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8081))
