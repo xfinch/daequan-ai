@@ -1,427 +1,329 @@
-business_name,contact_name,phone,email,address,city,zip_code,visit_status,visit_date,notes
-"3D Dimensional Physical Therapy","Paul Drumheller","(253) 274-1884",,"1 Tacoma Avenue North #103",Tacoma,98403,follow-up,"2026-04-08 18:37:00","2026-04-08: Met Paul Drumheller (Owner, MPT, OCS, SCS, CSCS). Currently with Lightcurve for over a year. Not totally happy with them — doesn't like their TV service. Interested in coming back to Comcast for Internet + TV + Voice (triple play) if price is right. Appointment scheduled for next Tuesday afternoon — need to confirm. TPI Certified.
+"First Name",Company,Address,City,State,ZIP,Phone,Email,"Visit Context",Notes,"Visit Date"
+"Andre (owner), Jordan (artist on duty)","Old Tacoma Tattoo Parlor","2712 N 21st St",Tacoma,WA,98406,"(253) 752-6748",,"Door-to-door canvassing","Stopped by for visit. Jordan is the tattoo artist on duty. Andre is the business owner and decision maker. Service seems fine currently.
 
-2026-04-29: Follow-up visit with Dr. Paul Drumheller. He scheduled me to call next Tuesday but did not provide a definite time. Playing the long game - worth pursuing for triple play opportunity. Status: Follow-up scheduled (time TBD).
+Contact roles: Andre (owner); Jordan (artist on duty)",2026-06-15
+"Jennifer (owner), Jessica (beautician)","Oakes and Alder","2714 N 21st St",Tacoma,WA,98406,978-204-7418,,"Door-to-door canvassing","Internet connection issues, streaming problems. May need small fiber circuit. Jen Mclemore.
 
-Contact roles: Paul Drumheller"
-"ABC-Able Septic","Randy Skeen","(253) 691-0770",randy.skeenabcableseptic@gmail.com,,Tacoma,98404,customer,"2026-05-15 00:26:39","Met at East Pierce County Business Expo. Owner. Acquired business a few years ago. Has 3 employees + 1 on L&I. Currently with Comcast - bill review needed to ensure best service. Licensed and Bonded. Services: Septic Pumping, Maintenance Repair, O&M Inspection, Home Sale, DF Rejuvenation, Installation, Sewer Repair. Over 25 years experience.
+Contact roles: Jennifer (owner); Jessica (beautician)",2026-06-15
+"Jennifer (owner), Jessica (beautician)","Oakes and Alder","2714 N 21st St",Tacoma,WA,98406,978-204-7418,,"Door-to-door canvassing","Met Jessica (beautician). Owner Jennifer not in. They have internet connection issues - streaming is hard. May need small fiber circuit. Good opportunity for upgrade.
 
-Contact roles: Randy Skeen"
-"ACI-Home (Resident Owned Parks)","Martin Kaelli",+19169476997,accounting@aci-home.com,"3208 28th St Ct E",Tacoma,98443,analysis,"2026-03-25 19:44:04","Senior Accountant/Controller. Internet + Phone services needed. MRR ~$250. Cold calling blitz prospect.
+Contact roles: Jennifer (owner); Jessica (beautician)",2026-06-15
+"Alicia (owner), Emily (gatekeeper)","Lander Coffee","2716 N 21st St",Tacoma,WA,98406,"(253) 625-7843",,"Door-to-door canvassing","Stopped by for visit. Emily is the gatekeeper. Alicia is the owner.
 
-Contact roles: Martin Kaelli"
-"Ava Bella's Brow & Skincare Studio",Galena,"","","","Bonney Lake","",decision-maker-identified,"2026-04-15 19:30:26","Very small shop | Next Action: Assess needs; may be basic tier only
+Contact roles: Alicia (owner); Emily (gatekeeper)",2026-06-15
+"Yana (Receptionist/Gatekeeper)","Vashon Heating and Cooling","18850 103rd Ave SW Ste 212",Vashon,WA,98070,,,,"EXISTING CUSTOMER - UPGRADE ATTEMPT. Met gatekeeper receptionist, Yana. Stated owners are not in. Need to return when owners available to discuss service upgrade.
 
-Contact roles: Galena"
-"Backbone Campaign","Amy Morrison",206-495-1969,,"18850 103rd Ave SW Suite 217",Vashon,98070,interested,"2026-04-23 15:33:55","2026-04-23: New phone line and new business Internet line in progress. Called for new cell phone line, discovered they moved suites (old suite outdated address). Moving suites triggers new contract with better rates. Island location.
-
-Contact roles: Amy Morrison"
-"Ball Auto Sales & Service",Drew,253-272-3562,"","","",98404,interested,"2026-04-29 22:25:07","4th generation owner, super cool guy. Discussed business. Opportunity to find discount on his bill.
-
-Contact roles: Drew"
-"Black Castle Barbershop",Unknown,"","","20839 State Highway 410","Bonney Lake","",gatekeeper-identified;-owner-unknown,"2026-04-15 19:30:26"," | Next Action: Return visit to find owner
-
-Contact roles: Unknown"
-"Bliss Law Group","kristen morkert",+12538444412,kristenm@blisslawgroup.com,"2112 N 30th St, Suite A",Tacoma,98403,interested,"2026-06-04 21:57:18","Synced from GHL. Tags: business-card-capture, follow-up, bliss-law-group, billing-issue
-
-Contact roles: kristen morkert"
-"Blue Ridge Radiant Heat Systems (Blue Ridge Company)",Walker,206-851-5367,,"17420 Vashon Highway SW",Vashon,98070,followup,"2026-05-04 19:38:27","DM: Walker. In business since 2001. Interested in upgrading service/Voice lines with Comcast BVE (Business Voice Edge). Potential BVE opportunity - need to review bill. Visited 5/4/2025.
-
-Contact roles: Walker"
-"Boat Sales NW","Kern Dillard",253-993-0205,Kern@BoatSalesNW.com,"821 Dock Street",Tacoma,98402,interested,"2026-02-24 23:09:49","Prospect stated no Comcast nearby, but property has 25 tenants with Comcast service. Opportunity to educate on existing serviceability. Yacht broker/USCG Master Captain.
-
-Contact roles: Kern Dillard"
-"Bob Luis Sports Bar",Dominic,253-862-7521,"","20833 State Route 410 E","Bonney Lake",98391,gatekeeper-identified,"2026-04-15 19:30:26","Unknown internet provider - opportunity for triple play | Next Action: Research internet provider; follow up with Dominic
-
-Contact roles: Dominic"
-"Bonney Lake Dental (Novel Dental)","Erin (DM) / Aly (Gatekeeper)",253-236-7456,aaron@noveldental.org,"21230 State Highway 410","Bonney Lake",98391,existing_customer,"2026-04-20 20:32:14","CURRENTLY HAS COMCAST - Account review opportunity. Gatekeeper: Aly. Decision-maker: Erin. Email: aaron@noveldental.org. Critical need: High-speed internet essential - whole business runs off it. Priority: Retention play + potential upgrade to fiber if available.
-
-Contact roles: Erin (dm); Aly (gatekeeper)"
-"Bordeaux Wine Bar","Shannon (Manager) / John Elias (Owner)",253-212-1327,"john@bordeauxwinebar.com, shannon@bordeauxwinebar.com","2208 N 30th St Suite 101",Tacoma,98403,interested,"2026-06-10 19:29:13","2026-06-10: Stopped at Bordeaux Wine Bar. Met manager Shannon (shannon@bordeauxwinebar.com). 3 locations total:
+Contact roles: Yana (receptionist/gatekeeper)",2026-06-12
+"Shannon (Manager) / John Elias (Owner)","Bordeaux Wine Bar","2208 N 30th St Suite 101",Tacoma,WA,98403,253-212-1327,"john@bordeauxwinebar.com, shannon@bordeauxwinebar.com",,"2026-06-10: Stopped at Bordeaux Wine Bar. Met manager Shannon (shannon@bordeauxwinebar.com). 3 locations total:
 1. Tacoma: 2208 N 30th St Suite 101, Tacoma, WA 98403 (where met Shannon) - Phone: 253-212-1327
 2. Enumclaw: 1710 Railroad St, Enumclaw, WA 98022 - Phone: 360-226-3355
 3. Third location under different name (TBD)
 Decision Maker: John Elias (Owner) - john@bordeauxwinebar.com
 
-Contact roles: Shannon (manager); John Elias (owner)"
-"Brown Family Vineyards","Gutierrez (affiliated) / Mike (gatekeeper)",,,,,98407,new,"2026-03-25 21:37:55","Gatekeeper: Mike. Gutierrez affiliated with the vineyard. Need to gather more info.
+Contact roles: Shannon (manager); John Elias (owner)",2026-06-10
+Annie,"Narrows Law Group (formerly Andrews and Arbenz)",,Tacoma,WA,"",,,,"2026-06-10: Stopped by office. Formerly Andrews and Arbenz law firm. Old POC was Jennifer Andrews, now Annie is the contact. Spoke to receptionist/gatekeeper. Unclear if they have internet needs but logged for follow-up.
 
-Contact roles: Gutierrez (affiliated); Mike (gatekeeper)"
-"Care of Life Homecare Services LLC","Jamila Kadir","(206) 334-1647",careoflifeafh@gmail.com,"1211 S Trafton St",Tacoma,98405,customer,"2026-05-15 00:22:50","Met at East Pierce County Business Expo. OWNER. Currently has Comcast services (TV, Internet, Phone) paying ~$500/month. Home healthcare business. Account review needed to find savings and retain her - at risk of going to Quantum. Business phone: (253) 267-1044, Fax: (253) 267-1056.
+Contact roles: Annie",2026-06-10
+"Dianne Stoehr","Dianne Stoehr CPA, PLLC","2107 N 30th St",Tacoma,WA,98403,253-617-3700,dstoehr@stoehrcpa.com,,"[2026-06-08] Field Visit: Spoke with Sydney (gatekeeper). Sydney unaware of current service status. Confirmed Dianne is decision-maker. Need to verify if existing Comcast customer. New territory area (98403 - North Tacoma).\n\nNext Action: Follow up with Dianne directly.
 
-Contact roles: Jamila Kadir"
-"Chevron - Vashon Island","Ted (owner)",206-463-7601,,"17803 Vashon Hwy SW",Vashon,98070,interested,"2026-04-15 20:52:07","Gas station at Vashon Hwy and SW 178th. Owner: Ted. Gatekeeper: Gene (spelled with G). Owner son drives a black Tesla - missed him by minutes, will catch another time. No email captured yet.
+Contact roles: Dianne Stoehr",2026-06-08
+Brian,"Play Live Nation","3500 S. Meridian, Unit 420",Puyallup,WA,98373,"","","Met with Andrew. Brian in on Tuesdays.","Gatekeeper: Andrew. Decision-maker: Brian (dad, tech guru). Best day: Tuesdays. High data usage during tournaments - fiber opportunity.
 
-Contact roles: Ted (owner)"
-"Chipper's Jewelry",Tiffani,"",marketing@chippersjewelry.com,"","Bonney Lake","",email-acquired;-needs-follow-up,"2026-04-15 19:30:26"," | Next Action: Email Tiffani this week
+Contact roles: Brian",2026-06-06
+Brent,"Gentiletti's Pass","",Puyallup,WA,98373,"","","Met with Brent. Existing customer, upgrade potential.","Gatekeeper: Brent (son of owner Flavien Gentiletti). Has service but may need upgrade. Low level lead.
 
-Contact roles: Tiffani"
-"Chris Hunt & Associates Accountants",Tara,206-463-3301,,,,98070,followup,"2026-04-15 19:05:10","Contact: Tara. Has existing service with unknown provider but experiencing issues. Tax day - very busy, could not talk. They will call back. Services: Taxes, IRS concerns, new business setup, tax strategy.
+Contact roles: Brent",2026-06-06
+"will pearson","will pearson","611 Pine St, Tacoma, WA 98406",Tacoma,WA,"",+12533533225,wpearson@xgrouprestaurants.com,,"Synced from GHL. Tags: comcast visit, status: existing
 
-Contact roles: Tara"
-"Club Pilates",Katie,"","","","Bonney Lake","",franchise-opportunity---96-locations-total,"2026-04-15 19:30:26","Franchise - each location handles own services | Next Action: Research franchise owner contact; multi-location pitch
+Contact roles: will pearson",2026-06-05
+charley,"IGA Vashon Market","",Tacoma,WA,"",+12069475640,charley@vashonmarket.com,,"Synced from GHL. Tags: comcast, hot-prospect, service-issue-resolved, upgrade-opportunity
 
-Contact roles: Katie"
-"Coco Nail Lounge",Long,"(253) 302-5654",,"7 N Tacoma Ave",Tacoma,98403,initial_contact,"2026-04-08 18:47:53","2026-04-08: Met Lam (gatekeeper) — shared middle school connection decades apart. Business owner is Long, currently with a client. Not a strong lead but conversation logged. Business hours: M-F 9am-7pm, Sat 9am-6pm, Sun 10am-6pm.
+Contact roles: charley",2026-06-05
+"morfitt family law","morfitt family law","5810 N. 51st St.",Ruston,WA,98407,+12533529700,megann@morfittlaw.com,,"Synced from GHL. Tags: comcast, field visit
 
-Contact roles: Long"
-"Cole's Bar & Grill","Chelsea (DM)",253-267-1914,,"5811 N. 51st St.",Ruston,98407,customer,"2026-05-27 00:00:39","Service good, keeping info on file
+Contact roles: morfitt family law",2026-06-05
+"reginald jacobs, chet howell","reginald jacobs, chet howell","2715 6th Ave, Tacoma, WA 98406",Tacoma,WA,"","",info@grannrestaurant.com,,"Synced from GHL. Tags: comcast visit, status: analysis
 
-Contact roles: Chelsea (dm)"
-"Compass Rose","Tanya Brooks",253-773-0077,,"3815 North 26th Street",Tacoma,98407,interested,"2026-03-16 22:43:24","13-year Proctor District staple. Need email for follow-up.
+Contact roles: reginald jacobs; chet howell",2026-06-05
+"dave (gatekeeper), nate (decision maker)","dave (gatekeeper), nate (decision maker)","2717 6th Ave, Tacoma, WA 98406",Tacoma,WA,"","",info@busybodytacoma.com,,"Synced from GHL. Tags: comcast visit, status: new
 
-Contact roles: Tanya Brooks"
-"Connect the Brick",Eric,253.349.9292,eric@connectthebrick.com,"3901 N. 27th St",Tacoma,98407,initial_contact,"2026-04-08 23:21:13","2026-04-08: Met Eric (21yo owner) and his mom Luisa (from Peru). Eric is an entrepreneur running LEGO store in 80 sq ft office — sells in-store and online (eBay, etc.). Student at University of Washington Tacoma studying Marketing & Finance. Great connection with Luisa — both late 40s, both have one child. Advised Eric to get low-cost internet to provide Wi-Fi for market vendors and broadcast his business to Wi-Fi users. He agreed to call for internet setup.
+Contact roles: dave (gatekeeper); nate (decision maker)",2026-06-05
+"casey m. adams","LevelUp Pros LLC","",Tacoma,WA,"",+12533654042,casey@levelup-pros.com,"Met at Bostwick Cafe to discuss referral partnership. HR agency sees companies at inflection points (growth, closure, moves). Also owns Nexus for Lawyers.","Synced from GHL. Tags: business-card-capture, referral-partner, levelup-pros, multi-business-owner
 
-Contact roles: Eric"
-"Crave Cookies","Dalton Ohlson",253-260-7417,,"17526 Meridian Avenue East, Suite B202",Puyallup,98375,interested,"2026-03-16 22:43:24","Personal: 253-457-6486. Multi-business owner.
+Contact roles: casey m. adams",2026-06-04
+"jennifer drake","Inner Harmony Psychology","2104 N 30th St, Suite F",Tacoma,WA,98403,"","","Wants to break away from Verizon (2 phones + internet). Contract cancellation concerns are the barrier. Ready buyer, needs ETF solution.","Synced from GHL. Tags: manual-entry, verizon-competitor, contract-concern, inner-harmony-psychology. Wants to break away from Verizon (2 phones + internet). Contract cancellation concerns are the barrier. Ready buyer, needs ETF solution.
 
-Contact roles: Dalton Ohlson"
-"Crockett Public House",Sean,253-750-3789,"","20631 State Route 410 E Ste E","Bonney Lake",98391,hot-lead---3-locations,"2026-04-15 19:30:26","Multi-location owner: 3 locations (Maple Valley/Bonney Lake/Puyallup) | Next Action: Research current provider; prioritize Sean contact
+Contact roles: jennifer drake",2026-06-04
+"julie partridge","Farmers Insurance","2112 N 30th St, Suite D",Tacoma,WA,98403,+12535654874,jpartridge1@farmersagent.com,"Currently has Lightcurve (subsidized by City of Tacoma). Price concern — Lightcurve beats us on cost. Competitor intel play.","Synced from GHL. Tags: business-card-capture, lightcurve-competitor, farmers-insurance
 
-Contact roles: Sean"
-"Dianne Stoehr CPA, PLLC","Dianne Stoehr",253-617-3700,dstoehr@stoehrcpa.com,"2107 N 30th St",Tacoma,98403,follow-up,"2026-06-08 23:39:50","[2026-06-08] Field Visit: Spoke with Sydney (gatekeeper). Sydney unaware of current service status. Confirmed Dianne is decision-maker. Need to verify if existing Comcast customer. New territory area (98403 - North Tacoma).\n\nNext Action: Follow up with Dianne directly.
+Contact roles: julie partridge",2026-06-04
+"kristen morkert","Bliss Law Group","2112 N 30th St, Suite A",Tacoma,WA,98403,+12538444412,kristenm@blisslawgroup.com,"Bliss Law Group going out of business. Has closed location from Feb still being billed. Needs help resolving billing issue. Follow-up by Tuesday committed.","Synced from GHL. Tags: business-card-capture, follow-up, bliss-law-group, billing-issue
 
-Contact roles: Dianne Stoehr"
-"Doug's Auto Repair",March,,,"17224 Vashon Hwy SW",Vashon,98070,interested,2026-05-05T13:00:44.778101,"Gatekeeper and DM. Met on 5/4/2025. Scheduled follow-up meeting for 5/5/2025 at 1pm in person.
+Contact roles: kristen morkert",2026-06-04
+"kelly g. richards","Tacoma Wine Merchants","2112 N 30th St, Suite C",Tacoma,WA,98403,+12064062678,kelly@tacomawinemerchants.com,"Stopped in to Tacoma Wine Merchants. Small talk about food & bev industry being down. Mentioned Cedric is a friend — she had him in their CRM. Warm reception.","Synced from GHL. Tags: business-card-capture, interested, tacoma-wine-merchants
 
-Contact roles: March"
-"EZ Tobacco",Patrick,253-862-0589,"","21261 State Route 410 E","Bonney Lake",98391,decision-maker-identified,"2026-04-15 19:30:26","Family business - Patrick has full authority | Next Action: Research current setup; follow up with Patrick
+Contact roles: kelly g. richards",2026-06-04
+"stock in grocery","stock in grocery","3908 6th Ave.",Tacoma,WA,98406,+12537568123,"","","Contact roles: stock in grocery",2026-05-27
+"flaming dragon tattoo","flaming dragon tattoo","3912 6th Ave.",Tacoma,WA,98406,+12537560804,"","","Contact roles: flaming dragon tattoo",2026-05-27
+"sound starter and alternator","sound starter and alternator","5106 N. Pearl St.",Ruston,WA,98407,+12537598080,"","","Contact roles: sound starter and alternator",2026-05-27
+"northend on pearl","northend on pearl","5037 N. Pearl St.",Ruston,WA,98407,"","","","Contact roles: northend on pearl",2026-05-27
+"coles bar and grill","coles bar and grill","5811 N. 51st St.",Ruston,WA,98407,+12532671914,"","","Contact roles: coles bar and grill",2026-05-27
+"macalusos bar","macalusos bar","5101 N. Pearl St.",Ruston,WA,98407,+12532671354,"","","Contact roles: macalusos bar",2026-05-27
+"welcome restaurant","welcome restaurant","5105 N. Pearl St.",Ruston,WA,98407,+12533754049,"","","Contact roles: welcome restaurant",2026-05-27
+"wren's nest bakery","wren's nest bakery","5121 N. Pearl St.",Ruston,WA,98407,+12536930189,"","","Contact roles: wren's nest bakery",2026-05-27
+"Laureen (DM), Talia, Laurie","Wren's Nest Bakery","5121 N. Pearl St.",Ruston,WA,98407,253-693-0189,,,"Laureen busy with paperwork, dropped business card
 
-Contact roles: Patrick"
-"Easton West",Tom,,,"2414 N Proctor St",Tacoma,98407,existing_customer,"2026-03-25 21:13:32","Asian food restaurant. Gatekeeper: Rachel. Decision maker: Tom (was not in). Currently has Comcast. Declined new service but open to bill analysis. Phone/email in café system.
+Contact roles: Laureen (dm); Talia; Laurie",2026-05-27
+"Sandra (DM), Louis (GK)","Welcome Restaurant","5105 N. Pearl St.",Ruston,WA,98407,253-375-4049,,,"Sandra on vacation, back next week
 
-Contact roles: Tom"
-"Edward Jones - Vashon Island","James (decision-maker)",206-259-2950,,"17232 Vashon Hwy SW, Suite F",Vashon,98070,interested,"2026-04-15 20:48:54","Financial advisor office. Decision-maker: James (per Lexus, gatekeeper). Lexus is a good resource for navigating the island - from California, been here 2 years. Gatekeeper identified, decision-maker name obtained.
+Contact roles: Sandra (dm); Louis (gk)",2026-05-27
+Cesar,"Macaluso's Bar","5101 N. Pearl St.",Ruston,WA,98407,253-267-1354,,,"Language barrier, need return visit to identify DM
 
-Contact roles: James (decision-maker)"
-"Empower Accounting Solutions","Lori Johnson, CPA","(253) 278-0709",lori@empoweraccountingsolutions.net,"405 W Stewart Ave, Suite C",Puyallup,98371,partner,"2026-05-15 01:29:38","REFERRAL PARTNER - Met at East Pierce County Business Expo. CPA with Empower Accounting Solutions. Was with magician Jeff Evans. Brief interaction - John Park pulled me away. Accountant = sees people starting businesses, making big moves. Strategic partner potential - clients starting businesses need internet/phone services.
+Contact roles: Cesar",2026-05-27
+"Chelsea (DM)","Cole's Bar & Grill","5811 N. 51st St.",Ruston,WA,98407,253-267-1914,,,"Service good, keeping info on file
 
-Contact roles: Lori Johnson; CPA"
-"Endeavor Eye Center","Dr. Kevin / Dr. Connie",,,,Tacoma,98407,interested,"2026-03-16 22:43:24","Gatekeeper: Cher. Need to reach doctors.
+Contact roles: Chelsea (dm)",2026-05-27
+"Megan Johnson (DM), Nia (GK)","Morfitt Family Law","5810 N. 51st St.",Ruston,WA,98407,253-352-9700,megann@Morfittlaw.com,,"Full contact info obtained
 
-Contact roles: Dr. Kevin; Dr. Connie"
-"European Wax Center","Celine Ozuna","","","","Bonney Lake","",major-franchise-opportunity,"2026-04-15 19:30:26","Franchise - 96 locations; Tom S. Cook Jr. owns franchise | Next Action: Research Tom S. Cook Jr.; franchise-level pitch
+Contact roles: Megan Johnson (dm); Nia (gk)",2026-05-27
+"Emily (GK), DM not in","Northend on Pearl","5037 N. Pearl St.",Ruston,WA,98407,,,,"Bill analysis opportunity, need to identify DM
 
-Contact roles: Celine Ozuna"
-"Fair Isle Animal Clinic","Nadia (decision-maker)",206-463-3607,contactus@fairislevet.com,"1712 Vashon Hwy SW, P.O. Box 67",Vashon,98070,followup,"2026-04-15 20:41:49","Veterinary clinic. Decision-maker: Nadia. Currently with old company starting with V (likely Verizon or similar), looking to switch to Comcast. Front desk staff very open and willing to talk. Discussed new Internet service and new phone lines.
+Contact roles: Emily (gk); DM not in",2026-05-27
+"Doug (DM), Ken & Liam (GK)","Sound Starter & Alternator","5106 N. Pearl St.",Ruston,WA,98407,253-759-8080,,,"Doug out 6 weeks (hand surgery), heavy phone usage
+
+Contact roles: Doug (dm); Ken; Liam (gk)",2026-05-27
+"Scott (DM), Ryan","Flaming Dragon Tattoo","3912 6th Ave.",Tacoma,WA,98406,253-756-0804,,,"Scott busy, need follow up
+
+Contact roles: Scott (dm); Ryan",2026-05-27
+"Diem (DM/GK)","Stock In Grocery","3908 6th Ave.",Tacoma,WA,98406,253-756-8123,,,"Bought business 2 years ago, relationship building opportunity
+
+Contact roles: Diem (dm/gk)",2026-05-27
+"Solomon (DM), Jewels (Gatekeeper/Ally)","Vashon Times 21 (Kush21 Cannabis)","19001 Vashon Highway SW",Vashon,WA,98070,206-259-3121,"",,"Cannabis dispensary. DM: Solomon. Gatekeeper: Jewels (established rapport with Xavier, working together to push upgrade). CRITICAL PAIN POINT: POS, ATM, and TVs cannot run simultaneously on current service. Need fiber/direct Internet upgrade. Phone: 206-259-3121. Website: vashontimes21.com. Source: Web search + Xavier intel 2026-05-20.
+
+Contact roles: Solomon (dm); Jewels (gatekeeper/ally)",2026-05-20
+"jordan rodriguez","jordan rodriguez","2706 6th Ave, Tacoma, WA 98406",Tacoma,WA,"",+12533069139,"","","Contact roles: jordan rodriguez",2026-05-20
+"owner (name unknown)","owner (name unknown)","2618 6th Ave, Tacoma, WA 98406",Tacoma,WA,"","","","","Contact roles: owner (name unknown)",2026-05-20
+will,will,"2608 6th Ave, Tacoma, WA 98406",Tacoma,WA,"",+12534337983,"","","Contact roles: will",2026-05-20
+"scotty james","scotty james","2609 6th Ave, Tacoma, WA 98406",Tacoma,WA,"",+12062902037,"","","Contact roles: scotty james",2026-05-20
+"paige, leilani (owner)","paige, leilani (owner)","2703 6th Ave, Tacoma, WA 98406",Tacoma,WA,"",+12532929194,"","","Contact roles: paige; leilani (owner)",2026-05-20
+Melissa,"Kids Kaboodle","6409 6th Ave, Suite 10",Tacoma,WA,98406,253-566-8344,,,"Spoke with Melissa, whose sister owns the company. Need to look up in system. No email captured yet.
+
+Contact roles: Melissa",2026-05-16
+,"Pro Auto Sales","6404 6th Ave",Tacoma,WA,98406,,,,"Stopped by on 2026-05-16 ~8:20 PM PT. Nobody was there.",2026-05-16
+"Lori Johnson, CPA","Empower Accounting Solutions","405 W Stewart Ave, Suite C",Puyallup,WA,98371,"(253) 278-0709",lori@empoweraccountingsolutions.net,,"REFERRAL PARTNER - Met at East Pierce County Business Expo. CPA with Empower Accounting Solutions. Was with magician Jeff Evans. Brief interaction - John Park pulled me away. Accountant = sees people starting businesses, making big moves. Strategic partner potential - clients starting businesses need internet/phone services.
+
+Contact roles: Lori Johnson; CPA",2026-05-15
+"Becky Willis, CCC","The Coast Is Clear Travel",,,WA,98404,"(253) 259-6973",beckytravel@icloud.com,,"Met at East Pierce County Business Expo. Travel Advisor (CCC). Didn't discuss Comcast much. She offered to get me a passport cover. Need to check if she has our service and talk to her about potentially switching to Comcast Business Mobile.
+
+Contact roles: Becky Willis; CCC",2026-05-15
+"John Park","US Bank - Federal Way Office","1436 S 312th St","Federal Way",WA,98003,"(206) 578-2718",john.park1@usbank.com,,"REFERRAL PARTNER - Met at East Pierce County Business Expo. Small Business Specialist at US Bank (NMLS 1523538). Wants to introduce me to new businesses - connector type. From East Coast, Temple University Philadelphia. Has a lady looking to switch from AT&T to Comcast mobile. Former branch manager at KeyBank in Orting. Business consultant at heart with accolades in Orting business community.
+
+Contact roles: John Park",2026-05-15
+"James Turner (JT)","JT's Original Louisiana Bar-B-Que Sauce",,"Gig Harbor",WA,98335,"(253) 606-2635",bbqsaucebyjt@gmail.com,,"Met at East Pierce County Business Expo. Owner. Former caterer and restaurant owner, scaled down to focus on sauce business. Wants Comcast Business Mobile Internet and potentially phone services. Based in Gig Harbor.
+
+Contact roles: James Turner (jt)",2026-05-15
+"Randy Skeen","ABC-Able Septic",,Tacoma,WA,98404,"(253) 691-0770",randy.skeenabcableseptic@gmail.com,,"Met at East Pierce County Business Expo. Owner. Acquired business a few years ago. Has 3 employees + 1 on L&I. Currently with Comcast - bill review needed to ensure best service. Licensed and Bonded. Services: Septic Pumping, Maintenance Repair, O&M Inspection, Home Sale, DF Rejuvenation, Installation, Sewer Repair. Over 25 years experience.
+
+Contact roles: Randy Skeen",2026-05-15
+"Jamila Kadir","Care of Life Homecare Services LLC","1211 S Trafton St",Tacoma,WA,98405,"(206) 334-1647",careoflifeafh@gmail.com,,"Met at East Pierce County Business Expo. OWNER. Currently has Comcast services (TV, Internet, Phone) paying ~$500/month. Home healthcare business. Account review needed to find savings and retain her - at risk of going to Quantum. Business phone: (253) 267-1044, Fax: (253) 267-1056.
+
+Contact roles: Jamila Kadir",2026-05-15
+"Cindy Laws","Federal Way Public Market",,"Federal Way",WA,98003,"(206) 790-4232",,,"Met at East Pierce County Business Expo. Involved with putting together a public market in Federal Way. Need to get email address.
+
+Contact roles: Cindy Laws",2026-05-15
+"Cherise Klosner","Sign and Celebrate Studios","1001 Pacific Ave #220",Tacoma,WA,98402,"(253) 237-2362",signandcelebrate@gmail.com,,"Met at Business Expo for the Chamber. Micro Weddings and Events Venue. Already has Comcast service - account review opportunity for upsell/cross-sell. Partner: Sam De La Cruz (COO).
+
+Contact roles: Cherise Klosner",2026-05-15
+"Reed Fetters","PJ Properties / Tacoma Rising",,Tacoma,WA,98402,,,,"Lead from Cori Witney (PSR Mechanical). Behind Tacoma Rising and PJ Properties (property management company). Need to connect and explore opportunities.
+
+Contact roles: Reed Fetters",2026-05-14
+"Cori Witney","PSR Mechanical (A Service Logic Company)","1011 East E St",Tacoma,WA,98421,"(206) 367-2500",cori.witney@psrmechanical.com,,"Met at East Pierce County Business Expo. HVAC business, works Tacoma to Marysville and Sumner. Connected me to Reed Fetters (Tacoma Rising + PJ Properties property management). Partner was with her (name unknown). LinkedIn connection in progress.
+
+Contact roles: Cori Witney",2026-05-14
+victoria,"Vashon Island Framery","17232 Vashon Highway SW, Suite E",Vashon,WA,98070,+12062593981,"","","Contact roles: victoria",2026-05-07
+March,"Doug's Auto Repair","17224 Vashon Hwy SW",Vashon,WA,98070,,,,"Gatekeeper and DM. Met on 5/4/2025. Scheduled follow-up meeting for 5/5/2025 at 1pm in person.
+
+Contact roles: March",2026-05-05
+"Cheryl Pruett","Pandora's Box (Pet Food & Supplies)","17321 Vashon Highway SW",Vashon,WA,98070,206-463-2200,Pbox1975@aol.com,,"Point of Contact: Cheryl Pruett (spelled P-R-U-E-T-T). Pet food and supplies store. Phone: 206-463-2200. Account appears intact with Comcast. Limited opportunities visible, but worth asking about online presence and online orders. Long-term relationship play. Visited 5/4/2025.
+
+Contact roles: Cheryl Pruett",2026-05-04
+"Tom Trigg (Agency Principal)","Trig Insurance Agency","PO Box 509, 17425 Vashon Hwy SW",Vashon,WA,98070,206-463-7411,tomtrigg@trigginsurance.com,,"Agency Principal: Tom Trigg. Gatekeeper: Karen. DM: Stacie (not in today). Left info for Stacie to reach back out. Toll-free: 800-691-6756, Fax: 206-463-7414. Visited 5/4/2025.
+
+Contact roles: Tom Trigg (agency principal)",2026-05-04
+Walker,"Blue Ridge Radiant Heat Systems (Blue Ridge Company)","17420 Vashon Highway SW",Vashon,WA,98070,206-851-5367,,,"DM: Walker. In business since 2001. Interested in upgrading service/Voice lines with Comcast BVE (Business Voice Edge). Potential BVE opportunity - need to review bill. Visited 5/4/2025.
+
+Contact roles: Walker",2026-05-04
+Dave,"Vashon Service Center (Ace)","9715 SW 174th St",Vashon,WA,98070,206-463-4019,,,"Primary gatekeeper: Dave. Secondary gatekeeper: Doug. Need to talk to John at Ace Hardware who owns this location. Visited 5/4/2025.
+
+Contact roles: Dave",2026-05-04
+Marcie,"Treasure Island Antiques and Estate Sales","17326 Vashon Hwy SW",Vashon,WA,98070,"+1 (206) 463-2083",,,"Owner and DM. Visited on 5/4/2025.
+
+Contact roles: Marcie",2026-05-04
+Chris,"Katsu Burger","2805 6th Ave, Ste B",Tacoma,WA,98406,253-394-3499,,,"Owner: Kris (Japanese American). Also owns Poett Bonsai. Teaches bonsai classes Sundays at restaurant. Concept: fast food + slow craft. Event flyer: Bonsai Beginner Class May 17th 1-3pm .
+
+Contact roles: Chris",2026-05-01
+"Jeff, Kaitlyn & husband (3 owners)","Grit City Books","3116 6th Ave",Tacoma,WA,98406,2535502665,,,"3 owners: Jeff, Kaitlyn (runs day-to-day), and Jeff's husband (name unknown). Started during COVID - focus on physical book ownership vs Kindle. Follow-up: May 7, 6-7:30pm - Jenny Barto author reading No Contact (anthology on estrangement). Xavier + Carissa attending.
+
+Contact roles: Jeff; Kaitlyn; husband (3 owners)",2026-05-01
+Scott,"Hippie House (The Glass House)","3109 6th Ave",Tacoma,WA,98406,2532671708,,,"Owner: Scott. 15 years in business, avid fisherman. Existing Comcast customer - needs bill review for discounts.
+
+Contact roles: Scott",2026-05-01
+Derrick,"Last Stop Computer","","",WA,98404,"","",,"Decision-maker. Desktop computer repair (in-shop only). Some remote work possible. Potential referral partner - has clients who live away.
+
+Contact roles: Derrick",2026-04-30
+Drew,"Ball Auto Sales & Service","","",WA,98404,253-272-3562,"",,"4th generation owner, super cool guy. Discussed business. Opportunity to find discount on his bill.
+
+Contact roles: Drew",2026-04-29
+"Dr. George Meers, Olivia (Gatekeeper)","Tacoma Eye","6004 N Westgate Blvd, Suite 180",Tacoma,WA,98406,253-220-2563,"",,"Has Comcast, everything going good. Retention check-in candidate.
+
+Contact roles: Dr. George Meers; Olivia (gatekeeper)",2026-04-24
+"Michael J. Giesy DMD, Chris (DM - wife), Theresa (OM), Lisa (Gatekeeper), Kathy","Giesy Family & Implant Dentistry","6004 Westgate Blvd, Suite 210",Tacoma,WA,98406,253-752-6630,Mike@GiesyDental.com,,"Decision maker is Chris (doctor's wife). Same building as Tacoma Eye (Suite 180).
+
+Contact roles: Michael J. Giesy DMD; Chris (dm - wife); Theresa (om); Lisa (gatekeeper); Kathy",2026-04-24
+"Sam (Gatekeeper), Dr. Melinda Morrison","Gentle Touch Acupuncture","5929 N. Pearl St, Ste C",Tacoma,WA,98406,253-368-6227,melinda@gentletouchacu.com,,"Good on service currently. Sam took card, will call if needed. Potential bill review opportunity - follow up. Note: Card shows Westgate Blvd address, but this is their N. Pearl St location (Suite C).
+
+Contact roles: Sam (gatekeeper); Dr. Melinda Morrison",2026-04-24
+"Zach (Decision Maker)","PURE Property Management of Washington","2102 N. Pearl Street, Suite 204",Tacoma,WA,98406,253-537-6500,,,"Has Comcast. Open to bill review + referral partner discussion. Met at door. Same building as PHS Lawyers (Suite 106) and Pilkey Hopping (Suite 102).
+
+Contact roles: Zach (decision maker)",2026-04-24
+"Christina Bravo (Office Manager/DM)","Pratt, Horstman & Stratton, PLLC","2102 N. Pearl Street, Suite 106",Tacoma,WA,98406,253-573-1441,cbravo@phslawyers.com,,"Christina is decision maker for Comcast. Office manager. Moved suites in December 2025. Also: Kristin Whitford (Attorney) 253-882-0997, kwhitford@phslawyers.com
+
+Contact roles: Christina Bravo (office manager/dm)",2026-04-24
+"David Coe (COO)","Puyallup Food Bank","217 W Stewart Ave",Puyallup,WA,98371,253-262-5642,,,"Product donations line. Also: main 253-848-5240, email david@pfb.org. OUT: Next week (unavailable). Wants fiber at beginning of May - follow up then.
+
+Contact roles: David Coe (coo)",2026-04-24
+"Carrie Umporowicz MA LMFT, Other Counselors (MA LMHC)","Pearl Counseling Associates","1919 N Pearl St, Ste C-1",Tacoma,WA,98406,253-752-1860,carrie@pearlcounseling.com,,"2026-04-23: Walked in - no one at front desk. Sign said counselor will be with you shortly. Need to research if they have Comcast service. If not, add to email blast.
+
+Contact roles: Carrie Umporowicz MA LMFT; Other Counselors (ma lmhc)",2026-04-23
+"Selena (Gatekeeper) - Corporate handles IT","Meritt Financial Group","1919 N Pearl St, B-2",Tacoma,WA,98406,253-272-7058,,,"2026-04-23: Gatekeeper Selena. Corporate handles all IT/telecom decisions. Need to research corporate contact and approach from that angle.
+
+Contact roles: Selena- Corporate handles IT (gatekeeper)",2026-04-23
+"Dr. Mark A. Haley (Chiropractor), Terri (Account Handler - decision maker), Toni (Gatekeeper)","Haley Chiropractic Clinic","1919 N Pearl St, Suite A-4",Tacoma,WA,98406,253-761-0990,Haleychiroclinic@aol.com,,"2026-04-23: Gatekeeper Toni. Decision-maker is Terri (handles the account). Follow-up scheduled: Friday morning at 10:30 AM. Dr. Mark Haley is the chiropractor.
+
+Contact roles: Dr. Mark A. Haley (chiropractor); Terri (account handler - decision maker); Toni (gatekeeper)",2026-04-23
+"Lolanda Maes (Decision-maker/Account Holder), Dr. Dave Wagner (DDS)","My Tacoma Dentist","1919 N Pearl St, A-3",Tacoma,WA,98406,253-761-5299,info@mytacomadentist.com,,"2026-04-23: EXISTING COMCAST CUSTOMER. Lolanda Maes is decision-maker/account holder and long-time friend (27+ years, high school). Dr. Dave Wagner is main dentist. Service updated within last year. Plan: review account for lock-up opportunities/upsell.
+
+Contact roles: Lolanda Maes (decision-maker/account holder); Dr. Dave Wagner (dds)",2026-04-23
+"Jeremy Mohr (via Emily Moore - gatekeeper)","Pearl Street Heated Self Storage","1001 North Pearl St",Tacoma,WA,98406,,mohrbedrich@gmail.com,,"2026-04-23: Gatekeeper Emily Moore (wife of decision-maker). Owners use third-party IT professionals for Internet management. Currently NOT with Comcast. Emily will forward info to husband Jeremy for consideration.
+
+Contact roles: Jeremy Mohr (via emily moore - gatekeeper)",2026-04-23
+"Amy Morrison","Backbone Campaign","18850 103rd Ave SW Suite 217",Vashon,WA,98070,206-495-1969,,,"2026-04-23: New phone line and new business Internet line in progress. Called for new cell phone line, discovered they moved suites (old suite outdated address). Moving suites triggers new contract with better rates. Island location.
+
+Contact roles: Amy Morrison",2026-04-23
+"Jules (Gatekeeper/DM), Solomon (Owner)","Vashon Time",,Vashon,WA,98070,206-635-5199,,,"EXISTING CUSTOMER - Fiber upgrade opportunity. Owner Solomon (Ethiopian, in Fridays only) interested in fiber. 10 cameras + POS + phone + online system - all business-critical. Jules is gatekeeper/DM in comms with Solomon. CRITICAL PAIN POINT: POS, ATM, and TVs cannot run simultaneously on current service. Xavier and Jules have established rapport, both pushing Solomon to upgrade to fiber/direct Internet.
+
+Contact roles: Jules (gatekeeper/dm); Solomon (owner)",2026-04-21
+"Store Manager (corporate-managed)","Jersey Mike's Subs","21180 State Highway 410","Bonney Lake",WA,98391,,,,"Corporate-managed location. Strategic account (not small business). Store manager confirmed corporate handles all decisions. Out of scope for BAE territory - do not pursue.
+
+Contact roles: Store Manager (corporate-managed)",2026-04-20
+"Jose (DM) / Chelle/Shelly (Gatekeeper)","Mr. Jalapeño","21160 State Route 410 E","Bonney Lake",WA,98391,253-862-1502,,,"Family Mexican Restaurant. Gatekeeper: Chelle (Shelly). Decision-maker: Jose. Currently has Comcast (Con) - account review opportunity. Business card confirms address and phone.
+
+Contact roles: Jose (dm); Chelle; Shelly (gatekeeper)",2026-04-20
+"Carly (DM - not in)","HOTWORX - Bonney Lake","21140 State Highway 410","Bonney Lake",WA,98391,,,,"Decision-maker: Carly (was not in). Follow up by phone. Connection: Related to Sierra Boyce (HOTWORX owner, managed by Drew S). Franchise/chain opportunity.
+
+Contact roles: Carly (dm - not in)",2026-04-20
+"Deja (DM) / Kaela (Gatekeeper)","Menchie's Frozen Yogurt","21210 State Highway 410","Bonney Lake",WA,98391,253-862-7440,,,"Gatekeeper: Kaela. Decision-maker: Deja (manager). Deja will be in office TOMORROW. Call 253-862-7440 to reach her. Frozen yogurt shop on State Highway 410 corridor.
+
+Contact roles: Deja (dm); Kaela (gatekeeper)",2026-04-20
+"Erin (DM) / Aly (Gatekeeper)","Bonney Lake Dental (Novel Dental)","21230 State Highway 410","Bonney Lake",WA,98391,253-236-7456,aaron@noveldental.org,,"CURRENTLY HAS COMCAST - Account review opportunity. Gatekeeper: Aly. Decision-maker: Erin. Email: aaron@noveldental.org. Critical need: High-speed internet essential - whole business runs off it. Priority: Retention play + potential upgrade to fiber if available.
+
+Contact roles: Erin (dm); Aly (gatekeeper)",2026-04-20
+"Tara (DM) / Alicia (Gatekeeper)","Unnamed Business (Bonney Lake)","21260 State Highway 410","Bonney Lake",WA,98391,253-862-2281,,,"Gatekeeper: Alicia. Decision-maker: Tara (handles account). Store phone: 253-862-2281.
+
+Contact roles: Tara (dm); Alicia (gatekeeper)",2026-04-20
+"Ted (owner)","Chevron - Vashon Island","17803 Vashon Hwy SW",Vashon,WA,98070,206-463-7601,,,"Gas station at Vashon Hwy and SW 178th. Owner: Ted. Gatekeeper: Gene (spelled with G). Owner son drives a black Tesla - missed him by minutes, will catch another time. No email captured yet.
+
+Contact roles: Ted (owner)",2026-04-15
+"James (decision-maker)","Edward Jones - Vashon Island","17232 Vashon Hwy SW, Suite F",Vashon,WA,98070,206-259-2950,,,"Financial advisor office. Decision-maker: James (per Lexus, gatekeeper). Lexus is a good resource for navigating the island - from California, been here 2 years. Gatekeeper identified, decision-maker name obtained.
+
+Contact roles: James (decision-maker)",2026-04-15
+"Nadia (decision-maker)","Fair Isle Animal Clinic","1712 Vashon Hwy SW, P.O. Box 67",Vashon,WA,98070,206-463-3607,contactus@fairislevet.com,,"Veterinary clinic. Decision-maker: Nadia. Currently with old company starting with V (likely Verizon or similar), looking to switch to Comcast. Front desk staff very open and willing to talk. Discussed new Internet service and new phone lines.
 
 [5/4/2025] Stopped by to speak with Nadia - not in. Will return later.
 
-Contact roles: Nadia (decision-maker)"
-"Farmers Insurance","julie partridge",+12535654874,jpartridge1@farmersagent.com,"2112 N 30th St, Suite D",Tacoma,98403,interested,"2026-06-04 22:02:50","Synced from GHL. Tags: business-card-capture, lightcurve-competitor, farmers-insurance
+Contact roles: Nadia (decision-maker)",2026-04-15
+"Derrick (current owner)","Heights Water District","17612 Vashon Hwy SW",Vashon,WA,98070,206-463-0014,,,"PRIORITY: NEW CONNECTION. Nonprofit water district organization. Current owner Derrick is leaving/shutting down in 2 weeks. New owner taking over but Derrick would not provide new contact info. Follow up next week and week after to connect with new ownership. New connection = highest priority opportunity.
 
-Contact roles: julie partridge"
-"Federal Way Public Market","Cindy Laws","(206) 790-4232",,,"Federal Way",98003,interested,"2026-05-15 00:05:31","Met at East Pierce County Business Expo. Involved with putting together a public market in Federal Way. Need to get email address.
+Contact roles: Derrick (current owner)",2026-04-15
+"John Knutson","Law Office of John Knutson",,,WA,98070,206-463-6711,,,"Attorney. Needs 2 new phone lines. Currently paying over /month with AT&T. Old-school - uses typewriter (recently paid  to repair). Very sweet guy. NO EMAIL - phone only. Appointment scheduled for Tuesday April 21, 2026 at 9:00 AM. Will need to handle conversation over phone since he is on Vashon Island.
 
-Contact roles: Cindy Laws"
-"Flaming Dragon Tattoo","Scott (DM), Ryan",253-756-0804,,"3912 6th Ave.",Tacoma,98406,interested,"2026-05-27 00:00:39","Scott busy, need follow up
+Contact roles: John Knutson",2026-04-15
+"Marie Harrington","Vashon Island Professionals (VIP)","17225 Vashon Highway SW",Vashon,WA,98070,206-463-4004,marie@vipvashon.com,,"Decision-maker and assistant to the owner. Tax preparation and financial planning services. Also has PO Box 2040.
 
-Contact roles: Scott (dm); Ryan"
-"Fleet Feet","wade & julie pannell",+12532728890,jeremiah@fleetfeettacoma.com,"3812 N 26th St, Tacoma, WA 98407",Tacoma,98407,interested,"2026-03-16 22:42:30","Synced from GHL. Tags: comcast-prospect, pipeline-sync
+Contact roles: Marie Harrington",2026-04-15
+Dominic,"Bob Luis Sports Bar","20833 State Route 410 E","Bonney Lake",WA,98391,253-862-7521,"",,"Unknown internet provider - opportunity for triple play | Next Action: Research internet provider; follow up with Dominic
 
-Contact roles: wade; julie pannell"
-"Franco the Tailor","Franco & Giovanni","(253) 627-2306","","15 Tacoma Avenue North",Tacoma,98403,interested,"2026-02-25 23:43:31","Met both owners - Franco and Giovanni (relatives).
-Small Italian tailor shop, family owned since 1961.
-Recently closed by Cheyenne (previous rep) - they knew her by name.
-Introduced myself as Xavier, new point of contact replacing Cheyenne.
-Very nice people, good rapport established.
-Follow-up in 2 weeks to introduce Comcast Business Mobile.
-Position as benefit that small business owners have over consumers.
+Contact roles: Dominic",2026-04-15
+Unknown,"Black Castle Barbershop","20839 State Highway 410","Bonney Lake",WA,"","","",," | Next Action: Return visit to find owner
 
-Contact roles: Franco; Giovanni"
-"Gentiletti's Pass",Brent,"","","",Puyallup,98373,follow-up,"2026-06-06 01:32:25","Gatekeeper: Brent (son of owner Flavien Gentiletti). Has service but may need upgrade. Low level lead.
+Contact roles: Unknown",2026-04-15
+Katie,"Club Pilates","","Bonney Lake",WA,"","","",,"Franchise - each location handles own services | Next Action: Research franchise owner contact; multi-location pitch
 
-Contact roles: Brent"
-"Gentle Touch Acupuncture","Sam (Gatekeeper), Dr. Melinda Morrison",253-368-6227,melinda@gentletouchacu.com,"5929 N. Pearl St, Ste C",Tacoma,98406,interested,"2026-04-24 21:23:51","Good on service currently. Sam took card, will call if needed. Potential bill review opportunity - follow up. Note: Card shows Westgate Blvd address, but this is their N. Pearl St location (Suite C).
+Contact roles: Katie",2026-04-15
+Diane,"Just For Kids Dentistry","20811 State Highway 410 E",Tacoma,WA,98403,253-200-2500,"",,"Decision-maker identified | Next Action: Medium\n\n[2026-06-08] Field Visit: Spoke with Sydney (gatekeeper). Sydney unaware of current service status. Confirmed Diane is decision-maker. Need to verify if existing Comcast customer. New territory area.
 
-Contact roles: Sam (gatekeeper); Dr. Melinda Morrison"
-"Giesy Family & Implant Dentistry","Michael J. Giesy DMD, Chris (DM - wife), Theresa (OM), Lisa (Gatekeeper), Kathy",253-752-6630,Mike@GiesyDental.com,"6004 Westgate Blvd, Suite 210",Tacoma,98406,interested,"2026-04-24 21:56:25","Decision maker is Chris (doctor's wife). Same building as Tacoma Eye (Suite 180).
+Contact roles: Diane",2026-04-15
+Unknown,"Rose Spa","","Bonney Lake",WA,"","","",,"Bill too high ($166); basic phone modem | Next Action: Follow up with quote for Wireless Pro backup + potential switch
 
-Contact roles: Michael J. Giesy DMD; Chris (dm - wife); Theresa (om); Lisa (gatekeeper); Kathy"
-"Grit City Books","Jeff, Kaitlyn & husband (3 owners)",2535502665,,"3116 6th Ave",Tacoma,98406,interested,"2026-05-01 22:56:40","3 owners: Jeff, Kaitlyn (runs day-to-day), and Jeff's husband (name unknown). Started during COVID - focus on physical book ownership vs Kindle. Follow-up: May 7, 6-7:30pm - Jenny Barto author reading No Contact (anthology on estrangement). Xavier + Carissa attending.
+Contact roles: Unknown",2026-04-15
+Unknown,"Unnamed (language barrier)","","Bonney Lake",WA,"","","",,"Language barrier; owner not present | Next Action: Return visit with bilingual materials
 
-Contact roles: Jeff; Kaitlyn; husband (3 owners)"
-"HOTWORX - Bonney Lake","Carly (DM - not in)",,,"21140 State Highway 410","Bonney Lake",98391,followup,"2026-04-20 20:41:17","Decision-maker: Carly (was not in). Follow up by phone. Connection: Related to Sierra Boyce (HOTWORX owner, managed by Drew S). Franchise/chain opportunity.
+Contact roles: Unknown",2026-04-15
+Sean,"Crockett Public House","20631 State Route 410 E Ste E","Bonney Lake",WA,98391,253-750-3789,"",,"Multi-location owner: 3 locations (Maple Valley/Bonney Lake/Puyallup) | Next Action: Research current provider; prioritize Sean contact
 
-Contact roles: Carly (dm - not in)"
-"Haley Chiropractic Clinic","Dr. Mark A. Haley (Chiropractor), Terri (Account Handler - decision maker), Toni (Gatekeeper)",253-761-0990,Haleychiroclinic@aol.com,"1919 N Pearl St, Suite A-4",Tacoma,98406,interested,"2026-04-23 22:14:53","2026-04-23: Gatekeeper Toni. Decision-maker is Terri (handles the account). Follow-up scheduled: Friday morning at 10:30 AM. Dr. Mark Haley is the chiropractor.
+Contact roles: Sean",2026-04-15
+"Tom & Sheila","Tools Forever","21006 WA-410","Bonney Lake",WA,"","","",,"Decision-makers not in today | Next Action: Return to meet Tom & Sheila
 
-Contact roles: Dr. Mark A. Haley (chiropractor); Terri (account handler - decision maker); Toni (gatekeeper)"
-"Hawthorne and Honey","Sarah Butters",253-590-1113,,"2703 N. Proctor St",Tacoma,98407,initial_contact,"2026-04-08 23:11:26","2026-04-08: Met Rochelle (gatekeeper). Owner is Sarah Butts. Located next door to Knapp's Restaurant.
+Contact roles: Tom; Sheila",2026-04-15
+Tiffani,"Chipper's Jewelry","","Bonney Lake",WA,"","",marketing@chippersjewelry.com,," | Next Action: Email Tiffani this week
 
-Contact roles: Sarah Butters"
-"Heights Water District","Derrick (current owner)",206-463-0014,,"17612 Vashon Hwy SW",Vashon,98070,interested,"2026-04-15 20:22:05","PRIORITY: NEW CONNECTION. Nonprofit water district organization. Current owner Derrick is leaving/shutting down in 2 weeks. New owner taking over but Derrick would not provide new contact info. Follow up next week and week after to connect with new ownership. New connection = highest priority opportunity.
+Contact roles: Tiffani",2026-04-15
+"Celine Ozuna","European Wax Center","","Bonney Lake",WA,"","","",,"Franchise - 96 locations; Tom S. Cook Jr. owns franchise | Next Action: Research Tom S. Cook Jr.; franchise-level pitch
 
-Contact roles: Derrick (current owner)"
-"Hippie House (The Glass House)",Scott,2532671708,,"3109 6th Ave",Tacoma,98406,customer,"2026-05-01 22:43:42","Owner: Scott. 15 years in business, avid fisherman. Existing Comcast customer - needs bill review for discounts.
+Contact roles: Celine Ozuna",2026-04-15
+Patrick,"EZ Tobacco","21261 State Route 410 E","Bonney Lake",WA,98391,253-862-0589,"",,"Family business - Patrick has full authority | Next Action: Research current setup; follow up with Patrick
 
-Contact roles: Scott"
-"Hungry Dog's Diner",Unknown,253-891-8818,"","21185 State Route 410","Bonney Lake",98391,return-visit-needed,"2026-04-15 19:30:26","Decision-maker unknown | Next Action: Return to get owner info
+Contact roles: Patrick",2026-04-15
+Patrick,"Nico Teriyaki","","Bonney Lake",WA,"","","",,"Same owner as EZ Tobacco (Patrick) | Next Action: Research what else Patrick owns; bundle pitch
 
-Contact roles: Unknown"
-"IGA Vashon Market",charley,+12069475640,charley@vashonmarket.com,"",Tacoma,"",interested,"2026-06-05 01:14:51","Synced from GHL. Tags: comcast, hot-prospect, service-issue-resolved, upgrade-opportunity
+Contact roles: Patrick",2026-04-15
+Unknown,"Hungry Dog's Diner","21185 State Route 410","Bonney Lake",WA,98391,253-891-8818,"",,"Decision-maker unknown | Next Action: Return to get owner info
 
-Contact roles: charley"
-"Indo Asian Street Eatery",Andrew,253-503-3527,,"1108 N. Tacoma Ave",Tacoma,98403,initial_contact,"2026-04-08 18:59:58","2026-04-08: Met Andrew (decision-maker). Owner is currently in Arizona. Andrew wants meeting to review current bill and services. Follow up next week to schedule.
+Contact roles: Unknown",2026-04-15
+Sydney,"Modern Hippie Wellness Cafe","","Bonney Lake",WA,"","",connect@modernhippielife.com,," | Next Action: Email Sydney to schedule meeting
 
-Contact roles: Andrew"
-"Inner Harmony Psychology","jennifer drake","","","2104 N 30th St, Suite F",Tacoma,98403,interested,"2026-06-04 22:19:06","Synced from GHL. Tags: manual-entry, verizon-competitor, contract-concern, inner-harmony-psychology. Wants to break away from Verizon (2 phones + internet). Contract cancellation concerns are the barrier. Ready buyer, needs ETF solution.
+Contact roles: Sydney",2026-04-15
+"Juan (Wan/Won)","Unnamed (language barrier)","Bonney Lake",WA,"","","","",,"Low priority due to communication challenge | Next Action: Low
 
-Contact roles: jennifer drake"
-"JT's Original Louisiana Bar-B-Que Sauce","James Turner (JT)","(253) 606-2635",bbqsaucebyjt@gmail.com,,"Gig Harbor",98335,interested,"2026-05-15 01:10:41","Met at East Pierce County Business Expo. Owner. Former caterer and restaurant owner, scaled down to focus on sauce business. Wants Comcast Business Mobile Internet and potentially phone services. Based in Gig Harbor.
+Contact roles: Juan (wan/won)",2026-04-15
+Linda/Amy/Sammy,"Lake Tapps Chiropractic","","Bonney Lake",WA,"","","",,"Power outages cause WebEx/call forwarding issues | Next Action: Propose fiber upgrade + backup power solution
 
-Contact roles: James Turner (jt)"
-"Jen Chang Bridal Alterations",Guinn,"","","","Bonney Lake","",not-a-prospect,"2026-04-15 19:30:26","No internet for 10 years; no need anticipated | Next Action: No follow-up needed
+Contact roles: Linda; Amy; Sammy",2026-04-15
+"Cheryl (decision-making liaison)","Lark Dermatology","","Bonney Lake",WA,"",253-381-9239,"",,"Medical practice - laser aesthetics. Decision-making liaison: Cheryl (called today, 253-381-9239). Dr. Daniel Levi in once/week. READY FOR CONTRACT - moved to proposal stage.\n\n2026-04-23: CLOSED - Admiral store. New business Internet line 1 Gig over 300 with WiFi Pro and Security Edge Preferred. Originally came in for cell phone line.
 
-Contact roles: Guinn"
-"Jersey Mike's Subs","Store Manager (corporate-managed)",,,"21180 State Highway 410","Bonney Lake",98391,not-interested,"2026-04-20 20:43:57","Corporate-managed location. Strategic account (not small business). Store manager confirmed corporate handles all decisions. Out of scope for BAE territory - do not pursue.
+Contact roles: Cheryl (decision-making liaison)",2026-04-15
+Guinn,"Jen Chang Bridal Alterations","","Bonney Lake",WA,"","","",,"No internet for 10 years; no need anticipated | Next Action: No follow-up needed
 
-Contact roles: Store Manager (corporate-managed)"
-"Just For Kids Dentistry",Diane,253-200-2500,"","20811 State Highway 410 E",Tacoma,98403,follow-up,"2026-04-15 19:30:26","Decision-maker identified | Next Action: Medium\n\n[2026-06-08] Field Visit: Spoke with Sydney (gatekeeper). Sydney unaware of current service status. Confirmed Diane is decision-maker. Need to verify if existing Comcast customer. New territory area.
+Contact roles: Guinn",2026-04-15
+Lucas,"Teriyaki Wok 5","9925 214th Ave E Unit L","Bonney Lake",WA,98391,253-891-1980,"",,"Existing relationship - you've been communicating | Next Action: Medium
 
-Contact roles: Diane"
-"KO Construction","Keith Osmonson",206-304-7816,keith@ko-construct.com,"10404 36th Street East",Edgewood,98371,interested,"2026-03-05 18:27:56","Residential Comcast customer running business from home. Experiencing latency and dropped connections at peak times due to best effort residential service. High intent upsell opportunity - wants dedicated business internet. License: #KOCONC772D7
+Contact roles: Lucas",2026-04-15
+Margaret,"Manhattan Designs Salon","9925 214th Ave E Ste J","Bonney Lake",WA,98391,253-863-5954,"",,"Former Comcast customer - switched away; frustrated | Next Action: Call to understand why she left; present new solutions
 
-Contact roles: Keith Osmonson"
-"KO Construction","Keith Osmonson",,,,Tacoma,98404,interested,"2026-03-16 22:43:24","High-intent upsell. Stage 4 - Proposal Sent.
+Contact roles: Margaret",2026-04-15
+Galena,"Ava Bella's Brow & Skincare Studio","","Bonney Lake",WA,"","","",,"Very small shop | Next Action: Assess needs; may be basic tier only
 
-Contact roles: Keith Osmonson"
-"Kathy's Corner","Kathy Wheaton (Owner)",206-463-9416,,"18025 Vashon Highway SW",Vashon,98070,customer,"2026-03-31 20:58:54","Inherited customer from previous rep. Island's biggest nursery and landscaping business. Owner ~73-74 years old. Upgrading from HFC to EoF (Ethernet over Fiber). Pre-contract phase - sales engineer Susan validating service availability. Migration to fiber connection in progress.
+Contact roles: Galena",2026-04-15
+Mark,"MK Coins and Collectibles","","Bonney Lake",WA,"","","",,"Immediate ""don't want to switch"" response | Next Action: No follow-up unless situation changes
 
-Contact roles: Kathy Wheaton (owner)"
-"Katsu Burger",Chris,253-394-3499,,"2805 6th Ave, Ste B",Tacoma,98406,interested,"2026-05-01 23:03:30","Owner: Kris (Japanese American). Also owns Poett Bonsai. Teaches bonsai classes Sundays at restaurant. Concept: fast food + slow craft. Event flyer: Bonsai Beginner Class May 17th 1-3pm .
+Contact roles: Mark",2026-04-15
+"Dr. Cori Bodily-Goodmansen","Vashon Chiropractic","17147 Vashon Hwy SW #106",Vashon,WA,98070,206-259-0216,drcori@vashonchiropractic.com,,"Decision-maker: Dr. Cori Bodily-Goodmansen. Spoke with Tara (light blue dreads front, silver/blonde back). Super busy day, many people in office. Interested in talking but today not good. Follow up via email or return visit.
 
-Contact roles: Chris"
-"Kids Kaboodle",Melissa,253-566-8344,,"6409 6th Ave, Suite 10",Tacoma,98406,interested,"2026-05-16 20:23:00","Spoke with Melissa, whose sister owns the company. Need to look up in system. No email captured yet.
+Contact roles: Dr. Cori Bodily-Goodmansen",2026-04-15
+Tara,"Chris Hunt & Associates Accountants",,,WA,98070,206-463-3301,,,"Contact: Tara. Has existing service with unknown provider but experiencing issues. Tax day - very busy, could not talk. They will call back. Services: Taxes, IRS concerns, new business setup, tax strategy.
 
-Contact roles: Melissa"
-"Knapps Restaurant","Billy Brewer",,,"Proctor District",Tacoma,98407,interested,"2026-03-16 22:43:24","Triple Play package. Stage 3 - Second Review completed.
-
-Contact roles: Billy Brewer"
-"La Boba",Tuan,253-223-6871,,"2614 North Proctor St",Tacoma,98407,initial_contact,"2026-04-08 22:20:22","2026-04-08: Met Moises and Preston (gatekeepers). Decision-maker is Tuan — was not in today. Tuan also owns the nail salon upstairs.
-
-Contact roles: Tuan"
-"Lake Tapps Chiropractic",Linda/Amy/Sammy,"","","","Bonney Lake","",existing-customer---retention-play,"2026-04-15 19:30:26","Power outages cause WebEx/call forwarding issues | Next Action: Propose fiber upgrade + backup power solution
-
-Contact roles: Linda; Amy; Sammy"
-"Lander Coffee","Alicia (owner), Emily (gatekeeper)","(253) 625-7843",,"2716 N 21st St",Tacoma,98406,interested,"2026-06-15 20:32:09","Stopped by for visit. Emily is the gatekeeper. Alicia is the owner.
-
-Contact roles: Alicia (owner); Emily (gatekeeper)"
-Lapis,emily,+12535074969,hello@lapistacoma.com,"3823 N 26th Street, Tacoma, WA 98407",Tacoma,98407,interested,"2026-03-16 22:42:31","Synced from GHL. Tags: comcast-prospect, pipeline-sync
-
-Contact roles: emily"
-"Lark Dermatology","Cheryl (decision-making liaison)",253-381-9239,"","","Bonney Lake","",customer,"2026-04-15 19:30:26","Medical practice - laser aesthetics. Decision-making liaison: Cheryl (called today, 253-381-9239). Dr. Daniel Levi in once/week. READY FOR CONTRACT - moved to proposal stage.\n\n2026-04-23: CLOSED - Admiral store. New business Internet line 1 Gig over 300 with WiFi Pro and Security Edge Preferred. Originally came in for cell phone line.
-
-Contact roles: Cheryl (decision-making liaison)"
-"Last Stop Computer",Derrick,"","","","",98404,interested,"2026-04-30 00:17:33","Decision-maker. Desktop computer repair (in-shop only). Some remote work possible. Potential referral partner - has clients who live away.
-
-Contact roles: Derrick"
-"Law Office of John Knutson","John Knutson",206-463-6711,,,,98070,followup,"2026-04-15 20:11:08","Attorney. Needs 2 new phone lines. Currently paying over /month with AT&T. Old-school - uses typewriter (recently paid  to repair). Very sweet guy. NO EMAIL - phone only. Appointment scheduled for Tuesday April 21, 2026 at 9:00 AM. Will need to handle conversation over phone since he is on Vashon Island.
-
-Contact roles: John Knutson"
-"LevelUp Pros LLC","casey m. adams",+12533654042,casey@levelup-pros.com,"",Tacoma,"",interested,"2026-06-04 23:33:30","Synced from GHL. Tags: business-card-capture, referral-partner, levelup-pros, multi-business-owner
-
-Contact roles: casey m. adams"
-"MK Coins and Collectibles",Mark,"","","","Bonney Lake","",not-interested,"2026-04-15 19:30:26","Immediate ""don't want to switch"" response | Next Action: No follow-up unless situation changes
-
-Contact roles: Mark"
-"Macaluso's Bar",Cesar,253-267-1354,,"5101 N. Pearl St.",Ruston,98407,interested,"2026-05-27 00:00:39","Language barrier, need return visit to identify DM
-
-Contact roles: Cesar"
-"Manhattan Designs Salon",Margaret,253-863-5954,"","9925 214th Ave E Ste J","Bonney Lake",98391,win-back-opportunity,"2026-04-15 19:30:26","Former Comcast customer - switched away; frustrated | Next Action: Call to understand why she left; present new solutions
-
-Contact roles: Margaret"
-"Menchie's Frozen Yogurt","Deja (DM) / Kaela (Gatekeeper)",253-862-7440,,"21210 State Highway 410","Bonney Lake",98391,interested,"2026-04-20 20:35:43","Gatekeeper: Kaela. Decision-maker: Deja (manager). Deja will be in office TOMORROW. Call 253-862-7440 to reach her. Frozen yogurt shop on State Highway 410 corridor.
-
-Contact roles: Deja (dm); Kaela (gatekeeper)"
-"Meritt Financial Group","Selena (Gatekeeper) - Corporate handles IT",253-272-7058,,"1919 N Pearl St, B-2",Tacoma,98406,interested,"2026-04-23 22:19:01","2026-04-23: Gatekeeper Selena. Corporate handles all IT/telecom decisions. Need to research corporate contact and approach from that angle.
-
-Contact roles: Selena- Corporate handles IT (gatekeeper)"
-"Modern Hippie Wellness Cafe",Sydney,"",connect@modernhippielife.com,"","Bonney Lake","",email-acquired;-sydney-in-office-couple-times/week,"2026-04-15 19:30:26"," | Next Action: Email Sydney to schedule meeting
-
-Contact roles: Sydney"
-"Morfitt Family Law","Megan Johnson (DM), Nia (GK)",253-352-9700,megann@Morfittlaw.com,"5810 N. 51st St.",Ruston,98407,interested,"2026-05-27 00:00:39","Full contact info obtained
-
-Contact roles: Megan Johnson (dm); Nia (gk)"
-"Morrell's Cleaners","Mariah Morrell","(253) 572-7121","","608 N. 1st St",Tacoma,98403,analysis,"2026-02-25 23:09:43","Updated 2026-04-08: Met Mariah Morrell (decision-maker, 28 years old, working there since age 12, being groomed to take over business with her brother). Also met her dad Aaron Morrell. Super nice family. Currently with Comcast, interested in fiber connection. Has TWO locations: 608 N. 1st St, Tacoma and 3712 9th St SW, Puyallup. Need to explore both locations for fiber availability.
-
-Contact roles: Mariah Morrell"
-"Mr. Jalapeño","Jose (DM) / Chelle/Shelly (Gatekeeper)",253-862-1502,,"21160 State Route 410 E","Bonney Lake",98391,existing_customer,"2026-04-20 20:42:49","Family Mexican Restaurant. Gatekeeper: Chelle (Shelly). Decision-maker: Jose. Currently has Comcast (Con) - account review opportunity. Business card confirms address and phone.
-
-Contact roles: Jose (dm); Chelle; Shelly (gatekeeper)"
-"My Tacoma Dentist","Lolanda Maes (Decision-maker/Account Holder), Dr. Dave Wagner (DDS)",253-761-5299,info@mytacomadentist.com,"1919 N Pearl St, A-3",Tacoma,98406,customer,"2026-04-23 22:13:57","2026-04-23: EXISTING COMCAST CUSTOMER. Lolanda Maes is decision-maker/account holder and long-time friend (27+ years, high school). Dr. Dave Wagner is main dentist. Service updated within last year. Plan: review account for lock-up opportunities/upsell.
-
-Contact roles: Lolanda Maes (decision-maker/account holder); Dr. Dave Wagner (dds)"
-"Narrows Brewing on Proctor",Marie,253-327-1500,,"2620 N. Proctor St",Tacoma,98407,initial_contact,"2026-04-08 22:27:18","2026-04-08: Met Stephan (gatekeeper/bartender). Main contact for internet is Marie — handles all their internet stuff.
-
-Contact roles: Marie"
-"Narrows Law Group (formerly Andrews and Arbenz)",Annie,,,,Tacoma,"",initial_contact,"2026-06-10 19:23:33","2026-06-10: Stopped by office. Formerly Andrews and Arbenz law firm. Old POC was Jennifer Andrews, now Annie is the contact. Spoke to receptionist/gatekeeper. Unclear if they have internet needs but logged for follow-up.
-
-Contact roles: Annie"
-"New Construction Site (3820 N 26th)",Justin,,,"3820 N. 26th St",Tacoma,98407,door_knock,"2026-04-08 22:13:12","2026-04-08: New construction site. Met Justin (superintendent for general contractor). Fiber will be in the building already. Property manager unknown at this time — no tenants identified yet. No phone/email collected. Logged for future follow-up when building is occupied.
-
-Contact roles: Justin"
-"New Era Cleaners",yesi,+12537593501,fuzzywuzzy@q.com,"2621 N Proctor Street, Tacoma, WA 98407",Tacoma,98407,interested,"2026-03-16 22:42:31","Synced from GHL. Tags: comcast-prospect, pipeline-sync
-
-Contact roles: yesi"
-"Nico Teriyaki",Patrick,"","","","Bonney Lake","",multi-business-owner---2-locations-so-far,"2026-04-15 19:30:26","Same owner as EZ Tobacco (Patrick) | Next Action: Research what else Patrick owns; bundle pitch
-
-Contact roles: Patrick"
-"Northend on Pearl","Emily (GK), DM not in",,,"5037 N. Pearl St.",Ruston,98407,customer,"2026-05-27 00:00:39","Bill analysis opportunity, need to identify DM
-
-Contact roles: Emily (gk); DM not in"
-"Oakes and Alder","Jennifer (owner), Jessica (beautician)",978-204-7418,,"2714 N 21st St",Tacoma,98406,interested,"2026-06-15 20:48:05","Met Jessica (beautician). Owner Jennifer not in. They have internet connection issues - streaming is hard. May need small fiber circuit. Good opportunity for upgrade.
-
-Contact roles: Jennifer (owner); Jessica (beautician)"
-"Oakes and Alder","Jennifer (owner), Jessica (beautician)",978-204-7418,,"2714 N 21st St",Tacoma,98406,interested,"2026-06-15 20:55:02","Internet connection issues, streaming problems. May need small fiber circuit. Jen Mclemore.
-
-Contact roles: Jennifer (owner); Jessica (beautician)"
-"Old Tacoma Tattoo Parlor","Andre (owner), Jordan (artist on duty)","(253) 752-6748",,"2712 N 21st St",Tacoma,98406,interested,"2026-06-15 20:59:01","Stopped by for visit. Jordan is the tattoo artist on duty. Andre is the business owner and decision maker. Service seems fine currently.
-
-Contact roles: Andre (owner); Jordan (artist on duty)"
-"PJ Properties / Tacoma Rising","Reed Fetters",,,,Tacoma,98402,followup,"2026-05-14 23:59:55","Lead from Cori Witney (PSR Mechanical). Behind Tacoma Rising and PJ Properties (property management company). Need to connect and explore opportunities.
-
-Contact roles: Reed Fetters"
-"PSR Mechanical (A Service Logic Company)","Cori Witney","(206) 367-2500",cori.witney@psrmechanical.com,"1011 East E St",Tacoma,98421,interested,"2026-05-14 23:59:42","Met at East Pierce County Business Expo. HVAC business, works Tacoma to Marysville and Sumner. Connected me to Reed Fetters (Tacoma Rising + PJ Properties property management). Partner was with her (name unknown). LinkedIn connection in progress.
-
-Contact roles: Cori Witney"
-"PURE Property Management of Washington","Zach (Decision Maker)",253-537-6500,,"2102 N. Pearl Street, Suite 204",Tacoma,98406,interested,"2026-04-24 21:17:23","Has Comcast. Open to bill review + referral partner discussion. Met at door. Same building as PHS Lawyers (Suite 106) and Pilkey Hopping (Suite 102).
-
-Contact roles: Zach (decision maker)"
-"Pandora's Box (Pet Food & Supplies)","Cheryl Pruett",206-463-2200,Pbox1975@aol.com,"17321 Vashon Highway SW",Vashon,98070,called,"2026-05-04 20:05:44","Point of Contact: Cheryl Pruett (spelled P-R-U-E-T-T). Pet food and supplies store. Phone: 206-463-2200. Account appears intact with Comcast. Limited opportunities visible, but worth asking about online presence and online orders. Long-term relationship play. Visited 5/4/2025.
-
-Contact roles: Cheryl Pruett"
-"Peaks and Pints","ron swarner",+12533285621,ron.swarner@peaksandpints.com,"3816 N 26th St, Ste B, Tacoma, WA 98407",Tacoma,98407,interested,"2026-03-16 22:42:30","Synced from GHL. Tags: comcast-prospect, pipeline-sync
-
-Contact roles: ron swarner"
-"Pearl Counseling Associates","Carrie Umporowicz MA LMFT, Other Counselors (MA LMHC)",253-752-1860,carrie@pearlcounseling.com,"1919 N Pearl St, Ste C-1",Tacoma,98406,interested,"2026-04-23 22:23:50","2026-04-23: Walked in - no one at front desk. Sign said counselor will be with you shortly. Need to research if they have Comcast service. If not, add to email blast.
-
-Contact roles: Carrie Umporowicz MA LMFT; Other Counselors (ma lmhc)"
-"Pearl Street Heated Self Storage","Jeremy Mohr (via Emily Moore - gatekeeper)",,mohrbedrich@gmail.com,"1001 North Pearl St",Tacoma,98406,interested,"2026-04-23 21:43:40","2026-04-23: Gatekeeper Emily Moore (wife of decision-maker). Owners use third-party IT professionals for Internet management. Currently NOT with Comcast. Emily will forward info to husband Jeremy for consideration.
-
-Contact roles: Jeremy Mohr (via emily moore - gatekeeper)"
-"Pizzeria Fondi","chris olsen",+12538516666,chris@fondi.com,"2515 N. Proctor St, Tacoma, WA 98406",Tacoma,98406,interested,"2026-03-16 22:42:30","Synced from GHL. Tags: comcast-prospect, pipeline-sync
-
-Contact roles: chris olsen"
-"Play Live Nation",Brian,"","","3500 S. Meridian, Unit 420",Puyallup,98373,follow-up,"2026-06-06 01:32:25","Gatekeeper: Andrew. Decision-maker: Brian (dad, tech guru). Best day: Tuesdays. High data usage during tournaments - fiber opportunity.
-
-Contact roles: Brian"
-"Pratt, Horstman & Stratton, PLLC","Christina Bravo (Office Manager/DM)",253-573-1441,cbravo@phslawyers.com,"2102 N. Pearl Street, Suite 106",Tacoma,98406,interested,"2026-04-24 21:00:22","Christina is decision maker for Comcast. Office manager. Moved suites in December 2025. Also: Kristin Whitford (Attorney) 253-882-0997, kwhitford@phslawyers.com
-
-Contact roles: Christina Bravo (office manager/dm)"
-"Pro Auto Sales",,,,"6404 6th Ave",Tacoma,98406,not-interested,"2026-05-16 20:21:00","Stopped by on 2026-05-16 ~8:20 PM PT. Nobody was there."
-"Proctor Family Dentistry","Greg Dent",253-759-6800,,"2614 North Adams Street",Tacoma,98407,interested,"2026-03-16 22:43:24","Gatekeeper: Andy. Office Manager: Jennifer.
-
-Contact roles: Greg Dent"
-"Proctor Shoe Repair",Henry,253-883-9136,,"3817 1/2 North 26th Street",Tacoma,98407,interested,"2026-03-16 22:43:24","Existing Comcast customer. Need email for newsletter.
-
-Contact roles: Henry"
-"Purpose Boutique (Tacoma Men's)","Kristy Johnson","(253) 292-0508",tacoma.men@purposeboutique.com,"5111 Grand Loop Suite A1",Tacoma,98407,initial_contact,"2026-04-09 00:15:36","2026-04-08: Met Anna V. (General Manager/Stylist) at Tacoma Men's Purpose Boutique location. Owner is Kristy Johnson (Kristy 🐝 Johnson). SEVEN locations total — Tacoma, Bellevue, Issaquah, Redmond area. This is a major multi-location account opportunity.
-
-Contact roles: Kristy Johnson"
-"Puyallup Food Bank","David Coe (COO)",253-262-5642,,"217 W Stewart Ave",Puyallup,98371,followup,"2026-04-24 20:22:55","Product donations line. Also: main 253-848-5240, email david@pfb.org. OUT: Next week (unavailable). Wants fiber at beginning of May - follow up then.
-
-Contact roles: David Coe (coo)"
-"Raab Construction","Jeff Midley (Owner), Liz (Gatekeeper)",206-408-7460,,"9917 SW 178th St Suite 101",Vashon,98070,interested,"2026-03-31 21:15:08","Construction company. Owner Jeff Midley. Gatekeeper Liz - spunky, friendly, prefers animals (cats/dogs) over people. Likes organization and paperwork.
-
-Contact roles: Jeff Midley (owner); Liz (gatekeeper)"
-"Rankos Pharmacy",Greg,253.383.2411,info@rankospharmacy.com,"101 N. Tacoma Avenue",Tacoma,98403,initial_contact,"2026-04-08 18:47:03","2026-04-08: Met Alicia (gatekeeper). Business owner is Greg — one of the last owners of local Rexall Drugs pharmacy. Currently with Lightcurve (internet + phone). Has front register. Established pharmacy since 1929, three generations. Not a strong lead but conversation logged.
-
-Contact roles: Greg"
-"Red Hot",Elliot,,,"2914 N 6th St",Tacoma,98406,followup,"2026-03-28 02:49:20","2026-03-27: Spoke with Elliot - slammed busy, came off rude but was just busy/didn't apologize. Following up with manager tomorrow morning about Mariners TV channel special. Existing customer - info in café system.
-
-Contact roles: Elliot"
-"Rose Spa",Unknown,"","","","Bonney Lake","",pain-point:-overpaying,"2026-04-15 19:30:26","Bill too high ($166); basic phone modem | Next Action: Follow up with quote for Wireless Pro backup + potential switch
-
-Contact roles: Unknown"
-"Shake Shake Shake",Sarah,253-507-4060,,"124 N. Tacoma Ave",Tacoma,98403,initial_contact,"2026-04-08 19:20:48","2026-04-08: Met Sarah (decision-maker). Recently transferred/changed over to AT&T. Unknown how early in contract. Possible win-back opportunity depending on contract status.
-
-Contact roles: Sarah"
-"Sign and Celebrate Studios","Cherise Klosner","(253) 237-2362",signandcelebrate@gmail.com,"1001 Pacific Ave #220",Tacoma,98402,customer,"2026-05-15 00:05:21","Met at Business Expo for the Chamber. Micro Weddings and Events Venue. Already has Comcast service - account review opportunity for upsell/cross-sell. Partner: Sam De La Cruz (COO).
-
-Contact roles: Cherise Klosner"
-"Smart PNW","james roddy",+12534480456,james@smartpnw.com,"",Puyallup,"",interested,"2026-03-16 22:42:30","Synced from GHL. Tags: comcast-prospect, pipeline-sync
-
-Contact roles: james roddy"
-"Sound Starter & Alternator","Doug (DM), Ken & Liam (GK)",253-759-8080,,"5106 N. Pearl St.",Ruston,98407,customer,"2026-05-27 00:00:39","Doug out 6 weeks (hand surgery), heavy phone usage
-
-Contact roles: Doug (dm); Ken; Liam (gk)"
-"Standard Goods","JR (Gatekeeper), Geoff & Kristina (Owners)",,,"17624 Vashon Highway SW",Vashon,98070,interested,"2026-03-31 20:54:59","Gatekeeper JR, owners Geoff and Kristina. Phone number not obtained during visit. Need to follow up for contact info and assess business needs.
-
-Contact roles: JR (gatekeeper); Geoff; Kristina (owners)"
-"Stock In Grocery","Diem (DM/GK)",253-756-8123,,"3908 6th Ave.",Tacoma,98406,interested,"2026-05-27 00:00:39","Bought business 2 years ago, relationship building opportunity
-
-Contact roles: Diem (dm/gk)"
-"Tacoma Eye","Dr. George Meers, Olivia (Gatekeeper)",253-220-2563,"","6004 N Westgate Blvd, Suite 180",Tacoma,98406,customer,"2026-04-24 21:56:25","Has Comcast, everything going good. Retention check-in candidate.
-
-Contact roles: Dr. George Meers; Olivia (gatekeeper)"
-"Tacoma Glass Gallery","jeannine sigafoos","",tgsglass@gmail.com,"2621 N Proctor Street, Tacoma, WA 98407",Tacoma,98407,interested,"2026-03-16 22:42:30","Synced from GHL. Tags: comcast-prospect, pipeline-sync
-
-Contact roles: jeannine sigafoos"
-"Tacoma Public Utilities","Jamar Sample",318-840-7676,,,Tacoma,98403,partner,"2026-03-05 22:15:47","Engineer at TPU. Strategic referral partner - has visibility into new power connections = new businesses needing internet. Will refer business and bring Xavier on site visits. Non-paid partner. Email to be collected later.
-
-Contact roles: Jamar Sample"
-"Tacoma Wine Merchants","kelly g. richards",+12064062678,kelly@tacomawinemerchants.com,"2112 N 30th St, Suite C",Tacoma,98403,interested,"2026-06-04 21:49:43","Synced from GHL. Tags: business-card-capture, interested, tacoma-wine-merchants
-
-Contact roles: kelly g. richards"
-"Teaching Toys and Books",Melissa,253-759-9853,teachingtoysandbooks@yahoo.com,"2624 North Proctor St",Tacoma,98407,initial_contact,"2026-04-08 22:34:16","2026-04-08: Met Vita (gatekeeper) — spunky personality, great for toy store. Decision-maker is Melissa. Teaching Toys and Books — The Best Toy Store in the Galaxy!
-
-Contact roles: Melissa"
-"Teriyaki Wok 5",Lucas,253-891-1980,"","9925 214th Ave E Unit L","Bonney Lake",98391,follow-up-on-tv-service-discussion,"2026-04-15 19:30:26","Existing relationship - you've been communicating | Next Action: Medium
-
-Contact roles: Lucas"
-"The Coast Is Clear Travel","Becky Willis, CCC","(253) 259-6973",beckytravel@icloud.com,,,98404,interested,"2026-05-15 01:26:02","Met at East Pierce County Business Expo. Travel Advisor (CCC). Didn't discuss Comcast much. She offered to get me a passport cover. Need to check if she has our service and talk to her about potentially switching to Comcast Business Mobile.
-
-Contact roles: Becky Willis; CCC"
-"The Legacy Apartments",,253-383-8741,,"115 North Yakima Avenue",Tacoma,98403,followup,"2026-03-05 20:19:52","Appointment scheduled for 11:30 AM, arrived at 12:00 PM (running late). Door locked, could not get in. Need to call and follow up to reschedule. Alternate phone from sign: 253-627-8888. Website: legacyrent.com - Multi-family housing with 1/2/3 bedroom units."
-"The Powder Room Champagne Bar & Restaurant","Cam Settle",253-720-1493,thepowderroomtacoma@gmail.com,"12 N Tacoma Ave",Tacoma,98403,followup,"2026-02-25 23:41:36","Visited Wed ~3:10 PM. Owner Cam Settle (female) out of town.
-Gatekeeper: Kelly Ray.
-Cam returns next week. Follow-up scheduled for next week or week after.
-Business: Champagne bar and restaurant.
-Website: thepowderroomchampagnebar.com
-
-Contact roles: Cam Settle"
-"The Snug Pub","Andrea & Scott Evans",,thesnugpub@yahoo.com,"2717 North Proctor Street",Tacoma,98407,interested,"2026-03-04 22:50:29","New restaurant in Proctor district (next door to Knapp's Restaurant). Met Scott today - specifically wants FIBER for media needs. Needs: 1+ phone line, multiple TVs, internet-capable devices. Husband Scott mentioned they want fiber due to amount of media they plan to put in. Business just started. | FOLLOW-UP: Task created in GHL for March 6th - Fiber quote follow-up.
-
-Contact roles: Andrea; Scott Evans"
-"Tools Forever","Tom & Sheila","","","21006 WA-410","Bonney Lake","",return-visit-needed,"2026-04-15 19:30:26","Decision-makers not in today | Next Action: Return to meet Tom & Sheila
-
-Contact roles: Tom; Sheila"
-"Treasure Island Antiques and Estate Sales",Marcie,"+1 (206) 463-2083",,"17326 Vashon Hwy SW",Vashon,98070,interested,"2026-05-04 19:26:01","Owner and DM. Visited on 5/4/2025.
-
-Contact roles: Marcie"
-"Trig Insurance Agency","Tom Trigg (Agency Principal)",206-463-7411,tomtrigg@trigginsurance.com,"PO Box 509, 17425 Vashon Hwy SW",Vashon,98070,followup,"2026-05-04 19:46:36","Agency Principal: Tom Trigg. Gatekeeper: Karen. DM: Stacie (not in today). Left info for Stacie to reach back out. Toll-free: 800-691-6756, Fax: 206-463-7414. Visited 5/4/2025.
-
-Contact roles: Tom Trigg (agency principal)"
-"Triple Knock","J (Manager), Katy (Gatekeeper)",253-503-0982,,"2713 6th Ave",Tacoma,98406,interested,"2026-02-25 02:44:06","Gatekeeper: Katy. Manager: J (initial only, need full name). Hours: Daily 12PM-2AM, Sat 4PM-2AM. Need email address. Established business on 6th Ave.
-
-Contact roles: J (manager); Katy (gatekeeper)"
-"US Bank - Federal Way Office","John Park","(206) 578-2718",john.park1@usbank.com,"1436 S 312th St","Federal Way",98003,partner,"2026-05-15 01:14:46","REFERRAL PARTNER - Met at East Pierce County Business Expo. Small Business Specialist at US Bank (NMLS 1523538). Wants to introduce me to new businesses - connector type. From East Coast, Temple University Philadelphia. Has a lady looking to switch from AT&T to Comcast mobile. Former branch manager at KeyBank in Orting. Business consultant at heart with accolades in Orting business community.
-
-Contact roles: John Park"
-"Unnamed (language barrier)",Unknown,"","","","Bonney Lake","",return-visit-needed,"2026-04-15 19:30:26","Language barrier; owner not present | Next Action: Return visit with bilingual materials
-
-Contact roles: Unknown"
-"Unnamed (language barrier)","Juan (Wan/Won)","","","Bonney Lake",WA,"",consider-different-approach-or-deprioritize,"2026-04-15 19:30:26","Low priority due to communication challenge | Next Action: Low
-
-Contact roles: Juan (wan/won)"
-"Unnamed Business (Bonney Lake)","Tara (DM) / Alicia (Gatekeeper)",253-862-2281,,"21260 State Highway 410","Bonney Lake",98391,interested,"2026-04-20 20:25:43","Gatekeeper: Alicia. Decision-maker: Tara (handles account). Store phone: 253-862-2281.
-
-Contact roles: Tara (dm); Alicia (gatekeeper)"
-"Valhalla Coffee Co","Anjie Hoskinson",253-381-6856,cafe@valhallacoffee.com,"3918 6th Ave",Tacoma,98406,followup,"2026-02-25 01:02:01","Coffee shop visit. Anjie Hoskinson - part owner (card shows General Manager but she is now part owner). Personal cell: 253-381-6856. Follow up scheduled for 2 days (Feb 26). GHL sync pending - need new credentials.
-
-Contact roles: Anjie Hoskinson"
-"Vashon Chiropractic","Dr. Cori Bodily-Goodmansen",206-259-0216,drcori@vashonchiropractic.com,"17147 Vashon Hwy SW #106",Vashon,98070,followup,"2026-04-15 19:07:09","Decision-maker: Dr. Cori Bodily-Goodmansen. Spoke with Tara (light blue dreads front, silver/blonde back). Super busy day, many people in office. Interested in talking but today not good. Follow up via email or return visit.
-
-Contact roles: Dr. Cori Bodily-Goodmansen"
-"Vashon Heating and Cooling","Yana (Receptionist/Gatekeeper)",,,"18850 103rd Ave SW Ste 212",Vashon,98070,customer,"2026-06-12 18:56:52","EXISTING CUSTOMER - UPGRADE ATTEMPT. Met gatekeeper receptionist, Yana. Stated owners are not in. Need to return when owners available to discuss service upgrade.
-
-Contact roles: Yana (receptionist/gatekeeper)"
-"Vashon Island Bakery","Isabelle (Gatekeeper), Elijah (Maker), Andy","+1 (206) 463-1441",,"17050 Vashon Highway SW",Vashon,98070,interested,"2026-03-31 17:37:50","Intermittent speed issues reported. Isabelle could not connect to Wi-Fi with her phone. Opportunity to fix connectivity issues. Need to follow up and get email address.
-
-Contact roles: Isabelle (gatekeeper); Elijah (maker); Andy"
-"Vashon Island Business Essentials","Steve Buller",206-463-3302,sbuller@vashonIsland.biz,"17147 Vashon Hwy SW, Suite D",Vashon,98070,customer,"2026-04-15 17:42:22","SIGNED CONTRACT 2026-04-30 — Now assigned customer, waiting on install.
+Contact roles: Tara",2026-04-15
+"Steve Buller","Vashon Island Business Essentials","17147 Vashon Hwy SW, Suite D",Vashon,WA,98070,206-463-3302,sbuller@vashonIsland.biz,,"SIGNED CONTRACT 2026-04-30 — Now assigned customer, waiting on install.
 
 FUTURE OPPORTUNITIES:
 • Nextiva phone contract: 3-year term, 5 months in (28 months remaining)
@@ -437,57 +339,155 @@ REMINDERS SET:
 
 Contact: Steve Buller | sbuller@vashonisland.biz | 206-463-3302
 
-Contact roles: Steve Buller"
-"Vashon Island Framery",victoria,+12062593981,"","17232 Vashon Highway SW, Suite E",Vashon,98070,interested,"2026-05-07 18:02:06","Contact roles: victoria"
-"Vashon Island Professionals (VIP)","Marie Harrington",206-463-4004,marie@vipvashon.com,"17225 Vashon Highway SW",Vashon,98070,interested,"2026-04-15 19:55:19","Decision-maker and assistant to the owner. Tax preparation and financial planning services. Also has PO Box 2040.
+Contact roles: Steve Buller",2026-04-15
+"Kristy Johnson","Purpose Boutique (Tacoma Men's)","5111 Grand Loop Suite A1",Tacoma,WA,98407,"(253) 292-0508",tacoma.men@purposeboutique.com,,"2026-04-08: Met Anna V. (General Manager/Stylist) at Tacoma Men's Purpose Boutique location. Owner is Kristy Johnson (Kristy 🐝 Johnson). SEVEN locations total — Tacoma, Bellevue, Issaquah, Redmond area. This is a major multi-location account opportunity.
 
-Contact roles: Marie Harrington"
-"Vashon Service Center (Ace)",Dave,206-463-4019,,"9715 SW 174th St",Vashon,98070,followup,"2026-05-04 19:28:45","Primary gatekeeper: Dave. Secondary gatekeeper: Doug. Need to talk to John at Ace Hardware who owns this location. Visited 5/4/2025.
+Contact roles: Kristy Johnson",2026-04-09
+Eric,"Connect the Brick","3901 N. 27th St",Tacoma,WA,98407,253.349.9292,eric@connectthebrick.com,,"2026-04-08: Met Eric (21yo owner) and his mom Luisa (from Peru). Eric is an entrepreneur running LEGO store in 80 sq ft office — sells in-store and online (eBay, etc.). Student at University of Washington Tacoma studying Marketing & Finance. Great connection with Luisa — both late 40s, both have one child. Advised Eric to get low-cost internet to provide Wi-Fi for market vendors and broadcast his business to Wi-Fi users. He agreed to call for internet setup.
 
-Contact roles: Dave"
-"Vashon Strong","Tana (Gatekeeper)",206-999-3802,,"17630 Vashon Highway SW",Vashon,98070,interested,"2026-03-31 20:48:01","Personal fitness and strength training gym. Gatekeeper Tana was training someone during visit. Need to follow up for decision maker contact and assess business internet needs.
+Contact roles: Eric",2026-04-08
+"Sarah Butters","Hawthorne and Honey","2703 N. Proctor St",Tacoma,WA,98407,253-590-1113,,,"2026-04-08: Met Rochelle (gatekeeper). Owner is Sarah Butts. Located next door to Knapp's Restaurant.
 
-Contact roles: Tana (gatekeeper)"
-"Vashon Time","Jules (Gatekeeper/DM), Solomon (Owner)",206-635-5199,,,Vashon,98070,customer,"2026-04-21 23:27:53","EXISTING CUSTOMER - Fiber upgrade opportunity. Owner Solomon (Ethiopian, in Fridays only) interested in fiber. 10 cameras + POS + phone + online system - all business-critical. Jules is gatekeeper/DM in comms with Solomon. CRITICAL PAIN POINT: POS, ATM, and TVs cannot run simultaneously on current service. Xavier and Jules have established rapport, both pushing Solomon to upgrade to fiber/direct Internet.
+Contact roles: Sarah Butters",2026-04-08
+Melissa,"Teaching Toys and Books","2624 North Proctor St",Tacoma,WA,98407,253-759-9853,teachingtoysandbooks@yahoo.com,,"2026-04-08: Met Vita (gatekeeper) — spunky personality, great for toy store. Decision-maker is Melissa. Teaching Toys and Books — The Best Toy Store in the Galaxy!
 
-Contact roles: Jules (gatekeeper/dm); Solomon (owner)"
-"Vashon Times 21 (Kush21 Cannabis)","Solomon (DM), Jewels (Gatekeeper/Ally)",206-259-3121,"","19001 Vashon Highway SW",Vashon,98070,interested,"2026-05-20 17:48:21","Cannabis dispensary. DM: Solomon. Gatekeeper: Jewels (established rapport with Xavier, working together to push upgrade). CRITICAL PAIN POINT: POS, ATM, and TVs cannot run simultaneously on current service. Need fiber/direct Internet upgrade. Phone: 206-259-3121. Website: vashontimes21.com. Source: Web search + Xavier intel 2026-05-20.
+Contact roles: Melissa",2026-04-08
+Marie,"Narrows Brewing on Proctor","2620 N. Proctor St",Tacoma,WA,98407,253-327-1500,,,"2026-04-08: Met Stephan (gatekeeper/bartender). Main contact for internet is Marie — handles all their internet stuff.
 
-Contact roles: Solomon (dm); Jewels (gatekeeper/ally)"
-"Welcome Restaurant","Sandra (DM), Louis (GK)",253-375-4049,,"5105 N. Pearl St.",Ruston,98407,followup,"2026-05-27 00:00:39","Sandra on vacation, back next week
+Contact roles: Marie",2026-04-08
+Tuan,"La Boba","2614 North Proctor St",Tacoma,WA,98407,253-223-6871,,,"2026-04-08: Met Moises and Preston (gatekeepers). Decision-maker is Tuan — was not in today. Tuan also owns the nail salon upstairs.
 
-Contact roles: Sandra (dm); Louis (gk)"
-"Wren's Nest Bakery","Laureen (DM), Talia, Laurie",253-693-0189,,"5121 N. Pearl St.",Ruston,98407,interested,"2026-05-27 00:00:39","Laureen busy with paperwork, dropped business card
+Contact roles: Tuan",2026-04-08
+Justin,"New Construction Site (3820 N 26th)","3820 N. 26th St",Tacoma,WA,98407,,,,"2026-04-08: New construction site. Met Justin (superintendent for general contractor). Fiber will be in the building already. Property manager unknown at this time — no tenants identified yet. No phone/email collected. Logged for future follow-up when building is occupied.
 
-Contact roles: Laureen (dm); Talia; Laurie"
-"coles bar and grill","coles bar and grill",+12532671914,"","5811 N. 51st St.",Ruston,98407,interested,"2026-05-27 00:02:13","Contact roles: coles bar and grill"
-"dave (gatekeeper), nate (decision maker)","dave (gatekeeper), nate (decision maker)","",info@busybodytacoma.com,"2717 6th Ave, Tacoma, WA 98406",Tacoma,"",interested,"2026-06-05 01:14:50","Synced from GHL. Tags: comcast visit, status: new
+Contact roles: Justin",2026-04-08
+Sarah,"Shake Shake Shake","124 N. Tacoma Ave",Tacoma,WA,98403,253-507-4060,,,"2026-04-08: Met Sarah (decision-maker). Recently transferred/changed over to AT&T. Unknown how early in contract. Possible win-back opportunity depending on contract status.
 
-Contact roles: dave (gatekeeper); nate (decision maker)"
-"flaming dragon tattoo","flaming dragon tattoo",+12537560804,"","3912 6th Ave.",Tacoma,98406,interested,"2026-05-27 00:02:32","Contact roles: flaming dragon tattoo"
-"jordan rodriguez","jordan rodriguez",+12533069139,"","2706 6th Ave, Tacoma, WA 98406",Tacoma,"",interested,"2026-05-20 05:02:51","Contact roles: jordan rodriguez"
-"liz bright","liz bright",+12537592884,chirpandco@hotmail.com,"3803 North 26th Street",Tacoma,98407,followup,"2026-03-16 22:42:31","Synced from GHL. Tags: prospect, follow-up-later, proctor-district, existing-comcast, wild-bird-store
+Contact roles: Sarah",2026-04-08
+Andrew,"Indo Asian Street Eatery","1108 N. Tacoma Ave",Tacoma,WA,98403,253-503-3527,,,"2026-04-08: Met Andrew (decision-maker). Owner is currently in Arizona. Andrew wants meeting to review current bill and services. Follow up next week to schedule.
 
-Contact roles: liz bright"
-"macalusos bar","macalusos bar",+12532671354,"","5101 N. Pearl St.",Ruston,98407,interested,"2026-05-27 00:02:13","Contact roles: macalusos bar"
-"morfitt family law","morfitt family law",+12533529700,megann@morfittlaw.com,"5810 N. 51st St.",Ruston,98407,interested,"2026-06-05 01:14:50","Synced from GHL. Tags: comcast, field visit
+Contact roles: Andrew",2026-04-08
+Long,"Coco Nail Lounge","7 N Tacoma Ave",Tacoma,WA,98403,"(253) 302-5654",,,"2026-04-08: Met Lam (gatekeeper) — shared middle school connection decades apart. Business owner is Long, currently with a client. Not a strong lead but conversation logged. Business hours: M-F 9am-7pm, Sat 9am-6pm, Sun 10am-6pm.
 
-Contact roles: morfitt family law"
-"northend on pearl","northend on pearl","","","5037 N. Pearl St.",Ruston,98407,interested,"2026-05-27 00:02:31","Contact roles: northend on pearl"
-"owner (name unknown)","owner (name unknown)","","","2618 6th Ave, Tacoma, WA 98406",Tacoma,"",interested,"2026-05-20 05:02:51","Contact roles: owner (name unknown)"
-"paige, leilani (owner)","paige, leilani (owner)",+12532929194,"","2703 6th Ave, Tacoma, WA 98406",Tacoma,"",interested,"2026-05-20 05:02:50","Contact roles: paige; leilani (owner)"
-"pamela phelps","pamela phelps",+12537594238,pamelaphelps@proctorart.com,"3811 North 26th Street",Tacoma,98407,interested,"2026-03-16 22:42:31","Synced from GHL. Tags: hot-lead, existing-comcast, retention, proctor-district, art-gallery
+Contact roles: Long",2026-04-08
+Greg,"Rankos Pharmacy","101 N. Tacoma Avenue",Tacoma,WA,98403,253.383.2411,info@rankospharmacy.com,,"2026-04-08: Met Alicia (gatekeeper). Business owner is Greg — one of the last owners of local Rexall Drugs pharmacy. Currently with Lightcurve (internet + phone). Has front register. Established pharmacy since 1929, three generations. Not a strong lead but conversation logged.
 
-Contact roles: pamela phelps"
-"reginald jacobs, chet howell","reginald jacobs, chet howell","",info@grannrestaurant.com,"2715 6th Ave, Tacoma, WA 98406",Tacoma,"",interested,"2026-06-05 01:14:50","Synced from GHL. Tags: comcast visit, status: analysis
+Contact roles: Greg",2026-04-08
+"Paul Drumheller","3D Dimensional Physical Therapy","1 Tacoma Avenue North #103",Tacoma,WA,98403,"(253) 274-1884",,,"2026-04-08: Met Paul Drumheller (Owner, MPT, OCS, SCS, CSCS). Currently with Lightcurve for over a year. Not totally happy with them — doesn't like their TV service. Interested in coming back to Comcast for Internet + TV + Voice (triple play) if price is right. Appointment scheduled for next Tuesday afternoon — need to confirm. TPI Certified.
 
-Contact roles: reginald jacobs; chet howell"
-"scotty james","scotty james",+12062902037,"","2609 6th Ave, Tacoma, WA 98406",Tacoma,"",interested,"2026-05-20 05:02:50","Contact roles: scotty james"
-"sound starter and alternator","sound starter and alternator",+12537598080,"","5106 N. Pearl St.",Ruston,98407,interested,"2026-05-27 00:02:31","Contact roles: sound starter and alternator"
-"stock in grocery","stock in grocery",+12537568123,"","3908 6th Ave.",Tacoma,98406,interested,"2026-05-27 00:02:32","Contact roles: stock in grocery"
-"welcome restaurant","welcome restaurant",+12533754049,"","5105 N. Pearl St.",Ruston,98407,interested,"2026-05-27 00:02:12","Contact roles: welcome restaurant"
-will,will,+12534337983,"","2608 6th Ave, Tacoma, WA 98406",Tacoma,"",interested,"2026-05-20 05:02:50","Contact roles: will"
-"will pearson","will pearson",+12533533225,wpearson@xgrouprestaurants.com,"611 Pine St, Tacoma, WA 98406",Tacoma,"",interested,"2026-06-05 01:14:51","Synced from GHL. Tags: comcast visit, status: existing
+2026-04-29: Follow-up visit with Dr. Paul Drumheller. He scheduled me to call next Tuesday but did not provide a definite time. Playing the long game - worth pursuing for triple play opportunity. Status: Follow-up scheduled (time TBD).
 
-Contact roles: will pearson"
-"wren's nest bakery","wren's nest bakery",+12536930189,"","5121 N. Pearl St.",Ruston,98407,interested,"2026-05-27 00:01:54","Contact roles: wren's nest bakery"
+Contact roles: Paul Drumheller",2026-04-08
+"Jeff Midley (Owner), Liz (Gatekeeper)","Raab Construction","9917 SW 178th St Suite 101",Vashon,WA,98070,206-408-7460,,,"Construction company. Owner Jeff Midley. Gatekeeper Liz - spunky, friendly, prefers animals (cats/dogs) over people. Likes organization and paperwork.
+
+Contact roles: Jeff Midley (owner); Liz (gatekeeper)",2026-03-31
+"Kathy Wheaton (Owner)","Kathy's Corner","18025 Vashon Highway SW",Vashon,WA,98070,206-463-9416,,,"Inherited customer from previous rep. Island's biggest nursery and landscaping business. Owner ~73-74 years old. Upgrading from HFC to EoF (Ethernet over Fiber). Pre-contract phase - sales engineer Susan validating service availability. Migration to fiber connection in progress.
+
+Contact roles: Kathy Wheaton (owner)",2026-03-31
+"JR (Gatekeeper), Geoff & Kristina (Owners)","Standard Goods","17624 Vashon Highway SW",Vashon,WA,98070,,,,"Gatekeeper JR, owners Geoff and Kristina. Phone number not obtained during visit. Need to follow up for contact info and assess business needs.
+
+Contact roles: JR (gatekeeper); Geoff; Kristina (owners)",2026-03-31
+"Tana (Gatekeeper)","Vashon Strong","17630 Vashon Highway SW",Vashon,WA,98070,206-999-3802,,,"Personal fitness and strength training gym. Gatekeeper Tana was training someone during visit. Need to follow up for decision maker contact and assess business internet needs.
+
+Contact roles: Tana (gatekeeper)",2026-03-31
+"Isabelle (Gatekeeper), Elijah (Maker), Andy","Vashon Island Bakery","17050 Vashon Highway SW",Vashon,WA,98070,"+1 (206) 463-1441",,,"Intermittent speed issues reported. Isabelle could not connect to Wi-Fi with her phone. Opportunity to fix connectivity issues. Need to follow up and get email address.
+
+Contact roles: Isabelle (gatekeeper); Elijah (maker); Andy",2026-03-31
+Elliot,"Red Hot","2914 N 6th St",Tacoma,WA,98406,,,,"2026-03-27: Spoke with Elliot - slammed busy, came off rude but was just busy/didn't apologize. Following up with manager tomorrow morning about Mariners TV channel special. Existing customer - info in café system.
+
+Contact roles: Elliot",2026-03-28
+"Gutierrez (affiliated) / Mike (gatekeeper)","Brown Family Vineyards",,,WA,98407,,,,"Gatekeeper: Mike. Gutierrez affiliated with the vineyard. Need to gather more info.
+
+Contact roles: Gutierrez (affiliated); Mike (gatekeeper)",2026-03-25
+Tom,"Easton West","2414 N Proctor St",Tacoma,WA,98407,,,,"Asian food restaurant. Gatekeeper: Rachel. Decision maker: Tom (was not in). Currently has Comcast. Declined new service but open to bill analysis. Phone/email in café system.
+
+Contact roles: Tom",2026-03-25
+"Martin Kaelli","ACI-Home (Resident Owned Parks)","3208 28th St Ct E",Tacoma,WA,98443,+19169476997,accounting@aci-home.com,,"Senior Accountant/Controller. Internet + Phone services needed. MRR ~$250. Cold calling blitz prospect.
+
+Contact roles: Martin Kaelli",2026-03-25
+"Billy Brewer","Knapps Restaurant","Proctor District",Tacoma,WA,98407,,,,"Triple Play package. Stage 3 - Second Review completed.
+
+Contact roles: Billy Brewer",2026-03-16
+"Keith Osmonson","KO Construction",,Tacoma,WA,98404,,,,"High-intent upsell. Stage 4 - Proposal Sent.
+
+Contact roles: Keith Osmonson",2026-03-16
+"Tanya Brooks","Compass Rose","3815 North 26th Street",Tacoma,WA,98407,253-773-0077,,,"13-year Proctor District staple. Need email for follow-up.
+
+Contact roles: Tanya Brooks",2026-03-16
+Henry,"Proctor Shoe Repair","3817 1/2 North 26th Street",Tacoma,WA,98407,253-883-9136,,,"Existing Comcast customer. Need email for newsletter.
+
+Contact roles: Henry",2026-03-16
+"Dalton Ohlson","Crave Cookies","17526 Meridian Avenue East, Suite B202",Puyallup,WA,98375,253-260-7417,,,"Personal: 253-457-6486. Multi-business owner.
+
+Contact roles: Dalton Ohlson",2026-03-16
+"Dr. Kevin / Dr. Connie","Endeavor Eye Center",,Tacoma,WA,98407,,,,"Gatekeeper: Cher. Need to reach doctors.
+
+Contact roles: Dr. Kevin; Dr. Connie",2026-03-16
+"Greg Dent","Proctor Family Dentistry","2614 North Adams Street",Tacoma,WA,98407,253-759-6800,,,"Gatekeeper: Andy. Office Manager: Jennifer.
+
+Contact roles: Greg Dent",2026-03-16
+yesi,"New Era Cleaners","2621 N Proctor Street, Tacoma, WA 98407",Tacoma,WA,98407,+12537593501,fuzzywuzzy@q.com,,"Synced from GHL. Tags: comcast-prospect, pipeline-sync
+
+Contact roles: yesi",2026-03-16
+emily,Lapis,"3823 N 26th Street, Tacoma, WA 98407",Tacoma,WA,98407,+12535074969,hello@lapistacoma.com,,"Synced from GHL. Tags: comcast-prospect, pipeline-sync
+
+Contact roles: emily",2026-03-16
+"pamela phelps","pamela phelps","3811 North 26th Street",Tacoma,WA,98407,+12537594238,pamelaphelps@proctorart.com,,"Synced from GHL. Tags: hot-lead, existing-comcast, retention, proctor-district, art-gallery
+
+Contact roles: pamela phelps",2026-03-16
+"liz bright","liz bright","3803 North 26th Street",Tacoma,WA,98407,+12537592884,chirpandco@hotmail.com,,"Synced from GHL. Tags: prospect, follow-up-later, proctor-district, existing-comcast, wild-bird-store
+
+Contact roles: liz bright",2026-03-16
+"chris olsen","Pizzeria Fondi","2515 N. Proctor St, Tacoma, WA 98406",Tacoma,WA,98406,+12538516666,chris@fondi.com,,"Synced from GHL. Tags: comcast-prospect, pipeline-sync
+
+Contact roles: chris olsen",2026-03-16
+"james roddy","Smart PNW","",Puyallup,WA,"",+12534480456,james@smartpnw.com,,"Synced from GHL. Tags: comcast-prospect, pipeline-sync
+
+Contact roles: james roddy",2026-03-16
+"ron swarner","Peaks and Pints","3816 N 26th St, Ste B, Tacoma, WA 98407",Tacoma,WA,98407,+12533285621,ron.swarner@peaksandpints.com,,"Synced from GHL. Tags: comcast-prospect, pipeline-sync
+
+Contact roles: ron swarner",2026-03-16
+"wade & julie pannell","Fleet Feet","3812 N 26th St, Tacoma, WA 98407",Tacoma,WA,98407,+12532728890,jeremiah@fleetfeettacoma.com,,"Synced from GHL. Tags: comcast-prospect, pipeline-sync
+
+Contact roles: wade; julie pannell",2026-03-16
+"jeannine sigafoos","Tacoma Glass Gallery","2621 N Proctor Street, Tacoma, WA 98407",Tacoma,WA,98407,"",tgsglass@gmail.com,,"Synced from GHL. Tags: comcast-prospect, pipeline-sync
+
+Contact roles: jeannine sigafoos",2026-03-16
+"Jamar Sample","Tacoma Public Utilities",,Tacoma,WA,98403,318-840-7676,,,"Engineer at TPU. Strategic referral partner - has visibility into new power connections = new businesses needing internet. Will refer business and bring Xavier on site visits. Non-paid partner. Email to be collected later.
+
+Contact roles: Jamar Sample",2026-03-05
+,"The Legacy Apartments","115 North Yakima Avenue",Tacoma,WA,98403,253-383-8741,,,"Appointment scheduled for 11:30 AM, arrived at 12:00 PM (running late). Door locked, could not get in. Need to call and follow up to reschedule. Alternate phone from sign: 253-627-8888. Website: legacyrent.com - Multi-family housing with 1/2/3 bedroom units.",2026-03-05
+"Keith Osmonson","KO Construction","10404 36th Street East",Edgewood,WA,98371,206-304-7816,keith@ko-construct.com,,"Residential Comcast customer running business from home. Experiencing latency and dropped connections at peak times due to best effort residential service. High intent upsell opportunity - wants dedicated business internet. License: #KOCONC772D7
+
+Contact roles: Keith Osmonson",2026-03-05
+"Andrea & Scott Evans","The Snug Pub","2717 North Proctor Street",Tacoma,WA,98407,,thesnugpub@yahoo.com,,"New restaurant in Proctor district (next door to Knapp's Restaurant). Met Scott today - specifically wants FIBER for media needs. Needs: 1+ phone line, multiple TVs, internet-capable devices. Husband Scott mentioned they want fiber due to amount of media they plan to put in. Business just started. | FOLLOW-UP: Task created in GHL for March 6th - Fiber quote follow-up.
+
+Contact roles: Andrea; Scott Evans",2026-03-04
+"Franco & Giovanni","Franco the Tailor","15 Tacoma Avenue North",Tacoma,WA,98403,"(253) 627-2306","",,"Met both owners - Franco and Giovanni (relatives).
+Small Italian tailor shop, family owned since 1961.
+Recently closed by Cheyenne (previous rep) - they knew her by name.
+Introduced myself as Xavier, new point of contact replacing Cheyenne.
+Very nice people, good rapport established.
+Follow-up in 2 weeks to introduce Comcast Business Mobile.
+Position as benefit that small business owners have over consumers.
+
+Contact roles: Franco; Giovanni",2026-02-25
+"Cam Settle","The Powder Room Champagne Bar & Restaurant","12 N Tacoma Ave",Tacoma,WA,98403,253-720-1493,thepowderroomtacoma@gmail.com,,"Visited Wed ~3:10 PM. Owner Cam Settle (female) out of town.
+Gatekeeper: Kelly Ray.
+Cam returns next week. Follow-up scheduled for next week or week after.
+Business: Champagne bar and restaurant.
+Website: thepowderroomchampagnebar.com
+
+Contact roles: Cam Settle",2026-02-25
+"Mariah Morrell","Morrell's Cleaners","608 N. 1st St",Tacoma,WA,98403,"(253) 572-7121","",,"Updated 2026-04-08: Met Mariah Morrell (decision-maker, 28 years old, working there since age 12, being groomed to take over business with her brother). Also met her dad Aaron Morrell. Super nice family. Currently with Comcast, interested in fiber connection. Has TWO locations: 608 N. 1st St, Tacoma and 3712 9th St SW, Puyallup. Need to explore both locations for fiber availability.
+
+Contact roles: Mariah Morrell",2026-02-25
+"J (Manager), Katy (Gatekeeper)","Triple Knock","2713 6th Ave",Tacoma,WA,98406,253-503-0982,,,"Gatekeeper: Katy. Manager: J (initial only, need full name). Hours: Daily 12PM-2AM, Sat 4PM-2AM. Need email address. Established business on 6th Ave.
+
+Contact roles: J (manager); Katy (gatekeeper)",2026-02-25
+"Anjie Hoskinson","Valhalla Coffee Co","3918 6th Ave",Tacoma,WA,98406,253-381-6856,cafe@valhallacoffee.com,,"Coffee shop visit. Anjie Hoskinson - part owner (card shows General Manager but she is now part owner). Personal cell: 253-381-6856. Follow up scheduled for 2 days (Feb 26). GHL sync pending - need new credentials.
+
+Contact roles: Anjie Hoskinson",2026-02-25
+"Kern Dillard","Boat Sales NW","821 Dock Street",Tacoma,WA,98402,253-993-0205,Kern@BoatSalesNW.com,,"Prospect stated no Comcast nearby, but property has 25 tenants with Comcast service. Opportunity to educate on existing serviceability. Yacht broker/USCG Master Captain.
+
+Contact roles: Kern Dillard",2026-02-24
