@@ -1,0 +1,90 @@
+export default function ReportsRedirectPage() {
+  return (
+    <html>
+      <head>
+        <title>Comcast CRM Reports - Xavier Finch</title>
+        <meta httpEquiv="refresh" content="2; url=https://xaviers-mac-mini.tailc89dd8.ts.net/reports-page" />
+        <style>{`
+          * { margin: 0; padding: 0; box-sizing: border-box; }
+          body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+          }
+          .container {
+            text-align: center;
+            padding: 40px;
+            max-width: 500px;
+          }
+          .logo {
+            font-size: 48px;
+            margin-bottom: 20px;
+          }
+          h1 {
+            font-size: 28px;
+            margin-bottom: 16px;
+            font-weight: 600;
+          }
+          p {
+            font-size: 16px;
+            color: #94a3b8;
+            margin-bottom: 32px;
+            line-height: 1.6;
+          }
+          .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 16px;
+            transition: background 0.2s;
+          }
+          .btn:hover {
+            background: #0052a3;
+          }
+          .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top-color: #0066cc;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+          }
+          @keyframes spin {
+            to { transform: rotate(360deg); }
+          }
+          .note {
+            margin-top: 32px;
+            padding: 16px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            font-size: 14px;
+            color: #64748b;
+          }
+        `}</style>
+      </head>
+      <body>
+        <div className="container">
+          <div className="logo">📊</div>
+          <h1>Comcast CRM Reports</h1>
+          <p>Redirecting to your secure reports dashboard...</p>
+          <div className="spinner"></div>
+          <a href="https://xaviers-mac-mini.tailc89dd8.ts.net/reports-page" className="btn">
+            Open Reports
+          </a>
+          <div className="note">
+            Requires Tailscale connection. If the redirect doesn't work automatically, click the button above.
+          </div>
+        </div>
+      </body>
+    </html>
+  );
+}
