@@ -233,13 +233,33 @@ def report_contacts():
     cursor.execute(base_query, params)
     rows = cursor.fetchall()
     
+    # Helper function to parse name for mail merge (first name includes Dr., last name separate)
+    def parse_name_for_mail_merge(full_name):
+        """Parse 'John Smith' or 'Dr. John Smith' into (first_name, last_name)"""
+        if not full_name:
+            return '', ''
+        parts = full_name.strip().split()
+        if len(parts) == 0:
+            return '', ''
+        if len(parts) == 1:
+            return parts[0], ''
+        # Check for Dr. prefix - keep it in first name
+        if parts[0].lower() in ['dr.', 'dr']:
+            if len(parts) >= 3:
+                return f"{parts[0]} {parts[1]}", parts[2]
+            else:
+                return f"{parts[0]} {parts[1]}", ''
+        # Standard: last part is last name, rest is first name
+        return ' '.join(parts[:-1]), parts[-1]
+    
     # Generate CSV
     output = io.StringIO()
     writer = csv.writer(output)
     
-    # Write headers with new structured contact fields
+    # Write headers - MAIL MERGE FORMAT with separate first/last names
     writer.writerow([
         'ID', 'Business Name', 'Contact Name (Original)', 
+        'First Name', 'Last Name',  # Primary contact for mail merge
         'Gatekeeper First Name', 'Gatekeeper Last Name',
         'Decision Maker First Name', 'Decision Maker Last Name',
         'Other Contacts (JSON)', 'Phone', 'Email',
@@ -249,10 +269,19 @@ def report_contacts():
     
     # Write data
     for row in rows:
+        # Parse contact_name into first/last for mail merge
+        first_name, last_name = parse_name_for_mail_merge(row['contact_name'])
+        
+        # Use structured fields if available, otherwise fall back to parsed contact_name
+        dm_first = row['decision_maker_first_name'] or first_name
+        dm_last = row['decision_maker_last_name'] or last_name
+        
         writer.writerow([
             row['id'],
             row['business_name'] or '',
             row['contact_name'] or '',
+            dm_first,  # First Name (for mail merge)
+            dm_last,   # Last Name (for mail merge)
             row['gatekeeper_first_name'] or '',
             row['gatekeeper_last_name'] or '',
             row['decision_maker_first_name'] or '',
@@ -430,6 +459,286 @@ def report_stats_stripped():
 def report_contacts_stripped():
     """Generate CSV report (for Tailscale /api proxy stripping)"""
     return report_contacts()
+
+@app.route('/di-calculator')
+def serve_di_calculator():
+    """Serve DI Calculator HTML"""
+    return """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comcast DI Calculator</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            font-size: 1.3rem;
+            text-align: center;
+            margin-bottom: 5px;
+            color: #1a1a1a;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .input-group {
+            margin-bottom: 18px;
+        }
+        label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #333;
+        }
+        .hint {
+            font-size: 0.75rem;
+            color: #888;
+            font-weight: normal;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        input[type="number"]:focus, select:focus {
+            outline: none;
+            border-color: #0066cc;
+        }
+        .result-box {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+        .result-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        .result-tier {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 10px 0;
+        }
+        .result-peak {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .math-steps {
+            font-size: 0.8rem;
+            color: #555;
+            line-height: 1.6;
+        }
+        .math-steps strong {
+            color: #0066cc;
+        }
+        .validation {
+            background: #f0f7ff;
+            border-left: 4px solid #0066cc;
+        }
+        .validation h3 {
+            margin-top: 0;
+            font-size: 0.9rem;
+            color: #0066cc;
+        }
+        .checklist {
+            font-size: 0.8rem;
+            color: #555;
+        }
+        .checklist-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+        .script-box {
+            background: #fff8e6;
+            border-left: 4px solid #f5a623;
+            font-size: 0.8rem;
+            color: #664d00;
+        }
+        .script-box strong {
+            color: #333;
+        }
+        .quick-presets {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .preset-btn {
+            padding: 8px 4px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            text-align: center;
+        }
+        .preset-btn:hover {
+            border-color: #0066cc;
+            background: #f0f7ff;
+        }
+        .preset-btn strong {
+            display: block;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎯 Comcast DI Calculator</h1>
+    <p class="subtitle">From usage data to recommended tier</p>
+
+    <div class="card">
+        <div class="input-group">
+            <label>Monthly Usage (GB) <span class="hint">— from Internet diagnostics</span></label>
+            <input type="number" id="monthlyGB" value="1300" min="10" max="10000">
+        </div>
+
+        <div class="input-group">
+            <label>Business Hours/Day <span class="hint">— hours they're actually open</span></label>
+            <input type="number" id="hoursPerDay" value="10" min="1" max="24">
+        </div>
+
+        <div class="input-group">
+            <label>Business Days/Month <span class="hint">— check daily graph, not 30</span></label>
+            <input type="number" id="daysPerMonth" value="22" min="1" max="31">
+        </div>
+
+        <div class="input-group">
+            <label>Peak Multiplier <span class="hint">— 4-5x (when everyone's online)</span></label>
+            <select id="peakMultiplier">
+                <option value="4">4x (Conservative)</option>
+                <option value="5" selected>5x (Standard)</option>
+            </select>
+        </div>
+
+        <div class="quick-presets">
+            <button class="preset-btn" onclick="setPreset(100, 8, 22)"><strong>Light</strong>100GB</button>
+            <button class="preset-btn" onclick="setPreset(500, 8, 22)"><strong>Std</strong>500GB</button>
+            <button class="preset-btn" onclick="setPreset(1300, 10, 22)"><strong>Cafe</strong>1.3TB</button>
+            <button class="preset-btn" onclick="setPreset(2500, 12, 26)"><strong>Heavy</strong>2.5TB</button>
+        </div>
+    </div>
+
+    <div class="card result-box">
+        <div class="result-label">Recommended DI Tier</div>
+        <div class="result-tier" id="recommendedTier">100/100 Mbps</div>
+        <div class="result-peak">Peak: <span id="peakMbps">67</span> Mbps (rounded up)</div>
+    </div>
+
+    <div class="card math-steps">
+        <strong>Math Breakdown:</strong><br>
+        <span id="monthlyGBDisplay">1,300</span> GB × 1,024 = <strong id="totalMB">1,331,200</strong> MB<br>
+        ÷ <span id="daysDisplay">22</span> days = <strong id="mbPerDay">60,509</strong> MB/day<br>
+        ÷ <span id="hoursDisplay">10</span> hrs = <strong id="mbPerHour">6,051</strong> MB/hr<br>
+        ÷ 3,600 sec = <strong id="mbPerSec">1.68</strong> MB/s<br>
+        × 8 = <strong id="avgMbps">13.4</strong> Mbps average<br>
+        × <span id="multiplierDisplay">5</span> = <strong id="peakCalc">67.2</strong> Mbps peak
+    </div>
+
+    <div class="card validation">
+        <h3>✓ Validation Check</h3>
+        <p style="font-size:0.8rem;margin-top:0;color:#555;">"Your peak is ~<span id="validationPeak">67</span> Mbps. Let's verify device count:"</p>
+        <div class="checklist">
+            <div class="checklist-item"><span>Security cameras</span> <span>___ × 2-4 Mbps</span></div>
+            <div class="checklist-item"><span>Computers/employees</span> <span>___ × 1-2 Mbps</span></div>
+            <div class="checklist-item"><span>Guest WiFi devices</span> <span>___</span></div>
+            <div class="checklist-item"><span>Streaming TVs</span> <span>___ × 5-10 Mbps</span></div>
+        </div>
+        <p style="font-size:0.75rem;margin-bottom:0;color:#888;font-style:italic;">
+            If devices don't match → investigate secondary internet or usage patterns
+        </p>
+    </div>
+
+    <div class="card script-box">
+        <strong>💬 Sales Script:</strong><br><br>
+        "I use a formula that gives us a good idea — it's not an exact science. We take your data usage, estimate your peak, then compare that to what we observe in your business. This helps us narrow down the right tier for you."
+    </div>
+
+    <script>
+        function formatNumber(num, decimals = 0) {
+            return num.toLocaleString('en-US', {
+                minimumFractionDigits: decimals,
+                maximumFractionDigits: decimals
+            });
+        }
+
+        function getRecommendedTier(peakMbps) {
+            if (peakMbps <= 25) return '25/25 Mbps';
+            if (peakMbps <= 50) return '50/50 Mbps';
+            if (peakMbps <= 100) return '100/100 Mbps';
+            if (peakMbps <= 200) return '200/200 Mbps';
+            if (peakMbps <= 500) return '500/500 Mbps';
+            return '1 Gbps/1 Gbps';
+        }
+
+        function calculate() {
+            const monthlyGB = parseFloat(document.getElementById('monthlyGB').value) || 0;
+            const hoursPerDay = parseFloat(document.getElementById('hoursPerDay').value) || 1;
+            const daysPerMonth = parseFloat(document.getElementById('daysPerMonth').value) || 1;
+            const peakMultiplier = parseFloat(document.getElementById('peakMultiplier').value) || 5;
+
+            const totalMB = monthlyGB * 1024;
+            const mbPerDay = totalMB / daysPerMonth;
+            const mbPerHour = mbPerDay / hoursPerDay;
+            const mbPerSec = mbPerHour / 3600;
+            const avgMbps = mbPerSec * 8;
+            const peakMbps = avgMbps * peakMultiplier;
+
+            document.getElementById('monthlyGBDisplay').textContent = formatNumber(monthlyGB, 0);
+            document.getElementById('totalMB').textContent = formatNumber(totalMB, 0);
+            document.getElementById('daysDisplay').textContent = daysPerMonth;
+            document.getElementById('mbPerDay').textContent = formatNumber(mbPerDay, 0);
+            document.getElementById('hoursDisplay').textContent = hoursPerDay;
+            document.getElementById('mbPerHour').textContent = formatNumber(mbPerHour, 0);
+            document.getElementById('mbPerSec').textContent = formatNumber(mbPerSec, 2);
+            document.getElementById('avgMbps').textContent = formatNumber(avgMbps, 1);
+            document.getElementById('multiplierDisplay').textContent = peakMultiplier;
+            document.getElementById('peakCalc').textContent = formatNumber(peakMbps, 1);
+
+            document.getElementById('recommendedTier').textContent = getRecommendedTier(peakMbps);
+            document.getElementById('peakMbps').textContent = formatNumber(peakMbps, 0);
+            document.getElementById('validationPeak').textContent = formatNumber(peakMbps, 0);
+        }
+
+        function setPreset(gb, hours, days) {
+            document.getElementById('monthlyGB').value = gb;
+            document.getElementById('hoursPerDay').value = hours;
+            document.getElementById('daysPerMonth').value = days;
+            calculate();
+        }
+
+        document.getElementById('monthlyGB').addEventListener('input', calculate);
+        document.getElementById('hoursPerDay').addEventListener('input', calculate);
+        document.getElementById('daysPerMonth').addEventListener('input', calculate);
+        document.getElementById('peakMultiplier').addEventListener('change', calculate);
+
+        calculate();
+    </script>
+</body>
+</html>"""
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8081))

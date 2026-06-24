@@ -172,24 +172,48 @@ export default function ExportsPage() {
     setRefreshing(false);
   };
 
+  // Parse name for mail merge: "John Smith" or "Dr. John Smith" -> [first, last]
+  const parseNameForMailMerge = (fullName: string): [string, string] => {
+    if (!fullName) return ['', ''];
+    const parts = fullName.trim().split(/\s+/);
+    if (parts.length === 0) return ['', ''];
+    if (parts.length === 1) return [parts[0], ''];
+    // Check for Dr. prefix - keep it in first name
+    if (parts[0].toLowerCase() === 'dr.' || parts[0].toLowerCase() === 'dr') {
+      if (parts.length >= 3) {
+        return [`${parts[0]} ${parts[1]}`, parts[2]];
+      } else {
+        return [`${parts[0]} ${parts[1]}`, ''];
+      }
+    }
+    // Standard: last part is last name, rest is first name
+    return [parts.slice(0, -1).join(' '), parts[parts.length - 1]];
+  };
+
   const downloadTodayCsv = () => {
     if (todayLeads.length === 0) return;
     
-    const headers = ['Business Name', 'Contact Name', 'Phone', 'Email', 'Address', 'City', 'ZIP', 'Status', 'Visit Date', 'Notes'];
+    // Headers per 2026-06-16 instructions: separate first/last names for mail merge
+    const headers = ['Business Name', 'Contact Name (Original)', 'First Name', 'Last Name', 'Phone', 'Email', 'Address', 'City', 'ZIP', 'Status', 'Visit Date', 'Notes'];
     const csvContent = [
       headers.join(','),
-      ...todayLeads.map(lead => [
-        lead.business_name,
-        lead.contact_name || '',
-        lead.phone || '',
-        lead.email || '',
-        lead.address || '',
-        lead.city || '',
-        lead.zip_code || '',
-        lead.visit_status || '',
-        lead.visit_date || '',
-        lead.notes || ''
-      ].map(field => `"${field.replace(/"/g, '""')}"`).join(','))
+      ...todayLeads.map(lead => {
+        const [firstName, lastName] = parseNameForMailMerge(lead.contact_name);
+        return [
+          lead.business_name,
+          lead.contact_name || '',
+          firstName,
+          lastName,
+          lead.phone || '',
+          lead.email || '',
+          lead.address || '',
+          lead.city || '',
+          lead.zip_code || '',
+          lead.visit_status || '',
+          lead.visit_date || '',
+          lead.notes || ''
+        ].map(field => `"${String(field).replace(/"/g, '""')}"`).join(',');
+      })
     ].join('\n');
     
     const blob = new Blob([csvContent], { type: 'text/csv' });
@@ -221,7 +245,9 @@ export default function ExportsPage() {
       const headers = lines[0].split(',');
       
       const businessIdx = headers.findIndex(h => h.toLowerCase().includes('business'));
-      const contactIdx = headers.findIndex(h => h.toLowerCase().includes('contact'));
+      const contactIdx = headers.findIndex(h => h.toLowerCase().includes('contact') && !h.toLowerCase().includes('original'));
+      const firstNameIdx = headers.findIndex(h => h.toLowerCase() === 'first name');
+      const lastNameIdx = headers.findIndex(h => h.toLowerCase() === 'last name');
       const phoneIdx = headers.findIndex(h => h.toLowerCase().includes('phone'));
       const emailIdx = headers.findIndex(h => h.toLowerCase().includes('email'));
       const addressIdx = headers.findIndex(h => h.toLowerCase().includes('address'));
@@ -230,9 +256,19 @@ export default function ExportsPage() {
       
       const formattedData = lines.slice(1).map(line => {
         const cols = line.split(',');
+        // Use parsed first/last name if available, otherwise parse from contact name
+        let firstName = cols[firstNameIdx]?.replace(/"/g, '') || '';
+        let lastName = cols[lastNameIdx]?.replace(/"/g, '') || '';
+        const contactName = cols[contactIdx]?.replace(/"/g, '') || '';
+        
+        if (!firstName && !lastName && contactName) {
+          [firstName, lastName] = parseNameForMailMerge(contactName);
+        }
+        
         return [
           cols[businessIdx]?.replace(/"/g, '') || '',
-          cols[contactIdx]?.replace(/"/g, '') || '',
+          firstName,
+          lastName,
           cols[phoneIdx]?.replace(/"/g, '') || '',
           cols[emailIdx]?.replace(/"/g, '') || '',
           cols[addressIdx]?.replace(/"/g, '') || '',
@@ -241,7 +277,7 @@ export default function ExportsPage() {
         ].join('\t');
       }).join('\n');
       
-      const headerRow = ['Business', 'Contact', 'Phone', 'Email', 'Address', 'Status', 'Notes'].join('\t');
+      const headerRow = ['Business', 'First Name', 'Last Name', 'Phone', 'Email', 'Address', 'Status', 'Notes'].join('\t');
       const clipboardText = headerRow + '\n' + formattedData;
       
       await navigator.clipboard.writeText(clipboardText);
