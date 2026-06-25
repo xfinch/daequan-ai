@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react';
 import { Navbar } from '@/components/ui/navbar';
 
 export default function DICalculator() {
-  const [monthlyGB, setMonthlyGB] = useState<number>(1300);
-  const [hoursPerDay, setHoursPerDay] = useState<number>(10);
-  const [daysPerMonth, setDaysPerMonth] = useState<number>(22);
+  const [monthlyGB, setMonthlyGB] = useState<number | ''>('');
+  const [hoursPerDay, setHoursPerDay] = useState<number | ''>('');
+  const [daysPerMonth, setDaysPerMonth] = useState<number | ''>('');
   const [peakMultiplier, setPeakMultiplier] = useState<number>(5);
   
   const [results, setResults] = useState({
@@ -24,9 +24,13 @@ export default function DICalculator() {
   }, [monthlyGB, hoursPerDay, daysPerMonth, peakMultiplier]);
 
   const calculate = () => {
-    const totalMB = monthlyGB * 1024;
-    const mbPerDay = totalMB / daysPerMonth;
-    const mbPerHour = mbPerDay / hoursPerDay;
+    const gb = monthlyGB === '' ? 0 : monthlyGB;
+    const hours = hoursPerDay === '' ? 0 : hoursPerDay;
+    const days = daysPerMonth === '' ? 0 : daysPerMonth;
+    
+    const totalMB = gb * 1024;
+    const mbPerDay = days > 0 ? totalMB / days : 0;
+    const mbPerHour = hours > 0 ? mbPerDay / hours : 0;
     const mbPerSecond = mbPerHour / 3600;
     const avgMbps = mbPerSecond * 8;
     const peakMbps = avgMbps * peakMultiplier;
@@ -86,9 +90,15 @@ export default function DICalculator() {
                   <span className="text-xs text-muted-foreground font-normal ml-1">— from Internet diagnostics</span>
                 </label>
                 <input
-                  type="number"
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  placeholder="Enter GB"
                   value={monthlyGB}
-                  onChange={(e) => setMonthlyGB(Number(e.target.value))}
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/[^0-9]/g, '');
+                    setMonthlyGB(val === '' ? '' : Number(val));
+                  }}
                   className="w-full px-3 py-2 bg-background border border-border rounded-lg text-center font-semibold"
                 />
               </div>
@@ -99,9 +109,15 @@ export default function DICalculator() {
                   <span className="text-xs text-muted-foreground font-normal ml-1">— hours they're actually open</span>
                 </label>
                 <input
-                  type="number"
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  placeholder="Hours"
                   value={hoursPerDay}
-                  onChange={(e) => setHoursPerDay(Number(e.target.value))}
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/[^0-9]/g, '');
+                    setHoursPerDay(val === '' ? '' : Number(val));
+                  }}
                   className="w-full px-3 py-2 bg-background border border-border rounded-lg text-center font-semibold"
                 />
               </div>
@@ -112,9 +128,15 @@ export default function DICalculator() {
                   <span className="text-xs text-muted-foreground font-normal ml-1">— check daily graph, not 30</span>
                 </label>
                 <input
-                  type="number"
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  placeholder="Days"
                   value={daysPerMonth}
-                  onChange={(e) => setDaysPerMonth(Number(e.target.value))}
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/[^0-9]/g, '');
+                    setDaysPerMonth(val === '' ? '' : Number(val));
+                  }}
                   className="w-full px-3 py-2 bg-background border border-border rounded-lg text-center font-semibold"
                 />
               </div>
@@ -183,9 +205,9 @@ export default function DICalculator() {
           <div className="bg-card border border-border rounded-xl p-4 mb-4">
             <p className="text-sm font-semibold mb-2">Math Breakdown:</p>
             <div className="text-sm text-muted-foreground space-y-1">
-              <p>{formatNumber(monthlyGB, 0)} GB × 1,024 = <span className="text-foreground font-medium">{formatNumber(results.totalMB, 0)}</span> MB</p>
-              <p>÷ {daysPerMonth} days = <span className="text-foreground font-medium">{formatNumber(results.mbPerDay, 0)}</span> MB/day</p>
-              <p>÷ {hoursPerDay} hrs = <span className="text-foreground font-medium">{formatNumber(results.mbPerHour, 0)}</span> MB/hr</p>
+              <p>{monthlyGB === '' ? '—' : formatNumber(monthlyGB, 0)} GB × 1,024 = <span className="text-foreground font-medium">{formatNumber(results.totalMB, 0)}</span> MB</p>
+              <p>÷ {daysPerMonth === '' ? '—' : daysPerMonth} days = <span className="text-foreground font-medium">{formatNumber(results.mbPerDay, 0)}</span> MB/day</p>
+              <p>÷ {hoursPerDay === '' ? '—' : hoursPerDay} hrs = <span className="text-foreground font-medium">{formatNumber(results.mbPerHour, 0)}</span> MB/hr</p>
               <p>÷ 3,600 sec = <span className="text-foreground font-medium">{formatNumber(results.mbPerSecond, 2)}</span> MB/s</p>
               <p>× 8 = <span className="text-foreground font-medium">{formatNumber(results.avgMbps, 1)}</span> Mbps average</p>
               <p>× {peakMultiplier} = <span className="text-foreground font-medium">{formatNumber(results.peakMbps, 1)}</span> Mbps peak</p>
